@@ -2,7 +2,7 @@
  * Administrador de los parqueaderos ubicados en la Universidad de Cuenca
  * Autores del proyecto: 
  * Santos Gallegos <santos_g@outlook.com>
- * Franklin Lara <>
+ * Franklin Lara <larafranklin@outlook.com>
  *
  */
 package edu.ucue.jparking;
