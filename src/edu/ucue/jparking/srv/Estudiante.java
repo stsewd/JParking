@@ -19,4 +19,11 @@ public class Estudiante extends Usuario{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * @return the VALOR_PARQUEADERO
+     */
+    public static float getVALOR_PARQUEADERO() {
+        return VALOR_PARQUEADERO;
+    }
+    
 }
