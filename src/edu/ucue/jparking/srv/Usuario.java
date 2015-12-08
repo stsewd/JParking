@@ -5,7 +5,6 @@ package edu.ucue.jparking.srv;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ import java.util.List;
 public abstract class Usuario extends Persona{
     private List<Parqueadero> parqueaderos;
     private Calendar fechaContrato;
-    private boolean debiendo;
+    private static final int diasContrato = 30;
     
     /**
      * 
@@ -25,8 +24,7 @@ public abstract class Usuario extends Persona{
      */
     public Usuario(String cedula, String nombres, String apellidos) {
         super(cedula, nombres, apellidos);
-        this.fechaContrato = new GregorianCalendar();
-        this.debiendo = false;
+        this.fechaContrato = Calendar.getInstance();
         this.parqueaderos = new ArrayList<>();
     }
 
@@ -62,13 +60,27 @@ public abstract class Usuario extends Persona{
      * @return the debiendo
      */
     public boolean estaDebiendo() {
-        return debiendo;
+        Calendar fechaActual = Calendar.getInstance();
+        fechaActual.add(Calendar.DAY_OF_WEEK, -diasContrato);
+        return this.fechaContrato.compareTo(fechaActual) < 0;
     }
-
+    
+    public void cancelarPago() throws PagoYaRealizadoException {
+        if (!estaDebiendo())
+            throw new PagoYaRealizadoException(this.cedula);
+        this.fechaContrato = Calendar.getInstance();
+    }
+    
     /**
-     * @param debiendo the debiendo to set
+     * @return the diasContrato
      */
-    public void setDebiendo(boolean debiendo) {
-        this.debiendo = debiendo;
+    public static int getDiasContrato() {
+        return diasContrato;
     }
+    
+    /**
+     *
+     * @return La orden de pago del usuario que llama el método
+     */
+    public abstract OrdenPago generarOrdenPago();
 }
