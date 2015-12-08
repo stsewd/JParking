@@ -8,9 +8,10 @@ package edu.ucue.jparking.srv;
  * @author Santos Gallegos
  */
 public abstract class Persona {
-    private final String cedula;
+    protected final String cedula;
     private String nombres;
     private String apellidos;
+    private boolean activo;
     
     /**
      * 
@@ -23,6 +24,7 @@ public abstract class Persona {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
+        this.activo = true;
     }
 
     /**
@@ -58,6 +60,20 @@ public abstract class Persona {
      */
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    /**
+     * @return the activo
+     */
+    public boolean isActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     
 }
