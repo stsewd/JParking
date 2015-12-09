@@ -24,7 +24,7 @@ public class Parqueadero {
     public Parqueadero(String ubicacion,int numeroLugares) {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
-        this.campus = new ArrayList<>();
+        this.campus = campus;
         this.puertasEntrada = new ArrayList<>();
         this.puertasSalida = new ArrayList<>();
         this.usuarios = new ArrayList<>();
