@@ -9,6 +9,7 @@ package edu.ucue.jparking.srv;
  *
  * @author stsewd
  */
-class OrdenPago {
+public class OrdenPago {
+    
     
 }
