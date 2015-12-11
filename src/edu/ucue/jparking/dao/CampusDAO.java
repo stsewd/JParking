@@ -6,6 +6,7 @@ package edu.ucue.jparking.dao;
 import edu.ucue.jparking.srv.Campus;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -14,9 +15,9 @@ import java.util.Map;
 public class CampusDAO {
 
     private static CampusDAO instancia;
-    private Map<String,Campus> mapCampus;
+    private static Map<String,Campus> mapCampus;
 
-    public CampusDAO() {
+    private CampusDAO() {
         mapCampus= new HashMap<>();
     }
     
@@ -68,8 +69,8 @@ public class CampusDAO {
         mapCampus.put(campus.getNombre(), campus);
         }
     
-    public Map getCampuss(){
-        return mapCampus;
+    public Set getCampuss(){
+        return (Set) mapCampus.values();
     }
 
 }
