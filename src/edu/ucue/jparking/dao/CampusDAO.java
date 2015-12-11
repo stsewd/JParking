@@ -13,7 +13,6 @@ import java.util.Map;
  */
 public class CampusDAO {
 
-    
     private static CampusDAO instancia;
     private Map<String,Campus> mapCampus;
 
