@@ -11,10 +11,24 @@ import java.util.List;
  * @author Santos Gallegos
  */
 public class Campus {
+
+    /**
+     * @param aHoraApertura the horaApertura to set
+     */
+    public static void setHoraApertura(HoraDia aHoraApertura) {
+        horaApertura = aHoraApertura;
+    }
+
+    /**
+     * @param aHoraCierre the horaCierre to set
+     */
+    public static void setHoraCierre(HoraDia aHoraCierre) {
+        horaCierre = aHoraCierre;
+    }
     private String nombre;
     private String direccion;
-    private static final HoraDia horaApertura = new HoraDia(6, 30);
-    private static final HoraDia horaCierre = new HoraDia(21, 30);
+    private static HoraDia horaApertura = new HoraDia(6, 30);
+    private static HoraDia horaCierre = new HoraDia(21, 30);
     
     /*
     private List<Puerta> puertas;
@@ -47,6 +61,7 @@ public class Campus {
         return horaCierre;
     }
 
+    
     /**
      * @return the nombre
      */

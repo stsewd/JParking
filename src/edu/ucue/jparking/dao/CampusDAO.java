@@ -32,8 +32,6 @@ public class CampusDAO {
     
     public void addCampus(Campus campus ) throws CampusExistenteExeption
     {
-        if (campus == null)
-            throw new IllegalArgumentException("El argumento campus no puede estra vacio");
         if (mapCampus.get(campus.getNombre()) != null){
             throw new CampusExistenteExeption(campus.getNombre());
         }
@@ -43,31 +41,26 @@ public class CampusDAO {
     }
     
     public void delCampus(String nombre) throws CampusNoExistenteException{
-        
-        if (nombre == null)
-            throw new IllegalArgumentException("El nombre no puede estar vacio");
         if (mapCampus.get(nombre) == null)
             throw new CampusNoExistenteException(nombre);
         mapCampus.remove(nombre);
     }
     
     public Campus getCampus(String nombre) throws CampusNoExistenteException{
-        if (nombre == null)
-            throw new IllegalArgumentException("El nombre no puede estar vacio");
         if (mapCampus.get(nombre) != null){
             throw new CampusNoExistenteException(nombre);
         }
         return mapCampus.get(nombre);
     }
     
-    public void modCampus(Campus campus) throws CampusNoExistenteException {
-        if (campus == null)
-            throw new IllegalArgumentException("El argumento campus no puede estra vacio");
-        if (mapCampus.get(campus.getNombre()) == null){
-            throw new CampusNoExistenteException(campus.getNombre());
+    public void modCampus(String nombre, String ubicacion) throws CampusNoExistenteException {
+        if (mapCampus.get(nombre) == null){
+            throw new CampusNoExistenteException(nombre);
         }
-        mapCampus.put(campus.getNombre(), campus);
-        }
+        Campus cam = mapCampus.get(nombre);
+        cam.setDireccion(ubicacion);
+        
+    }
     
     public Set getCampuss(){
         return (Set) mapCampus.values();
