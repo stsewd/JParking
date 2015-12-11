@@ -41,7 +41,7 @@ public class CampusService {
     }
     
     public Set getCampuss(){
-        return (Set) CampusDAO.getInstancia().getCampuss();
+        return (Set) CampusDAO.getInstancia().getCampus();
     }
     
     

@@ -9,7 +9,6 @@ package edu.ucue.jparking.srv;
  */
 public class Parqueadero {
     
-    private Campus campus;
     /*
     private List<Usuario> usuarios;
     private List<Puerta> puertasEntrada;
@@ -24,7 +23,6 @@ public class Parqueadero {
     public Parqueadero(String ubicacion, int numeroLugares, String id) {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
-        this.campus = campus;
         this.id = id;
         /*
         this.puertasEntrada = new ArrayList<>();
@@ -33,19 +31,6 @@ public class Parqueadero {
         */
     }
 
-    /**
-     * @return the campus
-     */
-    public Campus getCampus() {
-        return campus;
-    }
-
-    /**
-     * @param campus the campus to set
-     */
-    public void setCampus(Campus campus) {
-        this.campus = campus;
-    }
 
     /**
      * @return the ubicacion

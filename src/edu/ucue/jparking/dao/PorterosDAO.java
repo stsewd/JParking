@@ -5,10 +5,26 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.srv.Portero;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Santos Gallegos
  */
 public class PorterosDAO {
+    //Mapa <Clave de campus, Mapa<Cedula, portero>>
+    private static Map<String, Map<String, Portero>> porteros;
+    private static PorterosDAO instance;
     
+    private PorterosDAO(){
+        porteros = new HashMap<>();
+    }
+
+    public static PorterosDAO getInstance() {
+        if(instance == null)
+            instance = new PorterosDAO();
+        return instance;
+    }
 }
