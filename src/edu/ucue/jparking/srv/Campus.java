@@ -13,8 +13,8 @@ import java.util.List;
 public class Campus {
     private final String nombre;
     private String direccion;
-    private static HoraDia horaApertura = new HoraDia(6, 30);
-    private static HoraDia horaCierre = new HoraDia(21, 30);
+    private static final HoraDia horaApertura = new HoraDia(6, 30);
+    private static final HoraDia horaCierre = new HoraDia(21, 30);
     
     /*
     private List<Puerta> puertas;
@@ -47,7 +47,6 @@ public class Campus {
         return horaCierre;
     }
 
-    
     /**
      * @return the nombre
      */
