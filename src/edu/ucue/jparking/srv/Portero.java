@@ -28,6 +28,7 @@ public class Portero extends Persona{
     public void setNombreCampus(String nombreCampus) {
         this.nombreCampus = nombreCampus;
     }
+
     
     
 }

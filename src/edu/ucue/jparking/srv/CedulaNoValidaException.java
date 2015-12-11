@@ -5,15 +5,14 @@
  */
 package edu.ucue.jparking.srv;
 
-import edu.ucue.jparking.dao.UsuarioYaExistenteException;
-import edu.ucue.jparking.dao.UsuariosDAO;
-
 /**
  *
- * @author Franklin Lara
+ * @author ESTUDIANTE
  */
-public interface UsuarioService {
+class CedulaNoValidaException extends Exception {
+
+    public CedulaNoValidaException(String cedula) {
+        super("La cedula "+cedula+" No es valida");
+    }
     
-    
-   
 }

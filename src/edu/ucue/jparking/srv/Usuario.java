@@ -79,5 +79,5 @@ public abstract class Usuario extends Persona{
     public List<String> getParqueaderos() {
         return parqueaderos;
     }
-    
+
 }
