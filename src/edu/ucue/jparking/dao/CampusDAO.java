@@ -12,6 +12,7 @@ import java.util.Map;
  * @author Lara
  */
 public class CampusDAO {
+
     
     private static CampusDAO instancia;
     private Map<String,Campus> mapCampus;
@@ -71,4 +72,5 @@ public class CampusDAO {
     public Map getCampuss(){
         return mapCampus;
     }
+
 }
