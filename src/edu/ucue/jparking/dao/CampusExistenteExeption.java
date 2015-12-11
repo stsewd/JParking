@@ -7,7 +7,7 @@ package edu.ucue.jparking.dao;
 
 /**
  *
- * @author ESTUDIANTE
+ * @author Franklin Lara
  */
 public class CampusExistenteExeption extends Exception {
     private String nombre;

@@ -7,7 +7,7 @@ package edu.ucue.jparking.srv;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class RegistroUsuario extends Registro {
     private final TipoModificacion tipoModificacion;

@@ -6,8 +6,9 @@
 package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.srv.Registro;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  *
@@ -15,10 +16,10 @@ import java.util.List;
  */
 public class RegistrosDAO {
     private static RegistrosDAO instance;
-    private static List<Registro> registros;
+    private static Set<Registro> registros;
     
     private RegistrosDAO(){
-        registros = new ArrayList<>();
+        registros = new LinkedHashSet<>();
     }
 
     public static RegistrosDAO getInstance() {
@@ -27,6 +28,21 @@ public class RegistrosDAO {
         return instance;
     }
     
-    //Crear CRUD
+    //Funciones CRUD
+    
+    public void addRegistro(Registro registro){
+        registros.add(registro);
+    }
+    
+    public Set getRegistros(Calendar fechaInicial, Calendar fechaFinal){
+        //Implementar, retorna un set de los registros creados entre
+        //fechaInicial y fechaFinal
+        Set<Registro> registros = new LinkedHashSet();
+        return registros;
+    }    
+    
+    public Set getRegistros(){
+        return this.registros;
+    }
     
 }

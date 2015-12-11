@@ -7,7 +7,7 @@ package edu.ucue.jparking.dao;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class UsuarioNoExistenteException extends Exception {
 

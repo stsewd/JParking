@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class OrdenPago {
     

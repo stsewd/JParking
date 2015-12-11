@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  *
- * @author Lara
+ * @author Franklin Lara
  */
 public class CampusDAO {
 
