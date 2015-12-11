@@ -8,7 +8,7 @@ package edu.ucue.jparking.srv;
  * @author Santos Gallegos
  */
 public abstract class Persona {
-    protected final String cedula;
+    private final String cedula;
     private String nombres;
     private String apellidos;
     private boolean activo;

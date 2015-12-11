@@ -67,7 +67,7 @@ public abstract class Usuario extends Persona{
     
     public void cancelarPago() throws PagoYaRealizadoException {
         if (!estaDebiendo())
-            throw new PagoYaRealizadoException(this.cedula);
+            throw new PagoYaRealizadoException(this.getCedula());
         this.fechaContrato = Calendar.getInstance();
     }
     
