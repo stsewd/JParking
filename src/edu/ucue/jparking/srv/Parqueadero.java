@@ -16,7 +16,7 @@ public class Parqueadero {
     private List<Puerta> puertasSalida;
     */
    
-    private String id;
+    private final String id;
     private String ubicacion;
     private int numeroLugares;
     private int numeroLugaresDisponibles;

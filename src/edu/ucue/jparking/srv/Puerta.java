@@ -13,6 +13,7 @@ public class Puerta {
     private String nombreCampus;
     private boolean activa;
     
+    
 
     public Puerta(String ubicacion, String nombreCampus) {
         this.ubicacion = ubicacion;

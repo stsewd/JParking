@@ -11,7 +11,7 @@ import java.util.List;
  * @author Santos Gallegos
  */
 public class Campus {
-    private String nombre;
+    private final String nombre;
     private String direccion;
     private static final HoraDia horaApertura = new HoraDia(6, 30);
     private static final HoraDia horaCierre = new HoraDia(21, 30);
@@ -52,13 +52,6 @@ public class Campus {
      */
     public String getNombre() {
         return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     /**
