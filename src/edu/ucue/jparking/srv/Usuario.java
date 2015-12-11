@@ -12,9 +12,12 @@ import java.util.List;
  * @author Santos Gallegos
  */
 public abstract class Usuario extends Persona{
+    /*
     private List<Parqueadero> parqueaderos;
+    */
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
+    private List<String> parqueaderos; //por id de parqueadero
     
     /**
      * 
@@ -26,20 +29,6 @@ public abstract class Usuario extends Persona{
         super(cedula, nombres, apellidos);
         this.fechaContrato = Calendar.getInstance();
         this.parqueaderos = new ArrayList<>();
-    }
-
-    /**
-     * @return the parqueaderos
-     */
-    public List<Parqueadero> getParqueaderos() {
-        return parqueaderos;
-    }
-
-    /**
-     * @param parqueaderos the parqueaderos to set
-     */
-    public void setParqueaderos(List<Parqueadero> parqueaderos) {
-        this.parqueaderos = parqueaderos;
     }
 
     /**
@@ -83,4 +72,11 @@ public abstract class Usuario extends Persona{
      * @return La orden de pago del usuario que llama el método
      */
     public abstract OrdenPago generarOrdenPago();
+
+    /**
+     * @return the parqueaderos
+     */
+    public List<String> getParqueaderos() {
+        return parqueaderos;
+    }
 }

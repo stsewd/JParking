@@ -8,24 +8,26 @@ package edu.ucue.jparking.srv;
  * @author Santos Gallegos
  */
 public class Portero extends Persona{
-    private Campus campus;
+    private String nombreCampus;
 
-    public Portero(String cedula, String nombres, String apellidos, Campus campus) {
+    public Portero(String cedula, String nombres, String apellidos, String nombreCampus) {
         super(cedula, nombres, apellidos);
-        this.campus = campus;
+        this.nombreCampus = nombreCampus;
     }
 
     /**
-     * @return the campus
+     * @return the nombreCampus
      */
-    public Campus getCampus() {
-        return campus;
+    public String getNombreCampus() {
+        return nombreCampus;
     }
 
     /**
-     * @param campus the campus to set
+     * @param nombreCampus the nombreCampus to set
      */
-    public void setCampus(Campus campus) {
-        this.campus = campus;
-    }    
+    public void setNombreCampus(String nombreCampus) {
+        this.nombreCampus = nombreCampus;
+    }
+    
+    
 }

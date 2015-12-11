@@ -15,16 +15,21 @@ public class Campus {
     private String direccion;
     private static final HoraDia horaApertura = new HoraDia(6, 30);
     private static final HoraDia horaCierre = new HoraDia(21, 30);
+    
+    /*
     private List<Puerta> puertas;
     private List<Parqueadero> parqueaderos;
     private List<Portero> porteros;
+    */
     
     public Campus(String nombre, String direccion) {
         this.nombre=nombre;
         this.direccion=direccion;
+        /*
         this.puertas = new ArrayList<>();
         this.parqueaderos = new ArrayList<>();
         this.porteros = new ArrayList<>();
+        */
     }
 
 
@@ -68,27 +73,5 @@ public class Campus {
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    /**
-     * @return the puertas
-     */
-    public List<Puerta> getPuertas() {
-        return puertas;
-    }
-
-    /**
-     * @return the parqueaderos
-     */
-    public List<Parqueadero> getParqueaderos() {
-        return parqueaderos;
-    }
-
-    /**
-     * @return the porteros
-     */
-    public List<Portero> getPorteros() {
-        return porteros;
-    }
-    
+    }    
 }

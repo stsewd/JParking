@@ -10,12 +10,13 @@ package edu.ucue.jparking.srv;
 public class Puerta {
     
     private String ubicacion;
-    private Campus campus;
+    private String nombreCampus;
     private boolean activa;
+    
 
-    public Puerta(String ubicacion, Campus campus) {
+    public Puerta(String ubicacion, String nombreCampus) {
         this.ubicacion = ubicacion;
-        this.campus = campus;
+        this.nombreCampus = nombreCampus;
         this.activa = true;
     }
 

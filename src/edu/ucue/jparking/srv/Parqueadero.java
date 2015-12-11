@@ -3,9 +3,6 @@
  */
 package edu.ucue.jparking.srv;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Santos Gallegos
@@ -13,21 +10,27 @@ import java.util.List;
 public class Parqueadero {
     
     private Campus campus;
+    /*
     private List<Usuario> usuarios;
     private List<Puerta> puertasEntrada;
     private List<Puerta> puertasSalida;
-    
+    */
+   
+    private String id;
     private String ubicacion;
     private int numeroLugares;
     private int numeroLugaresDisponibles;
 
-    public Parqueadero(String ubicacion,int numeroLugares) {
+    public Parqueadero(String ubicacion, int numeroLugares, String id) {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
         this.campus = campus;
+        this.id = id;
+        /*
         this.puertasEntrada = new ArrayList<>();
         this.puertasSalida = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+        */
     }
 
     /**
@@ -42,48 +45,6 @@ public class Parqueadero {
      */
     public void setCampus(Campus campus) {
         this.campus = campus;
-    }
-
-    /**
-     * @return the usuarios
-     */
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    /**
-     * @param usuarios the usuarios to set
-     */
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    /**
-     * @return the puertasEntrada
-     */
-    public List<Puerta> getPuertasEntrada() {
-        return puertasEntrada;
-    }
-
-    /**
-     * @param puertasEntrada the puertasEntrada to set
-     */
-    public void setPuertasEntrada(List<Puerta> puertasEntrada) {
-        this.puertasEntrada = puertasEntrada;
-    }
-
-    /**
-     * @return the puertasSalida
-     */
-    public List<Puerta> getPuertasSalida() {
-        return puertasSalida;
-    }
-
-    /**
-     * @param puertasSalida the puertasSalida to set
-     */
-    public void setPuertasSalida(List<Puerta> puertasSalida) {
-        this.puertasSalida = puertasSalida;
     }
 
     /**
