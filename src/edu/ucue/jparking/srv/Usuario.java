@@ -3,9 +3,7 @@
  */
 package edu.ucue.jparking.srv;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  *
@@ -17,7 +15,6 @@ public abstract class Usuario extends Persona{
     */
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
-    private List<String> parqueaderos; //por id de parqueadero
     
     /**
      * 
@@ -28,7 +25,6 @@ public abstract class Usuario extends Persona{
     public Usuario(String cedula, String nombres, String apellidos, TipoUsuario tipoUsuario) {
         super(cedula, nombres, apellidos, tipoUsuario);
         this.fechaContrato = Calendar.getInstance();
-        this.parqueaderos = new ArrayList<>();
     }
 
     /**
@@ -72,12 +68,5 @@ public abstract class Usuario extends Persona{
      * @return La orden de pago del usuario que llama el método
      */
     public abstract OrdenPago generarOrdenPago();
-
-    /**
-     * @return the parqueaderos
-     */
-    public List<String> getParqueaderos() {
-        return parqueaderos;
-    }
 
 }
