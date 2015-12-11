@@ -3,9 +3,6 @@
  */
 package edu.ucue.jparking.srv;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Santos Gallegos
@@ -66,5 +63,5 @@ public class Campus {
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }    
+    }
 }
