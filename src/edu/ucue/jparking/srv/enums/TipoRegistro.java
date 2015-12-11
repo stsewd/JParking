@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.dao;
+package edu.ucue.jparking.srv.enums;
 
 /**
  *
  * @author Santos Gallegos
  */
-public class UsuarioNoExistenteException extends Exception {
-
-    public UsuarioNoExistenteException(String cedula) {
-        super("El usuario de cedula: " + cedula + " no existe.");
-    }
-    
+public enum TipoRegistro {
+    ACCESO_PARQUEADERO,
+    USUARIO,
+    PAGOS;
 }

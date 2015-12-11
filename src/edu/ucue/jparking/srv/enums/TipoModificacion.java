@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv;
+package edu.ucue.jparking.srv.enums;
 
 /**
  *
- * @author Santos Gallegos
+ * @author stsewd
  */
-public enum TipoRegistro {
-    ACCESO_PARQUEADERO,
-    USUARIO,
-    PAGOS;
+public enum TipoModificacion {
+    CREACION,
+    MODIFICACION,
+    ELIMINACION;
 }

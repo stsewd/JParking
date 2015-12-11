@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.Campus;
 import java.util.HashMap;
 import java.util.Map;

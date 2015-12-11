@@ -5,7 +5,7 @@
  */
 package edu.ucue.jparking.dao;
 
-import edu.ucue.jparking.srv.Registro;
+import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
 import java.util.LinkedHashSet;
 import java.util.Set;

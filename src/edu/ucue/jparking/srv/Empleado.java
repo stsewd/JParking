@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.enums.TipoUsuario;
+
 /**
  *
  * @author Santos Gallegos

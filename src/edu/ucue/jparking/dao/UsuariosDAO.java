@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.Usuario;
 import java.util.HashMap;
 import java.util.Map;

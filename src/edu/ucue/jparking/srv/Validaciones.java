@@ -5,6 +5,8 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+
 /**
  *
  * @author Franklin Lara

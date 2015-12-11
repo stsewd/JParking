@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv;
+package edu.ucue.jparking.srv.service;
 
-import edu.ucue.jparking.dao.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.UsuarioYaExistenteException;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.Usuario;
 import java.util.Set;
 
 /**
@@ -61,8 +64,12 @@ public class UsuarioService {
         } 
     }
     
-    public Set getLista(){
+    public void get(String cedula){
         
+    }
+            
+    public Set<Usuario> getLista(){
+        return (Set<Usuario>) UsuariosDAO.getInstance().getUsuariosMap();
     }
    
 }

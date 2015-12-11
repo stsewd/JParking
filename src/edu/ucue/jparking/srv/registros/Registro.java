@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv;
+package edu.ucue.jparking.srv.registros;
 
+import edu.ucue.jparking.srv.Persona;
+import edu.ucue.jparking.srv.enums.TipoRegistro;
 import java.util.Calendar;
 
 /**

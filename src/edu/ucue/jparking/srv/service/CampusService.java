@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv;
+package edu.ucue.jparking.srv.service;
 
 import edu.ucue.jparking.dao.CampusDAO;
-import edu.ucue.jparking.dao.CampusExistenteExeption;
-import edu.ucue.jparking.dao.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.srv.Campus;
 import java.util.Set;
 
 /**

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv;
+package edu.ucue.jparking.srv.service;
 
-import edu.ucue.jparking.dao.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.UsuarioYaExistenteException;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.srv.Empleado;
+import edu.ucue.jparking.srv.Validaciones;
 import java.util.Set;
 
 /**

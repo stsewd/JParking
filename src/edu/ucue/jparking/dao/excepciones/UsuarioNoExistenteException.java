@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.dao;
+package edu.ucue.jparking.dao.excepciones;
 
 /**
  *
  * @author Santos Gallegos
  */
-public class UsuarioYaExistenteException extends Exception {
+public class UsuarioNoExistenteException extends Exception {
 
-    public UsuarioYaExistenteException(String cedula) {
-        super("El usuario con cédula: " +  cedula + " ya existe.");
+    public UsuarioNoExistenteException(String cedula) {
+        super("El usuario de cedula: " + cedula + " no existe.");
     }
     
 }
