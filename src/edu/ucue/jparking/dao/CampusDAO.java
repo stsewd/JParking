@@ -21,7 +21,7 @@ public class CampusDAO {
         mapCampus= new HashMap<>();
     }
     
-    private static CampusDAO getInstancia(){
+    public static CampusDAO getInstancia(){
         if(instancia==null){
             instancia = new CampusDAO();
         }

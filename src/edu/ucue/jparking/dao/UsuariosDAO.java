@@ -20,7 +20,7 @@ public class UsuariosDAO {
         usuarios = new HashMap<>();
     }
     
-    private UsuariosDAO getInstance(){
+    public static UsuariosDAO getInstance(){
         if (instance == null)
             instance = new UsuariosDAO();
         return instance;
