@@ -31,6 +31,10 @@ public abstract class Persona {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
     /**
      * @return the cedula
      */

@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv;
 public class RegistroPagos extends Registro {
     private final TipoTramite tipoTramite;
     public RegistroPagos(Persona persona, TipoTramite tipoTramite) {
-        super(persona);
+        super(persona, TipoRegistro.PAGOS);
         this.tipoTramite = tipoTramite;
     }
 

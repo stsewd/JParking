@@ -13,7 +13,7 @@ public class RegistroUsuario extends Registro {
     private final TipoModificacion tipoModificacion;
     
     public RegistroUsuario(Persona persona, TipoModificacion tipoModificacion) {
-        super(persona);
+        super(persona, TipoRegistro.USUARIO);
         this.tipoModificacion = tipoModificacion;
     }
 

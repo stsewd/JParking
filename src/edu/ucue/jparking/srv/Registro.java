@@ -12,18 +12,27 @@ import java.util.Calendar;
  * @author stsewd
  */
 public abstract class Registro {
+    
+    private final TipoRegistro tipoRegistro;
+    
     private final Calendar fecha;
     private final String cedulaPersona;
     private final String nombresPersona;
     private final String apellidosPersona;
     private final boolean activoPersona;
 
-    public Registro(Persona persona) {
+    public Registro(Persona persona, TipoRegistro tipoRegistro) {
         this.fecha = Calendar.getInstance();
         this.cedulaPersona = persona.getCedula();
         this.nombresPersona = persona.getNombres();
         this.apellidosPersona = persona.getApellidos();
         this.activoPersona = persona.isActivo();
+        
+        this.tipoRegistro = tipoRegistro;
+    }
+
+    public TipoRegistro getTipoRegistro() {
+        return tipoRegistro;
     }
 
     /**

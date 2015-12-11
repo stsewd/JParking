@@ -14,7 +14,7 @@ public class RegistroAccesoParqueadero extends Registro {
     private final TipoAcceso tipoAcceso;
     
     public RegistroAccesoParqueadero(Persona persona, TipoAcceso tipoAcceso) {
-        super(persona);
+        super(persona, TipoRegistro.ACCESO_PARQUEADERO);
         this.tipoAcceso = tipoAcceso;
     }
 
