@@ -4,6 +4,7 @@
 package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.srv.Usuario;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ public class UsuariosDAO {
     private static Map<String, Usuario> usuarios;
 
     private UsuariosDAO() {
+        usuarios = new HashMap<>();
     }
     
     private UsuariosDAO getInstance(){
