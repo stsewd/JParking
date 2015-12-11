@@ -18,7 +18,7 @@ public class Docente extends Usuario {
     }
 
     public Docente(String cedula, String nombres, String apellidos) {
-        super(cedula, nombres, apellidos);
+        super(cedula, nombres, apellidos, TipoUsuario.DOCENTE);
     }
 
     @Override

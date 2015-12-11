@@ -11,7 +11,7 @@ public class Portero extends Persona{
     private String nombreCampus;
 
     public Portero(String cedula, String nombres, String apellidos, String nombreCampus) {
-        super(cedula, nombres, apellidos);
+        super(cedula, nombres, apellidos, TipoUsuario.PORTERO);
         this.nombreCampus = nombreCampus;
     }
 

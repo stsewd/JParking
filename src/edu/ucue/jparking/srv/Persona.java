@@ -8,6 +8,9 @@ package edu.ucue.jparking.srv;
  * @author Santos Gallegos
  */
 public abstract class Persona {
+    
+    protected final TipoUsuario tipoUsuario;
+    
     private final String cedula;
     private String nombres;
     private String apellidos;
@@ -19,12 +22,13 @@ public abstract class Persona {
      * @param nombres Nombre(s) de la persona
      * @param apellidos Apellido(s) de la persona
      */
-    public Persona(String cedula, String nombres, String apellidos) {
+    public Persona(String cedula, String nombres, String apellidos, TipoUsuario tipoUsuario) {
         //Agregar validaciones de parametros no nulos
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.activo = true;
+        this.tipoUsuario = tipoUsuario;
     }
 
     /**

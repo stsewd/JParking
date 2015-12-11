@@ -11,7 +11,7 @@ public class Empleado extends Usuario {
     private static final float VALOR_PARQUEADERO = 30f;
 
     public Empleado(String cedula, String nombres, String apellidos) {
-        super(cedula, nombres, apellidos);
+        super(cedula, nombres, apellidos, TipoUsuario.EMPLEADO);
     }
 
     @Override

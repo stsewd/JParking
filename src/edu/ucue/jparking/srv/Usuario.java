@@ -25,8 +25,8 @@ public abstract class Usuario extends Persona{
      * @param nombres
      * @param apellidos 
      */
-    public Usuario(String cedula, String nombres, String apellidos) {
-        super(cedula, nombres, apellidos);
+    public Usuario(String cedula, String nombres, String apellidos, TipoUsuario tipoUsuario) {
+        super(cedula, nombres, apellidos, tipoUsuario);
         this.fechaContrato = Calendar.getInstance();
         this.parqueaderos = new ArrayList<>();
     }
