@@ -3,10 +3,13 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.srv.Campus;
+import java.util.List;
+
 /**
  *
  * @author Santos Gallegos
  */
 public class CampusDAO {
-    
+    private static List<Campus> campus;
 }

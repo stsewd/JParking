@@ -28,8 +28,6 @@ public class Parqueadero {
         this.puertasEntrada = new ArrayList<>();
         this.puertasSalida = new ArrayList<>();
         this.usuarios = new ArrayList<>();
-        
-        
     }
 
     /**
@@ -128,7 +126,5 @@ public class Parqueadero {
      */
     public void setNumeroLugaresDisponibles(int numeroLugaresDisponibles) {
         this.numeroLugaresDisponibles = numeroLugaresDisponibles;
-    }
-    
-    
+    }    
 }

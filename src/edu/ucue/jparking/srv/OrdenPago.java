@@ -35,8 +35,4 @@ public class OrdenPago {
     public void setFechaEmision(Calendar fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
-    
-    
-    
-    
 }
