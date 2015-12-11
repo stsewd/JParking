@@ -13,8 +13,9 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public class UsuariosDAO {
+    //Mapa<Id de parqueadero, Mapa<Cedula, Usuario>>
+    private static Map<String, Map<String, Usuario>> usuarios;
     private static UsuariosDAO instance;
-    private static Map<String, Usuario> usuarios;
 
     private UsuariosDAO() {
         usuarios = new HashMap<>();

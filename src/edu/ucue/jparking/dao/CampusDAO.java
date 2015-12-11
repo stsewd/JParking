@@ -26,8 +26,6 @@ public class CampusDAO {
             instancia = new CampusDAO();
         }
             return instancia;
-        
-        
     }
     
     public void addCampus(Campus campus ) throws CampusExistenteExeption
@@ -62,7 +60,7 @@ public class CampusDAO {
         
     }
     
-    public Set getCampuss(){
+    public Set getCampus(){
         return (Set) mapCampus.values();
     }
 
