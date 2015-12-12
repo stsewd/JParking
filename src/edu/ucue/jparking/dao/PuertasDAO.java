@@ -14,9 +14,9 @@ import java.util.Map;
  * @author Santos Gallegos
  */
 public class PuertasDAO {
-    //Mapa <Campus, Mapa<Id Parqueadero, Puerta>>
-    private static Map<String, Map<String, Puerta>> puertasEntrada;
-    private static Map<String, Map<String, Puerta>> puertasSalida;
+    //Mapa <Campus, Mapa<Id Parqueadero, MApa<Id de puerta, Puerta>>
+    private static Map<String, Map<String, Map<String, Puerta>>> puertasEntrada;
+    private static Map<String, Map<String, Map<String, Puerta>>> puertasSalida;
     
     private static PuertasDAO instance;
     

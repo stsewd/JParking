@@ -34,7 +34,7 @@ public class RegistrosDAO {
         registros.add(registro);
     }
     
-    public Set getRegistros(Calendar fechaInicial, Calendar fechaFinal){
+    public Set<Registro> getRegistros(Calendar fechaInicial, Calendar fechaFinal){
         //Implementar, retorna un set de los registros creados entre
         //fechaInicial y fechaFinal
         Set<Registro> registros = new LinkedHashSet();

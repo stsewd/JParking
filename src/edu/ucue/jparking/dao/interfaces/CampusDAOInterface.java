@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  *
- * @author ESTUDIANTE
+ * @author Franklin Lara
  */
 public interface CampusDAOInterface {
     
