@@ -15,7 +15,9 @@ import java.util.Set;
 public interface PorterosDAOInterface {
     public void addPortero(Portero portero);
     public void delPortero(String cedula);
+    public void modPortero(String cedula, String nombres, String apellidos, boolean activo);
     public Portero getPortero(String cedula);
     public Set<Portero> getPorteros();
-    public void modPortero(String cedula, String nombres, String apellidos, boolean activo);
+    public Set<Portero> getPorteros(String nombreCampus);
+    
 }

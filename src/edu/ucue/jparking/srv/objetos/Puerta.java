@@ -9,16 +9,17 @@ package edu.ucue.jparking.srv.objetos;
  */
 public class Puerta {
     
+    private final String id;
     private String ubicacion;
-    private String nombreCampus;
     private boolean activa;
     
     
 
-    public Puerta(String ubicacion, String nombreCampus) {
+    public Puerta(String ubicacion, String id) {
         this.ubicacion = ubicacion;
-        this.nombreCampus = nombreCampus;
+        
         this.activa = true;
+        this.id = id;
     }
 
     public void setUbicacion(String ubicacion) {
@@ -39,5 +40,11 @@ public class Puerta {
     public boolean estaActiva() {
         return activa;
     }    
+
+    public String getId() {
+        return id;
+    }
+
+    
     
 }

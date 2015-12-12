@@ -6,6 +6,7 @@
 package edu.ucue.jparking.dao.interfaces;
 
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.util.Set;
 
 /**
  *
@@ -13,7 +14,10 @@ import edu.ucue.jparking.srv.objetos.Puerta;
  */
 public interface PuertasDAOInterface {
     
-    public abstract void addPuerta(Puerta puerta);
-    public abstract void delPuerta(String Ubicacion);
-    //completar interfce
+    public abstract void addPuerta(Puerta puerta,String nombreCampus,String idParqueadero);
+    public abstract void delPuerta(String id);
+    public abstract Set<Puerta> getPuertas(); 
+    public abstract Set<Puerta> getPuertas(String nombreCampus); 
+    public abstract void modPuerta(String id,String ubicacion,boolean activa);
+    
 }
