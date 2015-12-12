@@ -5,6 +5,8 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.util.Set;
 
@@ -14,9 +16,9 @@ import java.util.Set;
  */
 public interface CampusDAOInterface {
     
-    public abstract void addCampus(Campus campus);
-    public abstract void delCampus(String nombre);
-    public abstract Campus getCampus(String nombre);
-    public abstract void modCampus(String nombre,String ubicacion);
+    public abstract void addCampus(Campus campus) throws CampusExistenteExeption;
+    public abstract void delCampus(String nombre) throws CampusNoExistenteException;
+    public abstract Campus getCampus(String nombre)  throws CampusNoExistenteException;
+    public abstract void modCampus(String nombre,String ubicacion)  throws CampusNoExistenteException;
     public abstract Set<Campus> getCampus();
 }

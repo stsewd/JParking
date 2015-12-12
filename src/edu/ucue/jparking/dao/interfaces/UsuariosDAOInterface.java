@@ -5,6 +5,8 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
@@ -15,10 +17,10 @@ import java.util.Set;
  */
 public interface UsuariosDAOInterface {
     
-    public abstract void addUsuario(Usuario usuario);
-    public abstract void delUsuario(String cedula);
-    public abstract Usuario getUsuario(String cedula);
-    public abstract void modUsuario(String cedula, String nombres, String apellidos, boolean activo);
+    public abstract void addUsuario(Usuario usuario) throws UsuarioYaExistenteException;
+    public abstract void delUsuario(String cedula) throws UsuarioNoExistenteException;
+    public abstract Usuario getUsuario(String cedula) throws UsuarioNoExistenteException;
+    public abstract void modUsuario(String cedula, String nombres, String apellidos, boolean activo) throws UsuarioNoExistenteException;
     public abstract Set<Usuario> getUsuarios();
     
 }

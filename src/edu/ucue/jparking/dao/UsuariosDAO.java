@@ -5,6 +5,7 @@ package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Set;
  *
  * @author Santos Gallegos
  */
-public class UsuariosDAO {
+public class UsuariosDAO implements UsuariosDAOInterface{
     //Mapa<Id de parqueadero, Mapa<Cedula, Usuario>>
     private static Map<String, Map<String, Usuario>> usuarios;
     private static UsuariosDAO instance;
@@ -30,6 +31,7 @@ public class UsuariosDAO {
     }
     
     //Funciones CRUD
+    @Override
     public void addUsuario(Usuario usuario) throws UsuarioYaExistenteException{
         Map<String, Usuario> usuarios = getUsuariosMap();
         if(usuarios.get(usuario.getCedula()) != null)
@@ -37,11 +39,13 @@ public class UsuariosDAO {
         usuarios.put(usuario.getCedula(), usuario);
     }
     
+    @Override
     public void delUsuario(String cedula) throws UsuarioNoExistenteException{
         Usuario usuario = getUsuario(cedula);
         usuario.setActivo(false);
     }
     
+    @Override
     public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException{
         Map<String, Usuario> usuarios = getUsuariosMap();
         if(usuarios.get(cedula) == null)
@@ -49,6 +53,7 @@ public class UsuariosDAO {
         return usuarios.get(cedula);
     }
     
+    @Override
     public void modUsuario(String cedula, String nombres, String apellidos, boolean activo) throws UsuarioNoExistenteException{
         Usuario usuario = getUsuario(cedula);
         usuario.setNombres(nombres);
@@ -64,6 +69,7 @@ public class UsuariosDAO {
         return usuarios;
     }
     
+    @Override
     public Set<Usuario> getUsuarios(){
         return (Set<Usuario>) getUsuariosMap().values();
     }

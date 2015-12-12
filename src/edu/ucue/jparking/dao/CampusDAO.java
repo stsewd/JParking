@@ -5,6 +5,7 @@ package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class CampusDAO {
+public class CampusDAO implements CampusDAOInterface{
 
     private static CampusDAO instancia;
     private static Map<String,Campus> mapCampus;
@@ -30,6 +31,7 @@ public class CampusDAO {
             return instancia;
     }
     
+    @Override
     public void addCampus(Campus campus ) throws CampusExistenteExeption
     {
         if (mapCampus.get(campus.getNombre()) != null){
@@ -40,12 +42,14 @@ public class CampusDAO {
         
     }
     
+    @Override
     public void delCampus(String nombre) throws CampusNoExistenteException{
         if (mapCampus.get(nombre) == null)
             throw new CampusNoExistenteException(nombre);
         mapCampus.remove(nombre);
     }
     
+    @Override
     public Campus getCampus(String nombre) throws CampusNoExistenteException{
         if (mapCampus.get(nombre) != null){
             throw new CampusNoExistenteException(nombre);
@@ -53,6 +57,7 @@ public class CampusDAO {
         return mapCampus.get(nombre);
     }
     
+    @Override
     public void modCampus(String nombre, String ubicacion) throws CampusNoExistenteException {
         if (mapCampus.get(nombre) == null){
             throw new CampusNoExistenteException(nombre);
@@ -62,6 +67,7 @@ public class CampusDAO {
         
     }
     
+    @Override
     public Set<Campus> getCampus(){
         return (Set<Campus>) mapCampus.values();
     }
