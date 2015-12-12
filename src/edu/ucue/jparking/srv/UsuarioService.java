@@ -64,8 +64,19 @@ public class UsuarioService {
         } 
     }
     
-    public void get(String cedula){
-        
+    public void get(String cedula,TipoUsuario tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        if(tipoUsuario==TipoUsuario.ESTUDIANTE){
+            EstudianteService estudianteService = new EstudianteService();
+            estudianteService.get(cedula);
+        }else if(tipoUsuario==TipoUsuario.DOCENTE){
+            DocenteService docenteService = new DocenteService();
+            docenteService.get(cedula);
+        }else if(tipoUsuario==TipoUsuario.EMPLEADO){
+            EmpleadoService empleadoService = new EmpleadoService();
+            empleadoService.get(cedula);
+        }else{
+            throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
+        } 
     }
             
     public Set<Usuario> getLista(){
