@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv.service;
+package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
-import edu.ucue.jparking.srv.Empleado;
+import edu.ucue.jparking.srv.objetos.Estudiante;
 import edu.ucue.jparking.srv.Validaciones;
 import java.util.Set;
 
@@ -17,7 +17,7 @@ import java.util.Set;
  *
  * @author ESTUDIANTE
  */
-public class EmpleadoService {
+public class EstudianteService {
     
     Validaciones validar = new Validaciones();
     
@@ -27,8 +27,8 @@ public class EmpleadoService {
         
         validar.ValidarDatos(cedula, nombre, apellido);
         validar.validarCedula(cedula);
-        Empleado empleado = new Empleado(cedula, nombre, apellido);
-        UsuariosDAO.getInstance().addUsuario(empleado);
+        Estudiante estudiante = new Estudiante(cedula, nombre, apellido);
+        UsuariosDAO.getInstance().addUsuario(estudiante);
            
     }
 
@@ -39,9 +39,9 @@ public class EmpleadoService {
     }
 
     
-    public Empleado get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
+    public Estudiante get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
         validar.validarCedula(cedula);
-        return (Empleado) UsuariosDAO.getInstance().getUsuario(cedula);
+        return (Estudiante) UsuariosDAO.getInstance().getUsuario(cedula);
     }
         
     public void mod(String cedula, String nombre, String apellido,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException{
@@ -56,4 +56,5 @@ public class EmpleadoService {
     public Set getLista() {
         return (Set) UsuariosDAO.getInstance().getUsuarios();
     }
+
 }

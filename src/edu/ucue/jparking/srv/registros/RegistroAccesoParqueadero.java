@@ -5,7 +5,7 @@
  */
 package edu.ucue.jparking.srv.registros;
 
-import edu.ucue.jparking.srv.Persona;
+import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoAcceso;
 

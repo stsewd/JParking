@@ -5,7 +5,7 @@
  */
 package edu.ucue.jparking.dao;
 
-import edu.ucue.jparking.srv.Puerta;
+import edu.ucue.jparking.srv.objetos.Puerta;
 import java.util.HashMap;
 import java.util.Map;
 

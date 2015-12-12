@@ -5,7 +5,7 @@ package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
-import edu.ucue.jparking.srv.Campus;
+import edu.ucue.jparking.srv.objetos.Campus;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -62,8 +62,8 @@ public class CampusDAO {
         
     }
     
-    public Set getCampus(){
-        return (Set) mapCampus.values();
+    public Set<Campus> getCampus(){
+        return (Set<Campus>) mapCampus.values();
     }
 
 }

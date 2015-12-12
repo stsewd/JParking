@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.ucue.jparking.srv;
+package edu.ucue.jparking.srv.objetos;
 
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
