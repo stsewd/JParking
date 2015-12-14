@@ -16,7 +16,7 @@ public interface PuertasDAOInterface {
     
     public abstract void addPuerta(Puerta puerta,String nombreCampus,String idParqueadero);
     public abstract void delPuerta(String id);
-    public abstract Set<Puerta> getPuertas(); 
+    public abstract Set<Puerta> getPuertas();
     public abstract Set<Puerta> getPuertas(String nombreCampus); 
     public abstract void modPuerta(String id,String ubicacion,boolean activa);
     
