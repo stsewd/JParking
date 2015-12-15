@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.objetos.Estudiante;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
 
@@ -64,16 +65,16 @@ public class UsuarioService {
         } 
     }
     
-    public void get(String cedula,TipoUsuario tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    public Usuario get(String cedula,TipoUsuario tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
         if(tipoUsuario==TipoUsuario.ESTUDIANTE){
             EstudianteService estudianteService = new EstudianteService();
-            estudianteService.get(cedula);
+            return estudianteService.get(cedula);
         }else if(tipoUsuario==TipoUsuario.DOCENTE){
             DocenteService docenteService = new DocenteService();
-            docenteService.get(cedula);
+            return docenteService.get(cedula);
         }else if(tipoUsuario==TipoUsuario.EMPLEADO){
             EmpleadoService empleadoService = new EmpleadoService();
-            empleadoService.get(cedula);
+            return empleadoService.get(cedula);
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
         } 

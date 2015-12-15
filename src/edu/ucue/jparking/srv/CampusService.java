@@ -16,23 +16,17 @@ import java.util.Set;
  * @author ESTUDIANTE
  */
 public class CampusService {
-        
+    Validaciones validar = new Validaciones();
     public Campus addCampus(String nombre,String direccion) throws CampusExistenteExeption{
         
-        ValidarCampus(nombre, direccion);
+        validar.ValidarCampus(nombre, direccion);
         Campus campus = new Campus(nombre, direccion);
         
         CampusDAO.getInstancia().addCampus(campus);
         return campus;
     }
     
-    private void ValidarCampus(String nombre,String direccion){
-        if(nombre==null || nombre.trim().length()==0)
-            throw new IllegalArgumentException("El nombre del campus no puede estra vacio");
-        if (direccion==null || direccion.trim().length()==0)
-            throw new IllegalArgumentException("La direccion del campus no puede estar vacia");
-    }
-    
+        
     public Campus getCampus(String nombre) throws CampusNoExistenteException{
         return CampusDAO.getInstancia().getCampus(nombre);
     }

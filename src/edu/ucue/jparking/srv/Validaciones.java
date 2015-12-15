@@ -67,6 +67,12 @@ public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     return cedulaCorrecta;
     }
     
+public void ValidarCampus(String nombre,String direccion){
+        if(nombre==null || nombre.trim().length()==0)
+            throw new IllegalArgumentException("El nombre del campus no puede estra vacio");
+        if (direccion==null || direccion.trim().length()==0)
+            throw new IllegalArgumentException("La direccion del campus no puede estar vacia");
+}
 
 public void ValidarDatos(String cedula,String nombre, String apellidos)
     {
