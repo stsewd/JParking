@@ -20,7 +20,7 @@ public class PuertasDAO {
     private static Map<String, Map<String, String>> puertasSalida;
     
     //Mapa <Id de puerta, puerta>
-    private static Map<String, Puerta> puertas;    
+    private static Map<String, Puerta> puertas;
     
     private static PuertasDAO instance;
     
