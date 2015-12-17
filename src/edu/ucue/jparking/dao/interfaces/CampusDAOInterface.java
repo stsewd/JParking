@@ -19,6 +19,6 @@ public interface CampusDAOInterface {
     public abstract void addCampus(Campus campus) throws CampusExistenteExeption;
     public abstract void delCampus(String nombre) throws CampusNoExistenteException;
     public abstract Campus getCampus(String nombre)  throws CampusNoExistenteException;
-    public abstract void modCampus(String nombre,String ubicacion)  throws CampusNoExistenteException;
+    public abstract void modCampus(String nombre, String ubicacion)  throws CampusNoExistenteException;
     public abstract Set<Campus> getCampus();
 }

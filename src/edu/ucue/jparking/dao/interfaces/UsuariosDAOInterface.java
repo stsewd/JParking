@@ -16,11 +16,9 @@ import java.util.Set;
  * @author ESTUDIANTE
  */
 public interface UsuariosDAOInterface {
-    
     public abstract void addUsuario(Usuario usuario) throws UsuarioYaExistenteException;
     public abstract void delUsuario(String cedula) throws UsuarioNoExistenteException;
     public abstract Usuario getUsuario(String cedula) throws UsuarioNoExistenteException;
     public abstract void modUsuario(String cedula, String nombres, String apellidos, boolean activo) throws UsuarioNoExistenteException;
     public abstract Set<Usuario> getUsuarios();
-    
 }

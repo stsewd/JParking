@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public interface PuertasDAOInterface {
     
-    public abstract void addPuerta(Puerta puerta,String nombreCampus,String idParqueadero);
+    public abstract void addPuerta(String nombreCampus, Puerta puerta);
     public abstract void delPuerta(String id);
     public abstract Set<Puerta> getPuertas();
     public abstract Set<Puerta> getPuertas(String nombreCampus); 

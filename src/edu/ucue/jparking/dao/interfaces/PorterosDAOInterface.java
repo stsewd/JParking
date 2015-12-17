@@ -13,11 +13,10 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public interface PorterosDAOInterface {
-    public void addPortero(Portero portero);
+    public void addPortero(String nombreCampus, Portero portero);
     public void delPortero(String cedula);
     public void modPortero(String cedula, String nombres, String apellidos, boolean activo);
     public Portero getPortero(String cedula);
     public Set<Portero> getPorteros();
     public Set<Portero> getPorteros(String nombreCampus);
-    
 }
