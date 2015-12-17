@@ -5,17 +5,22 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author Santos Gallegos
  */
-public class PorterosDAO {
+public class PorterosDAO implements PorterosDAOInterface {
     //Mapa <Clave de campus, Mapa<Cedula, portero>>
-    private static Map<String, Map<String, Portero>> porteros;
+    private static Map<String, Portero> porteros;
     private static PorterosDAO instance;
     
     private PorterosDAO(){
@@ -26,5 +31,41 @@ public class PorterosDAO {
         if(instance == null)
             instance = new PorterosDAO();
         return instance;
+    }
+
+    @Override
+    public void addPortero(String nombreCampus, Portero portero)
+            throws CampusNoExistenteException, PorteroYaExistenteException {
+        
+        Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
+        Map<String, Portero> porteros = campus.getPorteros();
+        if(porteros.get(portero.getCedula()) != null){
+            throw new PorteroYaExistenteException(portero.getCedula());
+        }
+    }
+
+    @Override
+    public void delPortero(String cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modPortero(String cedula, String nombres, String apellidos, boolean activo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Portero getPortero(String cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Portero> getPorteros() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Portero> getPorteros(String nombreCampus) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -14,13 +14,14 @@ import java.util.Map;
  * @author Santos Gallegos
  */
 public class PuertasDAO {
+    //Clase innecesaria?
     //Mapa <Campus, Mapa<Id Parqueadero, Id de puerta>>
     private static Map<String, Map<String, String>> puertasEntrada;
     //Mapa <Campus, Mapa<Id Parqueadero, Id de puerta>>
     private static Map<String, Map<String, String>> puertasSalida;
     
     //Mapa <Id de puerta, puerta>
-    private static Map<String, Puerta> puertas;    
+    private static Map<String, Puerta> puertas;
     
     private static PuertasDAO instance;
     

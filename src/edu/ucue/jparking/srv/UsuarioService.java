@@ -81,7 +81,6 @@ public class UsuarioService {
     }
             
     public Set<Usuario> getLista(){
-        return (Set<Usuario>) UsuariosDAO.getInstance().getUsuariosMap();
     }
    
 }

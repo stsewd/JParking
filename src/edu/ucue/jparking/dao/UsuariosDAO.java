@@ -6,6 +6,7 @@ package edu.ucue.jparking.dao;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
+import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +17,7 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public class UsuariosDAO implements UsuariosDAOInterface{
-    //Mapa<Id de parqueadero, Mapa<Cedula, Usuario>>
-    private static Map<String, Map<String, Usuario>> usuarios;
+    private static Map<String, Usuario> usuarios; //Mapa<Cedula, Usuario>>
     private static UsuariosDAO instance;
 
     private UsuariosDAO() {
@@ -33,7 +33,6 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     //Funciones CRUD
     @Override
     public void addUsuario(Usuario usuario) throws UsuarioYaExistenteException{
-        Map<String, Usuario> usuarios = getUsuariosMap();
         if(usuarios.get(usuario.getCedula()) != null)
             throw new UsuarioYaExistenteException(usuario.getCedula());
         usuarios.put(usuario.getCedula(), usuario);
@@ -41,13 +40,13 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     
     @Override
     public void delUsuario(String cedula) throws UsuarioNoExistenteException{
-        Usuario usuario = getUsuario(cedula);
-        usuario.setActivo(false);
+        if(usuarios.get(cedula) == null)
+            throw new UsuarioNoExistenteException(cedula);
+        usuarios.get(cedula).setActivo(false);
     }
     
     @Override
     public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException{
-        Map<String, Usuario> usuarios = getUsuariosMap();
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
         return usuarios.get(cedula);
@@ -55,23 +54,17 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     
     @Override
     public void modUsuario(String cedula, String nombres, String apellidos, boolean activo) throws UsuarioNoExistenteException{
-        Usuario usuario = getUsuario(cedula);
+        if(usuarios.get(cedula) == null)
+            throw new UsuarioNoExistenteException(cedula);
+        Usuario usuario = usuarios.get(cedula);
         usuario.setNombres(nombres);
         usuario.setApellidos(apellidos);
         usuario.setActivo(activo);
     }
-    
-    public Map<String, Usuario> getUsuariosMap(){
-        Map<String, Usuario> usuarios = new HashMap<>();
-        for(Map<String, Usuario> usuarioMap : this.usuarios.values())
-            for(Usuario usuario : usuarioMap.values())
-                usuarios.put(usuario.getCedula(), usuario);
-        return usuarios;
-    }
-    
+        
     @Override
     public Set<Usuario> getUsuarios(){
-        return (Set<Usuario>) getUsuariosMap().values();
+        return (Set) usuarios.values();
     }
     /*
     addUsuario
@@ -79,4 +72,9 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     getUsuario
     modUsuario
     */
+
+    @Override
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -3,17 +3,18 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author Santos Gallegos
  */
 public class Parqueadero {
     
-    /*
-    private List<Usuario> usuarios;
-    private List<Puerta> puertasEntrada;
-    private List<Puerta> puertasSalida;
-    */
+    private Set<String> usuarios; //Cedula
+    private Set<String> puertasEntrada;
+    private Set<String> puertasSalida;
    
     private final String id;
     private String ubicacion;
@@ -24,11 +25,10 @@ public class Parqueadero {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
         this.id = id;
-        /*
-        this.puertasEntrada = new ArrayList<>();
-        this.puertasSalida = new ArrayList<>();
-        this.usuarios = new ArrayList<>();
-        */
+        
+        this.puertasEntrada = new HashSet<>();
+        this.puertasSalida = new HashSet<>();
+        this.usuarios = new HashSet<>();
     }
 
 
@@ -72,5 +72,5 @@ public class Parqueadero {
      */
     public void setNumeroLugaresDisponibles(int numeroLugaresDisponibles) {
         this.numeroLugaresDisponibles = numeroLugaresDisponibles;
-    }    
+    }
 }

@@ -10,25 +10,25 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  * @author Santos Gallegos
  */
 public class Portero extends Persona{
-    private String nombreCampus;
+    private String campus;
 
     public Portero(String cedula, String nombres, String apellidos, String nombreCampus) {
         super(cedula, nombres, apellidos, TipoUsuario.PORTERO);
-        this.nombreCampus = nombreCampus;
+        this.campus = nombreCampus;
     }
 
     /**
-     * @return the nombreCampus
+     * @return the campus
      */
-    public String getNombreCampus() {
-        return nombreCampus;
+    public String getCampus() {
+        return campus;
     }
 
     /**
-     * @param nombreCampus the nombreCampus to set
+     * @param campus the campus to set
      */
-    public void setNombreCampus(String nombreCampus) {
-        this.nombreCampus = nombreCampus;
+    public void setCampus(String campus) {
+        this.campus = campus;
     }
 
     
