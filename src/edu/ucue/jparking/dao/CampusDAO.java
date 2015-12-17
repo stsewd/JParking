@@ -18,58 +18,56 @@ import java.util.TreeMap;
 public class CampusDAO implements CampusDAOInterface {
 
     private static CampusDAO instancia;
-    private static Map<String,Campus> mapCampus;
+    private static Map<String, Campus> mapCampus;
 
     private CampusDAO() {
-        mapCampus= new TreeMap<>();
+        mapCampus = new TreeMap<>();
     }
-    
-    public static CampusDAO getInstancia(){
-        if(instancia==null){
+
+    public static CampusDAO getInstancia() {
+        if (instancia == null) {
             instancia = new CampusDAO();
         }
-            return instancia;
+        return instancia;
     }
-    
+
     @Override
-    public void addCampus(Campus campus ) throws CampusExistenteExeption
-    {
-        if (mapCampus.get(campus.getNombre()) != null){
+    public void addCampus(Campus campus) throws CampusExistenteExeption {
+        if (mapCampus.get(campus.getNombre()) != null) {
             throw new CampusExistenteExeption(campus.getNombre());
         }
-        
+
         mapCampus.put(campus.getNombre(), campus);
-        
+
     }
-    
+
     @Override
-    public void delCampus(String nombre) throws CampusNoExistenteException{
-        if (mapCampus.get(nombre) == null)
+    public void delCampus(String nombre) throws CampusNoExistenteException {
+        if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
+        }
         mapCampus.remove(nombre);
     }
-    
+
     @Override
-    public Campus getCampus(String nombre) throws CampusNoExistenteException{
-        if (mapCampus.get(nombre) != null){
+    public Campus getCampus(String nombre) throws CampusNoExistenteException {
+        if (mapCampus.get(nombre) != null) {
             throw new CampusNoExistenteException(nombre);
         }
         return mapCampus.get(nombre);
     }
-    
+
     @Override
     public void modCampus(String nombre, String ubicacion) throws CampusNoExistenteException {
-        if (mapCampus.get(nombre) == null){
+        if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
         }
         Campus cam = mapCampus.get(nombre);
         cam.setDireccion(ubicacion);
-        
-    }
-    
-    @Override
-    public Set<Campus> getCampus(){
-        return (Set<Campus>) mapCampus.values();
     }
 
+    @Override
+    public Set<Campus> getCampus() {
+        return (Set<Campus>) mapCampus.values();
+    }
 }

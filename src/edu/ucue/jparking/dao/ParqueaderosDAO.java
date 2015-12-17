@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.interfaces.ParqueaderosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  * @author Santos Gallegos
  */
-public class ParqueaderosDAO {
+public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     
     //Clase innecesaria?
     //Mapa <Nombre de campus, Mapa<Id de parqueadero, parqueadero>>

@@ -12,12 +12,11 @@ import java.util.Calendar;
  * @author Santos Gallegos
  */
 public abstract class Usuario extends Persona{
-    /*
-    private List<Parqueadero> parqueaderos;
-    */
+
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
     
+    //private TipoUsuario tipoUsuario;
     /**
      * 
      * @param cedula
@@ -70,5 +69,12 @@ public abstract class Usuario extends Persona{
      * @return La orden de pago del usuario que llama el método
      */
     public abstract OrdenPago generarOrdenPago();
+
+    /**
+     * @return the tipoUsuario
+     */
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
 
 }

@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,7 +65,7 @@ public class UsuariosDAO implements UsuariosDAOInterface{
         
     @Override
     public Set<Usuario> getUsuarios(){
-        return (Set) usuarios.values();
+        return (Set<Usuario>) usuarios.values();
     }
     /*
     addUsuario
@@ -75,6 +76,12 @@ public class UsuariosDAO implements UsuariosDAOInterface{
 
     @Override
     public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Set<Usuario> usuarios = new HashSet<>();
+        
+        for(Usuario u : getUsuarios()){
+            if(u.getTipoUsuario() == tipoUsuario)
+                usuarios.add(u);
+        }
+        return usuarios;
     }
 }

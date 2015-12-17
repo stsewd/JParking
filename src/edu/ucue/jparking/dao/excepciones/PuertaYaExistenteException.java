@@ -10,5 +10,8 @@ package edu.ucue.jparking.dao.excepciones;
  * @author Santos Gallegos
  */
 public class PuertaYaExistenteException extends Exception {
-    
+
+    public PuertaYaExistenteException(String id) {
+        super("La puerta de id: " + id + " ya se encuentra registrada.");
+    }
 }

@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
 import java.util.LinkedHashSet;
@@ -14,7 +15,7 @@ import java.util.Set;
  *
  * @author Santos Gallegos
  */
-public class RegistrosDAO {
+public class RegistrosDAO implements RegistrosDAOInterface {
     private static RegistrosDAO instance;
     private static Set<Registro> registros;
     
@@ -29,11 +30,12 @@ public class RegistrosDAO {
     }
     
     //Funciones CRUD
-    
+    @Override
     public void addRegistro(Registro registro){
         registros.add(registro);
     }
     
+    @Override
     public Set<Registro> getRegistros(Calendar fechaInicial, Calendar fechaFinal){
         //Implementar, retorna un set de los registros creados entre
         //fechaInicial y fechaFinal
@@ -41,7 +43,8 @@ public class RegistrosDAO {
         return registros;
     }    
     
-    public Set getRegistros(){
+    @Override
+    public Set<Registro> getRegistros(){
         return this.registros;
     }
     

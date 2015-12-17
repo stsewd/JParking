@@ -10,5 +10,9 @@ package edu.ucue.jparking.dao.excepciones;
  * @author Santos Gallegos
  */
 public class PuertaNoExistenteException extends Exception {
+
+    public PuertaNoExistenteException(String id) {
+        super("La puerta de id " + id + " no existe.");
+    }
     
 }
