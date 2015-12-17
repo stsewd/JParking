@@ -29,10 +29,11 @@ public interface PorterosDAOInterface {
     /**
      * Elimina un portero dado su cedula
      * @param cedula
-     * @throws PorteroNoExistenteException 
+     * @throws PorteroNoExistenteException
+     * @throws CampusNoExistenteException 
      */
     public void delPortero(String cedula)
-            throws PorteroNoExistenteException;
+            throws PorteroNoExistenteException, CampusNoExistenteException;
     
     /**
      * Modifica el nombre, apellido y estado del portero
@@ -50,10 +51,8 @@ public interface PorterosDAOInterface {
      * Obtiene un portero dado su cedula.
      * @param cedula
      * @return
-     * @throws PorteroNoExistenteException 
      */
-    public Portero getPortero(String cedula)
-            throws PorteroNoExistenteException;
+    public Portero getPortero(String cedula);
     
     /**
      * Obtiene todos los porteros de todos los campus

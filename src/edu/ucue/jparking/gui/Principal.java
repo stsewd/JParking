@@ -32,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jPanel5 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,6 +59,7 @@ public class Principal extends javax.swing.JFrame {
         MenuItemCrearCampus = new javax.swing.JMenuItem();
         MenuItemModicarCampus = new javax.swing.JMenuItem();
         MenuItemEliminarCampus = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenu1 = new javax.swing.JMenu();
         MenuItemCrearUsuario = new javax.swing.JMenuItem();
         MenuItemModificarUsuario = new javax.swing.JMenuItem();
@@ -70,8 +72,6 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         MenuItemInformacion = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        MenuItemSalir = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -83,6 +83,17 @@ public class Principal extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JParking- Getión de los Parqueaderos de la Universidad de Cuenca");
@@ -297,6 +308,7 @@ public class Principal extends javax.swing.JFrame {
 
         MenuItemEliminarCampus.setText("Eliminar Campus");
         jMenu2.add(MenuItemEliminarCampus);
+        jMenu2.add(jSeparator1);
 
         jMenuBar1.add(jMenu2);
 
@@ -364,13 +376,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu6.add(MenuItemInformacion);
 
         jMenuBar1.add(jMenu6);
-
-        jMenu7.setText("Salir");
-
-        MenuItemSalir.setText("Salir");
-        jMenu7.add(MenuItemSalir);
-
-        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -470,7 +475,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuItemModicarCampus;
     private javax.swing.JMenuItem MenuItemModificarParqueadero;
     private javax.swing.JMenuItem MenuItemModificarUsuario;
-    private javax.swing.JMenuItem MenuItemSalir;
     private javax.swing.JTable TablaListaUsuarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -487,7 +491,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -497,9 +500,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

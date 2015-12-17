@@ -58,7 +58,7 @@ public interface CampusDAOInterface {
     
     /**
      * Retorna uns set con todos los campus registrados
-     * @return 
+     * @return
      */
     public abstract Set<Campus> getCampus();
 }
