@@ -11,6 +11,8 @@ import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.util.Collection;
+import java.util.HashSet;
 //import java.util.HashMap;
 //import java.util.Map;
 import java.util.Set;
@@ -40,7 +42,7 @@ public class PorterosDAO implements PorterosDAOInterface {
         
         if(getPortero(portero.getCedula()) == null){
             CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().put(portero.getCedula(), portero);
-        }else{
+        }else {
             throw new PorteroYaExistenteException(portero.getCedula());
         }
     }
@@ -56,8 +58,13 @@ public class PorterosDAO implements PorterosDAOInterface {
     }
 
     @Override
-    public void modPortero(String cedula, String nombres, String apellidos, boolean activo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void modPortero(String cedula, String nombres, String apellidos, boolean activo) throws PorteroNoExistenteException {
+        Portero portero = getPortero(cedula);
+        if(portero == null)
+            throw new PorteroNoExistenteException(cedula);
+        portero.setActivo(activo);
+        portero.setApellidos(apellidos);
+        portero.setNombres(nombres);
     }
 
     @Override
@@ -73,11 +80,14 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public Set<Portero> getPorteros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Set<Portero> porteros = new HashSet<>(); 
+        for(Campus c : CampusDAO.getInstancia().getCampus())
+            porteros.addAll((Collection<? extends Portero>) c.getPorteros());
+        return porteros;
     }
 
     @Override
-    public Set<Portero> getPorteros(String nombreCampus) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
+        return (Set<Portero>) CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().values();
     }
 }

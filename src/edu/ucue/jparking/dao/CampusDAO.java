@@ -15,7 +15,7 @@ import java.util.TreeMap;
  *
  * @author Franklin Lara
  */
-public class CampusDAO implements CampusDAOInterface{
+public class CampusDAO implements CampusDAOInterface {
 
     private static CampusDAO instancia;
     private static Map<String,Campus> mapCampus;

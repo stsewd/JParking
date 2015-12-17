@@ -66,5 +66,5 @@ public interface PorterosDAOInterface {
      * @param nombreCampus
      * @return 
      */
-    public Set<Portero> getPorteros(String nombreCampus);
+    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException;
 }
