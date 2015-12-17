@@ -14,6 +14,8 @@ import java.util.Map;
  * @author Santos Gallegos
  */
 public class ParqueaderosDAO {
+    
+    //Clase innecesaria?
     //Mapa <Nombre de campus, Mapa<Id de parqueadero, parqueadero>>
     private static Map<String, Map<String, Parqueadero>> parqueaderos;
     

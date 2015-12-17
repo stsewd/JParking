@@ -10,6 +10,7 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  *
@@ -21,7 +22,7 @@ public class CampusDAO implements CampusDAOInterface{
     private static Map<String,Campus> mapCampus;
 
     private CampusDAO() {
-        mapCampus= new HashMap<>();
+        mapCampus= new TreeMap<>();
     }
     
     public static CampusDAO getInstancia(){

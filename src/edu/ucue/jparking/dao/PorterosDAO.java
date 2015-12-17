@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class PorterosDAO {
     //Mapa <Clave de campus, Mapa<Cedula, portero>>
-    private static Map<String, Map<String, Portero>> porteros;
+    private static Map<String, Portero> porteros;
     private static PorterosDAO instance;
     
     private PorterosDAO(){
