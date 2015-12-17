@@ -4,10 +4,7 @@
 package edu.ucue.jparking.srv.objetos;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-
 
 /**
  *
@@ -20,7 +17,6 @@ public class Campus {
     private static final HoraDia horaCierre = new HoraDia(21, 30);
     
     private Map<String, Puerta> puertas;
-    
     private Map<String, Portero> porteros;
     private Map<String, Parqueadero> parqueaderos;
     
@@ -32,8 +28,7 @@ public class Campus {
         porteros = new HashMap<>();
         parqueaderos = new HashMap<>();
     }
-
-
+    
     /**
      * @return the horaApertura
      */
@@ -68,4 +63,25 @@ public class Campus {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }    
+
+    /**
+     * @return the puertas
+     */
+    public Map<String, Puerta> getPuertas() {
+        return puertas;
+    }
+
+    /**
+     * @return the porteros
+     */
+    public Map<String, Portero> getPorteros() {
+        return porteros;
+    }
+
+    /**
+     * @return the parqueaderos
+     */
+    public Map<String, Parqueadero> getParqueaderos() {
+        return parqueaderos;
+    }
 }

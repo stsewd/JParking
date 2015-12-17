@@ -14,7 +14,24 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public interface RegistrosDAOInterface {
+    
+    /**
+     * Agregar nuevo registro
+     * @param registro 
+     */
     public void addRegistro(Registro registro);
+    
+    /**
+     * Obtener registros entre un rango de fechas
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return 
+     */
     public Set<Registro> getRegistros(Calendar fechaInicial, Calendar fechaFinal);
+    
+    /**
+     * Obtener todos los registros
+     * @return 
+     */
     public Set<Registro> getRegistros();
 }

@@ -16,9 +16,49 @@ import java.util.Set;
  */
 public interface CampusDAOInterface {
     
-    public abstract void addCampus(Campus campus) throws CampusExistenteExeption;
-    public abstract void delCampus(String nombre) throws CampusNoExistenteException;
-    public abstract Campus getCampus(String nombre)  throws CampusNoExistenteException;
-    public abstract void modCampus(String nombre, String ubicacion)  throws CampusNoExistenteException;
+    /**
+     * Agregar nuevo campus
+     * Se lanza una excepcion en caso de que el
+     * campus ya exista.
+     * @param campus Campus a agregar
+     * @throws CampusExistenteExeption 
+     */
+    public abstract void addCampus(Campus campus)
+            throws CampusExistenteExeption;
+    
+    /**
+     * Elimina un campus dado su nombre, si no existe
+     * se lanza una excepcion.
+     * @param nombre Nombre del campus a eliminar
+     * @throws CampusNoExistenteException 
+     */
+    public abstract void delCampus(String nombre)
+            throws CampusNoExistenteException;
+    
+    /**
+     * Obtiene el campus buscado dado su nombre
+     * se laza una excepcion en caso de no existir
+     * @param nombre Nombre del campus a obtener
+     * @return Campus buscado
+     * @throws CampusNoExistenteException
+     */
+    public abstract Campus getCampus(String nombre)
+            throws CampusNoExistenteException;
+    
+    /**
+     * Modifica la ubicacion del campus
+     * Se lanza una excepcion si el campus a modificar
+     * no existe.
+     * @param nombre Nombre del campus a modificar.
+     * @param ubicacion Campo a modificar.
+     * @throws CampusNoExistenteException 
+     */
+    public abstract void modCampus(String nombre, String ubicacion) 
+            throws CampusNoExistenteException;
+    
+    /**
+     * Retorna uns set con todos los campus registrados
+     * @return 
+     */
     public abstract Set<Campus> getCampus();
 }

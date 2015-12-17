@@ -72,5 +72,5 @@ public class Parqueadero {
      */
     public void setNumeroLugaresDisponibles(int numeroLugaresDisponibles) {
         this.numeroLugaresDisponibles = numeroLugaresDisponibles;
-    }    
+    }
 }

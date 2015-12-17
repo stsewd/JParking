@@ -5,6 +5,8 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.*;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.Set;
 
@@ -13,10 +15,57 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public interface PorterosDAOInterface {
-    public void addPortero(String nombreCampus, Portero portero);
-    public void delPortero(String cedula);
-    public void modPortero(String cedula, String nombres, String apellidos, boolean activo);
-    public Portero getPortero(String cedula);
+    
+    /**
+     * Agrega un portero a un campus
+     * @param nombreCampus
+     * @param portero
+     * @throws CampusNoExistenteException
+     * @throws PorteroYaExistenteException 
+     */
+    public void addPortero(String nombreCampus, Portero portero)
+            throws CampusNoExistenteException, PorteroYaExistenteException;
+    
+    /**
+     * Elimina un portero dado su cedula
+     * @param cedula
+     * @throws PorteroNoExistenteException 
+     */
+    public void delPortero(String cedula)
+            throws PorteroNoExistenteException;
+    
+    /**
+     * Modifica el nombre, apellido y estado del portero
+     * dado su cedula.
+     * @param cedula
+     * @param nombres
+     * @param apellidos
+     * @param activo
+     * @throws PorteroNoExistenteException 
+     */
+    public void modPortero(String cedula, String nombres, String apellidos, boolean activo)
+            throws PorteroNoExistenteException;
+    
+    /**
+     * Obtiene un portero dado su cedula.
+     * @param cedula
+     * @return
+     * @throws PorteroNoExistenteException 
+     */
+    public Portero getPortero(String cedula)
+            throws PorteroNoExistenteException;
+    
+    /**
+     * Obtiene todos los porteros de todos los campus
+     * @return 
+     */
     public Set<Portero> getPorteros();
+    
+    /**
+     * Obtiene todos los porteros de un campus
+     * dado.
+     * @param nombreCampus
+     * @return 
+     */
     public Set<Portero> getPorteros(String nombreCampus);
 }
