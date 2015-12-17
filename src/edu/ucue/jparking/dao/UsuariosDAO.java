@@ -6,6 +6,7 @@ package edu.ucue.jparking.dao;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
+import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,4 +72,9 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     getUsuario
     modUsuario
     */
+
+    @Override
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
