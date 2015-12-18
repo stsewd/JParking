@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
-
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.dao.CampusDAO;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 
 /**
@@ -88,5 +90,25 @@ public void ValidarDatos(String cedula, String nombre, String apellidos, String 
             throw new IllegalArgumentException("El argumento telefono no puede estar vacio");
         
     }
+public void ValidarPuerta(String ubicacion,String id,String idCampus){
+    if(ubicacion==null||ubicacion.trim().length()==0)
+            throw new IllegalArgumentException("El campo ubicaion no puede ser nulo");
+    if(id==null || id.trim().length()==0)
+        throw new IllegalArgumentException("El campo del id no puede estar vacio");
+    if(idCampus==null || idCampus.trim().length()==0)
+        throw new IllegalArgumentException("El campo del id del campus no puede estar vacio");
+}
 
+    public  void validarCodigo(String codigo) throws CodigoNoValidoException{
+        codigo = codigo.trim();
+        if(codigo.length() != 3)
+            throw new CodigoNoValidoException(codigo);
+        try{
+            Integer.parseInt(codigo.subSequence(1, 3).toString());
+        }catch(Exception e){
+            throw new CodigoNoValidoException(codigo);
+        }
+        if(!Character.isAlphabetic(codigo.charAt(0)))
+            throw new CodigoNoValidoException(codigo);        
+    }   
 }
