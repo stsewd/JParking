@@ -12,8 +12,8 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
 public class Estudiante extends Usuario{
     private static final float VALOR_PARQUEADERO = 30f;
     
-    public Estudiante(String cedula, String nombres, String apellidos) {
-        super(cedula, nombres, apellidos, TipoUsuario.ESTUDIANTE);
+    public Estudiante(String cedula, String nombres, String apellidos, String direccion, String telefono) {
+        super(cedula, nombres, apellidos,direccion, telefono, TipoUsuario.ESTUDIANTE);
     }
 
     @Override

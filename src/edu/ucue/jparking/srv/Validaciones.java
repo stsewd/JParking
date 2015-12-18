@@ -74,7 +74,7 @@ public void ValidarCampus(String nombre,String direccion){
             throw new IllegalArgumentException("La direccion del campus no puede estar vacia");
 }
 
-public void ValidarDatos(String cedula,String nombre, String apellidos)
+public void ValidarDatos(String cedula, String nombre, String apellidos, String direccion, String telefono)
     {
         if(cedula==null || cedula.trim().length()==0)
             throw new IllegalArgumentException("El campo cedula no puede estar vacio");
@@ -82,6 +82,10 @@ public void ValidarDatos(String cedula,String nombre, String apellidos)
             throw new IllegalArgumentException("El argumento nombre no puede estar vacio");
         if(apellidos==null || apellidos.trim().length()==0)
             throw new IllegalArgumentException("El argumento apellidos no puede estar vacio");
+        if(direccion==null || direccion.trim().length()==0)
+            throw new IllegalArgumentException("El argumento direccion no puede estar vacio");
+        if(telefono==null || telefono.trim().length()==0)
+            throw new IllegalArgumentException("El argumento telefono no puede estar vacio");
         
     }
 

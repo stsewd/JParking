@@ -16,21 +16,29 @@ public abstract class Persona {
     private final String cedula;
     private String nombres;
     private String apellidos;
+    private String direccion;
+    private String telefono;
     private boolean activo;
+
+    
     
     /**
      * 
      * @param cedula Cédula de la persona
      * @param nombres Nombre(s) de la persona
      * @param apellidos Apellido(s) de la persona
+     * @param direccion direccion de la persona
+     * @param telefono telefono de la persona
+     * @param tipoUsuario
      */
-    public Persona(String cedula, String nombres, String apellidos, TipoUsuario tipoUsuario) {
-        //Agregar validaciones de parametros no nulos
+    public Persona(String cedula, String nombres, String apellidos, String direccion, String telefono,TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.activo = true;
-        this.tipoUsuario = tipoUsuario;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.activo = activo;
     }
 
     public TipoUsuario getTipoUsuario() {
@@ -84,6 +92,34 @@ public abstract class Persona {
      */
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
     
 }

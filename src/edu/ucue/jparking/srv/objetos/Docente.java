@@ -19,8 +19,8 @@ public class Docente extends Usuario {
         return VALOR_PARQUEADERO;
     }
 
-    public Docente(String cedula, String nombres, String apellidos) {
-        super(cedula, nombres, apellidos, TipoUsuario.DOCENTE);
+    public Docente(String cedula, String nombres, String apellidos,String direccion,String telefono) {
+        super(cedula, nombres, apellidos, direccion, telefono, TipoUsuario.DOCENTE);
     }
 
     @Override

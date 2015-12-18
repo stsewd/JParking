@@ -20,16 +20,16 @@ import java.util.Set;
  */
 public class UsuarioService {
     
-    public void add(String cedula, String nombre, String apellido, TipoUsuario tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
+    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, TipoUsuario tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
         if(tipoUsuario==TipoUsuario.ESTUDIANTE){
             EstudianteService estudianteService = new EstudianteService();
-            estudianteService.add(cedula, nombre, apellido);
+            estudianteService.add(cedula, nombre, apellido,direccion,telefono);
         }else if(tipoUsuario==TipoUsuario.DOCENTE){
             DocenteService docenteService = new DocenteService();
-            docenteService.add(cedula, nombre, apellido);
+            docenteService.add(cedula, nombre, apellido,direccion,telefono);
         }else if(tipoUsuario==TipoUsuario.EMPLEADO){
             EmpleadoService empleadoService = new EmpleadoService();
-            empleadoService.add(cedula, nombre, apellido);
+            empleadoService.add(cedula, nombre, apellido,direccion,telefono);
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
         } 
@@ -50,16 +50,16 @@ public class UsuarioService {
         } 
     }
     
-    public void mod(String cedula, String nombre, String apellido,boolean estado, TipoUsuario tipoUsuario) throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado, TipoUsuario tipoUsuario) throws CedulaNoValidaException, UsuarioNoExistenteException {
         if(tipoUsuario==TipoUsuario.ESTUDIANTE){
             EstudianteService estudianteService = new EstudianteService();
-            estudianteService.mod(cedula, nombre, apellido, estado);
+            estudianteService.mod(cedula, nombre, apellido,direccion,telefono,estado);
         }else if(tipoUsuario==TipoUsuario.DOCENTE){
             DocenteService docenteService = new DocenteService();
-            docenteService.mod(cedula, nombre, apellido, estado);
+            docenteService.mod(cedula, nombre, apellido,direccion,telefono,estado);
         }else if(tipoUsuario==TipoUsuario.EMPLEADO){
             EmpleadoService empleadoService = new EmpleadoService();
-            empleadoService.mod(cedula, nombre, apellido, estado);
+            empleadoService.mod(cedula, nombre, apellido,direccion,telefono,estado);
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
         } 
@@ -79,8 +79,8 @@ public class UsuarioService {
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
         } 
     }
-            
+      /*      
     public Set<Usuario> getLista(){
     }
-   
+   */
 }

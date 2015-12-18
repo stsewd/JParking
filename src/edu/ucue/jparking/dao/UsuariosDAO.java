@@ -54,12 +54,14 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     }
     
     @Override
-    public void modUsuario(String cedula, String nombres, String apellidos, boolean activo) throws UsuarioNoExistenteException{
+    public void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo) throws UsuarioNoExistenteException{
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
         Usuario usuario = usuarios.get(cedula);
         usuario.setNombres(nombres);
         usuario.setApellidos(apellidos);
+        usuario.setDireccion(direccion);
+        usuario.setTelefono(telefono);
         usuario.setActivo(activo);
     }
         

@@ -23,11 +23,11 @@ public class EstudianteService {
     
     
     
-    public void add(String cedula, String nombre, String apellido) throws UsuarioYaExistenteException, CedulaNoValidaException {
+    public void add(String cedula, String nombre, String apellido, String direccion, String telefono) throws UsuarioYaExistenteException, CedulaNoValidaException {
         
-        validar.ValidarDatos(cedula, nombre, apellido);
+        validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         validar.validarCedula(cedula);
-        Estudiante estudiante = new Estudiante(cedula, nombre, apellido);
+        Estudiante estudiante = new Estudiante(cedula, nombre, apellido, direccion, telefono);
         UsuariosDAO.getInstance().addUsuario(estudiante);
            
     }
@@ -44,10 +44,10 @@ public class EstudianteService {
         return (Estudiante) UsuariosDAO.getInstance().getUsuario(cedula);
     }
         
-    public void mod(String cedula, String nombre, String apellido,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException{
+    public void mod(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException{
         validar.validarCedula(cedula);
-        validar.ValidarDatos(cedula, nombre, apellido);
-        UsuariosDAO.getInstance().modUsuario(cedula, nombre, apellido, estado);
+        validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
+        UsuariosDAO.getInstance().modUsuario(cedula, nombre, apellido,direccion,telefono, estado);
         
         
     }

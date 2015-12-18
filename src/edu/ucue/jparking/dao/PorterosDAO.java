@@ -58,13 +58,15 @@ public class PorterosDAO implements PorterosDAOInterface {
     }
 
     @Override
-    public void modPortero(String cedula, String nombres, String apellidos, boolean activo) throws PorteroNoExistenteException {
+    public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo) throws PorteroNoExistenteException {
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
         portero.setActivo(activo);
         portero.setApellidos(apellidos);
         portero.setNombres(nombres);
+        portero.setDireccion(direccion);
+        portero.setTelefono(telefono);
     }
 
     @Override

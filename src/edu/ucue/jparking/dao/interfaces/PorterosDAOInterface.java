@@ -44,7 +44,7 @@ public interface PorterosDAOInterface {
      * @param activo
      * @throws PorteroNoExistenteException 
      */
-    public void modPortero(String cedula, String nombres, String apellidos, boolean activo)
+    public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
             throws PorteroNoExistenteException;
     
     /**

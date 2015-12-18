@@ -37,7 +37,7 @@ public class CrearCampusGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear campus");
-        setPreferredSize(new java.awt.Dimension(330, 140));
+        setPreferredSize(new java.awt.Dimension(330, 150));
         setResizable(false);
 
         jLabel1.setText("Nombre:");

@@ -51,7 +51,7 @@ public interface UsuariosDAOInterface {
      * @param activo
      * @throws UsuarioNoExistenteException 
      */
-    public abstract void modUsuario(String cedula, String nombres, String apellidos, boolean activo)
+    public abstract void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
             throws UsuarioNoExistenteException;
     
     /**
