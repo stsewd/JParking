@@ -10,5 +10,9 @@ package edu.ucue.jparking.dao.excepciones;
  * @author stsewd
  */
 public class ParqueaderoNoExistenteException extends Exception {
+
+    public ParqueaderoNoExistenteException(String idParqueadero) {
+        super("El parqueadero de id " + idParqueadero + "no existe.");
+    }
     
 }

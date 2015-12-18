@@ -4,6 +4,7 @@
 package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.ParqueaderosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
@@ -43,8 +44,11 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public void delParqueadero(String idParqueadero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delParqueadero(String idParqueadero) throws ParqueaderoNoExistenteException {
+        Parqueadero parqueadero = getParqueadero(idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        CampusDAO.getInstancia().getCampus(parqueadero.ge)
     }
 
     @Override
