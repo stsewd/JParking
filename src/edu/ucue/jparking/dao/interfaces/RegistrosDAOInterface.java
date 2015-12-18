@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
 import java.util.Set;
@@ -34,4 +35,6 @@ public interface RegistrosDAOInterface {
      * @return 
      */
     public Set<Registro> getRegistros();
+    
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro);
 }

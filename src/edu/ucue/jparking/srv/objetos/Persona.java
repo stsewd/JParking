@@ -21,7 +21,6 @@ public abstract class Persona {
     private boolean activo;
 
     
-    
     /**
      * 
      * @param cedula Cédula de la persona
