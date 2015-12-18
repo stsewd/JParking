@@ -12,9 +12,9 @@ import java.util.Set;
  */
 public class Parqueadero {
     
-    private Set<String> usuarios; //Cedula
-    private Set<String> puertasEntrada;
-    private Set<String> puertasSalida;
+    private Set<String> usuarios; //Cedula de usuarios
+    private Set<String> puertasEntrada; //Id de puertas
+    private Set<String> puertasSalida; //Id de puertas
    
     private final String id;
     private String ubicacion;
@@ -72,5 +72,54 @@ public class Parqueadero {
      */
     public void setNumeroLugaresDisponibles(int numeroLugaresDisponibles) {
         this.numeroLugaresDisponibles = numeroLugaresDisponibles;
+    }
+
+    /**
+     * @return the usuarios
+     */
+    public Set<String> getUsuarios() {
+        return usuarios;
+    }
+
+    /**
+     * @param usuarios the usuarios to set
+     */
+    public void setUsuarios(Set<String> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    /**
+     * @return the puertasEntrada
+     */
+    public Set<String> getPuertasEntrada() {
+        return puertasEntrada;
+    }
+
+    /**
+     * @param puertasEntrada the puertasEntrada to set
+     */
+    public void setPuertasEntrada(Set<String> puertasEntrada) {
+        this.puertasEntrada = puertasEntrada;
+    }
+
+    /**
+     * @return the puertasSalida
+     */
+    public Set<String> getPuertasSalida() {
+        return puertasSalida;
+    }
+
+    /**
+     * @param puertasSalida the puertasSalida to set
+     */
+    public void setPuertasSalida(Set<String> puertasSalida) {
+        this.puertasSalida = puertasSalida;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
     }
 }
