@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public interface ParqueaderosDAOInterface {
     /**
@@ -67,4 +67,18 @@ public interface ParqueaderosDAOInterface {
      * @param idPuerta 
      */
     public void addPuertaSalida(String idParqueadero, String idPuerta);
+    
+    /**
+     * Agrega un usuario dado su cedula a un parqueadero dado su id.
+     * @param idParqueadero
+     * @param cedula 
+     */
+    public void addUsuario(String idParqueadero, String cedula);
+    
+    /**
+     * Eliminar un usuario de un parqueadero dado su id.
+     * @param idParqueadero
+     * @param cedula 
+     */
+    public void delUsuario(String idParqueadero, String cedula);
 }

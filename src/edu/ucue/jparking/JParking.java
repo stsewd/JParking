@@ -4,7 +4,7 @@
  * @author Santos Gallegos <santos_g@outlook.com>
  * @author  Franklin Lara <larafranklin@outlook.com> 
  *  
- * @version 0.0.1
+ * @version 18/12/2015
  *
  * Descripcion del programa:
  * Permite al adminstrador crear campus, parqueaderos dentro de estos.
