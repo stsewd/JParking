@@ -60,13 +60,26 @@ public interface ParqueaderosDAOInterface {
      */
     public void addPuertaEntrada(String idParqueadero, String idPuerta);
     
-    
     /**
      * Agrega una puerta de salida a un parqueadero dado su id.
      * @param idParqueadero
      * @param idPuerta 
      */
     public void addPuertaSalida(String idParqueadero, String idPuerta);
+    
+    /**
+     * Elimina una puerta de entrada de un parqueadero dada su id
+     * @param idParqueadero
+     * @param idPuerta 
+     */
+    public void delPuertaEntrada(String idParqueadero, String idPuerta);
+    
+    /**
+     * Elimina una puera de salida de un parqueadero dada su id
+     * @param idParqueadero
+     * @param idPuerta 
+     */
+    public void delPuertaSalida(String idParqueadero, String idPuerta);
     
     /**
      * Agrega un usuario dado su cedula a un parqueadero dado su id.
