@@ -8,6 +8,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.ParqueaderosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
+import edu.ucue.jparking.srv.objetos.Puerta;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -99,6 +100,21 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public void delUsuario(String idParqueadero, String cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Puerta> getPuertasEntrada(String idParqueadero) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Puerta> getPuertasSalida(String idParqueadero) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Puerta> getPuertas(String idParqueadero) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

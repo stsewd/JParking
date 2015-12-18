@@ -10,5 +10,7 @@ package edu.ucue.jparking.dao.excepciones;
  * @author Santos Gallegos
  */
 public class ParqueaderoYaExistenteException extends Exception {
-    
+    public ParqueaderoYaExistenteException(String id) {
+        super("El parqueadero de id " + id + " ya existe.");
+    }
 }
