@@ -69,12 +69,6 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     public Set<Usuario> getUsuarios(){
         return (Set<Usuario>) usuarios.values();
     }
-    /*
-    addUsuario
-    delUsuario
-    getUsuario
-    modUsuario
-    */
 
     @Override
     public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
