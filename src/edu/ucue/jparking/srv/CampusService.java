@@ -11,30 +11,48 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.util.Set;
 
+
 /**
- *
- * @author ESTUDIANTE
+ * 
+ * @author Franklin
  */
 public class CampusService {
     Validaciones validar = new Validaciones();
+    /**
+     * Aniade un campus  
+     * @param nombre nombre del campus
+     * @param direccion
+     * @return
+     * @throws CampusExistenteExeption 
+     */
     public Campus addCampus(String nombre,String direccion) throws CampusExistenteExeption{
-        
         validar.ValidarCampus(nombre, direccion);
         Campus campus = new Campus(nombre, direccion);
-        
         CampusDAO.getInstancia().addCampus(campus);
         return campus;
     }
-    
+    /**
+     * exxtrae un campus
+     * @param nombre
+     * @return
+     * @throws CampusNoExistenteException 
+     */
         
     public Campus getCampus(String nombre) throws CampusNoExistenteException{
         return CampusDAO.getInstancia().getCampus(nombre);
     }
-    
+    /**
+     * borra un campus
+     * @param nombre
+     * @throws CampusNoExistenteException 
+     */
     public void delCampus(String nombre) throws CampusNoExistenteException{
         CampusDAO.getInstancia().delCampus(nombre);
     }
-    
+    /**
+     * extrae la lista de campus 
+     * @return 
+     */
     public Set getCampuss(){
         return (Set) CampusDAO.getInstancia().getCampus();
     }

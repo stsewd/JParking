@@ -79,8 +79,13 @@ public class UsuarioService {
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
         } 
     }
-      /*      
+       
     public Set<Usuario> getLista(){
+        return UsuariosDAO.getInstance().getUsuarios();
     }
-   */
+    
+    public Set<Usuario> getLista(TipoUsuario tipoUsuario){
+        return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
+    }
+  
 }
