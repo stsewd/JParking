@@ -51,6 +51,11 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         jLabel2.setText("Dirección:");
 
         CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
 
         CrearBtn.setText("Crear");
 
@@ -67,7 +72,7 @@ public class CrearCampusGUI extends javax.swing.JFrame {
                         .addComponent(CancelarBtn))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -102,6 +107,11 @@ public class CrearCampusGUI extends javax.swing.JFrame {
     private void NombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreTextFieldActionPerformed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     /**
      * @param args the command line arguments

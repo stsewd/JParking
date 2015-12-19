@@ -71,6 +71,11 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         });
 
         CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Dirección:");
 
@@ -166,6 +171,11 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     /**
      * @param args the command line arguments
