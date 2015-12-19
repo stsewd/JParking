@@ -5,7 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
-import static javafx.application.Platform.exit;
+//import static javafx.application.Platform.exit;
 
 /**
  *

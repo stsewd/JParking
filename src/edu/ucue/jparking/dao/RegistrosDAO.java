@@ -30,7 +30,6 @@ public class RegistrosDAO implements RegistrosDAOInterface {
         return instance;
     }
     
-    //Funciones CRUD
     @Override
     public void addRegistro(Registro registro){
         registros.add(registro);
@@ -38,9 +37,13 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     
     @Override
     public Set<Registro> getRegistros(Calendar fechaInicial, Calendar fechaFinal){
-        //Implementar, retorna un set de los registros creados entre
-        //fechaInicial y fechaFinal
         Set<Registro> registros = new LinkedHashSet();
+        for(Registro r : getRegistros()){
+            if(r.getFecha().before(fechaFinal) && r.getFecha().after(fechaInicial))
+                registros.add(r);
+            if(r.getFecha().after(fechaFinal))
+                break;
+        }
         return registros;
     }    
     
@@ -51,17 +54,21 @@ public class RegistrosDAO implements RegistrosDAOInterface {
 
     @Override
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro) {
-        //Implementar, retorna un set de los registros creados entre
-        //fechaInicial y fechaFinal
         Set<Registro> registros = new LinkedHashSet();
+        for(Registro r : getRegistros()){
+            if(r.getTipoRegistro() == tipoRegistro)
+                registros.add(r);
+        }
         return registros;
     }
         
     @Override
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicial, Calendar fechaFinal) {
-        //Implementar, retorna un set de los registros creados entre
-        //fechaInicial y fechaFinal
         Set<Registro> registros = new LinkedHashSet();
+        for(Registro r : getRegistros(fechaInicial, fechaFinal)){
+            if(r.getTipoRegistro() == tipoRegistro)
+                registros.add(r);
+        }
         return registros;
     }
     

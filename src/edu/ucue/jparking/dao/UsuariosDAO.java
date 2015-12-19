@@ -31,7 +31,6 @@ public class UsuariosDAO implements UsuariosDAOInterface{
         return instance;
     }
     
-    //Funciones CRUD
     @Override
     public void addUsuario(Usuario usuario) throws UsuarioYaExistenteException{
         if(usuarios.get(usuario.getCedula()) != null)

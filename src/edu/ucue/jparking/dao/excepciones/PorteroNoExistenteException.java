@@ -7,7 +7,7 @@ package edu.ucue.jparking.dao.excepciones;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class PorteroNoExistenteException extends Exception {
 
