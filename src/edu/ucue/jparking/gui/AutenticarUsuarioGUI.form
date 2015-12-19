@@ -32,14 +32,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BotonAutenticar" min="-2" max="-2" attributes="0"/>
+                      <Component id="AutenticarBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
+                      <Component id="CancelarBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="TextFieldCedula" min="-2" pref="190" max="-2" attributes="0"/>
+                      <Component id="CedulaTextField" min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jSeparator1" alignment="1" min="-2" pref="248" max="-2" attributes="0"/>
               </Group>
@@ -52,15 +52,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TextFieldCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CedulaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BotonAutenticar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BotonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AutenticarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CancelarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -73,17 +73,17 @@
         <Property name="text" type="java.lang.String" value="C&#xe9;dula:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula">
+    <Component class="javax.swing.JTextField" name="CedulaTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedulaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTextFieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonAutenticar">
+    <Component class="javax.swing.JButton" name="AutenticarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Autenticar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonCancelar">
+    <Component class="javax.swing.JButton" name="CancelarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>

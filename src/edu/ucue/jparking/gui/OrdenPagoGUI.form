@@ -32,9 +32,9 @@
                           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="BotonPagar" min="-2" max="-2" attributes="0"/>
+                              <Component id="PagarBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
+                              <Component id="CerrarBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -50,12 +50,12 @@
                       </Group>
                       <EmptySpace pref="31" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TextFieldCedula5" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
-                          <Component id="TextFieldCedula4" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
-                          <Component id="TextFieldCedula1" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
-                          <Component id="TextFieldCedula2" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
-                          <Component id="TextFieldCedula" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
-                          <Component id="TextFieldCedula6" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="TipoUsuarioTF" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="TelefonoTF" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="DireccionTF" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="NombreTF" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="CedulaTF" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="ValorTF" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -69,39 +69,39 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CedulaTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldCedula2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NombreTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldCedula1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DireccionTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldCedula4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TelefonoTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldCedula5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TipoUsuarioTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldCedula6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ValorTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BotonPagar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BotonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PagarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CerrarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -129,9 +129,9 @@
         <Property name="text" type="java.lang.String" value="Valor a Pagar:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula">
+    <Component class="javax.swing.JTextField" name="CedulaTF">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedulaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTFActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -144,59 +144,59 @@
         <Property name="text" type="java.lang.String" value="Telefono:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonPagar">
+    <Component class="javax.swing.JButton" name="PagarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pagar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonCancelar">
+    <Component class="javax.swing.JButton" name="CerrarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cerrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonCancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CerrarBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula1">
+    <Component class="javax.swing.JTextField" name="DireccionTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedula1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DireccionTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula2">
+    <Component class="javax.swing.JTextField" name="NombreTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedula2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula4">
+    <Component class="javax.swing.JTextField" name="TelefonoTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedula4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TelefonoTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula5">
+    <Component class="javax.swing.JTextField" name="TipoUsuarioTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedula5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TipoUsuarioTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula6">
+    <Component class="javax.swing.JTextField" name="ValorTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedula6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ValorTFActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

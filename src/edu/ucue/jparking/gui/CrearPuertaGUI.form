@@ -40,13 +40,13 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="Button" min="-2" max="-2" attributes="0"/>
+                              <Component id="CrearBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
+                              <Component id="CancelarBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="TextFieldUbicacion" max="32767" attributes="0"/>
-                              <Component id="TextFieldId" min="-2" pref="247" max="-2" attributes="0"/>
+                              <Component id="UbicacionTF" max="32767" attributes="0"/>
+                              <Component id="CodigoTF" min="-2" pref="247" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -61,19 +61,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CodigoTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="UbicacionTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
-                  <Component id="Button" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="CancelarBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="CrearBtn" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -91,19 +91,19 @@
         <Property name="text" type="java.lang.String" value="Ubicaci&#xf3;n:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldId">
+    <Component class="javax.swing.JTextField" name="CodigoTF">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldIdActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CodigoTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldUbicacion">
+    <Component class="javax.swing.JTextField" name="UbicacionTF">
     </Component>
-    <Component class="javax.swing.JButton" name="BotonCancelar">
+    <Component class="javax.swing.JButton" name="CancelarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Button">
+    <Component class="javax.swing.JButton" name="CrearBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>

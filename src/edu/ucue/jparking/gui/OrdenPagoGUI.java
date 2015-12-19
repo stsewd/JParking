@@ -31,17 +31,17 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        TextFieldCedula = new javax.swing.JTextField();
+        CedulaTF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        BotonPagar = new javax.swing.JButton();
-        BotonCancelar = new javax.swing.JButton();
+        PagarBtn = new javax.swing.JButton();
+        CerrarBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        TextFieldCedula1 = new javax.swing.JTextField();
-        TextFieldCedula2 = new javax.swing.JTextField();
-        TextFieldCedula4 = new javax.swing.JTextField();
-        TextFieldCedula5 = new javax.swing.JTextField();
-        TextFieldCedula6 = new javax.swing.JTextField();
+        DireccionTF = new javax.swing.JTextField();
+        NombreTF = new javax.swing.JTextField();
+        TelefonoTF = new javax.swing.JTextField();
+        TipoUsuarioTF = new javax.swing.JTextField();
+        ValorTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Orden de pago");
@@ -54,9 +54,9 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Valor a Pagar:");
 
-        TextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
+        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedulaActionPerformed(evt);
+                CedulaTFActionPerformed(evt);
             }
         });
 
@@ -64,47 +64,47 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
 
         jLabel7.setText("Telefono:");
 
-        BotonPagar.setText("Pagar");
+        PagarBtn.setText("Pagar");
 
-        BotonCancelar.setText("Cerrar");
-        BotonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        CerrarBtn.setText("Cerrar");
+        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCancelarActionPerformed(evt);
+                CerrarBtnActionPerformed(evt);
             }
         });
 
-        TextFieldCedula1.setEditable(false);
-        TextFieldCedula1.addActionListener(new java.awt.event.ActionListener() {
+        DireccionTF.setEditable(false);
+        DireccionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedula1ActionPerformed(evt);
+                DireccionTFActionPerformed(evt);
             }
         });
 
-        TextFieldCedula2.setEditable(false);
-        TextFieldCedula2.addActionListener(new java.awt.event.ActionListener() {
+        NombreTF.setEditable(false);
+        NombreTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedula2ActionPerformed(evt);
+                NombreTFActionPerformed(evt);
             }
         });
 
-        TextFieldCedula4.setEditable(false);
-        TextFieldCedula4.addActionListener(new java.awt.event.ActionListener() {
+        TelefonoTF.setEditable(false);
+        TelefonoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedula4ActionPerformed(evt);
+                TelefonoTFActionPerformed(evt);
             }
         });
 
-        TextFieldCedula5.setEditable(false);
-        TextFieldCedula5.addActionListener(new java.awt.event.ActionListener() {
+        TipoUsuarioTF.setEditable(false);
+        TipoUsuarioTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedula5ActionPerformed(evt);
+                TipoUsuarioTFActionPerformed(evt);
             }
         });
 
-        TextFieldCedula6.setEditable(false);
-        TextFieldCedula6.addActionListener(new java.awt.event.ActionListener() {
+        ValorTF.setEditable(false);
+        ValorTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedula6ActionPerformed(evt);
+                ValorTFActionPerformed(evt);
             }
         });
 
@@ -120,9 +120,9 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(BotonPagar)
+                                .addComponent(PagarBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BotonCancelar))))
+                                .addComponent(CerrarBtn))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,12 +134,12 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextFieldCedula5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCedula4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCedula1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCedula2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCedula6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TelefonoTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DireccionTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NombreTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CedulaTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ValorTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -148,66 +148,66 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(TextFieldCedula2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(TextFieldCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DireccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(TextFieldCedula4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(TextFieldCedula5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(TextFieldCedula6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ValorTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonPagar)
-                    .addComponent(BotonCancelar))
+                    .addComponent(PagarBtn)
+                    .addComponent(CerrarBtn))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedulaActionPerformed
+    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedulaActionPerformed
+    }//GEN-LAST:event_CedulaTFActionPerformed
 
-    private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
+    private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotonCancelarActionPerformed
+    }//GEN-LAST:event_CerrarBtnActionPerformed
 
-    private void TextFieldCedula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedula1ActionPerformed
+    private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedula1ActionPerformed
+    }//GEN-LAST:event_DireccionTFActionPerformed
 
-    private void TextFieldCedula2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedula2ActionPerformed
+    private void NombreTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedula2ActionPerformed
+    }//GEN-LAST:event_NombreTFActionPerformed
 
-    private void TextFieldCedula4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedula4ActionPerformed
+    private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedula4ActionPerformed
+    }//GEN-LAST:event_TelefonoTFActionPerformed
 
-    private void TextFieldCedula5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedula5ActionPerformed
+    private void TipoUsuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedula5ActionPerformed
+    }//GEN-LAST:event_TipoUsuarioTFActionPerformed
 
-    private void TextFieldCedula6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedula6ActionPerformed
+    private void ValorTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedula6ActionPerformed
+    }//GEN-LAST:event_ValorTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,14 +245,14 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCancelar;
-    private javax.swing.JButton BotonPagar;
-    private javax.swing.JTextField TextFieldCedula;
-    private javax.swing.JTextField TextFieldCedula1;
-    private javax.swing.JTextField TextFieldCedula2;
-    private javax.swing.JTextField TextFieldCedula4;
-    private javax.swing.JTextField TextFieldCedula5;
-    private javax.swing.JTextField TextFieldCedula6;
+    private javax.swing.JTextField CedulaTF;
+    private javax.swing.JButton CerrarBtn;
+    private javax.swing.JTextField DireccionTF;
+    private javax.swing.JTextField NombreTF;
+    private javax.swing.JButton PagarBtn;
+    private javax.swing.JTextField TelefonoTF;
+    private javax.swing.JTextField TipoUsuarioTF;
+    private javax.swing.JTextField ValorTF;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
