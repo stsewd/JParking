@@ -5,11 +5,14 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -71,5 +74,11 @@ public class RegistrosDAO implements RegistrosDAOInterface {
         }
         return registros;
     }
-    
+
+    @Override
+    public void getRegsitro(Integer indice) throws RegistroNoExistenteException {
+        Registro registro = registros.
+        if(registro == null)
+            throw new RegistroNoExistenteException(numero);
+    }
 }
