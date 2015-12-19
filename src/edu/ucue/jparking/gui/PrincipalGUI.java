@@ -65,8 +65,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         MenuItemCrearParqueadero = new javax.swing.JMenuItem();
         MenuItemModificarParqueadero = new javax.swing.JMenuItem();
         MenuItemEliminarParqueadero = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        MenuItemRegistroUsuarios = new javax.swing.JMenuItem();
+        MenuItemRegistroEntradaSalida = new javax.swing.JMenuItem();
+        MenuItemRegistroPagos = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         MenuItemInformacion = new javax.swing.JMenuItem();
 
@@ -348,15 +352,28 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu3.setText("Pagos");
+
+        jMenuItem1.setText("Generar Orden de Pago");
+        jMenu3.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu3);
+
         jMenu4.setText("Registros");
 
-        jMenuItem4.setText("Registros Entradas y Salidas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        MenuItemRegistroUsuarios.setText("Registro Usuarios");
+        jMenu4.add(MenuItemRegistroUsuarios);
+
+        MenuItemRegistroEntradaSalida.setText("Registros Entradas y Salidas");
+        MenuItemRegistroEntradaSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                MenuItemRegistroEntradaSalidaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem4);
+        jMenu4.add(MenuItemRegistroEntradaSalida);
+
+        MenuItemRegistroPagos.setText("Registro de Pagos");
+        jMenu4.add(MenuItemRegistroPagos);
 
         jMenuBar1.add(jMenu4);
 
@@ -406,9 +423,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MenuItemEliminarParqueaderoActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void MenuItemRegistroEntradaSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemRegistroEntradaSalidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_MenuItemRegistroEntradaSalidaActionPerformed
 
     private void MenuItemInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemInformacionActionPerformed
         // TODO add your handling code here:
@@ -424,7 +441,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void MenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemSalirActionPerformed
         // TODO add your handling code here:
-        System.exit(1);
+        System.exit(0);
     }//GEN-LAST:event_MenuItemSalirActionPerformed
 
     /**
@@ -476,6 +493,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuItemModicarCampus;
     private javax.swing.JMenuItem MenuItemModificarParqueadero;
     private javax.swing.JMenuItem MenuItemModificarUsuario;
+    private javax.swing.JMenuItem MenuItemRegistroEntradaSalida;
+    private javax.swing.JMenuItem MenuItemRegistroPagos;
+    private javax.swing.JMenuItem MenuItemRegistroUsuarios;
     private javax.swing.JMenuItem MenuItemSalir;
     private javax.swing.JTable TablaListaUsuarios;
     private javax.swing.JButton jButton1;
@@ -487,11 +507,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

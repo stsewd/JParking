@@ -40,11 +40,16 @@ public class RegistroPagosService {
      * @param fechaFinal
      * @return 
      */
-    public Set<RegistroPagos> getRegistro(TipoRegistro tipoRegistro,Calendar fechaInicial, Calendar fechaFinal){
-        return RegistrosDAO.getInstance().getRegistros(tipoRegistro., fechaInicial, fechaFinal);
+    public Set<Registro> getRegistro(Calendar fechaInicial, Calendar fechaFinal){
+        return RegistrosDAO.getInstance().getRegistros(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
     }
-    
-    //public Set<RegistroPagos>
+    /**
+     * retorna todos los 
+     * @return 
+     */
+    public Set<Registro> getRegistro(){
+        return RegistrosDAO.getInstance().getRegistros(TipoRegistro.PAGOS);
+    }
     
     
 }
