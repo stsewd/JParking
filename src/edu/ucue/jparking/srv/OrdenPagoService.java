@@ -5,7 +5,14 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
+import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.Calendar;
 
 /**
  *
@@ -13,8 +20,41 @@ import edu.ucue.jparking.srv.objetos.OrdenPago;
  */
 public class OrdenPagoService {
     
+<<<<<<< HEAD
     public OrdenPago optener(){
         return null;
+=======
+    /**
+     * 
+     */
+    UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
+    Calendar fechaActual= Calendar.getInstance();
+    Validaciones validaciones = new Validaciones();
+    /**
+     * 
+     * @param cedula
+     * @return
+     * @throws CedulaNoValidaException
+     * @throws UsuarioNoExistenteException 
+     */
+    public OrdenPago optenerOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
+        validaciones.validarCedula(cedula);
+        return usuariosDAO.getUsuario(cedula).generarOrdenPago();
+>>>>>>> origin/master
     }
+    
+    /**
+     * 
+     * @param cedula
+     * @throws CedulaNoValidaException
+     * @throws UsuarioNoExistenteException
+     * @throws PagoYaRealizadoException 
+     */
+    public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException{
+        validaciones.validarCedula(cedula);
+        usuariosDAO.getUsuario(cedula).cancelarPago();
+    }
+    
+    
     
 }

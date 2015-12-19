@@ -8,6 +8,7 @@ package edu.ucue.jparking.srv;
 import edu.ucue.jparking.dao.RegistrosDAO;
 import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -28,12 +29,13 @@ public class RegistroPagosService {
      * @param tipoTramite
      * @throws UsuarioNoExistenteException 
      */
+    RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
     public void add(String cedula,TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
         validaciones.validarCedula(cedula);
         Usuario persona = UsuariosDAO.getInstance().getUsuario(cedula);
         RegistroPagos registro =new RegistroPagos(persona, tipoTramite);
-        RegistrosDAO.getInstance().addRegistro(registro);
+        registrosDAO.addRegistro(registro);
         
     }
     /**
@@ -44,14 +46,14 @@ public class RegistroPagosService {
      * @return 
      */
     public Set<Registro> getRegistro(Calendar fechaInicial, Calendar fechaFinal){
-        return RegistrosDAO.getInstance().getRegistros(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
+        return registrosDAO.getRegistros(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
     }
     /**
      * retorna todos los 
      * @return 
      */
     public Set<Registro> getRegistro(){
-        return RegistrosDAO.getInstance().getRegistros(TipoRegistro.PAGOS);
+        return registrosDAO.getRegistros(TipoRegistro.PAGOS);
     }
     
     

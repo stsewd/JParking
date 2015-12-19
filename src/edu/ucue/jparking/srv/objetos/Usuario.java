@@ -43,7 +43,8 @@ public abstract class Usuario extends Persona{
     }
 
     /**
-     * @return the debiendo
+     * 
+     * @return 
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
