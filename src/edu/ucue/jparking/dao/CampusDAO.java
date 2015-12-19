@@ -18,8 +18,10 @@ import java.util.TreeMap;
 public class CampusDAO implements CampusDAOInterface {
 
     private static CampusDAO instancia;
+    
+    //Mapa <Nombre de campus, campus>
     private static Map<String, Campus> mapCampus;
-
+    
     private CampusDAO() {
         mapCampus = new TreeMap<>();
     }
@@ -38,7 +40,6 @@ public class CampusDAO implements CampusDAOInterface {
         }
 
         mapCampus.put(campus.getNombre(), campus);
-
     }
 
     @Override

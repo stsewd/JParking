@@ -13,8 +13,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.Collection;
 import java.util.HashSet;
-//import java.util.HashMap;
-//import java.util.Map;
 import java.util.Set;
 
 /**
@@ -22,12 +20,9 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public class PorterosDAO implements PorterosDAOInterface {
-    //Mapa <Clave de campus, Mapa<Cedula, portero>>
-    //private static Map<String, Portero> porteros;
     private static PorterosDAO instance;
     
     private PorterosDAO(){
-        //porteros = new HashMap<>();
     }
 
     public static PorterosDAO getInstance() {

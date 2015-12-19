@@ -5,7 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
-import static javafx.application.Platform.exit;
+//import static javafx.application.Platform.exit;
 
 /**
  *
@@ -162,7 +162,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -235,7 +235,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tipo Usuario");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno", "Portero" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno" }));
 
         BotonCrearUsuario.setText("Crear");
 
@@ -364,7 +364,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         MenuItemRegistroUsuarios.setText("Registro Usuarios");
         jMenu4.add(MenuItemRegistroUsuarios);
 
-        MenuItemRegistroEntradaSalida.setText("Registros Entradas y Salidas");
+        MenuItemRegistroEntradaSalida.setText("Registro de Entra-Salida");
         MenuItemRegistroEntradaSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuItemRegistroEntradaSalidaActionPerformed(evt);
@@ -377,9 +377,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Acerca de");
+        jMenu6.setText("Ayuda");
 
-        MenuItemInformacion.setText("Información");
+        MenuItemInformacion.setText("Acerca de");
         MenuItemInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuItemInformacionActionPerformed(evt);

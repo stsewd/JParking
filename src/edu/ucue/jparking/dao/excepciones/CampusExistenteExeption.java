@@ -10,10 +10,10 @@ package edu.ucue.jparking.dao.excepciones;
  * @author Franklin Lara
  */
 public class CampusExistenteExeption extends Exception {
-    private String nombre;
+    private final String nombre;
 
     public CampusExistenteExeption(String nombre) {
-        super("Campus "+ nombre+" Ya existente");
+        super("Campus "+ nombre + " Ya existente");
         this.nombre = nombre;
     }
 

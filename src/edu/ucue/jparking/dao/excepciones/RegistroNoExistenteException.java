@@ -7,12 +7,12 @@ package edu.ucue.jparking.dao.excepciones;
 
 /**
  *
- * @author Santos Gallegos
+ * @author stsewd
  */
-public class ParqueaderoNoExistenteException extends Exception {
+public class RegistroNoExistenteException extends Exception {
 
-    public ParqueaderoNoExistenteException(String idParqueadero) {
-        super("El parqueadero de id " + idParqueadero + "no existe.");
+    public RegistroNoExistenteException(Integer numero) {
+        super("El regitro número " + numero + " no existe.");
     }
     
 }

@@ -31,12 +31,14 @@ public interface PuertasDAOInterface {
      * Elimina una puerta dado su identificador
      * @param id
      * @throws PuertaNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
     public abstract void delPuerta(String id)
             throws PuertaNoExistenteException, CampusNoExistenteException;
     
     /**
-     * Retorna una puerta dado su identificador.
+     * Retorna una puerta dado su identificador
+     * Si la puerta no existe retorna null.
      * @param id
      * @return 
      */

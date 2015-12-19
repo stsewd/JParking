@@ -9,10 +9,10 @@ package edu.ucue.jparking.dao.excepciones;
  *
  * @author Santos Gallegos
  */
-public class ParqueaderoNoExistenteException extends Exception {
+public class UsuarioNoAgregadoException extends Exception {
 
-    public ParqueaderoNoExistenteException(String idParqueadero) {
-        super("El parqueadero de id " + idParqueadero + "no existe.");
+    public UsuarioNoAgregadoException(String cedula) {
+        super("El usuario con cedula " + cedula + " no se encuentra registrado en el parqueadero.");
     }
     
 }

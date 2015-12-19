@@ -18,6 +18,7 @@ public abstract class Registro {
     private final TipoRegistro tipoRegistro;
     
     private final Calendar fecha;
+    
     private final String cedulaPersona;
     private final String nombresPersona;
     private final String apellidosPersona;
@@ -29,7 +30,6 @@ public abstract class Registro {
         this.nombresPersona = persona.getNombres();
         this.apellidosPersona = persona.getApellidos();
         this.activoPersona = persona.isActivo();
-        
         this.tipoRegistro = tipoRegistro;
     }
 
@@ -71,6 +71,5 @@ public abstract class Registro {
      */
     public boolean isActivoPersona() {
         return activoPersona;
-    }
-    
+    }   
 }

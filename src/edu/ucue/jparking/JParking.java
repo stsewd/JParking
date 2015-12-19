@@ -38,5 +38,4 @@ public class JParking {
     public static void main(String[] args) {
         
     }
-    
 }

@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -159,9 +160,11 @@ public interface ParqueaderosDAOInterface {
      * @param cedula 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
      */
     public void delUsuario(String idParqueadero, String cedula)
-            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
+            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException,
+            UsuarioNoAgregadoException;
     
     /**
      * Retorna un set con todos los usuarios pertenecientes a un

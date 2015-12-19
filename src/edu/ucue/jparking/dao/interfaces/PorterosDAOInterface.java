@@ -41,6 +41,8 @@ public interface PorterosDAOInterface {
      * @param cedula
      * @param nombres
      * @param apellidos
+     * @param direccion
+     * @param telefono
      * @param activo
      * @throws PorteroNoExistenteException 
      */
@@ -48,7 +50,8 @@ public interface PorterosDAOInterface {
             throws PorteroNoExistenteException;
     
     /**
-     * Obtiene un portero dado su cedula.
+     * Obtiene un portero dado su cedula
+     * Si el portero no existe retorna null.
      * @param cedula
      * @return
      */
@@ -65,6 +68,8 @@ public interface PorterosDAOInterface {
      * dado.
      * @param nombreCampus
      * @return 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException;
+    public Set<Portero> getPorteros(String nombreCampus)
+            throws CampusNoExistenteException;
 }

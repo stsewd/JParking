@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
@@ -24,15 +25,10 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public class ParqueaderosDAO implements ParqueaderosDAOInterface {
-    
-    //Clase innecesaria?
-    //Mapa <Nombre de campus, Mapa<Id de parqueadero, parqueadero>>
-    private static Map<String, Map<String, Parqueadero>> parqueaderos;
-    
+        
     private static ParqueaderosDAO instance;
     
     private ParqueaderosDAO(){
-        parqueaderos = new HashMap<>();
     }
 
     public static ParqueaderosDAO getInstance() {
@@ -147,8 +143,12 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public void delUsuario(String idParqueadero, String cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delUsuario(String idParqueadero, String cedula) throws UsuarioNoExistenteException, UsuarioNoAgregadoException {
+        UsuariosDAO.getInstance().getUsuario(cedula);
+        Parqueadero parqueadero = getParqueadero(idParqueadero);
+        if(!parqueadero.getUsuarios().contains(cedula))
+            throw new UsuarioNoAgregadoException(cedula);
+        parqueadero.getUsuarios().remove(cedula);
     }
 
     @Override

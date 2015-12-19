@@ -113,7 +113,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuItemRegistroEntradaSalida">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registros Entradas y Salidas"/>
+                <Property name="text" type="java.lang.String" value="Registro de Entra-Salida"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemRegistroEntradaSalidaActionPerformed"/>
@@ -128,12 +128,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Acerca de"/>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MenuItemInformacion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Informaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Acerca de"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemInformacionActionPerformed"/>
@@ -221,7 +221,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" pref="630" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" alignment="0" pref="404" max="32767" attributes="0"/>
                               <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -521,12 +521,11 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox2">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
+                      <StringArray count="4">
                         <StringItem index="0" value="Todos"/>
                         <StringItem index="1" value="Docente"/>
                         <StringItem index="2" value="Empleado"/>
                         <StringItem index="3" value="Alumno"/>
-                        <StringItem index="4" value="Portero"/>
                       </StringArray>
                     </Property>
                   </Properties>

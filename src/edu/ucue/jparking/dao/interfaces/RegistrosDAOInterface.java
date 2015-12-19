@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
@@ -23,6 +24,14 @@ public interface RegistrosDAOInterface {
     public void addRegistro(Registro registro);
     
     /**
+     * Retorna un registro dado su id
+     * @param numero
+     * @throws edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException
+     */
+    public Registro getRegsitro(Integer indice)
+            throws RegistroNoExistenteException;
+        
+    /**
      * Obtener registros entre un rango de fechas
      * @param fechaInicial
      * @param fechaFinal
@@ -35,12 +44,14 @@ public interface RegistrosDAOInterface {
      * @return 
      */
     public Set<Registro> getRegistros();
+    
     /**
      * 
      * @param tipoRegistro
      * @return 
      */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro);
+    
     /**
      * 
      * @param tipoRegistro
@@ -49,6 +60,4 @@ public interface RegistrosDAOInterface {
      * @return 
      */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro,Calendar fechaInicial, Calendar fechaFinal);
-    
-    
 }
