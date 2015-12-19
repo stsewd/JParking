@@ -56,15 +56,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModicarCampusMenuItem = new javax.swing.JMenuItem();
         EliminarCampusMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        CrearPuertaItem = new javax.swing.JMenuItem();
+        EditarPuertaItem = new javax.swing.JMenuItem();
+        EliminarPuertaItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        CrearPorteroItem = new javax.swing.JMenuItem();
+        EditarPorteroItem = new javax.swing.JMenuItem();
+        EliminarPorteroItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        SalirMenuItem = new javax.swing.JMenuItem();
+        SalirItem = new javax.swing.JMenuItem();
         UsuariosMenu = new javax.swing.JMenu();
         CrearUsuarioMenuItem = new javax.swing.JMenuItem();
         ModificarUsuarioMenuItem = new javax.swing.JMenuItem();
@@ -74,13 +74,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModificarParqueaderoMenuItem = new javax.swing.JMenuItem();
         EliminarParqueaderoMenuItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        AgregarPuertaAccesoItem = new javax.swing.JMenuItem();
+        EliminarPuertaAccesoItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        AgregarUsuarioParqueaderoItem = new javax.swing.JMenuItem();
+        EliminarUsuarioParqueaderoItem = new javax.swing.JMenuItem();
         PagosMenu = new javax.swing.JMenu();
-        listarPagosMenuItem = new javax.swing.JMenuItem();
+        GenerarOrdenPagoItem = new javax.swing.JMenuItem();
         RegistrosMenu = new javax.swing.JMenu();
         ListarRegistrosMenuItem = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
@@ -317,44 +317,74 @@ public class PrincipalGUI extends javax.swing.JFrame {
         CampusMenu.add(CrearCampusMenuItem);
 
         ModicarCampusMenuItem.setText("Modificar Campus");
+        ModicarCampusMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModicarCampusMenuItemActionPerformed(evt);
+            }
+        });
         CampusMenu.add(ModicarCampusMenuItem);
 
         EliminarCampusMenuItem.setText("Eliminar Campus");
+        EliminarCampusMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarCampusMenuItemActionPerformed(evt);
+            }
+        });
         CampusMenu.add(EliminarCampusMenuItem);
         CampusMenu.add(jSeparator1);
 
-        jMenuItem1.setText("Crear puerta");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        CrearPuertaItem.setText("Crear puerta");
+        CrearPuertaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                CrearPuertaItemActionPerformed(evt);
             }
         });
-        CampusMenu.add(jMenuItem1);
+        CampusMenu.add(CrearPuertaItem);
 
-        jMenuItem2.setText("Editar puerta");
-        CampusMenu.add(jMenuItem2);
+        EditarPuertaItem.setText("Editar puerta");
+        EditarPuertaItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarPuertaItemActionPerformed(evt);
+            }
+        });
+        CampusMenu.add(EditarPuertaItem);
 
-        jMenuItem3.setText("Eliminar puerta");
-        CampusMenu.add(jMenuItem3);
+        EliminarPuertaItem.setText("Eliminar puerta");
+        CampusMenu.add(EliminarPuertaItem);
         CampusMenu.add(jSeparator3);
 
-        jMenuItem4.setText("Crear portero");
-        CampusMenu.add(jMenuItem4);
-
-        jMenuItem5.setText("Editar portero");
-        CampusMenu.add(jMenuItem5);
-
-        jMenuItem6.setText("Eliminar portero");
-        CampusMenu.add(jMenuItem6);
-        CampusMenu.add(jSeparator2);
-
-        SalirMenuItem.setText("Salir");
-        SalirMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        CrearPorteroItem.setText("Crear portero");
+        CrearPorteroItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirMenuItemActionPerformed(evt);
+                CrearPorteroItemActionPerformed(evt);
             }
         });
-        CampusMenu.add(SalirMenuItem);
+        CampusMenu.add(CrearPorteroItem);
+
+        EditarPorteroItem.setText("Editar portero");
+        EditarPorteroItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarPorteroItemActionPerformed(evt);
+            }
+        });
+        CampusMenu.add(EditarPorteroItem);
+
+        EliminarPorteroItem.setText("Eliminar portero");
+        EliminarPorteroItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarPorteroItemActionPerformed(evt);
+            }
+        });
+        CampusMenu.add(EliminarPorteroItem);
+        CampusMenu.add(jSeparator2);
+
+        SalirItem.setText("Salir");
+        SalirItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirItemActionPerformed(evt);
+            }
+        });
+        CampusMenu.add(SalirItem);
 
         jMenuBar1.add(CampusMenu);
 
@@ -369,6 +399,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         UsuariosMenu.add(CrearUsuarioMenuItem);
 
         ModificarUsuarioMenuItem.setText("Modificar Usuario");
+        ModificarUsuarioMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarUsuarioMenuItemActionPerformed(evt);
+            }
+        });
         UsuariosMenu.add(ModificarUsuarioMenuItem);
 
         EliminarUsuarioMenuItem.setText("Eliminar  Usuario");
@@ -403,25 +438,25 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(EliminarParqueaderoMenuItem);
         ParqueaderosMenu.add(jSeparator4);
 
-        jMenuItem7.setText("Agregar puerta de acceso");
-        ParqueaderosMenu.add(jMenuItem7);
+        AgregarPuertaAccesoItem.setText("Agregar puerta de acceso");
+        ParqueaderosMenu.add(AgregarPuertaAccesoItem);
 
-        jMenuItem8.setText("Eliminar puerta de acceso");
-        ParqueaderosMenu.add(jMenuItem8);
+        EliminarPuertaAccesoItem.setText("Eliminar puerta de acceso");
+        ParqueaderosMenu.add(EliminarPuertaAccesoItem);
         ParqueaderosMenu.add(jSeparator5);
 
-        jMenuItem9.setText("Agregar usuario");
-        ParqueaderosMenu.add(jMenuItem9);
+        AgregarUsuarioParqueaderoItem.setText("Agregar usuario");
+        ParqueaderosMenu.add(AgregarUsuarioParqueaderoItem);
 
-        jMenuItem10.setText("Eliminar usuario");
-        ParqueaderosMenu.add(jMenuItem10);
+        EliminarUsuarioParqueaderoItem.setText("Eliminar usuario");
+        ParqueaderosMenu.add(EliminarUsuarioParqueaderoItem);
 
         jMenuBar1.add(ParqueaderosMenu);
 
         PagosMenu.setText("Pagos");
 
-        listarPagosMenuItem.setText("Generar Orden de Pago");
-        PagosMenu.add(listarPagosMenuItem);
+        GenerarOrdenPagoItem.setText("Generar Orden de Pago");
+        PagosMenu.add(GenerarOrdenPagoItem);
 
         jMenuBar1.add(PagosMenu);
 
@@ -482,9 +517,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AcercaDeMenuItemActionPerformed
 
-    private void SalirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirMenuItemActionPerformed
+    private void SalirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirItemActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_SalirMenuItemActionPerformed
+    }//GEN-LAST:event_SalirItemActionPerformed
 
     private void EliminarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoBtnActionPerformed
         // TODO add your handling code here:
@@ -500,17 +535,55 @@ public class PrincipalGUI extends javax.swing.JFrame {
         crearCampusGUI.setVisible(true);
     }//GEN-LAST:event_CrearCampusMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void CrearPuertaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPuertaItemActionPerformed
         // TODO add your handling code here:
         CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI();
         crearPuertaGUI.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_CrearPuertaItemActionPerformed
 
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
         CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI();
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
+
+    private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
+        // TODO add your handling code here:
+        EditarCampusGUI editarCampusGUI = new EditarCampusGUI();
+        editarCampusGUI.setVisible(true);
+    }//GEN-LAST:event_ModicarCampusMenuItemActionPerformed
+
+    private void EditarPuertaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPuertaItemActionPerformed
+        // TODO add your handling code here:
+        EditarPuertaGUI editarPuertaGUI = new EditarPuertaGUI();
+        editarPuertaGUI.setVisible(true);
+    }//GEN-LAST:event_EditarPuertaItemActionPerformed
+
+    private void CrearPorteroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPorteroItemActionPerformed
+        // TODO add your handling code here:
+        CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI();
+        crearPuertaGUI.setVisible(true);
+    }//GEN-LAST:event_CrearPorteroItemActionPerformed
+
+    private void EliminarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCampusMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EliminarCampusMenuItemActionPerformed
+
+    private void EditarPorteroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPorteroItemActionPerformed
+        // TODO add your handling code here:
+        EditarPorteroGUI editarPorteroGUI = new EditarPorteroGUI();
+        editarPorteroGUI.setVisible(true);
+    }//GEN-LAST:event_EditarPorteroItemActionPerformed
+
+    private void EliminarPorteroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPorteroItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EliminarPorteroItemActionPerformed
+
+    private void ModificarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioMenuItemActionPerformed
+        // TODO add your handling code here:
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
+        editarUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -549,19 +622,30 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AcercaDeMenuItem;
+    private javax.swing.JMenuItem AgregarPuertaAccesoItem;
+    private javax.swing.JMenuItem AgregarUsuarioParqueaderoItem;
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JMenu CampusMenu;
     private javax.swing.JMenuItem CrearCampusMenuItem;
     private javax.swing.JButton CrearParqueaderoBtn;
     private javax.swing.JMenuItem CrearParqueaderoMenuItem;
+    private javax.swing.JMenuItem CrearPorteroItem;
+    private javax.swing.JMenuItem CrearPuertaItem;
     private javax.swing.JButton CrearUsuarioBtn;
     private javax.swing.JMenuItem CrearUsuarioMenuItem;
+    private javax.swing.JMenuItem EditarPorteroItem;
+    private javax.swing.JMenuItem EditarPuertaItem;
     private javax.swing.JMenuItem EliminarCampusMenuItem;
     private javax.swing.JButton EliminarParqueaderoBtn;
     private javax.swing.JMenuItem EliminarParqueaderoMenuItem;
+    private javax.swing.JMenuItem EliminarPorteroItem;
+    private javax.swing.JMenuItem EliminarPuertaAccesoItem;
+    private javax.swing.JMenuItem EliminarPuertaItem;
     private javax.swing.JButton EliminarUsuarioBtn;
     private javax.swing.JMenuItem EliminarUsuarioMenuItem;
+    private javax.swing.JMenuItem EliminarUsuarioParqueaderoItem;
+    private javax.swing.JMenuItem GenerarOrdenPagoItem;
     private javax.swing.JMenuItem ListarRegistrosMenuItem;
     private javax.swing.JMenuItem ModicarCampusMenuItem;
     private javax.swing.JButton ModificarParqueaderoBtn;
@@ -571,7 +655,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu PagosMenu;
     private javax.swing.JMenu ParqueaderosMenu;
     private javax.swing.JMenu RegistrosMenu;
-    private javax.swing.JMenuItem SalirMenuItem;
+    private javax.swing.JMenuItem SalirItem;
     private javax.swing.JTable TablaParqueaderos;
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JComboBox TipoUsuarioCB;
@@ -579,16 +663,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -603,6 +677,5 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JMenuItem listarPagosMenuItem;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,14 +7,14 @@ package edu.ucue.jparking.gui;
 
 /**
  *
- * @author Franklin
+ * @author stsewd
  */
-public class CrearUsuarioGUI extends javax.swing.JFrame {
+public class EditarUsuarioGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form CrearUsuario
+     * Creates new form EditarUsuarioGUI
      */
-    public CrearUsuarioGUI() {
+    public EditarUsuarioGUI() {
         initComponents();
     }
 
@@ -27,63 +27,57 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        CedulaTF = new javax.swing.JTextField();
-        NombresTF = new javax.swing.JTextField();
-        ApellidosTF = new javax.swing.JTextField();
-        TipoUsuarioCB = new javax.swing.JComboBox();
-        CrearBtn = new javax.swing.JButton();
-        CancelarBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        DireccionTF = new javax.swing.JTextField();
-        TelefonoTF = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        NombresTF = new javax.swing.JTextField();
+        TelefonoTF = new javax.swing.JTextField();
+        CedulaTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        DireccionTF = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        CancelarBtn1 = new javax.swing.JButton();
+        EditarBtn = new javax.swing.JButton();
+        ApellidosTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Crear Usuario");
-        setResizable(false);
-
-        jLabel1.setText("Cédula:");
+        setTitle("Editar usuario");
 
         jLabel2.setText("Nombres:");
 
-        jLabel3.setText("Apellidos:");
+        jLabel1.setText("Cédula:");
 
-        jLabel4.setText("Tipo Usuario:");
-
+        CedulaTF.setEditable(false);
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CedulaTFActionPerformed(evt);
             }
         });
 
-        TipoUsuarioCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOCENTE", "EMPLEADO", "ESTUDIANTE" }));
-
-        CrearBtn.setText("Crear");
-        CrearBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearBtnActionPerformed(evt);
-            }
-        });
-
-        CancelarBtn.setText("Cancelar");
-        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Dirección:");
-
-        jLabel6.setText("Telefono:");
+        jLabel3.setText("Apellidos:");
 
         DireccionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DireccionTFActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Telefono:");
+
+        jLabel5.setText("Dirección:");
+
+        CancelarBtn1.setText("Cancelar");
+        CancelarBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtn1ActionPerformed(evt);
+            }
+        });
+
+        EditarBtn.setText("Editar");
+        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarBtnActionPerformed(evt);
             }
         });
 
@@ -92,32 +86,29 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(CrearBtn)
+                        .addComponent(EditarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CancelarBtn))
+                        .addComponent(CancelarBtn1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CedulaTF, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                            .addComponent(CedulaTF)
                             .addComponent(ApellidosTF)
                             .addComponent(NombresTF)
                             .addComponent(DireccionTF)
-                            .addComponent(TelefonoTF)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(15, 15, 15)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,16 +135,12 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CancelarBtn)
-                    .addComponent(CrearBtn))
+                    .addComponent(CancelarBtn1)
+                    .addComponent(EditarBtn))
                 .addGap(15, 15, 15))
         );
 
@@ -164,18 +151,18 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
 
-    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CrearBtnActionPerformed
-
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
 
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+    private void CancelarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtn1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_CancelarBtnActionPerformed
+    }//GEN-LAST:event_CancelarBtn1ActionPerformed
+
+    private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,21 +181,20 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearUsuarioGUI().setVisible(true);
+                new EditarUsuarioGUI().setVisible(true);
             }
         });
     }
@@ -216,16 +202,15 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ApellidosTF;
     private javax.swing.JButton CancelarBtn;
+    private javax.swing.JButton CancelarBtn1;
     private javax.swing.JTextField CedulaTF;
-    private javax.swing.JButton CrearBtn;
     private javax.swing.JTextField DireccionTF;
+    private javax.swing.JButton EditarBtn;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
-    private javax.swing.JComboBox TipoUsuarioCB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
