@@ -20,10 +20,6 @@ import java.util.Calendar;
  */
 public class OrdenPagoService {
     
-<<<<<<< HEAD
-    public OrdenPago optener(){
-        return null;
-=======
     /**
      * 
      */
@@ -40,7 +36,6 @@ public class OrdenPagoService {
     public OrdenPago optenerOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
         validaciones.validarCedula(cedula);
         return usuariosDAO.getUsuario(cedula).generarOrdenPago();
->>>>>>> origin/master
     }
     
     /**
