@@ -9,6 +9,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Docente;
 import edu.ucue.jparking.srv.Validaciones;
 import java.util.Set;
@@ -20,7 +21,7 @@ import java.util.Set;
 public class DocenteService {
     
     Validaciones validar = new Validaciones();
-    
+    UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     
     /**
      * 
@@ -37,7 +38,7 @@ public class DocenteService {
         validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
         validar.validarCedula(cedula);
         Docente docente = new Docente(cedula, nombre, apellido, direccion, telefono);
-        UsuariosDAO.getInstance().addUsuario(docente);
+        usuariosDAO.addUsuario(docente);
            
     }
 
@@ -49,7 +50,7 @@ public class DocenteService {
      */
     public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
         validar.validarCedula(cedula);
-        UsuariosDAO.getInstance().delUsuario(cedula);
+        usuariosDAO.delUsuario(cedula);
     }
     
     /**
@@ -62,7 +63,7 @@ public class DocenteService {
     
     public Docente get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
         validar.validarCedula(cedula);
-        return (Docente) UsuariosDAO.getInstance().getUsuario(cedula);
+        return (Docente) usuariosDAO.getUsuario(cedula);
     }
     
     /**
@@ -79,7 +80,7 @@ public class DocenteService {
     public void mod(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
-        UsuariosDAO.getInstance().modUsuario(cedula, nombre, apellido,direccion,telefono, estado);
+        usuariosDAO.modUsuario(cedula, nombre, apellido,direccion,telefono, estado);
         
         
     }
@@ -89,6 +90,6 @@ public class DocenteService {
      * @return 
      */
     public Set getLista() {
-        return (Set) UsuariosDAO.getInstance().getUsuarios();
+        return (Set) usuariosDAO.getUsuarios();
     }
 }

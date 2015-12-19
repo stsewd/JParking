@@ -8,6 +8,8 @@ package edu.ucue.jparking.srv;
 import edu.ucue.jparking.dao.PorterosDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.Set;
@@ -18,6 +20,7 @@ import java.util.Set;
  */
 public class PorterosService {
     Validaciones validar = new Validaciones();
+    PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
     /**
      * 
      * @param cedula
@@ -27,12 +30,12 @@ public class PorterosService {
      * @param telefono
      * @throws CedulaNoValidaException 
      */
-    public void addPortero(String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException
+    public void addPortero(String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException
     {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         Portero portero = new Portero(cedula, nombre, apellido, direccion, telefono, nombre);
-        PorterosDAO.getInstance();
+        porterosDAO.addPortero(nombre, portero);
     }
     /**
      * 
@@ -48,7 +51,7 @@ public class PorterosService {
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
-        PorterosDAO.getInstance().modPortero(cedula, nombre, apellido,direccion,telefono, estado);
+        porterosDAO.modPortero(cedula, nombre, apellido,direccion,telefono, estado);
         
     }
     /**
@@ -60,7 +63,7 @@ public class PorterosService {
      */
     public void delPortero(String cedula) throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException{
         validar.validarCedula(cedula);
-        PorterosDAO.getInstance().delPortero(cedula);
+        porterosDAO.delPortero(cedula);
     }
     /**
      * 
@@ -70,14 +73,14 @@ public class PorterosService {
      */
     public Portero getPortero(String cedula) throws CedulaNoValidaException{
         validar.validarCedula(cedula);
-        return PorterosDAO.getInstance().getPortero(cedula);
+        return porterosDAO.getPortero(cedula);
     }
     /**
      * 
      * @return 
      */
     public Set<Portero> getPorteros(){
-        return PorterosDAO.getInstance().getPorteros();
+        return porterosDAO.getPorteros();
     }
     /**
      * 
@@ -86,6 +89,6 @@ public class PorterosService {
      * @throws CampusNoExistenteException 
      */
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException{
-        return PorterosDAO.getInstance().getPorteros(nombreCampus);
+        return porterosDAO.getPorteros(nombreCampus);
     }
 }

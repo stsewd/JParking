@@ -18,9 +18,7 @@ public class Validaciones {
 
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     boolean cedulaCorrecta = false;
-
     try {
-
         if (cedula.length() == 10) // ConstantesApp.LongitudCedula
         {
             int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
@@ -35,7 +33,6 @@ public boolean validarCedula(String cedula) throws CedulaNoValidaException {
                  digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
                  suma += ((digito % 10) + (digito / 10));
                 }
-
                 if ((suma % 10 == 0) && (suma % 10 == verificador)) {
                     cedulaCorrecta = true;
                 }
@@ -50,24 +47,17 @@ public boolean validarCedula(String cedula) throws CedulaNoValidaException {
         } else {
             cedulaCorrecta = false;
         }
-
     } catch (NumberFormatException nfe) {
-            
         cedulaCorrecta = false;
-        
     } catch (Exception err) {
-            
         System.out.println("Una excepcion ocurrio en el proceso de validadcion");
-            
         cedulaCorrecta = false;
-        
     }
-
     if (!cedulaCorrecta) {
         throw new CedulaNoValidaException(cedula);
     }
     return cedulaCorrecta;
-    }
+}
     
 public void ValidarCampus(String nombre,String direccion){
         if(nombre==null || nombre.trim().length()==0)
