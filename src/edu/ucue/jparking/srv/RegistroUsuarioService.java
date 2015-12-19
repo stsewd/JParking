@@ -46,7 +46,7 @@ public class RegistroUsuarioService {
      * 
      * @return 
      */
-    public Set<Registro> getRefistroUsuarios(){
+    public Set<Registro> getRegistroUsuarios(){
         return RegistrosDAO.getInstance().getRegistros(TipoRegistro.USUARIO);
     }
     
