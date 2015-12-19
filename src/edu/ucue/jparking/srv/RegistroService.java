@@ -95,7 +95,18 @@ public class RegistroService {
      * @param fechaFinal
      * @return 
      */
-    public Set<Registro>  get(Calendar fechaInicio,Calendar fechaFinal){
+    public Set<Registro>  get(int yearInicio, int mesInicio, int diaInicio, int yearFinal, int mesFinal, int diaFinal){
+        Calendar fechaInicio = Calendar.getInstance();
+        Calendar fechaFinal = Calendar.getInstance();
+        
+        fechaInicio.set(Calendar.YEAR, yearInicio);
+        fechaInicio.set(Calendar.MONTH, mesInicio);
+        fechaInicio.set(Calendar.DAY_OF_MONTH, diaInicio);
+        
+        fechaFinal.set(Calendar.YEAR, yearFinal);
+        fechaFinal.set(Calendar.MONTH, mesFinal);
+        fechaFinal.set(Calendar.DAY_OF_MONTH, diaFinal);
+        
         return RegistrosDAO.getInstance().getRegistros(fechaInicio, fechaFinal);
     }
 }
