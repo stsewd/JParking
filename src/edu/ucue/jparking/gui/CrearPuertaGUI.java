@@ -35,7 +35,6 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
         CrearBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear Puerta");
         setPreferredSize(new java.awt.Dimension(372, 150));
         setResizable(false);

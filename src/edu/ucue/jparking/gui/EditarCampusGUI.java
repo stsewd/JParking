@@ -35,7 +35,6 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         EditarBtn = new javax.swing.JButton();
         CancelarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar campus");
 
         NombreTextField.setEditable(false);

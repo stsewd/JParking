@@ -43,7 +43,6 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         ApellidosTF = new javax.swing.JTextField();
         TelefonoTF = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar portero");
 
         jLabel6.setText("Telefono:");

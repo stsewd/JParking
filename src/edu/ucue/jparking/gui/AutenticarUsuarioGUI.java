@@ -33,7 +33,6 @@ public class AutenticarUsuarioGUI extends javax.swing.JFrame {
         CancelarBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Autenticar usuario");
         setMinimumSize(new java.awt.Dimension(330, 140));
         setResizable(false);

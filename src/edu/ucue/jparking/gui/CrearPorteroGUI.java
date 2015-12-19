@@ -53,8 +53,6 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         CedulaTF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CedulaTF1ActionPerformed(evt);
@@ -125,15 +123,13 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
                                 .addComponent(ApellidosTF)
                                 .addComponent(NombresTF)
                                 .addComponent(DireccionTF2)
-                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(15, 15, 15)))
+                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(CampusTF)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(CampusTF))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,12 +235,9 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
     private javax.swing.JTextField ApellidosTF;
     private javax.swing.JTextField CampusTF;
     private javax.swing.JButton CancelarBtn;
-    private javax.swing.JTextField CedulaTF;
     private javax.swing.JTextField CedulaTF1;
     private javax.swing.JTextField CedulaTF2;
     private javax.swing.JButton CrearBtn;
-    private javax.swing.JTextField DireccionTF;
-    private javax.swing.JTextField DireccionTF1;
     private javax.swing.JTextField DireccionTF2;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
