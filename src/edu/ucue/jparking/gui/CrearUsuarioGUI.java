@@ -61,7 +61,7 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
             }
         });
 
-        ComboBoxTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOCENTE", "EMPLEADO", "ESTUDIANTE", "PORTERO" }));
+        ComboBoxTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOCENTE", "EMPLEADO", "ESTUDIANTE" }));
 
         BotonCrear.setText("Crear");
         BotonCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +110,8 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(ComboBoxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
