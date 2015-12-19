@@ -20,11 +20,13 @@ public class Parqueadero {
     private String ubicacion;
     private int numeroLugares;
     private int numeroLugaresDisponibles;
+    private String nombreCampus;
 
-    public Parqueadero(String ubicacion, int numeroLugares, String id) {
+    public Parqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
         this.id = id;
+        this.nombreCampus = nombreCampus;
         
         this.puertasEntrada = new HashSet<>();
         this.puertasSalida = new HashSet<>();
@@ -121,5 +123,19 @@ public class Parqueadero {
      */
     public String getId() {
         return id;
+    }
+
+    /**
+     * @return the nombreCampus
+     */
+    public String getNombreCampus() {
+        return nombreCampus;
+    }
+
+    /**
+     * @param nombreCampus the nombreCampus to set
+     */
+    public void setNombreCampus(String nombreCampus) {
+        this.nombreCampus = nombreCampus;
     }
 }

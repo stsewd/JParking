@@ -6,6 +6,7 @@
 package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
+import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
 import java.util.LinkedHashSet;
@@ -46,6 +47,11 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     @Override
     public Set<Registro> getRegistros(){
         return this.registros;
+    }
+
+    @Override
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
