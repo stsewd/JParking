@@ -60,5 +60,5 @@ public interface RegistrosDAOInterface {
      * @param fechaFinal
      * @return 
      */
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro,Calendar fechaInicial, Calendar fechaFinal);
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicial, Calendar fechaFinal);
 }
