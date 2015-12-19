@@ -19,18 +19,19 @@ public interface RegistrosDAOInterface {
     
     /**
      * Agregar nuevo registro
-     * @param registro 
+     * @param registro
      */
     public void addRegistro(Registro registro);
     
     /**
      * Retorna un registro dado su id
-     * @param numero
+     * @param numeroRegistro
+     * @return 
      * @throws edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException
      */
-    public Registro getRegistro(Integer indice)
+    public Registro getRegistro(Integer numeroRegistro)
             throws RegistroNoExistenteException;
-        
+
     /**
      * Obtener registros entre un rango de fechas
      * @param fechaInicial
@@ -41,14 +42,14 @@ public interface RegistrosDAOInterface {
     
     /**
      * Obtener todos los registros
-     * @return 
+     * @return
      */
     public Set<Registro> getRegistros();
     
     /**
      * 
      * @param tipoRegistro
-     * @return 
+     * @return
      */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro);
     

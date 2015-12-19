@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public abstract class Registro {
     
@@ -72,14 +72,17 @@ public abstract class Registro {
     public boolean isActivoPersona() {
         return activoPersona;
     }   
+    
+    
     /**
      * 
-     * 
+     * @return 
      */
-    
     public int getNumeroRegistro() {
         return numeroRegistro;
     }
-    
-    
+
+    public void setNumeroRegistro(int numeroRegistro) {
+        this.numeroRegistro = numeroRegistro;
+    }
 }

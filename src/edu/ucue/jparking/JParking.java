@@ -26,9 +26,12 @@
  */
 package edu.ucue.jparking;
 
+import edu.ucue.jparking.gui.PrincipalGUI;
+
 /**
  *
- * @author Santos Gallegos, Franklin Lara
+ * @author Santos Gallegos
+ * @author Franklin Lara
  */
 public class JParking {
 
@@ -36,6 +39,6 @@ public class JParking {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        PrincipalGUI.main(args);
     }
 }
