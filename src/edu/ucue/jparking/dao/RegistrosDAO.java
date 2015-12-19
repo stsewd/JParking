@@ -51,7 +51,18 @@ public class RegistrosDAO implements RegistrosDAOInterface {
 
     @Override
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Implementar, retorna un set de los registros creados entre
+        //fechaInicial y fechaFinal
+        Set<Registro> registros = new LinkedHashSet();
+        return registros;
+    }
+        
+    @Override
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicial, Calendar fechaFinal) {
+        //Implementar, retorna un set de los registros creados entre
+        //fechaInicial y fechaFinal
+        Set<Registro> registros = new LinkedHashSet();
+        return registros;
     }
     
 }

@@ -13,6 +13,8 @@ import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.registros.Registro;
 import edu.ucue.jparking.srv.registros.RegistroPagos;
+import java.util.Calendar;
+import java.util.Set;
 
 /**
  *
@@ -31,7 +33,18 @@ public class RegistroPagosService {
         RegistrosDAO.getInstance().addRegistro(registro);
         
     }
+    /**
+     * 
+     * @param tipoRegistro
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return 
+     */
+    public Set<RegistroPagos> getRegistro(TipoRegistro tipoRegistro,Calendar fechaInicial, Calendar fechaFinal){
+        return RegistrosDAO.getInstance().getRegistros(tipoRegistro., fechaInicial, fechaFinal);
+    }
     
+    //public Set<RegistroPagos>
     
     
 }

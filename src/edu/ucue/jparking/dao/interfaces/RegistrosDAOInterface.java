@@ -35,6 +35,20 @@ public interface RegistrosDAOInterface {
      * @return 
      */
     public Set<Registro> getRegistros();
-    
+    /**
+     * 
+     * @param tipoRegistro
+     * @return 
+     */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro);
+    /**
+     * 
+     * @param tipoRegistro
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return 
+     */
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro,Calendar fechaInicial, Calendar fechaFinal);
+    
+    
 }
