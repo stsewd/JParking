@@ -96,7 +96,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registros Entradas y Salidas"/>
+                <Property name="text" type="java.lang.String" value="Listar registros"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
@@ -106,12 +106,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Acerca de"/>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MenuItemInformacion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Informaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Acerca de"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemInformacionActionPerformed"/>
@@ -499,12 +499,11 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox2">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
+                      <StringArray count="4">
                         <StringItem index="0" value="Todos"/>
                         <StringItem index="1" value="Docente"/>
                         <StringItem index="2" value="Empleado"/>
                         <StringItem index="3" value="Alumno"/>
-                        <StringItem index="4" value="Portero"/>
                       </StringArray>
                     </Property>
                   </Properties>

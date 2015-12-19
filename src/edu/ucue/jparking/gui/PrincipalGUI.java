@@ -231,7 +231,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tipo Usuario");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno", "Portero" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno" }));
 
         BotonCrearUsuario.setText("Crear");
 
@@ -350,7 +350,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenu4.setText("Registros");
 
-        jMenuItem4.setText("Registros Entradas y Salidas");
+        jMenuItem4.setText("Listar registros");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -360,9 +360,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Acerca de");
+        jMenu6.setText("Ayuda");
 
-        MenuItemInformacion.setText("Información");
+        MenuItemInformacion.setText("Acerca de");
         MenuItemInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuItemInformacionActionPerformed(evt);
