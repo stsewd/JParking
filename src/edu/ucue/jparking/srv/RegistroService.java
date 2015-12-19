@@ -63,6 +63,7 @@ public class RegistroService {
             throw new IllegalArgumentException("Argumento no valido");
         }
     }
+    
     /**
      * 
      * @param tipoRegistro
@@ -82,6 +83,7 @@ public class RegistroService {
             throw new IllegalArgumentException("Argumento no valido");
         }
     }
+    
     /**
      * 
      * @return 
@@ -89,6 +91,7 @@ public class RegistroService {
     public Set<Registro> get(){
         return RegistrosDAO.getInstance().getRegistros();
     }
+    
     /**
      * 
      * @param fechaInicio
