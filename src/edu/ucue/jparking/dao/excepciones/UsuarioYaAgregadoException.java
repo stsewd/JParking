@@ -14,5 +14,4 @@ public class UsuarioYaAgregadoException extends Exception {
     public UsuarioYaAgregadoException(String cedula) {
         super("El usuario de cedula " + cedula + " ya se encuentra agregado al parqueadero.");
     }
-    
 }

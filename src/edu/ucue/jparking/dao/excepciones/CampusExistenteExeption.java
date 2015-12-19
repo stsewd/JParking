@@ -13,7 +13,7 @@ public class CampusExistenteExeption extends Exception {
     private final String nombre;
 
     public CampusExistenteExeption(String nombre) {
-        super("Campus "+ nombre+" Ya existente");
+        super("Campus "+ nombre + " Ya existente");
         this.nombre = nombre;
     }
 

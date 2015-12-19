@@ -12,8 +12,15 @@ package edu.ucue.jparking.dao.excepciones;
 public class CampusNoExistenteException extends Exception {
     private final String nombre;
     public CampusNoExistenteException(String nombre) {
-        super("El capus "+nombre+" No existe");
+        super("El capus " + nombre + " no existe");
         this.nombre=nombre;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
     }
     
 }
