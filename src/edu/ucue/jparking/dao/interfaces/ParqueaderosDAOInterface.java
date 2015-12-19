@@ -124,14 +124,15 @@ public interface ParqueaderosDAOInterface {
     public Set<Puerta> getPuertasEntrada(String idParqueadero)
             throws ParqueaderoNoExistenteException;
     
-    public Set<Puerta> getPuertasSalida(String idParqueadero);
+    public Set<Puerta> getPuertasSalida(String idParqueadero)
+            throws ParqueaderoNoExistenteException;
     
     /**
      * Agrega un usuario dado su cedula a un parqueadero dado su id.
      * @param idParqueadero
      * @param cedula
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException
-     * @throws edu.ucue.jparking.dao.interfaces.UsuarioYaAgregadoException
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException
      */
     public void addUsuario(String idParqueadero, String cedula)
@@ -149,5 +150,5 @@ public interface ParqueaderosDAOInterface {
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
     
     public Set<Usuario> getUsuarios(String idParqueadero)
-            throws ParqueaderoNoExistenteException;
+            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
 }

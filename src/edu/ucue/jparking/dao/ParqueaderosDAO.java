@@ -157,16 +157,33 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
+        for(String s : parqueadero.getPuertasEntrada()){
+            puertas.add(PuertasDAO.getInstance().getPuerta(s));
+        }
         return puertas;
     }
 
     @Override
-    public Set<Puerta> getPuertasSalida(String idParqueadero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Set<Puerta> getPuertasSalida(String idParqueadero) throws ParqueaderoNoExistenteException {
+        Set<Puerta> puertas = new HashSet<>();
+        Parqueadero parqueadero = getParqueadero(idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        for(String s : parqueadero.getPuertasSalida()){
+            puertas.add(PuertasDAO.getInstance().getPuerta(s));
+        }
+        return puertas;
     }
 
     @Override
-    public Set<Usuario> getUsuarios(String idParqueadero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Set<Usuario> getUsuarios(String idParqueadero) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException {
+        Set<Usuario> usuarios = new HashSet<>();
+        Parqueadero parqueadero = getParqueadero(idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        for(String s : parqueadero.getUsuarios()){
+            usuarios.add(UsuariosDAO.getInstance().getUsuario(s));
+        }
+        return usuarios;
     }
 }
