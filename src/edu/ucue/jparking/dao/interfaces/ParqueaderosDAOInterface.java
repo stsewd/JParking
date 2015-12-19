@@ -121,9 +121,23 @@ public interface ParqueaderosDAOInterface {
     public void delPuertaSalida(String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException;;
     
+    /**
+     * Retorna un set con todas las puertas de entrada de un
+     * parqueadero dado su id.
+     * @param idParqueadero
+     * @return
+     * @throws ParqueaderoNoExistenteException 
+     */
     public Set<Puerta> getPuertasEntrada(String idParqueadero)
             throws ParqueaderoNoExistenteException;
     
+    /**
+     * Retorna un set con todas las puertas de salida de un
+     * parqueadero dado su id.
+     * @param idParqueadero
+     * @return
+     * @throws ParqueaderoNoExistenteException 
+     */
     public Set<Puerta> getPuertasSalida(String idParqueadero)
             throws ParqueaderoNoExistenteException;
     
@@ -149,6 +163,14 @@ public interface ParqueaderosDAOInterface {
     public void delUsuario(String idParqueadero, String cedula)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
     
+    /**
+     * Retorna un set con todos los usuarios pertenecientes a un
+     * parqueadero dado su id.
+     * @param idParqueadero
+     * @return
+     * @throws ParqueaderoNoExistenteException
+     * @throws UsuarioNoExistenteException 
+     */
     public Set<Usuario> getUsuarios(String idParqueadero)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
 }
