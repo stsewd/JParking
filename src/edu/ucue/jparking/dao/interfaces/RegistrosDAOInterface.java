@@ -28,11 +28,9 @@ public interface RegistrosDAOInterface {
      * @param numero
      * @throws edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException
      */
-    public void getRegsitro(Integer numero)
+    public Registro getRegsitro(Integer indice)
             throws RegistroNoExistenteException;
-    
-    public Integer getCodigo();
-    
+        
     /**
      * Obtener registros entre un rango de fechas
      * @param fechaInicial

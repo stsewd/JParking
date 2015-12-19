@@ -10,9 +10,9 @@ import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,10 +21,10 @@ import java.util.Set;
  */
 public class RegistrosDAO implements RegistrosDAOInterface {
     private static RegistrosDAO instance;
-    private static Set<Registro> registros;
+    private static List<Registro> registros;
     
     private RegistrosDAO(){
-        registros = new LinkedHashSet<>();
+        registros = new LinkedList<>();
     }
 
     public static RegistrosDAO getInstance() {
@@ -52,7 +52,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     
     @Override
     public Set<Registro> getRegistros(){
-        return this.registros;
+        return (Set<Registro>) this.registros;
     }
 
     @Override
@@ -76,9 +76,14 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     }
 
     @Override
-    public void getRegsitro(Integer indice) throws RegistroNoExistenteException {
-        Registro registro = registros.
-        if(registro == null)
-            throw new RegistroNoExistenteException(numero);
+    public Registro getRegsitro(Integer indice) throws RegistroNoExistenteException {
+        Registro registro = null;
+        try {
+            registro = registros.get(indice);
+        }
+        catch (IndexOutOfBoundsException e){
+            throw new RegistroNoExistenteException(indice);
+        }
+        return registro;
     }
 }
