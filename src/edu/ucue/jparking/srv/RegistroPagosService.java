@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoTramite;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.registros.Registro;
 import edu.ucue.jparking.srv.registros.RegistroPagos;
@@ -27,7 +28,9 @@ public class RegistroPagosService {
      * @param tipoTramite
      * @throws UsuarioNoExistenteException 
      */
-    public void add(String cedula,TipoTramite tipoTramite) throws UsuarioNoExistenteException{
+    Validaciones validaciones = new Validaciones();
+    public void add(String cedula,TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        validaciones.validarCedula(cedula);
         Usuario persona = UsuariosDAO.getInstance().getUsuario(cedula);
         RegistroPagos registro =new RegistroPagos(persona, tipoTramite);
         RegistrosDAO.getInstance().addRegistro(registro);

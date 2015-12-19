@@ -9,6 +9,8 @@ import edu.ucue.jparking.dao.RegistrosDAO;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoTramite;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.registros.Registro;
 import edu.ucue.jparking.srv.registros.RegistroPagos;
 import java.util.Calendar;
@@ -26,7 +28,7 @@ public class RegistroService {
      * @param tipoTramite
      * @throws UsuarioNoExistenteException 
      */
-    public void add(String cedula,TipoRegistro tipoRegistro,TipoTramite tipoTramite) throws UsuarioNoExistenteException{
+    public void add(String cedula,TipoRegistro tipoRegistro,TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
         if(tipoRegistro==TipoRegistro.USUARIO){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             registroUsuarioService.addRegistroUsuario(cedula);

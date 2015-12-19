@@ -11,6 +11,8 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoAcceso;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.registros.Registro;
 import edu.ucue.jparking.srv.registros.RegistroAccesoParqueadero;
@@ -27,7 +29,9 @@ public class RegistroAccesoParqueaderoService {
      * @param cedula
      * @throws UsuarioNoExistenteException 
      */
-    public void addAcceso(String cedula) throws UsuarioNoExistenteException{
+    Validaciones validaciones = new Validaciones();
+    public void addAcceso(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        validaciones.validarCedula(cedula);
         Persona persona = UsuariosDAO.getInstance().getUsuario(cedula);
         Registro registro = new RegistroAccesoParqueadero(persona, TipoAcceso.ENTRADA);
         RegistrosDAO.getInstance().addRegistro(registro);
@@ -47,6 +51,7 @@ public class RegistroAccesoParqueaderoService {
      * @return 
      */
     public Set<Registro> getAcceso(Calendar fechaInicio,Calendar fechaFinal){
+        //cambiar esta parte para mes dia a;o 
         return RegistrosDAO.getInstance().getRegistros(TipoRegistro.ACCESO_PARQUEADERO, fechaInicio, fechaFinal);
     }
 }

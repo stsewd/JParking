@@ -100,6 +100,8 @@ public void ValidarPuerta(String ubicacion,String id,String idCampus){
 }
 
     public  void validarCodigo(String codigo) throws CodigoNoValidoException{
+        if(codigo==null || codigo.trim().length()==0)
+            throw new IllegalArgumentException("El codigo no puede estar vacio");
         codigo = codigo.trim();
         if(codigo.length() != 3)
             throw new CodigoNoValidoException(codigo);
@@ -110,5 +112,17 @@ public void ValidarPuerta(String ubicacion,String id,String idCampus){
         }
         if(!Character.isAlphabetic(codigo.charAt(0)))
             throw new CodigoNoValidoException(codigo);        
-    }   
+    }  
+    
+public void ValidarParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus){
+    if(id==null || id.trim().length()==0)
+        throw new IllegalArgumentException("EL argumento id no puede estar vacio");
+    if(ubicacion==null || ubicacion.trim().length()==0)
+        throw new IllegalArgumentException("El argumento ubicacion no puede estar vacio");
+    if(numeroLugares<0)
+        throw new IllegalArgumentException("Los numero de lugare no pueden ser negativos");
+    if(nombreCampus==null || nombreCampus.trim().length()==0)
+        throw new IllegalArgumentException("El argumento nombre no puede estra vacio");
 }
+}
+

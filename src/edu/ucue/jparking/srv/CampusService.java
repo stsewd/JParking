@@ -39,6 +39,8 @@ public class CampusService {
      */
         
     public Campus getCampus(String nombre) throws CampusNoExistenteException{
+        if(nombre==null || nombre.trim().length()==0)
+            throw new IllegalArgumentException("El nombre del campus no puede estar vacio");
         return CampusDAO.getInstancia().getCampus(nombre);
     }
     /**
@@ -47,6 +49,8 @@ public class CampusService {
      * @throws CampusNoExistenteException 
      */
     public void delCampus(String nombre) throws CampusNoExistenteException{
+        if(nombre==null || nombre.trim().length()==0)
+            throw new IllegalArgumentException("El nombre del campus no puede estar vacio");
         CampusDAO.getInstancia().delCampus(nombre);
     }
     /**
