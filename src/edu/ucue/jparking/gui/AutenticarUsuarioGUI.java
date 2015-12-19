@@ -28,9 +28,9 @@ public class AutenticarUsuarioGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        TextFieldCedula = new javax.swing.JTextField();
-        BotonAutenticar = new javax.swing.JButton();
-        BotonCancelar = new javax.swing.JButton();
+        CedulaTextField = new javax.swing.JTextField();
+        AutenticarBtn = new javax.swing.JButton();
+        CancelarBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,15 +40,15 @@ public class AutenticarUsuarioGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Cédula:");
 
-        TextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
+        CedulaTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldCedulaActionPerformed(evt);
+                CedulaTextFieldActionPerformed(evt);
             }
         });
 
-        BotonAutenticar.setText("Autenticar");
+        AutenticarBtn.setText("Autenticar");
 
-        BotonCancelar.setText("Cancelar");
+        CancelarBtn.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,13 +58,13 @@ public class AutenticarUsuarioGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BotonAutenticar)
+                        .addComponent(AutenticarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonCancelar))
+                        .addComponent(CancelarBtn))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CedulaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -73,23 +73,23 @@ public class AutenticarUsuarioGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CedulaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonAutenticar)
-                    .addComponent(BotonCancelar))
+                    .addComponent(AutenticarBtn)
+                    .addComponent(CancelarBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCedulaActionPerformed
+    private void CedulaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldCedulaActionPerformed
+    }//GEN-LAST:event_CedulaTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,9 +128,9 @@ public class AutenticarUsuarioGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonAutenticar;
-    private javax.swing.JButton BotonCancelar;
-    private javax.swing.JTextField TextFieldCedula;
+    private javax.swing.JButton AutenticarBtn;
+    private javax.swing.JButton CancelarBtn;
+    private javax.swing.JTextField CedulaTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

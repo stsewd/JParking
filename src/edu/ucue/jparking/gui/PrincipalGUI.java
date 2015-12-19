@@ -33,44 +33,58 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        CampusCB = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaParqueaderos = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        CrearParqueaderoBtn = new javax.swing.JButton();
+        ModificarParqueaderoBtn = new javax.swing.JButton();
+        EliminarParqueaderoBtn = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TablaListaUsuarios = new javax.swing.JTable();
+        TablaUsuarios = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        TipoUsuarioCB = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
-        BotonModificarUsuario = new javax.swing.JButton();
-        BotonCrearUsuario = new javax.swing.JButton();
-        BotonEliminarUsuario = new javax.swing.JButton();
+        ModificarUsuarioBtn = new javax.swing.JButton();
+        CrearUsuarioBtn = new javax.swing.JButton();
+        EliminarUsuarioBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        MenuItemCrearCampus = new javax.swing.JMenuItem();
-        MenuItemModicarCampus = new javax.swing.JMenuItem();
-        MenuItemEliminarCampus = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        MenuItemSalir = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        MenuItemCrearUsuario = new javax.swing.JMenuItem();
-        MenuItemModificarUsuario = new javax.swing.JMenuItem();
-        MenuItemEliminarUsuario = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        MenuItemCrearParqueadero = new javax.swing.JMenuItem();
-        MenuItemModificarParqueadero = new javax.swing.JMenuItem();
-        MenuItemEliminarParqueadero = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        CampusMenu = new javax.swing.JMenu();
+        CrearCampusMenuItem = new javax.swing.JMenuItem();
+        ModicarCampusMenuItem = new javax.swing.JMenuItem();
+        EliminarCampusMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        MenuItemRegistroUsuarios = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        MenuItemInformacion = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        SalirMenuItem = new javax.swing.JMenuItem();
+        UsuariosMenu = new javax.swing.JMenu();
+        CrearUsuarioMenuItem = new javax.swing.JMenuItem();
+        ModificarUsuarioMenuItem = new javax.swing.JMenuItem();
+        EliminarUsuarioMenuItem = new javax.swing.JMenuItem();
+        ParqueaderosMenu = new javax.swing.JMenu();
+        CrearParqueaderoMenuItem = new javax.swing.JMenuItem();
+        ModificarParqueaderoMenuItem = new javax.swing.JMenuItem();
+        EliminarParqueaderoMenuItem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        PagosMenu = new javax.swing.JMenu();
+        listarPagosMenuItem = new javax.swing.JMenuItem();
+        RegistrosMenu = new javax.swing.JMenu();
+        ListarRegistrosMenuItem = new javax.swing.JMenuItem();
+        AyudaMenu = new javax.swing.JMenu();
+        AcercaDeMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JParking- Gestion de los Parqueaderos de la Universidad de Cuenca");
@@ -82,7 +96,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Campus:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaParqueaderos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null}
             },
@@ -105,27 +119,27 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
+        TablaParqueaderos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(TablaParqueaderos);
+        if (TablaParqueaderos.getColumnModel().getColumnCount() > 0) {
+            TablaParqueaderos.getColumnModel().getColumn(0).setMinWidth(30);
+            TablaParqueaderos.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TablaParqueaderos.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CrearParqueaderoBtn.setText("Crear");
+        CrearParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CrearParqueaderoBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Modificar");
+        ModificarParqueaderoBtn.setText("Modificar");
 
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        EliminarParqueaderoBtn.setText("Eliminar");
+        EliminarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarParqueaderoBtnActionPerformed(evt);
             }
         });
 
@@ -134,11 +148,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(CrearParqueaderoBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(ModificarParqueaderoBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(EliminarParqueaderoBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -146,9 +160,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)))
+                    .addComponent(CrearParqueaderoBtn)
+                    .addComponent(ModificarParqueaderoBtn)
+                    .addComponent(EliminarParqueaderoBtn)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -166,7 +180,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                                 .addGap(15, 15, 15)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)))
@@ -178,10 +192,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -191,7 +205,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(jTabbedPane1);
 
-        TablaListaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        TablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -214,25 +228,25 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaListaUsuarios.setMaximumSize(new java.awt.Dimension(2147483647, 16));
-        TablaListaUsuarios.setMinimumSize(new java.awt.Dimension(60, 16));
-        TablaListaUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(TablaListaUsuarios);
-        if (TablaListaUsuarios.getColumnModel().getColumnCount() > 0) {
-            TablaListaUsuarios.getColumnModel().getColumn(0).setMinWidth(30);
-            TablaListaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(30);
-            TablaListaUsuarios.getColumnModel().getColumn(0).setMaxWidth(30);
+        TablaUsuarios.setMaximumSize(new java.awt.Dimension(2147483647, 16));
+        TablaUsuarios.setMinimumSize(new java.awt.Dimension(60, 16));
+        TablaUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(TablaUsuarios);
+        if (TablaUsuarios.getColumnModel().getColumnCount() > 0) {
+            TablaUsuarios.getColumnModel().getColumn(0).setMinWidth(30);
+            TablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
         jLabel4.setText("Tipo Usuario:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno" }));
+        TipoUsuarioCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno" }));
 
-        BotonModificarUsuario.setText("Modificar");
+        ModificarUsuarioBtn.setText("Modificar");
 
-        BotonCrearUsuario.setText("Crear");
+        CrearUsuarioBtn.setText("Crear");
 
-        BotonEliminarUsuario.setText("Eliminar");
+        EliminarUsuarioBtn.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -240,11 +254,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(BotonCrearUsuario)
+                .addComponent(CrearUsuarioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonModificarUsuario)
+                .addComponent(ModificarUsuarioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonEliminarUsuario)
+                .addComponent(EliminarUsuarioBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -252,9 +266,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonCrearUsuario)
-                    .addComponent(BotonModificarUsuario)
-                    .addComponent(BotonEliminarUsuario))
+                    .addComponent(CrearUsuarioBtn)
+                    .addComponent(ModificarUsuarioBtn)
+                    .addComponent(EliminarUsuarioBtn))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -269,7 +283,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -280,9 +294,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -292,94 +306,143 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jTabbedPane2);
 
-        jMenu2.setText("Campus");
+        CampusMenu.setText("Campus");
 
-        MenuItemCrearCampus.setText("Crear Campus");
-        jMenu2.add(MenuItemCrearCampus);
-
-        MenuItemModicarCampus.setText("Modificar Campus");
-        jMenu2.add(MenuItemModicarCampus);
-
-        MenuItemEliminarCampus.setText("Eliminar Campus");
-        jMenu2.add(MenuItemEliminarCampus);
-        jMenu2.add(jSeparator2);
-
-        MenuItemSalir.setText("Salir");
-        MenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+        CrearCampusMenuItem.setText("Crear Campus");
+        CrearCampusMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemSalirActionPerformed(evt);
+                CrearCampusMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(MenuItemSalir);
+        CampusMenu.add(CrearCampusMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        ModicarCampusMenuItem.setText("Modificar Campus");
+        CampusMenu.add(ModicarCampusMenuItem);
 
-        jMenu1.setText("Usuarios");
+        EliminarCampusMenuItem.setText("Eliminar Campus");
+        CampusMenu.add(EliminarCampusMenuItem);
+        CampusMenu.add(jSeparator1);
 
-        MenuItemCrearUsuario.setText("Crear Usuario");
-        jMenu1.add(MenuItemCrearUsuario);
-
-        MenuItemModificarUsuario.setText("Modificar Usuario");
-        jMenu1.add(MenuItemModificarUsuario);
-
-        MenuItemEliminarUsuario.setText("Eliminar  Usuario");
-        MenuItemEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Crear puerta");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemEliminarUsuarioActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(MenuItemEliminarUsuario);
+        CampusMenu.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem2.setText("Editar puerta");
+        CampusMenu.add(jMenuItem2);
 
-        jMenu5.setText("Parqueaderos");
+        jMenuItem3.setText("Eliminar puerta");
+        CampusMenu.add(jMenuItem3);
+        CampusMenu.add(jSeparator3);
 
-        MenuItemCrearParqueadero.setText("Crear Parqueadero");
-        MenuItemCrearParqueadero.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.setText("Crear portero");
+        CampusMenu.add(jMenuItem4);
+
+        jMenuItem5.setText("Editar portero");
+        CampusMenu.add(jMenuItem5);
+
+        jMenuItem6.setText("Eliminar portero");
+        CampusMenu.add(jMenuItem6);
+        CampusMenu.add(jSeparator2);
+
+        SalirMenuItem.setText("Salir");
+        SalirMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemCrearParqueaderoActionPerformed(evt);
+                SalirMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(MenuItemCrearParqueadero);
+        CampusMenu.add(SalirMenuItem);
 
-        MenuItemModificarParqueadero.setText("Modificar Parqueadero");
-        jMenu5.add(MenuItemModificarParqueadero);
+        jMenuBar1.add(CampusMenu);
 
-        MenuItemEliminarParqueadero.setText("Eliminar Parqueadero");
-        MenuItemEliminarParqueadero.addActionListener(new java.awt.event.ActionListener() {
+        UsuariosMenu.setText("Usuarios");
+
+        CrearUsuarioMenuItem.setText("Crear Usuario");
+        CrearUsuarioMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemEliminarParqueaderoActionPerformed(evt);
+                CrearUsuarioMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(MenuItemEliminarParqueadero);
+        UsuariosMenu.add(CrearUsuarioMenuItem);
 
-        jMenuBar1.add(jMenu5);
+        ModificarUsuarioMenuItem.setText("Modificar Usuario");
+        UsuariosMenu.add(ModificarUsuarioMenuItem);
 
-        jMenu3.setText("Pagos");
-
-        jMenuItem1.setText("Generar Orden de Pago");
-        jMenu3.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Registros");
-
-        MenuItemRegistroUsuarios.setText("Listar registros");
-        jMenu4.add(MenuItemRegistroUsuarios);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu6.setText("Ayuda");
-
-        MenuItemInformacion.setText("Acerca de");
-        MenuItemInformacion.addActionListener(new java.awt.event.ActionListener() {
+        EliminarUsuarioMenuItem.setText("Eliminar  Usuario");
+        EliminarUsuarioMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuItemInformacionActionPerformed(evt);
+                EliminarUsuarioMenuItemActionPerformed(evt);
             }
         });
-        jMenu6.add(MenuItemInformacion);
+        UsuariosMenu.add(EliminarUsuarioMenuItem);
 
-        jMenuBar1.add(jMenu6);
+        jMenuBar1.add(UsuariosMenu);
+
+        ParqueaderosMenu.setText("Parqueaderos");
+
+        CrearParqueaderoMenuItem.setText("Crear Parqueadero");
+        CrearParqueaderoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearParqueaderoMenuItemActionPerformed(evt);
+            }
+        });
+        ParqueaderosMenu.add(CrearParqueaderoMenuItem);
+
+        ModificarParqueaderoMenuItem.setText("Modificar Parqueadero");
+        ParqueaderosMenu.add(ModificarParqueaderoMenuItem);
+
+        EliminarParqueaderoMenuItem.setText("Eliminar Parqueadero");
+        EliminarParqueaderoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarParqueaderoMenuItemActionPerformed(evt);
+            }
+        });
+        ParqueaderosMenu.add(EliminarParqueaderoMenuItem);
+        ParqueaderosMenu.add(jSeparator4);
+
+        jMenuItem7.setText("Agregar puerta de acceso");
+        ParqueaderosMenu.add(jMenuItem7);
+
+        jMenuItem8.setText("Eliminar puerta de acceso");
+        ParqueaderosMenu.add(jMenuItem8);
+        ParqueaderosMenu.add(jSeparator5);
+
+        jMenuItem9.setText("Agregar usuario");
+        ParqueaderosMenu.add(jMenuItem9);
+
+        jMenuItem10.setText("Eliminar usuario");
+        ParqueaderosMenu.add(jMenuItem10);
+
+        jMenuBar1.add(ParqueaderosMenu);
+
+        PagosMenu.setText("Pagos");
+
+        listarPagosMenuItem.setText("Generar Orden de Pago");
+        PagosMenu.add(listarPagosMenuItem);
+
+        jMenuBar1.add(PagosMenu);
+
+        RegistrosMenu.setText("Registros");
+
+        ListarRegistrosMenuItem.setText("Listar registros");
+        RegistrosMenu.add(ListarRegistrosMenuItem);
+
+        jMenuBar1.add(RegistrosMenu);
+
+        AyudaMenu.setText("Ayuda");
+
+        AcercaDeMenuItem.setText("Acerca de");
+        AcercaDeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcercaDeMenuItemActionPerformed(evt);
+            }
+        });
+        AyudaMenu.add(AcercaDeMenuItem);
+
+        jMenuBar1.add(AyudaMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -403,34 +466,51 @@ public class PrincipalGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MenuItemEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarUsuarioActionPerformed
+    private void EliminarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MenuItemEliminarUsuarioActionPerformed
+    }//GEN-LAST:event_EliminarUsuarioMenuItemActionPerformed
 
-    private void MenuItemCrearParqueaderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemCrearParqueaderoActionPerformed
+    private void CrearParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MenuItemCrearParqueaderoActionPerformed
+    }//GEN-LAST:event_CrearParqueaderoMenuItemActionPerformed
 
-    private void MenuItemEliminarParqueaderoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarParqueaderoActionPerformed
+    private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MenuItemEliminarParqueaderoActionPerformed
+    }//GEN-LAST:event_EliminarParqueaderoMenuItemActionPerformed
 
-    private void MenuItemInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemInformacionActionPerformed
+    private void AcercaDeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MenuItemInformacionActionPerformed
+    }//GEN-LAST:event_AcercaDeMenuItemActionPerformed
 
-    private void MenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemSalirActionPerformed
-        // TODO add your handling code here:
+    private void SalirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirMenuItemActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_MenuItemSalirActionPerformed
+    }//GEN-LAST:event_SalirMenuItemActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EliminarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CrearParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CrearParqueaderoBtnActionPerformed
+
+    private void CrearCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCampusMenuItemActionPerformed
+        // TODO add your handling code here:
+        CrearCampusGUI crearCampusGUI = new CrearCampusGUI();
+        crearCampusGUI.setVisible(true);
+    }//GEN-LAST:event_CrearCampusMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI();
+        crearPuertaGUI.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
+        // TODO add your handling code here:
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI();
+        crearUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,47 +548,61 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCrearUsuario;
-    private javax.swing.JButton BotonEliminarUsuario;
-    private javax.swing.JButton BotonModificarUsuario;
-    private javax.swing.JMenuItem MenuItemCrearCampus;
-    private javax.swing.JMenuItem MenuItemCrearParqueadero;
-    private javax.swing.JMenuItem MenuItemCrearUsuario;
-    private javax.swing.JMenuItem MenuItemEliminarCampus;
-    private javax.swing.JMenuItem MenuItemEliminarParqueadero;
-    private javax.swing.JMenuItem MenuItemEliminarUsuario;
-    private javax.swing.JMenuItem MenuItemInformacion;
-    private javax.swing.JMenuItem MenuItemModicarCampus;
-    private javax.swing.JMenuItem MenuItemModificarParqueadero;
-    private javax.swing.JMenuItem MenuItemModificarUsuario;
-    private javax.swing.JMenuItem MenuItemRegistroUsuarios;
-    private javax.swing.JMenuItem MenuItemSalir;
-    private javax.swing.JTable TablaListaUsuarios;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JMenuItem AcercaDeMenuItem;
+    private javax.swing.JMenu AyudaMenu;
+    private javax.swing.JComboBox CampusCB;
+    private javax.swing.JMenu CampusMenu;
+    private javax.swing.JMenuItem CrearCampusMenuItem;
+    private javax.swing.JButton CrearParqueaderoBtn;
+    private javax.swing.JMenuItem CrearParqueaderoMenuItem;
+    private javax.swing.JButton CrearUsuarioBtn;
+    private javax.swing.JMenuItem CrearUsuarioMenuItem;
+    private javax.swing.JMenuItem EliminarCampusMenuItem;
+    private javax.swing.JButton EliminarParqueaderoBtn;
+    private javax.swing.JMenuItem EliminarParqueaderoMenuItem;
+    private javax.swing.JButton EliminarUsuarioBtn;
+    private javax.swing.JMenuItem EliminarUsuarioMenuItem;
+    private javax.swing.JMenuItem ListarRegistrosMenuItem;
+    private javax.swing.JMenuItem ModicarCampusMenuItem;
+    private javax.swing.JButton ModificarParqueaderoBtn;
+    private javax.swing.JMenuItem ModificarParqueaderoMenuItem;
+    private javax.swing.JButton ModificarUsuarioBtn;
+    private javax.swing.JMenuItem ModificarUsuarioMenuItem;
+    private javax.swing.JMenu PagosMenu;
+    private javax.swing.JMenu ParqueaderosMenu;
+    private javax.swing.JMenu RegistrosMenu;
+    private javax.swing.JMenuItem SalirMenuItem;
+    private javax.swing.JTable TablaParqueaderos;
+    private javax.swing.JTable TablaUsuarios;
+    private javax.swing.JComboBox TipoUsuarioCB;
+    private javax.swing.JMenu UsuariosMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem listarPagosMenuItem;
     // End of variables declaration//GEN-END:variables
 }

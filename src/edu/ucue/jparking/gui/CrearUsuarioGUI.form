@@ -29,9 +29,9 @@
               <EmptySpace pref="29" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="BotonCrear" min="-2" max="-2" attributes="0"/>
+                      <Component id="CrearBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
+                      <Component id="CancelarBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -43,11 +43,11 @@
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TextFieldCedula" pref="195" max="32767" attributes="0"/>
-                          <Component id="TextFieldApellidos" max="32767" attributes="0"/>
-                          <Component id="TextFieldNombres" max="32767" attributes="0"/>
-                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="CedulaTF" pref="195" max="32767" attributes="0"/>
+                          <Component id="ApellidosTF" max="32767" attributes="0"/>
+                          <Component id="NombresTF" max="32767" attributes="0"/>
+                          <Component id="DireccionTF" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TelefonoTF" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -55,7 +55,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel4" min="-2" pref="87" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ComboBoxTipoUsuario" min="-2" pref="195" max="-2" attributes="0"/>
+                          <Component id="TipoUsuarioCB" min="-2" pref="195" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -71,39 +71,39 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextFieldCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CedulaTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextFieldNombres" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NombresTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextFieldApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ApellidosTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="DireccionTF" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TelefonoTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ComboBoxTipoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TipoUsuarioCB" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="BotonCancelar" min="-2" max="-2" attributes="0"/>
-                  <Component id="BotonCrear" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="CancelarBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="CrearBtn" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
@@ -131,16 +131,16 @@
         <Property name="text" type="java.lang.String" value="Tipo Usuario:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldCedula">
+    <Component class="javax.swing.JTextField" name="CedulaTF">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldCedulaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldNombres">
+    <Component class="javax.swing.JTextField" name="NombresTF">
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldApellidos">
+    <Component class="javax.swing.JTextField" name="ApellidosTF">
     </Component>
-    <Component class="javax.swing.JComboBox" name="ComboBoxTipoUsuario">
+    <Component class="javax.swing.JComboBox" name="TipoUsuarioCB">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -151,18 +151,21 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonCrear">
+    <Component class="javax.swing.JButton" name="CrearBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonCrearActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CrearBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonCancelar">
+    <Component class="javax.swing.JButton" name="CancelarBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -174,12 +177,12 @@
         <Property name="text" type="java.lang.String" value="Telefono:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="DireccionTF">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DireccionTFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="TelefonoTF">
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
