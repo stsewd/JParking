@@ -28,7 +28,7 @@ public interface RegistrosDAOInterface {
      * @param numero
      * @throws edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException
      */
-    public Registro getRegsitro(Integer indice)
+    public Registro getRegistro(Integer indice)
             throws RegistroNoExistenteException;
         
     /**

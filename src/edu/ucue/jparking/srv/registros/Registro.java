@@ -18,7 +18,7 @@ public abstract class Registro {
     private final TipoRegistro tipoRegistro;
     
     private final Calendar fecha;
-    
+    private int numeroRegistro;
     private final String cedulaPersona;
     private final String nombresPersona;
     private final String apellidosPersona;
@@ -72,4 +72,14 @@ public abstract class Registro {
     public boolean isActivoPersona() {
         return activoPersona;
     }   
+    /**
+     * 
+     * 
+     */
+    
+    public int getNumeroRegistro() {
+        return numeroRegistro;
+    }
+    
+    
 }

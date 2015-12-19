@@ -76,7 +76,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     }
 
     @Override
-    public Registro getRegsitro(Integer indice) throws RegistroNoExistenteException {
+    public Registro getRegistro(Integer indice) throws RegistroNoExistenteException {
         Registro registro = null;
         try {
             registro = registros.get(indice);
