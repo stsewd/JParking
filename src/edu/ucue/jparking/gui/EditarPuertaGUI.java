@@ -35,8 +35,6 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         CancelarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         EditarBtn.setText("Editar");
 
         jLabel2.setText("Ubicación:");

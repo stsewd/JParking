@@ -43,7 +43,6 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
         TipoUsuarioTF = new javax.swing.JTextField();
         ValorTF = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Orden de pago");
 
         jLabel2.setText("Cedula:");

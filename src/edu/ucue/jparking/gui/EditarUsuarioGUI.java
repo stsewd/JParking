@@ -41,7 +41,6 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         EditarBtn = new javax.swing.JButton();
         ApellidosTF = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar usuario");
 
         jLabel2.setText("Nombres:");
@@ -201,7 +200,6 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ApellidosTF;
-    private javax.swing.JButton CancelarBtn;
     private javax.swing.JButton CancelarBtn1;
     private javax.swing.JTextField CedulaTF;
     private javax.swing.JTextField DireccionTF;

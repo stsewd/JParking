@@ -35,7 +35,6 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         CancelarBtn = new javax.swing.JButton();
         CrearBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear campus");
         setPreferredSize(new java.awt.Dimension(330, 150));
         setResizable(false);

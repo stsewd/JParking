@@ -43,7 +43,6 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         TelefonoTF = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear Usuario");
         setResizable(false);
 
