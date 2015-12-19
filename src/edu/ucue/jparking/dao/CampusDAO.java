@@ -16,7 +16,6 @@ import java.util.TreeMap;
  * @author Franklin Lara
  */
 public class CampusDAO implements CampusDAOInterface {
-
     private static CampusDAO instancia;
     
     //Mapa <Nombre de campus, campus>
