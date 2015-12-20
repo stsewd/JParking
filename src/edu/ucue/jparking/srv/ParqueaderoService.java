@@ -41,7 +41,7 @@ public class ParqueaderoService {
      * @throws ParqueaderoYaExistenteException
      * @throws CampusNoExistenteException 
      */
-    public void addParqueadero( String ubicacion, int numeroLugares, String id, String nombreCampus) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException{
+    public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException{
         validaciones.ValidarParqueadero(ubicacion, numeroLugares, id, nombreCampus);
         validaciones.validarCodigo(id);
         Parqueadero parqueadero = new Parqueadero(ubicacion, numeroLugares, id, nombreCampus);

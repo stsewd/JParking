@@ -16,13 +16,18 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class CrearCampusGUI extends javax.swing.JDialog {
-
+    private PrincipalGUI padre;
     /**
      * Creates new form CrearCampus
      */
     public CrearCampusGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.padre = (PrincipalGUI) parent;
+    }
+
+    public PrincipalGUI getPadre() {
+        return padre;
     }
 
     /**
@@ -87,7 +92,7 @@ public class CrearCampusGUI extends javax.swing.JDialog {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                            .addComponent(NombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                             .addComponent(DireccionTextField))))
                 .addContainerGap())
         );
@@ -133,6 +138,7 @@ public class CrearCampusGUI extends javax.swing.JDialog {
             campusService.addCampus(nombre, ubicacion);
             JOptionPane.showMessageDialog(rootPane, "Campus guardado con exito", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
+            getPadre().cargarParqueaderosCB();
         } catch (CampusExistenteExeption ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch (IllegalArgumentException ex){
