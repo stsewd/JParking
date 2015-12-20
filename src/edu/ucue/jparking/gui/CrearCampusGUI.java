@@ -130,7 +130,7 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         CampusService campusService = new CampusService();
         try {
             campusService.addCampus(nombre, ubicacion);
-            JOptionPane.showMessageDialog(rootPane, "CAmpus guardado con exito", "Campus", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Campus guardado con exito", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CampusExistenteExeption ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

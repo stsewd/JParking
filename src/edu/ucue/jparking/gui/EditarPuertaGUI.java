@@ -58,7 +58,6 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Ubicación:");
 
-        CodigoTF.setEditable(false);
         CodigoTF.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 CodigoTFInputMethodTextChanged(evt);

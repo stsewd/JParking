@@ -250,7 +250,10 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
             EstadoCK.setSelected(portero.isActivo());
         } catch (CedulaNoValidaException ex) {
             Logger.getLogger(EditarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(IllegalArgumentException ex){
+            
         }
+            
         
     }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
 

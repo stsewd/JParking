@@ -51,7 +51,7 @@ public class CampusDAO implements CampusDAOInterface {
 
     @Override
     public Campus getCampus(String nombre) throws CampusNoExistenteException {
-        if (mapCampus.get(nombre) != null) {
+        if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
         }
         return mapCampus.get(nombre);

@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.objetos.Campus;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,7 +24,9 @@ public class EditarCampusGUI extends javax.swing.JFrame {
      */
     public EditarCampusGUI() {
         initComponents();
-        NombreTextFieldInputMethodTextChanged(null);
+        DireccionTextField.setEditable(false);
+        EstadoCK.setEnabled(false);
+        //NombreTextFieldInputMethodTextChanged(null);
     }
 
     /**
@@ -47,7 +50,11 @@ public class EditarCampusGUI extends javax.swing.JFrame {
 
         setTitle("Editar campus");
 
-        NombreTextField.setEditable(false);
+        NombreTextField.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                NombreTextFieldCaretUpdate(evt);
+            }
+        });
         NombreTextField.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 NombreTextFieldInputMethodTextChanged(evt);
@@ -58,6 +65,11 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         NombreTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreTextFieldActionPerformed(evt);
+            }
+        });
+        NombreTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreTextFieldKeyPressed(evt);
             }
         });
 
@@ -121,7 +133,7 @@ public class EditarCampusGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(NombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(DireccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,7 +161,10 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
-
+    
+    public void CargarCampus(){
+        
+    }
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombreTextField.getText();
@@ -162,8 +177,16 @@ public class EditarCampusGUI extends javax.swing.JFrame {
             this.setVisible(false);
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            DireccionTextField.setEditable(false);
+            EstadoCK.setEnabled(false);
+            DireccionTextField.setText("");
+            EstadoCK.setSelected(false);
         }catch(IllegalArgumentException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            DireccionTextField.setEditable(false);
+            EstadoCK.setEnabled(false);
+            DireccionTextField.setText("");
+            EstadoCK.setSelected(false);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 
@@ -173,18 +196,40 @@ public class EditarCampusGUI extends javax.swing.JFrame {
 
     private void NombreTextFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_NombreTextFieldInputMethodTextChanged
         // TODO add your handling code here:
-        CampusService campusService = new CampusService();
-        try {
-            Campus campus = campusService.getCampus(NombreTextField.getText());
-            DireccionTextField.setText(campus.getDireccion());
-            EstadoCK.setSelected(campus.isActivo());
-            
-        } catch (CampusNoExistenteException ex) {
-            Logger.getLogger(EditarCampusGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }//GEN-LAST:event_NombreTextFieldInputMethodTextChanged
 
+    private void NombreTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_NombreTextFieldCaretUpdate
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_NombreTextFieldCaretUpdate
+
+    private void NombreTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyPressed
+        // TODO add your handling code here:
+        
+        CampusService campusService = new CampusService();
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+                Campus campus = campusService.getCampus(NombreTextField.getText());
+                DireccionTextField.setEditable(true);
+                EstadoCK.setEnabled(true);
+                DireccionTextField.setText(campus.getDireccion());
+                EstadoCK.setSelected(campus.isActivo());
+                
+                
+            }catch (CampusNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }
+
+        }
+    }//GEN-LAST:event_NombreTextFieldKeyPressed
+
+    public void CargarCampsus(){
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
