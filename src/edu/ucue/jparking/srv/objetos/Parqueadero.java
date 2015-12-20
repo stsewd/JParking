@@ -27,7 +27,7 @@ public class Parqueadero {
         this.numeroLugares=numeroLugares;
         this.id = id;
         this.nombreCampus = nombreCampus;
-        
+        numeroLugaresDisponibles = numeroLugares;
         this.puertasEntrada = new HashSet<>();
         this.puertasSalida = new HashSet<>();
         this.usuarios = new HashSet<>();

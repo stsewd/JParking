@@ -140,11 +140,14 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         String codigo = CodigoTF.getText();
         String ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
-        String lugares = CampusTF.getText();
+        String lugares = NumeroLugaresTF.getText();
         
-        int numLugares;
+        int numLugares = 0;
         try{
-            numLugares = Integer
+            numLugares = Integer.parseInt(lugares);
+        }catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(rootPane, "El numero de lugares debe ser un numero.", "Error", JOptionPane.OK_OPTION);
+            return;
         }
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
