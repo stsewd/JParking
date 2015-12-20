@@ -246,6 +246,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModificarUsuarioBtn.setText("Modificar");
 
         CrearUsuarioBtn.setText("Crear");
+        CrearUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearUsuarioBtnActionPerformed(evt);
+            }
+        });
 
         EliminarUsuarioBtn.setText("Eliminar");
 
@@ -593,6 +598,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
         editarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
+
+    private void CrearUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioBtnActionPerformed
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI();
+        crearUsuarioGUI.setLocationRelativeTo(this);
+        crearUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
 
     /**
      * @param args the command line arguments
