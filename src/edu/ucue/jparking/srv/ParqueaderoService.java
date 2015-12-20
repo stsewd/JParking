@@ -82,7 +82,7 @@ public class ParqueaderoService {
      * @throws CampusNoExistenteException 
      */
     public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException{
-        if(idCampus==null || idCampus.trim().length()==0)
+        if(idCampus==null || idCampus.trim().length() == 0)
             throw new IllegalArgumentException("El id campus no puede estar vacio");
         return parqueaderoDAO.getParqueaderos(idCampus);
     }
