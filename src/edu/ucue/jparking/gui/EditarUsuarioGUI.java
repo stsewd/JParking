@@ -26,6 +26,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     public EditarUsuarioGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.padre = (PrincipalGUI) parent;
     }
 
     /**

@@ -23,6 +23,7 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
     public CrearUsuarioGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.padre = (PrincipalGUI) parent;
     }
 
     /**
