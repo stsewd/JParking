@@ -92,11 +92,19 @@ public class ParqueaderoService {
      * @param ubicacion
      * @throws ParqueaderoNoExistenteException 
      */
-    public void modParqueadero(String idParqueadero, String ubicacion) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
-        validaciones.validarCodigo(ubicacion);
-        if(ubicacion==null || ubicacion.trim().length()==0)
+    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
+        validaciones.validarCodigo(idParqueadero);
+        if(ubicacion == null || ubicacion.trim().length()==0)
             throw new IllegalArgumentException("La ubicacion no puede ser nula");
-        parqueaderoDAO.modParqueadero(idParqueadero, ubicacion);
+        if(numLugares < 0)
+            throw new IllegalArgumentException("El numero de lugares no puede ser negativo");
+        
+        //Validar que el numero de lugares nuevo, sea mayor o igual al numero de lugares
+        //ocupados.
+        //Validar que el numero de lugares nuevo sea mayor o igual al 105%
+        //del numero de usuarios registrados en ese parqueadero
+        
+        parqueaderoDAO.modParqueadero(idParqueadero, ubicacion, numLugares);
     }
     /**
      * 

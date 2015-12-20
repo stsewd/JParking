@@ -39,6 +39,8 @@ public abstract class Persona {
         this.telefono = telefono;
         this.activo = true;
     }
+    
+    //public abstract void ingresar(Puerta puerta);
 
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;

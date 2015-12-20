@@ -8,12 +8,14 @@ package edu.ucue.jparking.gui;
 //import static javafx.application.Platform.exit;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -118,7 +120,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         int n = 1;
         for(Parqueadero p : parqueaderos)
-            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresDisponibles()});
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresOcupados()});
     }
 
     /**
@@ -204,7 +206,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Id", "Ubicación", "Num Parqueaderos", "Espacios Disponibles"
+                "#", "Id", "Ubicación", "Espacios", "Espacios ocupados"
             }
         ) {
             Class[] types = new Class [] {
@@ -239,6 +241,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
 
         ModificarParqueaderoBtn.setText("Modificar");
+        ModificarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarParqueaderoBtnActionPerformed(evt);
+            }
+        });
 
         EliminarParqueaderoBtn.setText("Eliminar");
         EliminarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -530,6 +537,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(CrearParqueaderoMenuItem);
 
         ModificarParqueaderoMenuItem.setText("Modificar Parqueadero");
+        ModificarParqueaderoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarParqueaderoMenuItemActionPerformed(evt);
+            }
+        });
         ParqueaderosMenu.add(ModificarParqueaderoMenuItem);
 
         EliminarParqueaderoMenuItem.setText("Eliminar Parqueadero");
@@ -778,6 +790,37 @@ public class PrincipalGUI extends javax.swing.JFrame {
         administarPorterosGUI.setLocationRelativeTo(this);
         administarPorterosGUI.setVisible(true);
     }//GEN-LAST:event_AdministarPorterosMenuItemActionPerformed
+
+    private void ModificarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        
+        EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
+        editarParqueaderoGUI.setLocationRelativeTo(this);
+               
+        try {
+            editarParqueaderoGUI.cargarDatos(idParqueadero);
+            editarParqueaderoGUI.habilitarCampos();
+            editarParqueaderoGUI.setVisible(true);
+        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
+
+    private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
+        // TODO add your handling code here:
+        
+        
+        EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
+        editarParqueaderoGUI.setLocationRelativeTo(this);
+        
+        editarParqueaderoGUI.setVisible(true);
+    }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

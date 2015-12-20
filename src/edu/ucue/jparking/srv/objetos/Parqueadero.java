@@ -19,7 +19,7 @@ public class Parqueadero {
     private final String id;
     private String ubicacion;
     private int numeroLugares;
-    private int numeroLugaresDisponibles;
+    private int numeroLugaresOcupados;
     private String nombreCampus;
 
     public Parqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) {
@@ -27,7 +27,7 @@ public class Parqueadero {
         this.numeroLugares=numeroLugares;
         this.id = id;
         this.nombreCampus = nombreCampus;
-        numeroLugaresDisponibles = numeroLugares;
+        this.numeroLugaresOcupados = 0;
         this.puertasEntrada = new HashSet<>();
         this.puertasSalida = new HashSet<>();
         this.usuarios = new HashSet<>();
@@ -60,20 +60,22 @@ public class Parqueadero {
      */
     public void setNumeroLugares(int numeroLugares) {
         this.numeroLugares = numeroLugares;
+        if(getNumeroLugaresOcupados() > this.numeroLugares)
+            this.numeroLugaresOcupados = this.numeroLugares;
     }
 
     /**
-     * @return the numeroLugaresDisponibles
+     * @return the numeroLugaresOcupados
      */
-    public int getNumeroLugaresDisponibles() {
-        return numeroLugaresDisponibles;
+    public int getNumeroLugaresOcupados() {
+        return numeroLugaresOcupados;
     }
 
     /**
-     * @param numeroLugaresDisponibles the numeroLugaresDisponibles to set
+     * @param numeroLugaresOcupados the numeroLugaresOcupados to set
      */
-    public void setNumeroLugaresDisponibles(int numeroLugaresDisponibles) {
-        this.numeroLugaresDisponibles = numeroLugaresDisponibles;
+    public void setNumeroLugaresOcupados(int numeroLugaresOcupados) {
+        this.numeroLugaresOcupados = numeroLugaresOcupados;
     }
 
     /**

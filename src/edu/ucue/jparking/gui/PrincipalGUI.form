@@ -114,6 +114,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Parqueadero"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarParqueaderoMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EliminarParqueaderoMenuItem">
               <Properties>
@@ -343,8 +346,8 @@
                             <Column editable="false" title="#" type="java.lang.Integer"/>
                             <Column editable="false" title="Id" type="java.lang.String"/>
                             <Column editable="false" title="Ubicaci&#xf3;n" type="java.lang.String"/>
-                            <Column editable="false" title="Num Parqueaderos" type="java.lang.String"/>
-                            <Column editable="false" title="Espacios Disponibles" type="java.lang.String"/>
+                            <Column editable="false" title="Espacios" type="java.lang.String"/>
+                            <Column editable="false" title="Espacios ocupados" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -427,6 +430,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Modificar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarParqueaderoBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="EliminarParqueaderoBtn">
                       <Properties>

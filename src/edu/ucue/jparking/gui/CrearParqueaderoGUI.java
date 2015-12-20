@@ -18,13 +18,18 @@ import javax.swing.JOptionPane;
  * @author stsewd
  */
 public class CrearParqueaderoGUI extends javax.swing.JDialog {
-
+    private PrincipalGUI padre;
     /**
      * Creates new form CrearParqueaderoGUI
      */
     public CrearParqueaderoGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.padre = (PrincipalGUI) parent;
+    }
+
+    public PrincipalGUI getPadre() {
+        return padre;
     }
 
     /**
@@ -154,6 +159,7 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
             parqueaderoService.addParqueadero(ubicacion, numLugares, codigo, campus);
             JOptionPane.showMessageDialog(rootPane,"Parqueadero creado con exito", "Parqueadero", JOptionPane.OK_OPTION);
             this.setVisible(false);
+            getPadre().listarParqueaderos();
         }catch (ParqueaderoYaExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } 

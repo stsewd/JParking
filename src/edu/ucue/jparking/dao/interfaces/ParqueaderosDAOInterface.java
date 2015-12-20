@@ -72,9 +72,10 @@ public interface ParqueaderosDAOInterface {
      * Modifica los campos: ubicacion de un parqueadero dado su id.
      * @param idParqueadero
      * @param ubicacion 
+     * @param numLugares 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      */
-    public void modParqueadero(String idParqueadero, String ubicacion)
+    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares)
             throws ParqueaderoNoExistenteException;
     
     /**
