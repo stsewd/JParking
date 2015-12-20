@@ -5,19 +5,30 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
  */
 public class EliminarUsuarioGUI extends javax.swing.JDialog {
-
+    
+    private PrincipalGUI padre;
     /**
      * Creates new form EliminarUsuarioGUI
      */
     public EliminarUsuarioGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.padre = (PrincipalGUI) parent;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,8 +57,18 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
         jLabel1.setText("Cédula:");
 
         CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
 
         EliminarBtn.setText("Eliminar");
+        EliminarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,6 +114,24 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
+
+    private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
+        // TODO add your handling code here:
+        UsuarioService usuarioService = new UsuarioService();
+        try {
+            usuarioService.del(CedulaTF.getText());
+            JOptionPane.showMessageDialog(rootPane, "Usuario eliminado satisfactoriamente.", "Aviso", JOptionPane.OK_OPTION);
+            this.setVisible(false);
+            getPadre().listarUsuarios();
+        } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_EliminarBtnActionPerformed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,4 +182,15 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the padre
+     */
+    public PrincipalGUI getPadre() {
+        return padre;
+    }
+
+    void cargarDatos(String cedula) {
+        CedulaTF.setText(cedula);
+    }
 }

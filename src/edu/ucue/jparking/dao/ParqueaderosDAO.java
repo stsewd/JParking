@@ -74,7 +74,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Parqueadero> getParqueaderos(String nombreCampus) throws CampusNoExistenteException {
-        return (Set<Parqueadero>) CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().values();
+        return new HashSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().values());
     }
 
     @Override

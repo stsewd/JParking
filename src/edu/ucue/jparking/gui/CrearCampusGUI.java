@@ -7,8 +7,6 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.srv.CampusService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,13 +14,20 @@ import javax.swing.JOptionPane;
  * @author Santos Gallegos
  */
 public class CrearCampusGUI extends javax.swing.JFrame {
-
+    private PrincipalGUI padre;
+    
     /**
      * Creates new form CrearCampusGUI
      */
     public CrearCampusGUI() {
         initComponents();
     }
+    
+    public CrearCampusGUI(PrincipalGUI padre){
+        this();
+        this.padre = padre;
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,9 +137,9 @@ public class CrearCampusGUI extends javax.swing.JFrame {
             campusService.addCampus(nombre, ubicacion);
             JOptionPane.showMessageDialog(rootPane, "Campus guardado con exito", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (CampusExistenteExeption ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch (IllegalArgumentException ex){
+            getPadre().cargarParqueaderosCB();
+            
+        } catch (CampusExistenteExeption | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
@@ -184,4 +189,11 @@ public class CrearCampusGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the padre
+     */
+    public PrincipalGUI getPadre() {
+        return padre;
+    }
 }

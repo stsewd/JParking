@@ -22,12 +22,17 @@ import javax.swing.JOptionPane;
  * @author Franklin
  */
 public class CrearUsuarioGUI extends javax.swing.JFrame {
-
+    private PrincipalGUI padre;
     /**
      * Creates new form CrearUsuario
      */
     public CrearUsuarioGUI() {
         initComponents();
+    }
+
+    public CrearUsuarioGUI(PrincipalGUI padre) {
+        this();
+        this.padre = padre;
     }
 
     /**
@@ -193,13 +198,8 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
             usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (UsuarioYaExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            //Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CedulaNoValidaException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            //Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (IllegalArgumentException ex){
+            getPadre().listarUsuarios();
+        } catch (UsuarioYaExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
@@ -272,4 +272,11 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the padre
+     */
+    public PrincipalGUI getPadre() {
+        return padre;
+    }
 }
