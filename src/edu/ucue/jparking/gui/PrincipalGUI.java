@@ -153,7 +153,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModificarUsuarioBtn = new javax.swing.JButton();
         CrearUsuarioBtn = new javax.swing.JButton();
         EliminarUsuarioBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        VerBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
         CrearCampusMenuItem = new javax.swing.JMenuItem();
@@ -264,7 +264,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addComponent(ModificarParqueaderoBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EliminarParqueaderoBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,14 +380,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ver");
+        VerBtn.setText("Ver");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(VerBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CrearUsuarioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -404,7 +404,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(CrearUsuarioBtn)
                     .addComponent(ModificarUsuarioBtn)
                     .addComponent(EliminarUsuarioBtn)
-                    .addComponent(jButton1)))
+                    .addComponent(VerBtn)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -906,7 +906,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JComboBox TipoUsuarioCB;
     private javax.swing.JMenu UsuariosMenu;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton VerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
