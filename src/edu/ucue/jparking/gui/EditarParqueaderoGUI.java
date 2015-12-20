@@ -7,6 +7,8 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
+import edu.ucue.jparking.srv.LugaresDeParqueoOCupadosException;
+import edu.ucue.jparking.srv.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -173,7 +175,9 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado satisfactoriamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
-        }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException ex) {
+        }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (NumeroLugaresDeParqueoInsuficientesException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
