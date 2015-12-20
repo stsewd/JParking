@@ -43,7 +43,7 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     public void delUsuario(String cedula) throws UsuarioNoExistenteException{
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
-        usuarios.get(cedula).setActivo(false);
+        usuarios.remove(cedula);
     }
     
     @Override

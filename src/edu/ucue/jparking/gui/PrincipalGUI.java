@@ -371,6 +371,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
 
         EliminarUsuarioBtn.setText("Eliminar");
+        EliminarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarUsuarioBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -638,7 +643,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        
+        EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, true);
+        eliminarUsuarioGUI.setLocationRelativeTo(this);
+        eliminarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_EliminarUsuarioMenuItemActionPerformed
 
     private void CrearParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoMenuItemActionPerformed
@@ -782,6 +789,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CampusCBActionPerformed
+
+    private void EliminarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, rootPaneCheckingEnabled);
+        eliminarUsuarioGUI.cargarDatos(cedula);
+        eliminarUsuarioGUI.setLocationRelativeTo(this);
+        eliminarUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_EliminarUsuarioBtnActionPerformed
 
     /**
      * @param args the command line arguments

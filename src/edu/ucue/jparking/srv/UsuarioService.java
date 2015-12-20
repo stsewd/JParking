@@ -22,6 +22,7 @@ import java.util.Set;
 public class UsuarioService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
+    
     public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
@@ -34,10 +35,16 @@ public class UsuarioService {
             empleadoService.add(cedula, nombre, apellido,direccion,telefono);
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
-        } 
+        }
     }
     
-    public void del(String cedula,String tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException{
+        if(cedula == null || cedula.trim().length() == 0)
+            throw new IllegalArgumentException("El argumendo cedula no puede ser vacio.");
+        validaciones.validarCedula(cedula);
+        usuariosDAO.delUsuario(cedula);
+        /*
+        String tipoUsuario = usuariosDAO.getUsuario(cedula).getTipoUsuarioString();
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.del(cedula);
@@ -49,7 +56,8 @@ public class UsuarioService {
             empleadoService.del(cedula);
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
-        } 
+        }
+        */
     }
     
     public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
