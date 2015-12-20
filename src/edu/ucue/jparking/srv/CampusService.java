@@ -63,7 +63,7 @@ public class CampusService {
      * extrae la lista de campus 
      * @return 
      */
-    public Set getCampuss(){
-        return (Set) campusDAO.getCampus();
+    public Set<Campus> getCampus(){
+        return campusDAO.getCampus();
     }
 }
