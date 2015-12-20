@@ -146,7 +146,6 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         try{
             numLugares = Integer
         }
-        
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
             parqueaderoService.addParqueadero(ubicacion, numLugares, codigo, campus);

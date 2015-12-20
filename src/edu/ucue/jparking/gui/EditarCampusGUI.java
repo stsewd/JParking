@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class EditarCampusGUI extends javax.swing.JDialog {
-
+    private PrincipalGUI padre;
     /**
      * Creates new form EditarCampus
      */
@@ -152,7 +152,9 @@ public class EditarCampusGUI extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private PrincipalGUI getPadre(){
+        return padre;
+    }
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombreTextField.getText();
@@ -163,6 +165,7 @@ public class EditarCampusGUI extends javax.swing.JDialog {
             campusService.modCampus(nombre, direccion, estado);
             JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito!!", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
+            
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(IllegalArgumentException ex){

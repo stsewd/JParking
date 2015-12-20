@@ -647,20 +647,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this);
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, rootPaneCheckingEnabled);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
 
     private void ModificarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this);
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, rootPaneCheckingEnabled);
         editarUsuarioGUI.setLocationRelativeTo(this);
         editarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
 
     private void CrearUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioBtnActionPerformed
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this);
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, rootPaneCheckingEnabled);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
@@ -673,7 +673,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
         
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this);
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, rootPaneCheckingEnabled);
         editarUsuarioGUI.setLocationRelativeTo(this);
         
         try {
@@ -723,6 +723,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCampusMenuItemActionPerformed
         // TODO add your handling code here:
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
         CampusService campusService = new CampusService();
         try {
             campusService.delCampus((String) CampusCB.getSelectedItem());
@@ -734,7 +739,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
         // TODO add your handling code here:
-        EditarCampusGUI editarCampusGUI = new EditarCampusGUI();
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        EditarCampusGUI editarCampusGUI = new EditarCampusGUI(this, rootPaneCheckingEnabled);
         editarCampusGUI.setLocationRelativeTo(this);
         try {
             editarCampusGUI.CargarDatos((String) CampusCB.getSelectedItem());
