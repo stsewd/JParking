@@ -65,7 +65,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
     }
     
-    private void listarUsuarios(){        
+    public void listarUsuarios(){        
         UsuarioService usuarioService = new UsuarioService();
         
         String tipoUsuario = (String) TipoUsuarioCB.getSelectedItem();
@@ -100,7 +100,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             model.addRow(new Object[]{n++, u.getCedula(), u.getNombres() + " " + u.getApellidos()});
     }
     
-    private void listarParqueaderos() throws CampusNoExistenteException{
+    public void listarParqueaderos() throws CampusNoExistenteException{
         ParqueaderoService parqueaderoService = new ParqueaderoService();
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
@@ -638,6 +638,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_EliminarUsuarioMenuItemActionPerformed
 
     private void CrearParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoMenuItemActionPerformed
@@ -681,7 +682,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI();
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
@@ -733,13 +734,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void ModificarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this);
         editarUsuarioGUI.setLocationRelativeTo(this);
         editarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
 
     private void CrearUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioBtnActionPerformed
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI();
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
@@ -752,7 +753,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
         
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this);
         editarUsuarioGUI.setLocationRelativeTo(this);
         
         try {

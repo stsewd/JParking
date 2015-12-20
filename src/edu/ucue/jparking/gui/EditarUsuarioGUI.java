@@ -20,13 +20,19 @@ import javax.swing.JOptionPane;
  * @author stsewd
  */
 public class EditarUsuarioGUI extends javax.swing.JFrame {
-
+    
+    private PrincipalGUI padre;
     /**
      * Creates new form EditarUsuarioGUI
      */
     public EditarUsuarioGUI() {
         initComponents();
         CedulaTFInputMethodTextChanged(null);
+    }
+
+    public EditarUsuarioGUI(PrincipalGUI padre) {
+        this();
+        this.padre = padre;
     }
    
     public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
@@ -301,6 +307,9 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
             usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
             JOptionPane.showMessageDialog(rootPane, "Usuario modificado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
+            
+            getPadre().listarUsuarios();
+            
         }catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
@@ -410,5 +419,12 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the padre
+     */
+    public PrincipalGUI getPadre() {
+        return padre;
+    }
 
 }
