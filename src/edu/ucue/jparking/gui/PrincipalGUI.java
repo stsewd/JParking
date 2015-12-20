@@ -381,6 +381,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
 
         VerBtn.setText("Ver");
+        VerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -834,6 +839,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         editarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
+
+    private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_VerBtnActionPerformed
 
     /**
      * @param args the command line arguments
