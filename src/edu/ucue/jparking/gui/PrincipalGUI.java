@@ -661,6 +661,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void CrearPuertaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPuertaItemActionPerformed
         // TODO add your handling code here:
         CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI();
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        crearPuertaGUI.llenarCampos(nombreCampus);
         crearPuertaGUI.setVisible(true);
     }//GEN-LAST:event_CrearPuertaItemActionPerformed
 
