@@ -25,7 +25,13 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
      */
     public EditarPorteroGUI() {
         initComponents();
-        CedulaTF1InputMethodTextChanged(null);
+        CedulaTF1.setEditable(true);
+        NombresTF.setEditable(false);
+        ApellidosTF.setEditable(false);
+        CampusTF.setEditable(false);
+        DireccionTF2.setEditable(false);
+        TelefonoTF.setEditable(false);
+        EstadoCK.setEnabled(false);
     }
 
     /**
@@ -240,23 +246,36 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
 
     private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
         // TODO add your handling code here:
-        PorterosService porterosService = new PorterosService();
+        
         try {
-            Portero portero = porterosService.getPortero(CedulaTF1.getText());
-            NombresTF.setText(portero.getNombres());
-            ApellidosTF.setText(portero.getApellidos());
-            DireccionTF2.setText(portero.getDireccion());
-            TelefonoTF.setText(portero.getTelefono());
-            EstadoCK.setSelected(portero.isActivo());
+            CargarDatos(CedulaTF1.getText());
+            
         } catch (CedulaNoValidaException ex) {
             Logger.getLogger(EditarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
         }catch(IllegalArgumentException ex){
             
         }
-            
-        
     }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
 
+    public void HabilitarCampos(){
+        CedulaTF1.setEditable(false);
+        NombresTF.setEditable(true);
+        ApellidosTF.setEditable(true);
+        CampusTF.setEditable(true);
+        DireccionTF2.setEditable(true);
+        TelefonoTF.setEditable(true);
+        EstadoCK.setEnabled(true);
+    }
+    
+    public void CargarDatos(String cedula) throws CedulaNoValidaException{
+        PorterosService porterosService = new PorterosService();
+        Portero portero = porterosService.getPortero(cedula);
+        NombresTF.setText(portero.getNombres());
+        ApellidosTF.setText(portero.getApellidos());
+        DireccionTF2.setText(portero.getDireccion());
+        TelefonoTF.setText(portero.getTelefono());
+        EstadoCK.setSelected(portero.isActivo());
+    }
     /**
      * @param args the command line arguments
      */
