@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,7 +26,10 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
      */
     public EditarPuertaGUI() {
         initComponents();
-        CodigoTFInputMethodTextChanged(null);
+        CodigoTF.setEditable(false);
+        UbicacionTF.setEditable(false);
+        CampusTF.setEditable(false);
+        EstadoCK.setEnabled(false);
     }
 
     /**
@@ -68,6 +72,11 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         CodigoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CodigoTFActionPerformed(evt);
+            }
+        });
+        CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CodigoTFKeyPressed(evt);
             }
         });
 
@@ -159,21 +168,23 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
 
     private void CodigoTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CodigoTFInputMethodTextChanged
         // TODO add your handling code here:
-        PuertaService puertaService = new PuertaService();
-        try {
-            Puerta puerta = puertaService.getPuerta(CodigoTF.getText());
-            UbicacionTF.setText(puerta.getUbicacion());
-            EstadoCK.setSelected(puerta.estaActiva());
-            CampusTF.setText(puerta.getIdCampus());
-            
-        } catch (CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PuertaNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
-        
     }//GEN-LAST:event_CodigoTFInputMethodTextChanged
-
+    public void HabilitarCampos(){
+        CodigoTF.setEditable(false);
+        UbicacionTF.setEditable(true);
+        EstadoCK.setEnabled(true);
+        CampusTF.setEditable(false);
+    }
+    
+    public void CargarDatos(String codigo) throws CodigoNoValidoException, PuertaNoExistenteException{
+        PuertaService puertaService = new PuertaService();
+        Puerta puerta = puertaService.getPuerta(codigo);
+        CodigoTF.setText(codigo);
+        UbicacionTF.setText(puerta.getUbicacion());
+        EstadoCK.setSelected(puerta.estaActiva());
+        CampusTF.setText(puerta.getIdCampus());
+        
+    }
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String codigo = CodigoTF.getText();
@@ -193,6 +204,22 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
+
+    private void CodigoTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+                CargarDatos(CodigoTF.getText());
+                HabilitarCampos();
+            } catch (CodigoNoValidoException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            } catch (PuertaNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            }catch(IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            }
+        }
+    }//GEN-LAST:event_CodigoTFKeyPressed
 
     /**
      * @param args the command line arguments
