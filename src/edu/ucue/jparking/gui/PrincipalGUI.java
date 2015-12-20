@@ -18,8 +18,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +54,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private void cargarParqueaderosCB(){
+    public void cargarParqueaderosCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         CampusService campusService = new CampusService();
@@ -666,7 +664,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCampusMenuItemActionPerformed
         // TODO add your handling code here:
-        CrearCampusGUI crearCampusGUI = new CrearCampusGUI();
+        CrearCampusGUI crearCampusGUI = new CrearCampusGUI(this);
         crearCampusGUI.setLocationRelativeTo(this);
         crearCampusGUI.setVisible(true);
     }//GEN-LAST:event_CrearCampusMenuItemActionPerformed
