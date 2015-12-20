@@ -5,12 +5,9 @@
  */
 package edu.ucue.jparking.gui;
 
-import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +19,8 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
     /**
      * Creates new form EliminarUsuarioGUI
+     * @param parent
+     * @param modal
      */
     public EliminarUsuarioGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
