@@ -50,6 +50,11 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         jLabel3.setText("Campus:");
 
         EditarBtn.setText("Editar");
+        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Código:");
 
@@ -106,6 +111,10 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditarBtnActionPerformed
 
     /**
      * @param args the command line arguments

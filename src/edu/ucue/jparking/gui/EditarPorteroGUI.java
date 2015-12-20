@@ -5,6 +5,15 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.srv.PorterosService;
+import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.Portero;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
@@ -16,6 +25,7 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
      */
     public EditarPorteroGUI() {
         initComponents();
+        CedulaTF1InputMethodTextChanged(null);
     }
 
     /**
@@ -42,6 +52,8 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         DireccionTF2 = new javax.swing.JTextField();
         ApellidosTF = new javax.swing.JTextField();
         TelefonoTF = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        EstadoCK = new javax.swing.JCheckBox();
 
         setTitle("Editar portero");
 
@@ -58,6 +70,13 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
             }
         });
 
+        CedulaTF1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                CedulaTF1InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         CedulaTF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CedulaTF1ActionPerformed(evt);
@@ -90,43 +109,51 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Estado:");
+
+        EstadoCK.setText("Activo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(CrearBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CancelarBtn))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6))
-                                    .addGap(38, 38, 38))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CedulaTF1)
-                                .addComponent(ApellidosTF)
-                                .addComponent(NombresTF)
-                                .addComponent(DireccionTF2)
-                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(15, 15, 15)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(CampusTF)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(CrearBtn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CancelarBtn))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel6))
+                                            .addGap(38, 38, 38))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(50, 50, 50)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(EstadoCK)
+                                        .addComponent(CedulaTF1)
+                                        .addComponent(ApellidosTF)
+                                        .addComponent(NombresTF)
+                                        .addComponent(DireccionTF2)
+                                        .addComponent(TelefonoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                        .addComponent(CampusTF, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jLabel7)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,9 +184,13 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(EstadoCK))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CancelarBtn)
                     .addComponent(CrearBtn))
@@ -179,6 +210,23 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
 
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
         // TODO add your handling code here:
+        String nombre = NombresTF.getText();
+        String apellido = ApellidosTF.getText();
+        String direccion = DireccionTF2.getText();
+        String telefono = TelefonoTF.getText();
+        String cedula = CedulaTF1.getText();
+        boolean estado = EstadoCK.isSelected();
+        PorterosService porterosService = new PorterosService();
+        try {
+            porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
+            JOptionPane.showMessageDialog(rootPane, "Protero modificado existosamente!!", "Portero", JOptionPane.OK_OPTION);
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PorteroNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
@@ -189,6 +237,22 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
     private void DireccionTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTF2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionTF2ActionPerformed
+
+    private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
+        // TODO add your handling code here:
+        PorterosService porterosService = new PorterosService();
+        try {
+            Portero portero = porterosService.getPortero(CedulaTF1.getText());
+            NombresTF.setText(portero.getNombres());
+            ApellidosTF.setText(portero.getApellidos());
+            DireccionTF2.setText(portero.getDireccion());
+            TelefonoTF.setText(portero.getTelefono());
+            EstadoCK.setSelected(portero.isActivo());
+        } catch (CedulaNoValidaException ex) {
+            Logger.getLogger(EditarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
 
     /**
      * @param args the command line arguments
@@ -233,11 +297,13 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
     private javax.swing.JTextField CedulaTF1;
     private javax.swing.JButton CrearBtn;
     private javax.swing.JTextField DireccionTF2;
+    private javax.swing.JCheckBox EstadoCK;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

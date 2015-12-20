@@ -213,7 +213,7 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         String direccion = DireccionTF.getText();
         String telefono = TelefonoTF.getText();
         String cedula = CedulaTF.getText();
-        Boolean estado = EstadoCK.isSelected();
+        boolean estado = EstadoCK.isSelected();
         UsuarioService usuarioService = new UsuarioService();
         try {
             usuarioService.mod(cedula, nombre, apellido, direccion, telefono, true);

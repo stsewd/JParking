@@ -53,7 +53,7 @@ public interface CampusDAOInterface {
      * @param ubicacion Campo a modificar.
      * @throws CampusNoExistenteException 
      */
-    public abstract void modCampus(String nombre, String ubicacion) 
+    public abstract void modCampus(String nombre, String ubicacion,boolean estado) 
             throws CampusNoExistenteException;
     
     /**

@@ -58,12 +58,13 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public void modCampus(String nombre, String ubicacion) throws CampusNoExistenteException {
+    public void modCampus(String nombre, String ubicacion,boolean estado) throws CampusNoExistenteException {
         if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
         }
         Campus cam = mapCampus.get(nombre);
         cam.setDireccion(ubicacion);
+        cam.setActivo(estado);
     }
 
     @Override

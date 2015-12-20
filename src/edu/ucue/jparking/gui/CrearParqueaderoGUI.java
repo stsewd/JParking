@@ -62,6 +62,11 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         CampusTF.setEditable(false);
 
         CerrarBtn.setText("Cerrar");
+        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarBtnActionPerformed(evt);
+            }
+        });
 
         CrearBtn.setText("Crear");
         CrearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +156,11 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CrearBtnActionPerformed
+
+    private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CerrarBtnActionPerformed
 
     /**
      * @param args the command line arguments

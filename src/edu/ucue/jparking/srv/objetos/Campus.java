@@ -15,7 +15,7 @@ public class Campus {
     private String direccion;
     private static final HoraDia horaApertura = new HoraDia(6, 30);
     private static final HoraDia horaCierre = new HoraDia(21, 30);
-    
+    private boolean activo;
     private Map<String, Puerta> puertas;
     private Map<String, Portero> porteros;
     private Map<String, Parqueadero> parqueaderos;
@@ -23,6 +23,7 @@ public class Campus {
     public Campus(String nombre, String direccion) {
         this.nombre=nombre;
         this.direccion=direccion;
+        this.activo=true;
         
         puertas = new HashMap<>();
         porteros = new HashMap<>();
@@ -84,4 +85,19 @@ public class Campus {
     public Map<String, Parqueadero> getParqueaderos() {
         return parqueaderos;
     }
+
+    /**
+     * @return the activo
+     */
+    public boolean isActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
 }

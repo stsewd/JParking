@@ -44,7 +44,11 @@ public class CampusService {
             throw new IllegalArgumentException("El nombre del campus no puede estar vacio");
         return campusDAO.getCampus(nombre);
     }
-    
+    public void modCampus(String nombre,String direccion,boolean estado) throws CampusNoExistenteException{
+        validar.ValidarCampus(nombre, direccion);
+        campusDAO.modCampus(nombre, direccion, estado);
+        
+    }
     /**
      * borra un campus
      * @param nombre
