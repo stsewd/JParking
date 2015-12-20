@@ -10,6 +10,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -66,7 +67,7 @@ public class UsuariosDAO implements UsuariosDAOInterface{
         
     @Override
     public Set<Usuario> getUsuarios(){
-        return (Set<Usuario>) usuarios.values();
+        return new LinkedHashSet<Usuario>(usuarios.values());
     }
 
     @Override
