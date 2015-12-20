@@ -9,10 +9,12 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
@@ -36,20 +38,31 @@ public class PrincipalGUI extends javax.swing.JFrame {
     public PrincipalGUI() {
         initComponents();
         
+        //Establecer icono de aplicacion
         ImageIcon imgIcon = new ImageIcon("../JParking/img/transport122.png");
         this.setIconImage(imgIcon.getImage());
         
+        //Listar usuarios en tabla
         listarUsuarios();
         try {
             listarParqueaderos();
         } catch (CampusNoExistenteException ex) {
         }
         
+        //Cargar campus en combobox
+        cargarParqueaderosCB();
+        
+        //Centrar ventana
         setLocationRelativeTo(null);
     }
     
     private void cargarParqueaderosCB(){
         //Cargar parqueaderos en combo box
+        CampusCB.removeAllItems();
+        CampusService campusService = new CampusService();
+        for(Campus c : campusService.getCampus()){
+            CampusCB.addItem(c.getNombre());
+        }
     }
     
     private void listarUsuarios(){        
