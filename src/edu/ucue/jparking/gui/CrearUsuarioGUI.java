@@ -5,34 +5,24 @@
  */
 package edu.ucue.jparking.gui;
 
-import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.UsuarioService;
-import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
-import edu.ucue.jparking.srv.objetos.OrdenPago;
-import edu.ucue.jparking.srv.objetos.Usuario;
-import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Franklin
+ * @author lara
  */
-public class CrearUsuarioGUI extends javax.swing.JFrame {
+public class CrearUsuarioGUI extends javax.swing.JDialog {
+
     private PrincipalGUI padre;
     /**
      * Creates new form CrearUsuario
      */
-    public CrearUsuarioGUI() {
+    public CrearUsuarioGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-    }
-
-    public CrearUsuarioGUI(PrincipalGUI padre) {
-        this();
-        this.padre = padre;
     }
 
     /**
@@ -44,10 +34,7 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         CedulaTF = new javax.swing.JTextField();
         NombresTF = new javax.swing.JTextField();
         ApellidosTF = new javax.swing.JTextField();
@@ -55,21 +42,16 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         CrearBtn = new javax.swing.JButton();
         CancelarBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         DireccionTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         TelefonoTF = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Usuario");
-        setResizable(false);
-
-        jLabel1.setText("Cédula:");
-
-        jLabel2.setText("Nombres:");
-
-        jLabel3.setText("Apellidos:");
-
-        jLabel4.setText("Tipo Usuario:");
 
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,13 +82,21 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Dirección:");
 
+        jLabel1.setText("Cédula:");
+
         jLabel6.setText("Telefono:");
+
+        jLabel2.setText("Nombres:");
 
         DireccionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DireccionTFActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("Apellidos:");
+
+        jLabel4.setText("Tipo Usuario:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +129,7 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,6 +175,11 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
 
+    private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_CedulaTFKeyPressed
+
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombresTF.getText();
@@ -197,27 +192,26 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         try {
             usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
-            this.setVisible(false);
             getPadre().listarUsuarios();
+            this.setVisible(false);
         } catch (UsuarioYaExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        
+
     }//GEN-LAST:event_CrearBtnActionPerformed
 
-    private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DireccionTFActionPerformed
-
+    
+    private PrincipalGUI getPadre(){
+        return padre;
+    }
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
-    private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
+    private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_CedulaTFKeyPressed
+    }//GEN-LAST:event_DireccionTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,10 +241,17 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearUsuarioGUI().setVisible(true);
+                CrearUsuarioGUI dialog = new CrearUsuarioGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -272,11 +273,4 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the padre
-     */
-    public PrincipalGUI getPadre() {
-        return padre;
-    }
 }

@@ -13,19 +13,16 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Franklin
+ * @author lara
  */
-public class CrearPuertaGUI extends javax.swing.JFrame {
+public class CrearPuertaGUI extends javax.swing.JDialog {
 
     /**
      * Creates new form CrearPuerta
      */
-    public CrearPuertaGUI() {
+    public CrearPuertaGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-    }
-    
-    public void llenarCampos(String nombreCampus) {
-        CampusTF.setText(nombreCampus);
     }
 
     /**
@@ -37,18 +34,22 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        CampusTF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         CodigoTF = new javax.swing.JTextField();
         UbicacionTF = new javax.swing.JTextField();
         CancelarBtn = new javax.swing.JButton();
         CrearBtn = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        CampusTF = new javax.swing.JTextField();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Puerta");
-        setResizable(false);
+
+        jLabel3.setText("Campus:");
+
+        CampusTF.setEditable(false);
 
         jLabel1.setText("Codigo:");
 
@@ -74,10 +75,6 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Campus:");
-
-        CampusTF.setEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,7 +96,7 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
                             .addComponent(CampusTF, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(CodigoTF)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 194, Short.MAX_VALUE)
+                        .addGap(0, 257, Short.MAX_VALUE)
                         .addComponent(CrearBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelarBtn)))
@@ -150,6 +147,7 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
         try {
             puertaService.addpuerta(Ubicacion, codigo, campus);
             JOptionPane.showMessageDialog(rootPane, "Puerta creada con exito.", "Puerta", JOptionPane.OK_OPTION);
+            this.setVisible(false);
         } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
@@ -183,10 +181,17 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearPuertaGUI().setVisible(true);
+                CrearPuertaGUI dialog = new CrearPuertaGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -202,5 +207,4 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-
 }

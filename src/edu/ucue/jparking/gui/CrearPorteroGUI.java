@@ -15,14 +15,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author stsewd
+ * @author lara
  */
-public class CrearPorteroGUI extends javax.swing.JFrame {
+public class CrearPorteroGUI extends javax.swing.JDialog {
 
     /**
-     * Creates new form CrearPorteroGUI
+     * Creates new form CrearPortero
      */
-    public CrearPorteroGUI() {
+    public CrearPorteroGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -35,8 +36,6 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
-        CedulaTF2 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         NombresTF = new javax.swing.JTextField();
         CedulaTF = new javax.swing.JTextField();
@@ -53,13 +52,8 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         CampusTF = new javax.swing.JTextField();
 
-        jLabel4.setText("Cédula:");
-
-        CedulaTF2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTF2ActionPerformed(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Crear Portero");
 
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +128,7 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
                             .addComponent(TelefonoTF)
                             .addComponent(DireccionTF)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addGap(0, 10, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,18 +193,22 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
         String direccion = DireccionTF.getText();
         String telefono = TelefonoTF.getText();
         PorterosService porterosService = new PorterosService();
+        
         try {
             porterosService.addPortero(cedula, nombre, apellido, direccion, telefono);
             JOptionPane.showMessageDialog(rootPane, "Portero creado con exito!!", "Portero", JOptionPane.OK_OPTION);
+            this.setVisible(false);
         } catch (CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (PorteroYaExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
+        } catch(IllegalArgumentException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
+            
+       
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
@@ -221,10 +219,6 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
-
-    private void CedulaTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaTF2ActionPerformed
 
     private void CampusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusTFActionPerformed
         // TODO add your handling code here:
@@ -256,11 +250,19 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CrearPorteroGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearPorteroGUI().setVisible(true);
+                CrearPorteroGUI dialog = new CrearPorteroGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -270,7 +272,6 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
     private javax.swing.JTextField CampusTF;
     private javax.swing.JButton CancelarBtn;
     private javax.swing.JTextField CedulaTF;
-    private javax.swing.JTextField CedulaTF2;
     private javax.swing.JButton CrearBtn;
     private javax.swing.JTextField DireccionTF;
     private javax.swing.JTextField NombresTF;
@@ -278,7 +279,6 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

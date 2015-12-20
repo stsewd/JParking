@@ -11,25 +11,20 @@ import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author stsewd
+ * @author lara
  */
-public class EditarPuertaGUI extends javax.swing.JFrame {
+public class EditarPuertaGUI extends javax.swing.JDialog {
 
     /**
-     * Creates new form EditarPuertaGUI
+     * Creates new form EditarPuerta
      */
-    public EditarPuertaGUI() {
+    public EditarPuertaGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        CodigoTF.setEditable(false);
-        UbicacionTF.setEditable(false);
-        CampusTF.setEditable(false);
-        EstadoCK.setEnabled(false);
     }
 
     /**
@@ -41,8 +36,6 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        EditarBtn = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         CodigoTF = new javax.swing.JTextField();
         UbicacionTF = new javax.swing.JTextField();
@@ -52,13 +45,11 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         EstadoCK = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         CampusTF = new javax.swing.JTextField();
+        EditarBtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        EditarBtn.setText("Editar");
-        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarBtnActionPerformed(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Puerta");
 
         jLabel2.setText("Ubicación:");
 
@@ -96,6 +87,13 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         jLabel4.setText("Campus:");
 
         CampusTF.setEditable(false);
+
+        EditarBtn.setText("Editar");
+        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,18 +155,14 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CodigoTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CodigoTFInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CodigoTFInputMethodTextChanged
+
     private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CodigoTFActionPerformed
 
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_CancelarBtnActionPerformed
-
-    private void CodigoTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CodigoTFInputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodigoTFInputMethodTextChanged
     public void HabilitarCampos(){
         CodigoTF.setEditable(false);
         UbicacionTF.setEditable(true);
@@ -185,6 +179,27 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         CampusTF.setText(puerta.getIdCampus());
         
     }
+    private void CodigoTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+                CargarDatos(CodigoTF.getText());
+                HabilitarCampos();
+            } catch (CodigoNoValidoException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            } catch (PuertaNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            }catch(IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            }
+        }
+    }//GEN-LAST:event_CodigoTFKeyPressed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
+
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String codigo = CodigoTF.getText();
@@ -201,27 +216,11 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
         } catch (PuertaNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (CampusNoExistenteException ex) {
-           JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(IllegalArgumentException ex){
-           JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
-
-    private void CodigoTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            try {
-                CargarDatos(CodigoTF.getText());
-                HabilitarCampos();
-            } catch (CodigoNoValidoException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
-            } catch (PuertaNoExistenteException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
-            }catch(IllegalArgumentException ex){
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
-            }
-        }
-    }//GEN-LAST:event_CodigoTFKeyPressed
 
     /**
      * @param args the command line arguments
@@ -249,11 +248,19 @@ public class EditarPuertaGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EditarPuertaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarPuertaGUI().setVisible(true);
+                EditarPuertaGUI dialog = new EditarPuertaGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

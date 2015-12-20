@@ -220,7 +220,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
 
     private void CrearPuertaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPuertaBtnActionPerformed
         // TODO add your handling code here:
-        CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI();
+        CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI(null, rootPaneCheckingEnabled);
         crearPuertaGUI.setLocationRelativeTo(this);
         crearPuertaGUI.setVisible(true);
     }//GEN-LAST:event_CrearPuertaBtnActionPerformed
@@ -243,7 +243,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        EditarPuertaGUI editarPuertaGUI = new EditarPuertaGUI();
+        EditarPuertaGUI editarPuertaGUI = new EditarPuertaGUI(null, rootPaneCheckingEnabled);
         editarPuertaGUI.setLocationRelativeTo(this);
         try {
             editarPuertaGUI.CargarDatos(nombreCampus);

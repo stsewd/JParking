@@ -9,21 +9,21 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author stsewd
+ * @author lara
  */
-public class EditarCampusGUI extends javax.swing.JFrame {
+public class EditarCampusGUI extends javax.swing.JDialog {
 
     /**
-     * Creates new form EditarCampusGUI
+     * Creates new form EditarCampus
      */
-    public EditarCampusGUI() {
+    public EditarCampusGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+        NombreTextField.setEditable(false);
         DireccionTextField.setEditable(false);
         EstadoCK.setEnabled(false);
     }
@@ -37,17 +37,41 @@ public class EditarCampusGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NombreTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        DireccionTextField = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         EditarBtn = new javax.swing.JButton();
         CancelarBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         EstadoCK = new javax.swing.JCheckBox();
+        NombreTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        DireccionTextField = new javax.swing.JTextField();
 
-        setTitle("Editar campus");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Campus");
+
+        EditarBtn.setText("Editar");
+        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarBtnActionPerformed(evt);
+            }
+        });
+
+        CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Estado:");
+
+        EstadoCK.setText("Activo");
+        EstadoCK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstadoCKActionPerformed(evt);
+            }
+        });
 
         NombreTextField.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -75,29 +99,6 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Dirección:");
-
-        EditarBtn.setText("Editar");
-        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarBtnActionPerformed(evt);
-            }
-        });
-
-        CancelarBtn.setText("Cancelar");
-        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Estado:");
-
-        EstadoCK.setText("Activo");
-        EstadoCK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EstadoCKActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,16 +153,6 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreTextFieldActionPerformed
-
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_CancelarBtnActionPerformed
-    
-    
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombreTextField.getText();
@@ -179,19 +170,39 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
+
     private void EstadoCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoCKActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EstadoCKActionPerformed
+
+    private void NombreTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_NombreTextFieldCaretUpdate
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_NombreTextFieldCaretUpdate
 
     private void NombreTextFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_NombreTextFieldInputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreTextFieldInputMethodTextChanged
 
-    private void NombreTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_NombreTextFieldCaretUpdate
+    private void NombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextFieldActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_NombreTextFieldCaretUpdate
+    }//GEN-LAST:event_NombreTextFieldActionPerformed
 
+    public void CargarDatos(String nombre) throws CampusNoExistenteException{
+        CampusService campusService = new CampusService();
+        Campus campus = campusService.getCampus(nombre);
+        NombreTextField.setText(nombre);
+        NombreTextField.setEditable(false);
+        DireccionTextField.setEditable(true);
+        EstadoCK.setEnabled(true);
+        DireccionTextField.setText(campus.getDireccion());
+        EstadoCK.setSelected(campus.isActivo());
+    }
+    
     private void NombreTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -206,17 +217,6 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_NombreTextFieldKeyPressed
 
-    public void CargarDatos(String nombre) throws CampusNoExistenteException{
-        CampusService campusService = new CampusService();
-        Campus campus = campusService.getCampus(nombre);
-        NombreTextField.setText(nombre);
-        NombreTextField.setEditable(false);
-        DireccionTextField.setEditable(true);
-        EstadoCK.setEnabled(true);
-        DireccionTextField.setText(campus.getDireccion());
-        EstadoCK.setSelected(campus.isActivo());
-    }
-    
     /**
      * @param args the command line arguments
      */
@@ -243,11 +243,19 @@ public class EditarCampusGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EditarCampusGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarCampusGUI().setVisible(true);
+                EditarCampusGUI dialog = new EditarCampusGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

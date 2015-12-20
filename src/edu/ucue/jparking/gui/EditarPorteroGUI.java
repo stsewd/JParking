@@ -5,33 +5,28 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.PorterosService;
-import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author stsewd
+ * @author lara
  */
-public class EditarPorteroGUI extends javax.swing.JFrame {
+public class EditarPorteroGUI extends javax.swing.JDialog {
 
     /**
      * Creates new form EditarPortero
      */
-    public EditarPorteroGUI() {
+    public EditarPorteroGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        CedulaTF1.setEditable(true);
-        NombresTF.setEditable(false);
-        ApellidosTF.setEditable(false);
-        CampusTF.setEditable(false);
-        DireccionTF2.setEditable(false);
-        TelefonoTF.setEditable(false);
-        EstadoCK.setEnabled(false);
     }
 
     /**
@@ -43,6 +38,8 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        EstadoCK = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -58,10 +55,13 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         DireccionTF2 = new javax.swing.JTextField();
         ApellidosTF = new javax.swing.JTextField();
         TelefonoTF = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        EstadoCK = new javax.swing.JCheckBox();
 
-        setTitle("Editar portero");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Portero");
+
+        jLabel4.setText("Estado:");
+
+        EstadoCK.setText("Activo");
 
         jLabel6.setText("Telefono:");
 
@@ -86,6 +86,11 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         CedulaTF1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CedulaTF1ActionPerformed(evt);
+            }
+        });
+        CedulaTF1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CedulaTF1KeyPressed(evt);
             }
         });
 
@@ -114,10 +119,6 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
                 DireccionTF2ActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("Estado:");
-
-        EstadoCK.setText("Activo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,53 +211,6 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CampusTFActionPerformed
 
-    private void CedulaTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaTF1ActionPerformed
-
-    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
-        // TODO add your handling code here:
-        String nombre = NombresTF.getText();
-        String apellido = ApellidosTF.getText();
-        String direccion = DireccionTF2.getText();
-        String telefono = TelefonoTF.getText();
-        String cedula = CedulaTF1.getText();
-        boolean estado = EstadoCK.isSelected();
-        PorterosService porterosService = new PorterosService();
-        try {
-            porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
-            JOptionPane.showMessageDialog(rootPane, "Protero modificado existosamente!!", "Portero", JOptionPane.OK_OPTION);
-        } catch (CedulaNoValidaException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PorteroNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
-    }//GEN-LAST:event_CrearBtnActionPerformed
-
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_CancelarBtnActionPerformed
-
-    private void DireccionTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTF2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DireccionTF2ActionPerformed
-
-    private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
-        // TODO add your handling code here:
-        
-        try {
-            CargarDatos(CedulaTF1.getText());
-            
-        } catch (CedulaNoValidaException ex) {
-            Logger.getLogger(EditarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(IllegalArgumentException ex){
-            
-        }
-    }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
-
     public void HabilitarCampos(){
         CedulaTF1.setEditable(false);
         NombresTF.setEditable(true);
@@ -276,6 +230,69 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         TelefonoTF.setText(portero.getTelefono());
         EstadoCK.setSelected(portero.isActivo());
     }
+    
+    private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
+        // TODO add your handling code here:
+/*
+        try {
+            CargarDatos(CedulaTF1.getText());
+
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }*/
+    }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
+
+    private void CedulaTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CedulaTF1ActionPerformed
+
+    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
+        // TODO add your handling code here:
+        String nombre = NombresTF.getText();
+        String apellido = ApellidosTF.getText();
+        String direccion = DireccionTF2.getText();
+        String telefono = TelefonoTF.getText();
+        String cedula = CedulaTF1.getText();
+        boolean estado = EstadoCK.isSelected();
+        PorterosService porterosService = new PorterosService();
+        try {
+            porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
+            JOptionPane.showMessageDialog(rootPane, "Protero modificado existosamente!!", "Portero", JOptionPane.OK_OPTION);
+            this.setVisible(false);
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PorteroNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_CrearBtnActionPerformed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
+
+    private void DireccionTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTF2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DireccionTF2ActionPerformed
+
+    private void CedulaTF1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTF1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+                CargarDatos(CedulaTF1.getText());
+            }catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            } catch (CedulaNoValidaException ex) {
+                Logger.getLogger(EditarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_CedulaTF1KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -304,10 +321,17 @@ public class EditarPorteroGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarPorteroGUI().setVisible(true);
+                EditarPorteroGUI dialog = new EditarPorteroGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

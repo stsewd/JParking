@@ -9,12 +9,13 @@ package edu.ucue.jparking.gui;
  *
  * @author lara
  */
-public class OrdenPagoGUI extends javax.swing.JFrame {
+public class OrdenPagoGUI extends javax.swing.JDialog {
 
     /**
-     * Creates new form OrdenPagoGUI
+     * Creates new form OrdenPago
      */
-    public OrdenPagoGUI() {
+    public OrdenPagoGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -27,48 +28,48 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        CedulaTF = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        PagarBtn = new javax.swing.JButton();
-        CerrarBtn = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        DireccionTF = new javax.swing.JTextField();
-        NombreTF = new javax.swing.JTextField();
-        TelefonoTF = new javax.swing.JTextField();
         TipoUsuarioTF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        TelefonoTF = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        NombreTF = new javax.swing.JTextField();
+        DireccionTF = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        CerrarBtn = new javax.swing.JButton();
+        PagarBtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        CedulaTF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         ValorTF = new javax.swing.JTextField();
 
-        setTitle("Orden de pago");
-
-        jLabel2.setText("Cedula:");
-
-        jLabel3.setText("Nombre:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setText("Tipo de Usuario:");
 
-        jLabel5.setText("Valor a Pagar:");
-
-        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
+        TipoUsuarioTF.setEditable(false);
+        TipoUsuarioTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTFActionPerformed(evt);
+                TipoUsuarioTFActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Dirección:");
+        jLabel3.setText("Nombre:");
 
-        jLabel7.setText("Telefono:");
-
-        PagarBtn.setText("Pagar");
-
-        CerrarBtn.setText("Cerrar");
-        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
+        TelefonoTF.setEditable(false);
+        TelefonoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CerrarBtnActionPerformed(evt);
+                TelefonoTFActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Cedula:");
+
+        NombreTF.setEditable(false);
+        NombreTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreTFActionPerformed(evt);
             }
         });
 
@@ -79,26 +80,31 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
             }
         });
 
-        NombreTF.setEditable(false);
-        NombreTF.addActionListener(new java.awt.event.ActionListener() {
+        CerrarBtn.setText("Cerrar");
+        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreTFActionPerformed(evt);
+                CerrarBtnActionPerformed(evt);
             }
         });
 
-        TelefonoTF.setEditable(false);
-        TelefonoTF.addActionListener(new java.awt.event.ActionListener() {
+        PagarBtn.setText("Pagar");
+        PagarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TelefonoTFActionPerformed(evt);
+                PagarBtnActionPerformed(evt);
             }
         });
 
-        TipoUsuarioTF.setEditable(false);
-        TipoUsuarioTF.addActionListener(new java.awt.event.ActionListener() {
+        jLabel7.setText("Telefono:");
+
+        jLabel6.setText("Dirección:");
+
+        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoUsuarioTFActionPerformed(evt);
+                CedulaTFActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Valor a Pagar:");
 
         ValorTF.setEditable(false);
         ValorTF.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +137,7 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TelefonoTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,34 +186,38 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
+    private void TipoUsuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaTFActionPerformed
+    }//GEN-LAST:event_TipoUsuarioTFActionPerformed
+
+    private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TelefonoTFActionPerformed
+
+    private void NombreTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreTFActionPerformed
+
+    private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DireccionTFActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
-    private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
+    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DireccionTFActionPerformed
-
-    private void NombreTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreTFActionPerformed
-
-    private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TelefonoTFActionPerformed
-
-    private void TipoUsuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoUsuarioTFActionPerformed
+    }//GEN-LAST:event_CedulaTFActionPerformed
 
     private void ValorTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ValorTFActionPerformed
+
+    private void PagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PagarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,11 +245,19 @@ public class OrdenPagoGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(OrdenPagoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrdenPagoGUI().setVisible(true);
+                OrdenPagoGUI dialog = new OrdenPagoGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
