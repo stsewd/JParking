@@ -92,7 +92,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TablaUsuarios.getModel();
         
         //Borrar elementos anteriores
-        for(int i = 0; i < model.getRowCount(); i++)
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
         
         int n = 1;
@@ -113,7 +113,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TablaParqueaderos.getModel();
 
         //Borrar elementos anteriores
-        for(int i = 0; i < model.getRowCount(); i++)
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
 
         int n = 1;
