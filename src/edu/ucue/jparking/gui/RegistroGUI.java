@@ -92,7 +92,7 @@ public class RegistroGUI extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(336, Short.MAX_VALUE)
+                .addContainerGap(308, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(12, 12, 12))
             .addGroup(layout.createSequentialGroup()
