@@ -5,6 +5,12 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
+import edu.ucue.jparking.srv.CampusService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Santos Gallegos
@@ -57,6 +63,11 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         });
 
         CrearBtn.setText("Crear");
+        CrearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +122,23 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
+
+    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
+        // TODO add your handling code here:
+        String nombre = NombreTextField.getText();
+        String ubicacion = DireccionTextField.getText();
+        CampusService campusService = new CampusService();
+        try {
+            campusService.addCampus(nombre, ubicacion);
+            JOptionPane.showMessageDialog(rootPane, "CAmpus guardado con exito", "Campus", JOptionPane.OK_OPTION);
+            this.setVisible(false);
+        } catch (CampusExistenteExeption ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch (IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
+    }//GEN-LAST:event_CrearBtnActionPerformed
 
     /**
      * @param args the command line arguments

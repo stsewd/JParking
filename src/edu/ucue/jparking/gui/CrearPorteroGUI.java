@@ -5,6 +5,14 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.srv.PorterosService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
@@ -31,14 +39,14 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
         CedulaTF2 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         NombresTF = new javax.swing.JTextField();
-        CedulaTF1 = new javax.swing.JTextField();
+        CedulaTF = new javax.swing.JTextField();
         CrearBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         CancelarBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         ApellidosTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        DireccionTF2 = new javax.swing.JTextField();
+        DireccionTF = new javax.swing.JTextField();
         TelefonoTF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -53,9 +61,9 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
             }
         });
 
-        CedulaTF1.addActionListener(new java.awt.event.ActionListener() {
+        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTF1ActionPerformed(evt);
+                CedulaTFActionPerformed(evt);
             }
         });
 
@@ -79,9 +87,9 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Apellidos:");
 
-        DireccionTF2.addActionListener(new java.awt.event.ActionListener() {
+        DireccionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DireccionTF2ActionPerformed(evt);
+                DireccionTFActionPerformed(evt);
             }
         });
 
@@ -105,30 +113,37 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(CrearBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CancelarBtn))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6))
-                            .addGap(38, 38, 38)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CedulaTF1)
-                                .addComponent(ApellidosTF)
-                                .addComponent(NombresTF)
-                                .addComponent(DireccionTF2)
-                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(CampusTF))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NombresTF)
+                            .addComponent(ApellidosTF)
+                            .addComponent(CedulaTF)
+                            .addComponent(CampusTF)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TelefonoTF)
+                            .addComponent(DireccionTF)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(CrearBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CancelarBtn)
+                                .addGap(12, 12, 12)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,7 +158,7 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(CedulaTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -154,7 +169,7 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
                             .addComponent(ApellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5))
-                    .addComponent(DireccionTF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DireccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -171,12 +186,31 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CedulaTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF1ActionPerformed
+    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaTF1ActionPerformed
+    }//GEN-LAST:event_CedulaTFActionPerformed
 
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
         // TODO add your handling code here:
+        String nombre = NombresTF.getText();
+        String apellido = ApellidosTF.getText();
+        String campus = CampusTF.getText();
+        String cedula = CedulaTF.getText();
+        String direccion = DireccionTF.getText();
+        String telefono = TelefonoTF.getText();
+        PorterosService porterosService = new PorterosService();
+        try {
+            porterosService.addPortero(cedula, nombre, apellido, direccion, telefono);
+            JOptionPane.showMessageDialog(rootPane, "Portero creado con exito!!", "Portero", JOptionPane.OK_OPTION);
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PorteroYaExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
@@ -184,9 +218,9 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
-    private void DireccionTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTF2ActionPerformed
+    private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DireccionTF2ActionPerformed
+    }//GEN-LAST:event_DireccionTFActionPerformed
 
     private void CedulaTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF2ActionPerformed
         // TODO add your handling code here:
@@ -235,10 +269,10 @@ public class CrearPorteroGUI extends javax.swing.JFrame {
     private javax.swing.JTextField ApellidosTF;
     private javax.swing.JTextField CampusTF;
     private javax.swing.JButton CancelarBtn;
-    private javax.swing.JTextField CedulaTF1;
+    private javax.swing.JTextField CedulaTF;
     private javax.swing.JTextField CedulaTF2;
     private javax.swing.JButton CrearBtn;
-    private javax.swing.JTextField DireccionTF2;
+    private javax.swing.JTextField DireccionTF;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
     private javax.swing.JLabel jLabel1;

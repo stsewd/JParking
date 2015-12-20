@@ -5,6 +5,14 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
@@ -56,6 +64,11 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         CerrarBtn.setText("Cerrar");
 
         CrearBtn.setText("Crear");
+        CrearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +129,28 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
+        // TODO add your handling code here:
+        String codigo = CodigoTF.getText();
+        String ubicacion = UbicacionTF.getText();
+        String campus = CampusTF.getText();
+        int Lugares = Integer.parseInt(CampusTF.getText());
+        ParqueaderoService parqueaderoService = new ParqueaderoService();
+        try {
+            parqueaderoService.addParqueadero(ubicacion, Lugares, codigo, campus);
+            JOptionPane.showMessageDialog(rootPane,"Parqueadero creado con exito", "Parqueadero", JOptionPane.OK_OPTION);
+            this.setVisible(false);
+        } catch (ParqueaderoYaExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+           JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_CrearBtnActionPerformed
 
     /**
      * @param args the command line arguments

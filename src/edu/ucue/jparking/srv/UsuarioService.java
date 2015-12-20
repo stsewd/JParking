@@ -9,6 +9,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Estudiante;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -19,7 +20,8 @@ import java.util.Set;
  * @author Franklin Lara
  */
 public class UsuarioService {
-    
+    UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
+    Validaciones validaciones = new Validaciones();
     public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
@@ -50,22 +52,15 @@ public class UsuarioService {
         } 
     }
     
-    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado, String tipoUsuario) throws CedulaNoValidaException, UsuarioNoExistenteException {
-        if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
-            EstudianteService estudianteService = new EstudianteService();
-            estudianteService.mod(cedula, nombre, apellido,direccion,telefono,estado);
-        }else if(tipoUsuario.equalsIgnoreCase("DOCENTE")){
-            DocenteService docenteService = new DocenteService();
-            docenteService.mod(cedula, nombre, apellido,direccion,telefono,estado);
-        }else if(tipoUsuario.equalsIgnoreCase("EMPLEADO")){
-            EmpleadoService empleadoService = new EmpleadoService();
-            empleadoService.mod(cedula, nombre, apellido,direccion,telefono,estado);
-        }else{
-            throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
-        } 
+    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
+        validaciones.validarCedula(cedula);
+        usuariosDAO.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
     }
     
-    public Usuario get(String cedula,String tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        validaciones.validarCedula(cedula);
+        return usuariosDAO.getUsuario(cedula);
+        /*
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             return estudianteService.get(cedula);
@@ -77,7 +72,7 @@ public class UsuarioService {
             return empleadoService.get(cedula);
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
-        } 
+        } */
     }
        
     public Set<Usuario> getLista(){

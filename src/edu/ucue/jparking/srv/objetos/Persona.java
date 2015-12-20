@@ -37,7 +37,7 @@ public abstract class Persona {
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.activo = activo;
+        this.activo = true;
     }
 
     public TipoUsuario getTipoUsuario() {
@@ -93,6 +93,7 @@ public abstract class Persona {
         this.activo = activo;
     }
 
+    
     /**
      * @return the direccion
      */

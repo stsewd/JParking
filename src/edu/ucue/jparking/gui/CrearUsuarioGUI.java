@@ -5,12 +5,14 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -67,6 +69,11 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CedulaTFActionPerformed(evt);
+            }
+        });
+        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CedulaTFKeyPressed(evt);
             }
         });
 
@@ -184,6 +191,8 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         UsuarioService usuarioService = new UsuarioService();
         try {
             usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
+            JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente!!!", "Usuario", JOptionPane.OK_OPTION);
+            this.setVisible(false);
         } catch (UsuarioYaExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             //Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -204,6 +213,11 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
+
+    private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_CedulaTFKeyPressed
 
     /**
      * @param args the command line arguments

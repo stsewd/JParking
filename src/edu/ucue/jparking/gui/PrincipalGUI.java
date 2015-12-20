@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 //import static javafx.application.Platform.exit;
 
+
 /**
  *
  * @author Franklin Lara
@@ -244,6 +245,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         TipoUsuarioCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Docente", "Empleado", "Alumno" }));
 
         ModificarUsuarioBtn.setText("Modificar");
+        ModificarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarUsuarioBtnActionPerformed(evt);
+            }
+        });
 
         CrearUsuarioBtn.setText("Crear");
         CrearUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -596,6 +602,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void ModificarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
         EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
+        editarUsuarioGUI.setLocationRelativeTo(this);
         editarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
 
@@ -604,6 +611,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
+
+    private void ModificarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioBtnActionPerformed
+        // TODO add your handling code here:
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
+        editarUsuarioGUI.setLocationRelativeTo(this);
+        editarUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -57,6 +57,11 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
         });
 
         CrearBtn.setText("Crear");
+        CrearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +116,10 @@ public class CrearPuertaGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
+
+    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CrearBtnActionPerformed
 
     /**
      * @param args the command line arguments

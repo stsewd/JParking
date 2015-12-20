@@ -5,6 +5,16 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.Usuario;
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
@@ -16,6 +26,8 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
      */
     public EditarUsuarioGUI() {
         initComponents();
+        //CedulaTF.setText("0105036024");
+        CedulaTFInputMethodTextChanged(null);
     }
 
     /**
@@ -40,6 +52,8 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         CancelarBtn1 = new javax.swing.JButton();
         EditarBtn = new javax.swing.JButton();
         ApellidosTF = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        EstadoCK = new javax.swing.JCheckBox();
 
         setTitle("Editar usuario");
 
@@ -48,9 +62,21 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         jLabel1.setText("Cédula:");
 
         CedulaTF.setEditable(false);
+        CedulaTF.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                CedulaTFInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CedulaTFActionPerformed(evt);
+            }
+        });
+        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CedulaTFKeyPressed(evt);
             }
         });
 
@@ -80,6 +106,15 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Estado:");
+
+        EstadoCK.setText("Activo");
+        EstadoCK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstadoCKActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,22 +127,29 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelarBtn1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CedulaTF)
-                            .addComponent(ApellidosTF)
-                            .addComponent(NombresTF)
-                            .addComponent(DireccionTF)
-                            .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(38, 38, 38))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(56, 56, 56)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EstadoCK)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CedulaTF)
+                                .addComponent(ApellidosTF)
+                                .addComponent(NombresTF)
+                                .addComponent(DireccionTF)
+                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,9 +176,13 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(EstadoCK))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CancelarBtn1)
                     .addComponent(EditarBtn))
@@ -148,6 +194,7 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_CedulaTFActionPerformed
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
@@ -161,7 +208,84 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
+        String nombre = NombresTF.getText();
+        String apellido = ApellidosTF.getText();
+        String direccion = DireccionTF.getText();
+        String telefono = TelefonoTF.getText();
+        String cedula = CedulaTF.getText();
+        Boolean estado = EstadoCK.isSelected();
+        UsuarioService usuarioService = new UsuarioService();
+        try {
+            usuarioService.mod(cedula, nombre, apellido, direccion, telefono, true);
+            JOptionPane.showMessageDialog(rootPane, "Usuario modificado exitosamente!!!", "Usuario", JOptionPane.OK_OPTION);
+            this.setVisible(false);
+        }catch (IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (UsuarioNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_EditarBtnActionPerformed
+
+    private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
+        // TODO add your handling code here:
+        /*
+        UsuarioService usuarioService = new UsuarioService();
+        if(CedulaTF.getText().length()==10){
+            Usuario usuario;
+            try {
+                usuario = usuarioService.get(CedulaTF.getText());
+                NombresTF.setText(usuario.getNombres());
+                ApellidosTF.setText(usuario.getApellidos());
+                DireccionTF.setText(usuario.getDireccion());
+                TelefonoTF.setText(usuario.getTelefono());
+                
+            } catch (UsuarioNoExistenteException ex) {
+                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CedulaNoValidaException ex) {
+                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_){
+            try {
+                Usuario usuario = usuarioService.get(CedulaTF.getText());
+                NombresTF.setText(usuario.getNombres());
+                ApellidosTF.setText(usuario.getApellidos());
+                DireccionTF.setText(usuario.getDireccion());
+                TelefonoTF.setText(usuario.getTelefono());
+                
+            } catch (UsuarioNoExistenteException ex) {
+                Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CedulaNoValidaException ex) {
+                Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
+    }//GEN-LAST:event_CedulaTFKeyPressed
+
+    private void CedulaTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTFInputMethodTextChanged
+        // TODO add your handling code here:
+        UsuarioService usuarioService = new UsuarioService();
+        Usuario usuario;
+            try {
+                usuario = usuarioService.get(CedulaTF.getText());
+                NombresTF.setText(usuario.getNombres());
+                ApellidosTF.setText(usuario.getApellidos());
+                DireccionTF.setText(usuario.getDireccion());
+                TelefonoTF.setText(usuario.getTelefono());
+                EstadoCK.setSelected(usuario.isActivo());
+                
+            } catch (UsuarioNoExistenteException ex) {
+                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CedulaNoValidaException ex) {
+                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_CedulaTFInputMethodTextChanged
+
+    private void EstadoCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoCKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstadoCKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,11 +328,13 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JTextField CedulaTF;
     private javax.swing.JTextField DireccionTF;
     private javax.swing.JButton EditarBtn;
+    private javax.swing.JCheckBox EstadoCK;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
