@@ -307,6 +307,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jTabbedPane2);
 
+        CampusMenu.setMnemonic('c');
         CampusMenu.setText("Campus");
 
         CrearCampusMenuItem.setText("Crear Campus");
@@ -389,6 +390,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(CampusMenu);
 
+        UsuariosMenu.setMnemonic('u');
         UsuariosMenu.setText("Usuarios");
 
         CrearUsuarioMenuItem.setText("Crear Usuario");
@@ -417,6 +419,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(UsuariosMenu);
 
+        ParqueaderosMenu.setMnemonic('p');
         ParqueaderosMenu.setText("Parqueaderos");
 
         CrearParqueaderoMenuItem.setText("Crear Parqueadero");
@@ -454,6 +457,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(ParqueaderosMenu);
 
+        PagosMenu.setMnemonic('g');
         PagosMenu.setText("Pagos");
 
         GenerarOrdenPagoItem.setText("Generar Orden de Pago");
@@ -461,6 +465,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(PagosMenu);
 
+        RegistrosMenu.setMnemonic('r');
         RegistrosMenu.setText("Registros");
 
         ListarRegistrosMenuItem.setText("Listar registros");
@@ -468,6 +473,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(RegistrosMenu);
 
+        AyudaMenu.setMnemonic('a');
         AyudaMenu.setText("Ayuda");
 
         AcercaDeMenuItem.setText("Acerca de");
