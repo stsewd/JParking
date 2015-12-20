@@ -53,6 +53,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         TablaPorteros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Administrar Porteros");
         setMinimumSize(new java.awt.Dimension(350, 350));
 
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(350, 350));

@@ -7,27 +7,23 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.srv.CampusService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Santos Gallegos
+ * @author lara
  */
-public class CrearCampusGUI extends javax.swing.JFrame {
-    private PrincipalGUI padre;
-    
+public class CrearCampusGUI extends javax.swing.JDialog {
+
     /**
-     * Creates new form CrearCampusGUI
+     * Creates new form CrearCampus
      */
-    public CrearCampusGUI() {
+    public CrearCampusGUI(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
-    
-    public CrearCampusGUI(PrincipalGUI padre){
-        this();
-        this.padre = padre;
-    }
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,9 +42,8 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         CancelarBtn = new javax.swing.JButton();
         CrearBtn = new javax.swing.JButton();
 
-        setTitle("Crear campus");
-        setPreferredSize(new java.awt.Dimension(330, 150));
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Crear Campus");
 
         jLabel1.setText("Nombre:");
 
@@ -92,7 +87,7 @@ public class CrearCampusGUI extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(NombreTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                             .addComponent(DireccionTextField))))
                 .addContainerGap())
         );
@@ -103,12 +98,12 @@ public class CrearCampusGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(NombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(DireccionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelarBtn)
@@ -133,16 +128,21 @@ public class CrearCampusGUI extends javax.swing.JFrame {
         String nombre = NombreTextField.getText();
         String ubicacion = DireccionTextField.getText();
         CampusService campusService = new CampusService();
+        
         try {
             campusService.addCampus(nombre, ubicacion);
             JOptionPane.showMessageDialog(rootPane, "Campus guardado con exito", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
-            getPadre().cargarParqueaderosCB();
-            
-        } catch (CampusExistenteExeption | IllegalArgumentException ex) {
+        } catch (CampusExistenteExeption ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch (IllegalArgumentException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
+            
+            
+
         
+
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     /**
@@ -171,11 +171,19 @@ public class CrearCampusGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CrearCampusGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearCampusGUI().setVisible(true);
+                CrearCampusGUI dialog = new CrearCampusGUI(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -189,11 +197,4 @@ public class CrearCampusGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the padre
-     */
-    public PrincipalGUI getPadre() {
-        return padre;
-    }
 }

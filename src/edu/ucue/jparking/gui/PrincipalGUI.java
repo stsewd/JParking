@@ -738,7 +738,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCampusMenuItemActionPerformed
         // TODO add your handling code here:
-        CrearCampusGUI crearCampusGUI = new CrearCampusGUI(this);
+        CrearCampusGUI crearCampusGUI = new CrearCampusGUI(this, rootPaneCheckingEnabled);
         crearCampusGUI.setLocationRelativeTo(this);
         crearCampusGUI.setVisible(true);
     }//GEN-LAST:event_CrearCampusMenuItemActionPerformed
