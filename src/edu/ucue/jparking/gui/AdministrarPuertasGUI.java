@@ -52,6 +52,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         TablaPuertas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Administar Puertas");
         setMinimumSize(new java.awt.Dimension(350, 350));
 
         jLabel1.setText("Campus:");
