@@ -18,6 +18,8 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -685,22 +687,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
 
     private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
-        // TODO add your handling code here:
-        String nombreCampus = (String) CampusCB.getSelectedItem();
-        if(nombreCampus==null){
-            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
-            return;
-        }
-        
+        // TODO add your handling code here:       
         EditarCampusGUI editarCampusGUI = new EditarCampusGUI();
         editarCampusGUI.setLocationRelativeTo(this);
         try {
-            editarCampusGUI.CargarDatos(nombreCampus);
+            editarCampusGUI.CargarDatos((String) CampusCB.getSelectedItem());
             editarCampusGUI.setVisible(true);
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        
     }//GEN-LAST:event_ModicarCampusMenuItemActionPerformed
 
     private void EditarPuertaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPuertaItemActionPerformed
@@ -717,6 +712,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCampusMenuItemActionPerformed
         // TODO add your handling code here:
+        CampusService campusService = new CampusService();
+        try {
+            campusService.delCampus((String) CampusCB.getSelectedItem());
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        cargarParqueaderosCB();
     }//GEN-LAST:event_EliminarCampusMenuItemActionPerformed
 
     private void EditarPorteroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPorteroItemActionPerformed
