@@ -140,21 +140,21 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         String codigo = CodigoTF.getText();
         String ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
-        int Lugares = Integer.parseInt(CampusTF.getText());
+        String lugares = CampusTF.getText();
+        
+        int numLugares;
+        try{
+            numLugares = Integer
+        }
+        
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
-            parqueaderoService.addParqueadero(ubicacion, Lugares, codigo, campus);
+            parqueaderoService.addParqueadero(ubicacion, numLugares, codigo, campus);
             JOptionPane.showMessageDialog(rootPane,"Parqueadero creado con exito", "Parqueadero", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (ParqueaderoYaExistenteException ex) {
+        }catch (ParqueaderoYaExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-           JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
+        } 
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
@@ -217,4 +217,8 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    void CargarDatos(String campus) {
+        CampusTF.setText(campus);
+    }
 }

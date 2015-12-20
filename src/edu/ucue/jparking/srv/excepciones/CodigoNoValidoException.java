@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class CodigoNoValidoException extends Exception {
 
     public CodigoNoValidoException(String codigo) {
-        super("Codigo no valido no cumple con las restricciones");
+        super("Codigo ingresado no es valido.");
     }
     
 }
