@@ -27,6 +27,10 @@
 package edu.ucue.jparking;
 
 import edu.ucue.jparking.gui.PrincipalGUI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -39,6 +43,18 @@ public class JParking {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PrincipalGUI.main(args);
+        //PrincipalGUI.main(args);
+        //PrincipalGUI pgui = new PrincipalGUI();
+        try { 
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); 
+        } 
+        catch(Exception e){
+            try {
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            } catch (Exception ex) {
+            }
+        }
+        PrincipalGUI pgui = new PrincipalGUI();
+        pgui.setVisible(true);
     }
 }

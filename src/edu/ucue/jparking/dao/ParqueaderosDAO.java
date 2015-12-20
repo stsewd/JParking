@@ -76,11 +76,12 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public void modParqueadero(String idParqueadero, String ubicacion) throws ParqueaderoNoExistenteException {
+    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares) throws ParqueaderoNoExistenteException {
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         parqueadero.setUbicacion(ubicacion);
+        parqueadero.setNumeroLugares(numLugares);
     }
 
     @Override

@@ -5,6 +5,8 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
+import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.dao.ParqueaderosDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -90,13 +92,28 @@ public class ParqueaderoService {
      * 
      * @param idParqueadero
      * @param ubicacion
+     * @param numLugares
      * @throws ParqueaderoNoExistenteException 
      */
-    public void modParqueadero(String idParqueadero, String ubicacion) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
-        validaciones.validarCodigo(ubicacion);
-        if(ubicacion==null || ubicacion.trim().length()==0)
+    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares) throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException, NumeroLugaresDeParqueoInsuficientesException{
+        validaciones.validarCodigo(idParqueadero);
+        if(ubicacion == null || ubicacion.trim().length()==0)
             throw new IllegalArgumentException("La ubicacion no puede ser nula");
-        parqueaderoDAO.modParqueadero(idParqueadero, ubicacion);
+        if(numLugares < 0)
+            throw new IllegalArgumentException("El numero de lugares no puede ser negativo");
+        
+        int numLugaresOcupados = parqueaderoDAO.getParqueadero(idParqueadero).getNumeroLugaresOcupados();
+        if(numLugares < numLugaresOcupados)
+            throw new LugaresDeParqueoOCupadosException(numLugaresOcupados);
+        
+        int numUsuarios = parqueaderoDAO.getParqueadero(idParqueadero).getUsuarios().size();
+        if(numLugares < numUsuarios * 1.05)
+            throw new NumeroLugaresDeParqueoInsuficientesException(numUsuarios);
+        
+        //Validar que el numero de lugares nuevo sea mayor o igual al 105%
+        //del numero de usuarios registrados en ese parqueadero
+        
+        parqueaderoDAO.modParqueadero(idParqueadero, ubicacion, numLugares);
     }
     /**
      * 

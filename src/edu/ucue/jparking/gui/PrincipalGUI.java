@@ -8,11 +8,10 @@ package edu.ucue.jparking.gui;
 //import static javafx.application.Platform.exit;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
-import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -21,8 +20,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -123,7 +120,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         int n = 1;
         for(Parqueadero p : parqueaderos)
-            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresDisponibles()});
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresOcupados()});
     }
 
     /**
@@ -156,6 +153,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModificarUsuarioBtn = new javax.swing.JButton();
         CrearUsuarioBtn = new javax.swing.JButton();
         EliminarUsuarioBtn = new javax.swing.JButton();
+        VerBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
         CrearCampusMenuItem = new javax.swing.JMenuItem();
@@ -164,8 +162,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         AdministarPuertasMenuItem = new javax.swing.JMenuItem();
         AdministarPorterosMenuItem = new javax.swing.JMenuItem();
-        SalirItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        SalirItem = new javax.swing.JMenuItem();
         UsuariosMenu = new javax.swing.JMenu();
         CrearUsuarioMenuItem = new javax.swing.JMenuItem();
         ModificarUsuarioMenuItem = new javax.swing.JMenuItem();
@@ -208,7 +206,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Id", "Ubicación", "Num Parqueaderos", "Espacios Disponibles"
+                "#", "Id", "Ubicación", "Espacios", "Espacios ocupados"
             }
         ) {
             Class[] types = new Class [] {
@@ -243,6 +241,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
 
         ModificarParqueaderoBtn.setText("Modificar");
+        ModificarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarParqueaderoBtnActionPerformed(evt);
+            }
+        });
 
         EliminarParqueaderoBtn.setText("Eliminar");
         EliminarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +264,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addComponent(ModificarParqueaderoBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EliminarParqueaderoBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +380,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
 
+        VerBtn.setText("Ver");
+        VerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+                .addComponent(VerBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CrearUsuarioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ModificarUsuarioBtn)
@@ -392,13 +403,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearUsuarioBtn)
                     .addComponent(ModificarUsuarioBtn)
-                    .addComponent(EliminarUsuarioBtn))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(EliminarUsuarioBtn)
+                    .addComponent(VerBtn)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -413,7 +424,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -478,6 +489,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         CampusMenu.add(AdministarPorterosMenuItem);
+        CampusMenu.add(jSeparator6);
 
         SalirItem.setText("Salir");
         SalirItem.addActionListener(new java.awt.event.ActionListener() {
@@ -486,7 +498,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         CampusMenu.add(SalirItem);
-        CampusMenu.add(jSeparator6);
 
         jMenuBar1.add(CampusMenu);
 
@@ -531,6 +542,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(CrearParqueaderoMenuItem);
 
         ModificarParqueaderoMenuItem.setText("Modificar Parqueadero");
+        ModificarParqueaderoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarParqueaderoMenuItemActionPerformed(evt);
+            }
+        });
         ParqueaderosMenu.add(ModificarParqueaderoMenuItem);
 
         EliminarParqueaderoMenuItem.setText("Eliminar Parqueadero");
@@ -626,6 +642,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
+        EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
+        eliminarParqueaderoGUI.setLocationRelativeTo(this);
+        eliminarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_EliminarParqueaderoMenuItemActionPerformed
 
     private void AcercaDeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeMenuItemActionPerformed
@@ -634,6 +653,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoBtnActionPerformed
         // TODO add your handling code here:
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
+        eliminarParqueaderoGUI.cargarDatos(idParqueadero);
+        eliminarParqueaderoGUI.setLocationRelativeTo(this);
+        eliminarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
 
     private void CrearParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoBtnActionPerformed
@@ -780,6 +809,42 @@ public class PrincipalGUI extends javax.swing.JFrame {
         administarPorterosGUI.setVisible(true);
     }//GEN-LAST:event_AdministarPorterosMenuItemActionPerformed
 
+    private void ModificarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        
+        EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
+        editarParqueaderoGUI.setLocationRelativeTo(this);
+               
+        try {
+            editarParqueaderoGUI.cargarDatos(idParqueadero);
+            editarParqueaderoGUI.habilitarCampos();
+            editarParqueaderoGUI.setVisible(true);
+        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
+
+    private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
+        // TODO add your handling code here:
+        
+        
+        EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
+        editarParqueaderoGUI.setLocationRelativeTo(this);
+        
+        editarParqueaderoGUI.setVisible(true);
+    }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
+
+    private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_VerBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -851,6 +916,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JComboBox TipoUsuarioCB;
     private javax.swing.JMenu UsuariosMenu;
+    private javax.swing.JButton VerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
