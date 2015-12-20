@@ -7,22 +7,24 @@ package edu.ucue.jparking.gui;
 
 //import static javafx.application.Platform.exit;
 
-import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
-import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 
 /**
  *
  * @author Franklin Lara
+ * @author Santos Gallegos
  */
 public class PrincipalGUI extends javax.swing.JFrame {
 
@@ -31,13 +33,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
      */
     public PrincipalGUI() {
         initComponents();
+        
         ImageIcon imgIcon = new ImageIcon("../JParking/img/transport122.png");
         this.setIconImage(imgIcon.getImage());
+        
         listarUsuarios();
+        try {
+            listarParqueaderos();
+        } catch (CampusNoExistenteException ex) {
+        }
+        
         setLocationRelativeTo(null);
     }
     
-        private void listarUsuarios(){        
+    private void listarUsuarios(){        
         UsuarioService usuarioService = new UsuarioService();
         
         String tipoUsuario = (String) TipoUsuarioCB.getSelectedItem();
@@ -70,6 +79,27 @@ public class PrincipalGUI extends javax.swing.JFrame {
         int n = 1;
         for(Usuario u : usuarios)
             model.addRow(new Object[]{n++, u.getCedula(), u.getNombres() + " " + u.getApellidos()});
+    }
+    
+    private void listarParqueaderos() throws CampusNoExistenteException{
+        ParqueaderoService parqueaderoService = new ParqueaderoService();
+
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        
+        if(nombreCampus == null || nombreCampus.trim().length() == 0)
+            return;
+        
+        Set<Parqueadero> parqueaderos = parqueaderoService.getParqueaderos(nombreCampus);
+
+        DefaultTableModel model = (DefaultTableModel) TablaParqueaderos.getModel();
+
+        //Borrar elementos anteriores
+        for(int i = 0; i < model.getRowCount(); i++)
+            model.removeRow(i);
+
+        int n = 1;
+        for(Parqueadero p : parqueaderos)
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresDisponibles()});
     }
 
     /**
@@ -147,6 +177,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jSplitPane1.setOneTouchExpandable(true);
 
         jLabel1.setText("Campus:");
+
+        CampusCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampusCBActionPerformed(evt);
+            }
+        });
 
         TablaParqueaderos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -537,6 +573,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         RegistrosMenu.setText("Registros");
 
         ListarRegistrosMenuItem.setText("Listar registros");
+        ListarRegistrosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarRegistrosMenuItemActionPerformed(evt);
+            }
+        });
         RegistrosMenu.add(ListarRegistrosMenuItem);
 
         jMenuBar1.add(RegistrosMenu);
@@ -678,6 +719,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void TipoUsuarioCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioCBActionPerformed
         listarUsuarios();
     }//GEN-LAST:event_TipoUsuarioCBActionPerformed
+
+    private void ListarRegistrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarRegistrosMenuItemActionPerformed
+        RegistrosGUI registrosGUI = new RegistrosGUI(this, true);
+        registrosGUI.setLocationRelativeTo(this);
+        registrosGUI.setVisible(true);
+    }//GEN-LAST:event_ListarRegistrosMenuItemActionPerformed
+
+    private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed
+        try {
+            listarParqueaderos();
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_CampusCBActionPerformed
 
     /**
      * @param args the command line arguments
