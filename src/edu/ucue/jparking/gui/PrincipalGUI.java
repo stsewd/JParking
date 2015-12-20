@@ -673,8 +673,21 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
         // TODO add your handling code here:
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        
         EditarCampusGUI editarCampusGUI = new EditarCampusGUI();
-        editarCampusGUI.setVisible(true);
+        editarCampusGUI.setLocationRelativeTo(this);
+        try {
+            editarCampusGUI.CargarDatos(nombreCampus);
+            editarCampusGUI.setVisible(true);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
     }//GEN-LAST:event_ModicarCampusMenuItemActionPerformed
 
     private void EditarPuertaItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPuertaItemActionPerformed

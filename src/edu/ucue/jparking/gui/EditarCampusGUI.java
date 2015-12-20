@@ -26,7 +26,6 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         initComponents();
         DireccionTextField.setEditable(false);
         EstadoCK.setEnabled(false);
-        //NombreTextFieldInputMethodTextChanged(null);
     }
 
     /**
@@ -162,9 +161,7 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
     
-    public void CargarCampus(){
-        
-    }
+    
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombreTextField.getText();
@@ -177,16 +174,8 @@ public class EditarCampusGUI extends javax.swing.JFrame {
             this.setVisible(false);
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            DireccionTextField.setEditable(false);
-            EstadoCK.setEnabled(false);
-            DireccionTextField.setText("");
-            EstadoCK.setSelected(false);
         }catch(IllegalArgumentException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            DireccionTextField.setEditable(false);
-            EstadoCK.setEnabled(false);
-            DireccionTextField.setText("");
-            EstadoCK.setSelected(false);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 
@@ -205,18 +194,9 @@ public class EditarCampusGUI extends javax.swing.JFrame {
 
     private void NombreTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyPressed
         // TODO add your handling code here:
-        
-        CampusService campusService = new CampusService();
-        
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
-                Campus campus = campusService.getCampus(NombreTextField.getText());
-                DireccionTextField.setEditable(true);
-                EstadoCK.setEnabled(true);
-                DireccionTextField.setText(campus.getDireccion());
-                EstadoCK.setSelected(campus.isActivo());
-                
-                
+                CargarDatos(NombreTextField.getText());
             }catch (CampusNoExistenteException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }catch (IllegalArgumentException ex){
@@ -226,8 +206,15 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_NombreTextFieldKeyPressed
 
-    public void CargarCampsus(){
-        
+    public void CargarDatos(String nombre) throws CampusNoExistenteException{
+        CampusService campusService = new CampusService();
+        Campus campus = campusService.getCampus(nombre);
+        NombreTextField.setText(nombre);
+        NombreTextField.setEditable(false);
+        DireccionTextField.setEditable(true);
+        EstadoCK.setEnabled(true);
+        DireccionTextField.setText(campus.getDireccion());
+        EstadoCK.setSelected(campus.isActivo());
     }
     
     /**
