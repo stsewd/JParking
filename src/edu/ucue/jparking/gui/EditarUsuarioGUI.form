@@ -133,9 +133,6 @@
     <Component class="javax.swing.JTextField" name="TelefonoTF">
     </Component>
     <Component class="javax.swing.JTextField" name="CedulaTF">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="CedulaTFInputMethodTextChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTFActionPerformed"/>

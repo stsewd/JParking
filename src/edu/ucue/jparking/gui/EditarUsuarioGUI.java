@@ -26,7 +26,6 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
      */
     public EditarUsuarioGUI() {
         initComponents();
-        //CedulaTF.setText("0105036024");
         CedulaTFInputMethodTextChanged(null);
     }
 
@@ -61,7 +60,6 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Cédula:");
 
-        CedulaTF.setEditable(false);
         CedulaTF.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 CedulaTFInputMethodTextChanged(evt);
@@ -230,25 +228,10 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
         // TODO add your handling code here:
-        /*
+        
         UsuarioService usuarioService = new UsuarioService();
-        if(CedulaTF.getText().length()==10){
-            Usuario usuario;
-            try {
-                usuario = usuarioService.get(CedulaTF.getText());
-                NombresTF.setText(usuario.getNombres());
-                ApellidosTF.setText(usuario.getApellidos());
-                DireccionTF.setText(usuario.getDireccion());
-                TelefonoTF.setText(usuario.getTelefono());
-                
-            } catch (UsuarioNoExistenteException ex) {
-                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CedulaNoValidaException ex) {
-                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
-        if(evt.getKeyCode()==KeyEvent.VK_){
+                   
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 Usuario usuario = usuarioService.get(CedulaTF.getText());
                 NombresTF.setText(usuario.getNombres());
@@ -257,30 +240,18 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
                 TelefonoTF.setText(usuario.getTelefono());
                 
             } catch (UsuarioNoExistenteException ex) {
-                Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             } catch (CedulaNoValidaException ex) {
-                Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch(IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
-        }*/
+        }
     }//GEN-LAST:event_CedulaTFKeyPressed
 
     private void CedulaTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTFInputMethodTextChanged
         // TODO add your handling code here:
-        UsuarioService usuarioService = new UsuarioService();
-        Usuario usuario;
-            try {
-                usuario = usuarioService.get(CedulaTF.getText());
-                NombresTF.setText(usuario.getNombres());
-                ApellidosTF.setText(usuario.getApellidos());
-                DireccionTF.setText(usuario.getDireccion());
-                TelefonoTF.setText(usuario.getTelefono());
-                EstadoCK.setSelected(usuario.isActivo());
-                
-            } catch (UsuarioNoExistenteException ex) {
-                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CedulaNoValidaException ex) {
-                Logger.getLogger(EditarUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
     }//GEN-LAST:event_CedulaTFInputMethodTextChanged
 
     private void EstadoCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoCKActionPerformed
