@@ -21,6 +21,7 @@ import java.util.Set;
 public class PuertaService {
     PuertasDAOInterface puertasDAO = PuertasDAO.getInstance();
     Validaciones validaciones = new Validaciones();
+    
     /**
      * 
      * @param ubicacion
@@ -30,7 +31,7 @@ public class PuertaService {
      */
     public void addpuerta(String ubicacion, String id, String idCampus) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException{
         validaciones.ValidarPuerta(ubicacion, id, idCampus);
-        validaciones.validarCodigo(idCampus);
+        validaciones.validarCodigo(id);
         Puerta puerta = new Puerta(ubicacion, id, idCampus);
         puertasDAO.addPuerta(idCampus, puerta);
     }

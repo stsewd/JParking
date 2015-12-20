@@ -9,6 +9,8 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -96,7 +98,7 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
                             .addComponent(CampusTF, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(CodigoTF)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 257, Short.MAX_VALUE)
+                        .addGap(0, 167, Short.MAX_VALUE)
                         .addComponent(CrearBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelarBtn)))
@@ -129,6 +131,9 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void asignarCampus(String Campus){
+        CampusTF.setText(Campus);
+    }
     private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CodigoTFActionPerformed
@@ -144,13 +149,20 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
         String Ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
         PuertaService puertaService = new PuertaService();
+        
         try {
             puertaService.addpuerta(Ubicacion, codigo, campus);
             JOptionPane.showMessageDialog(rootPane, "Puerta creada con exito.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
+        } catch (CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PuertaYaExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
+            
+        
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     /**

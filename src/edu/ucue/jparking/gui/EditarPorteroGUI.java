@@ -219,6 +219,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         DireccionTF2.setEditable(true);
         TelefonoTF.setEditable(true);
         EstadoCK.setEnabled(true);
+        //CampusTF.setEditable(false);
     }
     
     public void CargarDatos(String cedula) throws CedulaNoValidaException{
@@ -229,6 +230,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         DireccionTF2.setText(portero.getDireccion());
         TelefonoTF.setText(portero.getTelefono());
         EstadoCK.setSelected(portero.isActivo());
+        CampusTF.setText(portero.getCampus());
     }
     
     private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged

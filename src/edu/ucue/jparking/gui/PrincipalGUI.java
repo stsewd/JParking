@@ -8,12 +8,15 @@ package edu.ucue.jparking.gui;
 //import static javafx.application.Platform.exit;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -37,6 +40,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
      */
     public PrincipalGUI() {
         initComponents();
+        
+        
         
         //Establecer icono de aplicacion
         ImageIcon imgIcon = new ImageIcon("../JParking/img/transport122.png");
