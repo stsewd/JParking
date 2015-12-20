@@ -7,8 +7,8 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
-import edu.ucue.jparking.srv.LugaresDeParqueoOCupadosException;
-import edu.ucue.jparking.srv.NumeroLugaresDeParqueoInsuficientesException;
+import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
+import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
