@@ -151,6 +151,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModificarUsuarioBtn = new javax.swing.JButton();
         CrearUsuarioBtn = new javax.swing.JButton();
         EliminarUsuarioBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
         CrearCampusMenuItem = new javax.swing.JMenuItem();
@@ -159,8 +160,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         AdministarPuertasMenuItem = new javax.swing.JMenuItem();
         AdministarPorterosMenuItem = new javax.swing.JMenuItem();
-        SalirItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        SalirItem = new javax.swing.JMenuItem();
         UsuariosMenu = new javax.swing.JMenu();
         CrearUsuarioMenuItem = new javax.swing.JMenuItem();
         ModificarUsuarioMenuItem = new javax.swing.JMenuItem();
@@ -372,12 +373,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Ver");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CrearUsuarioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ModificarUsuarioBtn)
@@ -387,13 +391,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearUsuarioBtn)
                     .addComponent(ModificarUsuarioBtn)
-                    .addComponent(EliminarUsuarioBtn))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(EliminarUsuarioBtn)
+                    .addComponent(jButton1)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -408,7 +412,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -473,6 +477,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         CampusMenu.add(AdministarPorterosMenuItem);
+        CampusMenu.add(jSeparator6);
 
         SalirItem.setText("Salir");
         SalirItem.addActionListener(new java.awt.event.ActionListener() {
@@ -481,7 +486,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         CampusMenu.add(SalirItem);
-        CampusMenu.add(jSeparator6);
 
         jMenuBar1.add(CampusMenu);
 
@@ -846,6 +850,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JComboBox TipoUsuarioCB;
     private javax.swing.JMenu UsuariosMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
