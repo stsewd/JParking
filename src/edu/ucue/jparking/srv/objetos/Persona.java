@@ -122,4 +122,8 @@ public abstract class Persona {
         this.telefono = telefono;
     }
     
+    public String getTipoUsuarioString(){
+        return tipoUsuario.toString();
+    }
+    
 }

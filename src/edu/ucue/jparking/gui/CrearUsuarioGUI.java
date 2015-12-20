@@ -191,7 +191,7 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
         UsuarioService usuarioService = new UsuarioService();
         try {
             usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
-            JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente!!!", "Usuario", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (UsuarioYaExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

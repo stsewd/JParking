@@ -8,9 +8,11 @@ package edu.ucue.jparking.gui;
 //import static javafx.application.Platform.exit;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
@@ -44,6 +46,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         
         setLocationRelativeTo(null);
+    }
+    
+    private void cargarParqueaderosCB(){
+        //Cargar parqueaderos en combo box
     }
     
     private void listarUsuarios(){        
@@ -711,9 +717,23 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
     
     private void ModificarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioBtnActionPerformed
+        int row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        
         EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
         editarUsuarioGUI.setLocationRelativeTo(this);
-        editarUsuarioGUI.setVisible(true);
+        
+        try {
+            editarUsuarioGUI.cargarDatos(cedula);
+            editarUsuarioGUI.habilitarCampos();
+            editarUsuarioGUI.setVisible(true);
+        } catch (UsuarioNoExistenteException | CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
 
     private void TipoUsuarioCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioCBActionPerformed

@@ -28,6 +28,31 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         initComponents();
         CedulaTFInputMethodTextChanged(null);
     }
+   
+    public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        UsuarioService usuarioService = new UsuarioService();
+        Usuario usuario = usuarioService.get(cedula);
+        
+        CedulaTF.setText(cedula);
+        TipoUsuarioTF.setText(usuario.getTipoUsuarioString());
+        NombresTF.setText(usuario.getNombres());
+        ApellidosTF.setText(usuario.getApellidos());
+        DireccionTF.setText(usuario.getDireccion());
+        TelefonoTF.setText(usuario.getTelefono());
+        EstadoCK.setSelected(usuario.isActivo());
+        
+    }
+    
+    public void habilitarCampos() {
+        CedulaTF.setEditable(false);
+        TipoUsuarioTF.setEnabled(true);
+        NombresTF.setEnabled(true);
+        ApellidosTF.setEnabled(true);
+        DireccionTF.setEnabled(true);
+        TelefonoTF.setEnabled(true);
+        EstadoCK.setEnabled(true);
+        EditarBtn.setEnabled(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +63,8 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CedulaTF1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -53,6 +80,28 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         ApellidosTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         EstadoCK = new javax.swing.JCheckBox();
+        TipoUsuarioTF = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+
+        CedulaTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CedulaTF1ActionPerformed(evt);
+            }
+        });
+        CedulaTF1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                CedulaTF1InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        CedulaTF1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CedulaTF1KeyPressed(evt);
+            }
+        });
+
+        jLabel7.setText("Cédula:");
 
         setTitle("Editar usuario");
 
@@ -60,16 +109,20 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Cédula:");
 
+        NombresTF.setEnabled(false);
+
+        TelefonoTF.setEnabled(false);
+
+        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CedulaTFActionPerformed(evt);
+            }
+        });
         CedulaTF.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 CedulaTFInputMethodTextChanged(evt);
             }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTFActionPerformed(evt);
             }
         });
         CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -80,6 +133,7 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Apellidos:");
 
+        DireccionTF.setEnabled(false);
         DireccionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DireccionTFActionPerformed(evt);
@@ -98,20 +152,46 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         });
 
         EditarBtn.setText("Editar");
+        EditarBtn.setEnabled(false);
         EditarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditarBtnActionPerformed(evt);
             }
         });
 
+        ApellidosTF.setEnabled(false);
+
         jLabel4.setText("Estado:");
 
         EstadoCK.setText("Activo");
+        EstadoCK.setEnabled(false);
         EstadoCK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EstadoCKActionPerformed(evt);
             }
         });
+
+        TipoUsuarioTF.setEditable(false);
+        TipoUsuarioTF.setEnabled(false);
+        TipoUsuarioTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoUsuarioTFActionPerformed(evt);
+            }
+        });
+        TipoUsuarioTF.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                TipoUsuarioTFInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        TipoUsuarioTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TipoUsuarioTFKeyPressed(evt);
+            }
+        });
+
+        jLabel8.setText("Tipo usuario:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,67 +200,73 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(EditarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CancelarBtn1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel5)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(38, 38, 38))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(56, 56, 56)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EstadoCK)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CedulaTF)
-                                .addComponent(ApellidosTF)
-                                .addComponent(NombresTF)
-                                .addComponent(DireccionTF)
-                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(DireccionTF, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ApellidosTF, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(NombresTF, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(EstadoCK)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(EditarBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CancelarBtn1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(NombresTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(NombresTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(ApellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addComponent(DireccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ApellidosTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(34, 34, 34))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DireccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(EstadoCK))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CancelarBtn1)
                     .addComponent(EditarBtn))
@@ -214,14 +300,10 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
         boolean estado = EstadoCK.isSelected();
         UsuarioService usuarioService = new UsuarioService();
         try {
-            usuarioService.mod(cedula, nombre, apellido, direccion, telefono, true);
-            JOptionPane.showMessageDialog(rootPane, "Usuario modificado exitosamente!!!", "Usuario", JOptionPane.OK_OPTION);
+            usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
+            JOptionPane.showMessageDialog(rootPane, "Usuario modificado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        }catch (IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CedulaNoValidaException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoExistenteException ex) {
+        }catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
@@ -233,17 +315,9 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
                    
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
-                Usuario usuario = usuarioService.get(CedulaTF.getText());
-                NombresTF.setText(usuario.getNombres());
-                ApellidosTF.setText(usuario.getApellidos());
-                DireccionTF.setText(usuario.getDireccion());
-                TelefonoTF.setText(usuario.getTelefono());
-                
-            } catch (UsuarioNoExistenteException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            } catch (CedulaNoValidaException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }catch(IllegalArgumentException ex){
+                cargarDatos(CedulaTF.getText());
+                habilitarCampos();
+            } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }
@@ -257,6 +331,30 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
     private void EstadoCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoCKActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EstadoCKActionPerformed
+
+    private void CedulaTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CedulaTF1ActionPerformed
+
+    private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
+
+    private void CedulaTF1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTF1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CedulaTF1KeyPressed
+
+    private void TipoUsuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoUsuarioTFActionPerformed
+
+    private void TipoUsuarioTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_TipoUsuarioTFInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoUsuarioTFInputMethodTextChanged
+
+    private void TipoUsuarioTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TipoUsuarioTFKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoUsuarioTFKeyPressed
 
     /**
      * @param args the command line arguments
@@ -297,17 +395,22 @@ public class EditarUsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JTextField ApellidosTF;
     private javax.swing.JButton CancelarBtn1;
     private javax.swing.JTextField CedulaTF;
+    private javax.swing.JTextField CedulaTF1;
     private javax.swing.JTextField DireccionTF;
     private javax.swing.JButton EditarBtn;
     private javax.swing.JCheckBox EstadoCK;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
+    private javax.swing.JTextField TipoUsuarioTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
 }
