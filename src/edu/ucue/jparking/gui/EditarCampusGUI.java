@@ -170,7 +170,7 @@ public class EditarCampusGUI extends javax.swing.JFrame {
         boolean estado = EstadoCK.isSelected();
         try {
             campusService.modCampus(nombre, direccion, estado);
-            JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito", "Campus", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito!!", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
