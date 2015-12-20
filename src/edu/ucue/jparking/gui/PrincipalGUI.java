@@ -637,6 +637,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
+        EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
+        eliminarParqueaderoGUI.setLocationRelativeTo(this);
+        eliminarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_EliminarParqueaderoMenuItemActionPerformed
 
     private void AcercaDeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeMenuItemActionPerformed
@@ -645,6 +648,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoBtnActionPerformed
         // TODO add your handling code here:
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
+        eliminarParqueaderoGUI.cargarDatos(idParqueadero);
+        eliminarParqueaderoGUI.setLocationRelativeTo(this);
+        eliminarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
 
     private void CrearParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoBtnActionPerformed
