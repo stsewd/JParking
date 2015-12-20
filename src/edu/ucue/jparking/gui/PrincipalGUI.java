@@ -7,6 +7,10 @@ package edu.ucue.jparking.gui;
 
 //import static javafx.application.Platform.exit;
 
+import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.objetos.Usuario;
+
+
 
 /**
  *
@@ -612,6 +616,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
 
+    private void listarUsuarios(){
+        UsuarioService usuarioService = new UsuarioService();
+        Set<Usuario> usuarios = usuarioService.getLista();
+        for(i:usuarioService){
+            TablaUsuarios.add(this);
+        }
+    }
     private void ModificarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioBtnActionPerformed
         // TODO add your handling code here:
         EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI();
