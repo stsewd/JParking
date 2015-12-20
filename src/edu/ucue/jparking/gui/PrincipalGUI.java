@@ -46,6 +46,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
+    private void cargarParqueaderosCB(){
+        //Cargar parqueaderos en combo box
+    }
+    
     private void listarUsuarios(){        
         UsuarioService usuarioService = new UsuarioService();
         
