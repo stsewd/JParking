@@ -5,6 +5,16 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.OrdenPago;
+import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Franklin
@@ -165,6 +175,25 @@ public class CrearUsuarioGUI extends javax.swing.JFrame {
 
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
         // TODO add your handling code here:
+        String nombre = NombresTF.getText();
+        String apellido = ApellidosTF.getText();
+        String direccion = DireccionTF.getText();
+        String telefono = TelefonoTF.getText();
+        String cedula = CedulaTF.getText();
+        String tipoUsuario =  (String) TipoUsuarioCB.getSelectedItem();
+        UsuarioService usuarioService = new UsuarioService();
+        try {
+            usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
+        } catch (UsuarioYaExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            //Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            //Logger.getLogger(CrearUsuarioGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed

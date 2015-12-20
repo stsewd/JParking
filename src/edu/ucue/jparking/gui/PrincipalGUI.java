@@ -552,6 +552,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
         CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI();
+        crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
 

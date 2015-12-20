@@ -20,14 +20,14 @@ import java.util.Set;
  */
 public class UsuarioService {
     
-    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, TipoUsuario tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
-        if(tipoUsuario==TipoUsuario.ESTUDIANTE){
+    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
+        if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.add(cedula, nombre, apellido,direccion,telefono);
-        }else if(tipoUsuario==TipoUsuario.DOCENTE){
+        }else if(tipoUsuario.equalsIgnoreCase("DOCENTE")){
             DocenteService docenteService = new DocenteService();
             docenteService.add(cedula, nombre, apellido,direccion,telefono);
-        }else if(tipoUsuario==TipoUsuario.EMPLEADO){
+        }else if(tipoUsuario.equalsIgnoreCase("EMPLEADO")){
             EmpleadoService empleadoService = new EmpleadoService();
             empleadoService.add(cedula, nombre, apellido,direccion,telefono);
         }else{
@@ -35,14 +35,14 @@ public class UsuarioService {
         } 
     }
     
-    public void del(String cedula,TipoUsuario tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
-        if(tipoUsuario==TipoUsuario.ESTUDIANTE){
+    public void del(String cedula,String tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.del(cedula);
-        }else if(tipoUsuario==TipoUsuario.DOCENTE){
+        }else if(tipoUsuario.equalsIgnoreCase("DOCENTE")){
             DocenteService docenteService = new DocenteService();
             docenteService.del(cedula);
-        }else if(tipoUsuario==TipoUsuario.EMPLEADO){
+        }else if(tipoUsuario.equalsIgnoreCase("EMPLEADO")){
             EmpleadoService empleadoService = new EmpleadoService();
             empleadoService.del(cedula);
         }else{
@@ -50,14 +50,14 @@ public class UsuarioService {
         } 
     }
     
-    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado, TipoUsuario tipoUsuario) throws CedulaNoValidaException, UsuarioNoExistenteException {
-        if(tipoUsuario==TipoUsuario.ESTUDIANTE){
+    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado, String tipoUsuario) throws CedulaNoValidaException, UsuarioNoExistenteException {
+        if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.mod(cedula, nombre, apellido,direccion,telefono,estado);
-        }else if(tipoUsuario==TipoUsuario.DOCENTE){
+        }else if(tipoUsuario.equalsIgnoreCase("DOCENTE")){
             DocenteService docenteService = new DocenteService();
             docenteService.mod(cedula, nombre, apellido,direccion,telefono,estado);
-        }else if(tipoUsuario==TipoUsuario.EMPLEADO){
+        }else if(tipoUsuario.equalsIgnoreCase("EMPLEADO")){
             EmpleadoService empleadoService = new EmpleadoService();
             empleadoService.mod(cedula, nombre, apellido,direccion,telefono,estado);
         }else{
@@ -65,14 +65,14 @@ public class UsuarioService {
         } 
     }
     
-    public Usuario get(String cedula,TipoUsuario tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
-        if(tipoUsuario==TipoUsuario.ESTUDIANTE){
+    public Usuario get(String cedula,String tipoUsuario) throws UsuarioNoExistenteException, CedulaNoValidaException{
+        if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             return estudianteService.get(cedula);
-        }else if(tipoUsuario==TipoUsuario.DOCENTE){
+        }else if(tipoUsuario.equalsIgnoreCase("DOCENTE")){
             DocenteService docenteService = new DocenteService();
             return docenteService.get(cedula);
-        }else if(tipoUsuario==TipoUsuario.EMPLEADO){
+        }else if(tipoUsuario.equalsIgnoreCase("EMPLEADO")){
             EmpleadoService empleadoService = new EmpleadoService();
             return empleadoService.get(cedula);
         }else{
