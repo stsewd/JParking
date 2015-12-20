@@ -23,6 +23,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
      */
     public PrincipalGUI() {
         initComponents();
+        ImageIcon imgIcon = new ImageIcon("../JParking/img/transport122.png");
+        this.setIconImage(imgIcon.getImage());
         setLocationRelativeTo(null);
     }
 
