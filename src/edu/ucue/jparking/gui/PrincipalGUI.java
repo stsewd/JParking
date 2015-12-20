@@ -317,7 +317,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         CampusMenu.add(CrearCampusMenuItem);
 
-        ModicarCampusMenuItem.setText("Modificar Campus");
+        ModicarCampusMenuItem.setText("Editar Campus");
         ModicarCampusMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModicarCampusMenuItemActionPerformed(evt);

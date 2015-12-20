@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ModicarCampusMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar Campus"/>
+                <Property name="text" type="java.lang.String" value="Editar Campus"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModicarCampusMenuItemActionPerformed"/>
