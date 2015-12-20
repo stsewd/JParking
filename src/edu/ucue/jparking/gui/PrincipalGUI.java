@@ -157,11 +157,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModicarCampusMenuItem = new javax.swing.JMenuItem();
         EliminarCampusMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         AdministarPuertasMenuItem = new javax.swing.JMenuItem();
         AdministarPorterosMenuItem = new javax.swing.JMenuItem();
         SalirItem = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         UsuariosMenu = new javax.swing.JMenu();
         CrearUsuarioMenuItem = new javax.swing.JMenuItem();
         ModificarUsuarioMenuItem = new javax.swing.JMenuItem();
@@ -458,8 +457,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         CampusMenu.add(EliminarCampusMenuItem);
         CampusMenu.add(jSeparator1);
-        CampusMenu.add(jSeparator3);
-        CampusMenu.add(jSeparator2);
 
         AdministarPuertasMenuItem.setText("Administrar Puertas");
         AdministarPuertasMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -484,6 +481,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         CampusMenu.add(SalirItem);
+        CampusMenu.add(jSeparator6);
 
         jMenuBar1.add(CampusMenu);
 
@@ -838,10 +836,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
