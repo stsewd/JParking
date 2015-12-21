@@ -638,6 +638,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
+        String campus = (String) CampusCB.getSelectedItem();
+        if(campus == null || campus.trim().length() == 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+            
+        CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
+        crearParqueaderoGUI.setLocationRelativeTo(this);
+        crearParqueaderoGUI.CargarDatos(campus);
+        crearParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_CrearParqueaderoMenuItemActionPerformed
 
     private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed

@@ -308,11 +308,6 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
 
     private void EliminarPorterobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPorterobtnActionPerformed
         // TODO add your handling code here:
-        String nombreCampus = (String) CampusCB.getSelectedItem();
-        if(nombreCampus==null){
-            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
-            return;
-        }
         int row = TablaPorteros.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
