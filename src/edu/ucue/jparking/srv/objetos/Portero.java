@@ -12,7 +12,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
 public class Portero extends Persona{
     private String campus;
 
-    public Portero(String cedula, String nombres, String apellidos, String direccion, String telefono, String nombreCampus) {
+    public Portero(String campus, String cedula, String nombres, String apellidos, String direccion, String telefono) {
         super(cedula, nombres, apellidos, direccion, telefono, TipoUsuario.PORTERO);
         this.campus = campus;
     }

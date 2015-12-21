@@ -35,7 +35,7 @@ public class PorterosService {
     {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
-        Portero portero = new Portero(cedula, nombre, apellido, direccion, telefono, nombre);
+        Portero portero = new Portero(campus, cedula, nombre, apellido, direccion, telefono);
         porterosDAO.addPortero(campus, portero);
     }
     /**

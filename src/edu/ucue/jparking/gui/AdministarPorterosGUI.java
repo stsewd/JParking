@@ -34,7 +34,6 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         initComponents();
         
         //carga el CampusCB
-        //cargarCampusCB();
         cargarCampusCB();
         
         
@@ -323,12 +322,11 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         eliminarPorteroGUI.setLocationRelativeTo(this);
         eliminarPorteroGUI.CargarCedula(cedula);
         eliminarPorteroGUI.setVisible(true);
+        
         try {
             listarPorteros();
         } catch (CampusNoExistenteException ex) {
         }
-        
-        
     }//GEN-LAST:event_EliminarPorterobtnActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
