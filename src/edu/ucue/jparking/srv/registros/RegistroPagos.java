@@ -23,4 +23,9 @@ public class RegistroPagos extends Registro {
     public TipoTramite getTipoTramite() {
         return tipoTramite;
     }    
+
+    @Override
+    public String getTipoAccionString() {
+        return tipoTramite.toString();
+    }
 }

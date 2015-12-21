@@ -5,7 +5,11 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.dao.RegistrosDAO;
+import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoTramite;
@@ -48,8 +52,13 @@ public class RegistroService {
      * @param fechaInicio
      * @param fechaFinal
      * @return 
+     * @throws edu.ucue.jparking.srv.FechaInicialMayorAFechaFinalException 
+     * @throws edu.ucue.jparking.srv.FechaFinalMenorAFechaInicialException 
      */
-    public Set<Registro> get(TipoRegistro tipoRegistro,Calendar fechaInicio,Calendar fechaFinal){
+    public Set<Registro> get(TipoRegistro tipoRegistro,Calendar fechaInicio,Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
+        
+        Validaciones.validarFecha(fechaInicio, fechaFinal);
+        
         if(tipoRegistro==TipoRegistro.USUARIO){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             return registroUsuarioService.getRegistroUsuarios(fechaInicio, fechaFinal);
@@ -98,7 +107,21 @@ public class RegistroService {
      * @param fechaFinal
      * @return 
      */
-    public Set<Registro>  get(Calendar fechaInicio, Calendar fechaFinal){
+    public Set<Registro>  get(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
+        
+        Validaciones.validarFecha(fechaInicio, fechaFinal);
+        
         return RegistrosDAO.getInstance().getRegistros(fechaInicio, fechaFinal);
+    }
+
+    public Registro get(String idRegistro) throws RegistroNoExistenteException {
+        int id = 0;
+        try{
+            id = Integer.parseInt(idRegistro);
+        }
+        catch (Exception ex){
+            throw new IllegalArgumentException("Id de registro no valido.");
+        }
+        return RegistrosDAO.getInstance().getRegistro(id);
     }
 }

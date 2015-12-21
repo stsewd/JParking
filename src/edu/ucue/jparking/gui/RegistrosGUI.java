@@ -5,6 +5,22 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
+import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
+import edu.ucue.jparking.srv.RegistroService;
+import edu.ucue.jparking.srv.enums.TipoRegistro;
+import edu.ucue.jparking.srv.registros.Registro;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author stsewd
@@ -17,6 +33,81 @@ public class RegistrosGUI extends javax.swing.JDialog {
     public RegistrosGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    
+    public void listarRegistros(){        
+        RegistroService registroService = new RegistroService();
+        
+        String tipoRegistro = (String) TipoRegistroCB.getSelectedItem();
+        Set<Registro> registros = null;
+        switch(tipoRegistro){
+            case "Todos": {
+                registros = registroService.get();
+                break;
+            }
+            case "Acceso a parqueadero":{
+                registros = registroService.get(TipoRegistro.ACCESO_PARQUEADERO);
+                break;
+            }
+            case "Pagos": {
+                registros = registroService.get(TipoRegistro.PAGOS);
+                break;
+            }
+            case "Usuario": {
+                registros = registroService.get(TipoRegistro.USUARIO);
+                break;
+            }
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) RegistrosTabla.getModel();
+        
+        //Borrar elementos anteriores
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
+            model.removeRow(i);
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");        
+        int n = 1;
+        for(Registro r : registros)
+            model.addRow(new Object[]{n++, df.format(r.getFecha().getTime()),
+                r.getCedulaPersona(), r.getTipoRegistroString(), r.getTipoAccionString()});
+    }
+    
+    
+    public void listarRegistros(Calendar fechaInicial, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{        
+        RegistroService registroService = new RegistroService();
+        
+        String tipoRegistro = (String) TipoRegistroCB.getSelectedItem();
+        Set<Registro> registros = null;
+        switch(tipoRegistro){
+            case "Todos": {
+                registros = registroService.get(fechaInicial, fechaFinal);
+                break;
+            }
+            case "Acceso a parqueadero":{
+                registros = registroService.get(TipoRegistro.ACCESO_PARQUEADERO, fechaInicial, fechaFinal);
+                break;
+            }
+            case "Pagos": {
+                registros = registroService.get(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
+                break;
+            }
+            case "Usuario": {
+                registros = registroService.get(TipoRegistro.USUARIO, fechaInicial, fechaFinal);
+                break;
+            }
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) RegistrosTabla.getModel();
+        
+        //Borrar elementos anteriores
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
+            model.removeRow(i);
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");        
+        int n = 1;
+        for(Registro r : registros)
+            model.addRow(new Object[]{n++, df.format(r.getFecha().getTime()),
+                r.getCedulaPersona(), r.getTipoRegistroString(), r.getTipoAccionString()});
     }
 
     /**
@@ -46,7 +137,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
 
         RegistrosTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "#", "Fecha", "Cedula", "Tipo de registro", "Accion"
@@ -76,6 +167,11 @@ public class RegistrosGUI extends javax.swing.JDialog {
         jLabel1.setText("Tipo registro:");
 
         TipoRegistroCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Acceso a parqueadero", "Pagos", "Usuario" }));
+        TipoRegistroCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoRegistroCBActionPerformed(evt);
+            }
+        });
 
         FechaCheckB.setText("Fecha");
         FechaCheckB.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +181,11 @@ public class RegistrosGUI extends javax.swing.JDialog {
         });
 
         VerRegistroBtn.setText("Ver registro");
+        VerRegistroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerRegistroBtnActionPerformed(evt);
+            }
+        });
 
         CerrarBtn.setText("Cerrar");
         CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +204,11 @@ public class RegistrosGUI extends javax.swing.JDialog {
 
         FiltrarBtn.setText("Filtrar");
         FiltrarBtn.setEnabled(false);
+        FiltrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FiltrarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,6 +291,46 @@ public class RegistrosGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
+
+    private void TipoRegistroCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoRegistroCBActionPerformed
+        // TODO add your handling code here:
+        listarRegistros();
+    }//GEN-LAST:event_TipoRegistroCBActionPerformed
+
+    private void FiltrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            listarRegistros(FechaInicialDate.getCalendar(), FechaFinalDate.getCalendar());
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (FechaInicialMayorAFechaFinalException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (FechaFinalMenorAFechaInicialException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (FechaInicialIgualAFechaFinalException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_FiltrarBtnActionPerformed
+
+    private void VerRegistroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRegistroBtnActionPerformed
+        // TODO add your handling code here:
+        int row = RegistrosTabla.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un registro.", "Error", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idRegistro = (String) RegistrosTabla.getValueAt(row, 0);
+        
+        RegistroGUI registroGUI = new RegistroGUI(null, true);
+        
+        try {
+            registroGUI.cargarDatos(idRegistro);
+            registroGUI.setLocationRelativeTo(this);
+            registroGUI.setVisible(true);
+        } catch (RegistroNoExistenteException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_VerRegistroBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -85,4 +85,10 @@ public abstract class Registro {
     public void setNumeroRegistro(int numeroRegistro) {
         this.numeroRegistro = numeroRegistro;
     }
+
+    public String getTipoRegistroString() {
+        return tipoRegistro.toString();
+    }
+
+    public abstract String getTipoAccionString();
 }
