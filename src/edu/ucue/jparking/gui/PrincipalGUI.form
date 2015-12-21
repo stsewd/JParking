@@ -128,27 +128,23 @@
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="AgregarPuertaAccesoItem">
+            <MenuItem class="javax.swing.JMenuItem" name="PuertasAccesoItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar puerta de acceso"/>
+                <Property name="text" type="java.lang.String" value="Puertas Acceso"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="EliminarPuertaAccesoItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Eliminar puerta de acceso"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PuertasAccesoItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="AgregarUsuarioParqueaderoItem">
+            <MenuItem class="javax.swing.JMenuItem" name="UsuariosParqueaderoItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar usuario"/>
+                <Property name="text" type="java.lang.String" value="Usuarios Paqueadero"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="EliminarUsuarioParqueaderoItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Eliminar usuario"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsuariosParqueaderoItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

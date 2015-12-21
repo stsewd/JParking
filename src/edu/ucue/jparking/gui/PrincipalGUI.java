@@ -20,6 +20,8 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -173,11 +175,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ModificarParqueaderoMenuItem = new javax.swing.JMenuItem();
         EliminarParqueaderoMenuItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        AgregarPuertaAccesoItem = new javax.swing.JMenuItem();
-        EliminarPuertaAccesoItem = new javax.swing.JMenuItem();
+        PuertasAccesoItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
-        AgregarUsuarioParqueaderoItem = new javax.swing.JMenuItem();
-        EliminarUsuarioParqueaderoItem = new javax.swing.JMenuItem();
+        UsuariosParqueaderoItem = new javax.swing.JMenuItem();
         PagosMenu = new javax.swing.JMenu();
         GenerarOrdenPagoItem = new javax.swing.JMenuItem();
         RegistrosMenu = new javax.swing.JMenu();
@@ -558,18 +558,22 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(EliminarParqueaderoMenuItem);
         ParqueaderosMenu.add(jSeparator4);
 
-        AgregarPuertaAccesoItem.setText("Agregar puerta de acceso");
-        ParqueaderosMenu.add(AgregarPuertaAccesoItem);
-
-        EliminarPuertaAccesoItem.setText("Eliminar puerta de acceso");
-        ParqueaderosMenu.add(EliminarPuertaAccesoItem);
+        PuertasAccesoItem.setText("Puertas Acceso");
+        PuertasAccesoItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PuertasAccesoItemActionPerformed(evt);
+            }
+        });
+        ParqueaderosMenu.add(PuertasAccesoItem);
         ParqueaderosMenu.add(jSeparator5);
 
-        AgregarUsuarioParqueaderoItem.setText("Agregar usuario");
-        ParqueaderosMenu.add(AgregarUsuarioParqueaderoItem);
-
-        EliminarUsuarioParqueaderoItem.setText("Eliminar usuario");
-        ParqueaderosMenu.add(EliminarUsuarioParqueaderoItem);
+        UsuariosParqueaderoItem.setText("Usuarios Paqueadero");
+        UsuariosParqueaderoItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuariosParqueaderoItemActionPerformed(evt);
+            }
+        });
+        ParqueaderosMenu.add(UsuariosParqueaderoItem);
 
         jMenuBar1.add(ParqueaderosMenu);
 
@@ -842,7 +846,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
-
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        
+        
         EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
         editarParqueaderoGUI.setLocationRelativeTo(this);
         
@@ -864,6 +875,55 @@ public class PrincipalGUI extends javax.swing.JFrame {
         usuarioGUI.setLocationRelativeTo(this);
         usuarioGUI.setVisible(true);
     }//GEN-LAST:event_VerBtnActionPerformed
+
+    private void PuertasAccesoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasAccesoItemActionPerformed
+        // TODO add your handling code here:
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        AdministrarPuertaAcceso puertaAcceso = new AdministrarPuertaAcceso(this, rootPaneCheckingEnabled);
+        puertaAcceso.setLocationRelativeTo(this);
+        try {
+            puertaAcceso.CargarDatos(nombreCampus, idParqueadero);
+            puertaAcceso.setVisible(true);
+        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
+    }//GEN-LAST:event_PuertasAccesoItemActionPerformed
+
+    private void UsuariosParqueaderoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosParqueaderoItemActionPerformed
+        // TODO add your handling code here:
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        AdministrarUsuariosParqueadero usuariosParqueadero = new AdministrarUsuariosParqueadero(this, rootPaneCheckingEnabled);
+        usuariosParqueadero.setLocationRelativeTo(this);
+        try {
+            usuariosParqueadero.CargarDatos(nombreCampus, idParqueadero);
+            usuariosParqueadero.setVisible(true);
+        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
+        
+    }//GEN-LAST:event_UsuariosParqueaderoItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -904,8 +964,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem AcercaDeMenuItem;
     private javax.swing.JMenuItem AdministarPorterosMenuItem;
     private javax.swing.JMenuItem AdministarPuertasMenuItem;
-    private javax.swing.JMenuItem AgregarPuertaAccesoItem;
-    private javax.swing.JMenuItem AgregarUsuarioParqueaderoItem;
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JMenu CampusMenu;
@@ -917,10 +975,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem EliminarCampusMenuItem;
     private javax.swing.JButton EliminarParqueaderoBtn;
     private javax.swing.JMenuItem EliminarParqueaderoMenuItem;
-    private javax.swing.JMenuItem EliminarPuertaAccesoItem;
     private javax.swing.JButton EliminarUsuarioBtn;
     private javax.swing.JMenuItem EliminarUsuarioMenuItem;
-    private javax.swing.JMenuItem EliminarUsuarioParqueaderoItem;
     private javax.swing.JMenuItem GenerarOrdenPagoItem;
     private javax.swing.JMenuItem ListarRegistrosMenuItem;
     private javax.swing.JMenuItem ModicarCampusMenuItem;
@@ -930,12 +986,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem ModificarUsuarioMenuItem;
     private javax.swing.JMenu PagosMenu;
     private javax.swing.JMenu ParqueaderosMenu;
+    private javax.swing.JMenuItem PuertasAccesoItem;
     private javax.swing.JMenu RegistrosMenu;
     private javax.swing.JMenuItem SalirItem;
     private javax.swing.JTable TablaParqueaderos;
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JComboBox TipoUsuarioCB;
     private javax.swing.JMenu UsuariosMenu;
+    private javax.swing.JMenuItem UsuariosParqueaderoItem;
     private javax.swing.JButton VerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
