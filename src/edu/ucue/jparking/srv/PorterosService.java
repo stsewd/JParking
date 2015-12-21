@@ -11,6 +11,7 @@ import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class PorterosService {
      * @param telefono
      * @throws CedulaNoValidaException 
      */
-    public void addPortero(String campus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException
+    public void addPortero(String campus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException
     {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
@@ -48,7 +49,7 @@ public class PorterosService {
      * @throws CedulaNoValidaException
      * @throws PorteroNoExistenteException 
      */
-    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException{
+    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         porterosDAO.modPortero(cedula, nombre, apellido,direccion,telefono, estado);

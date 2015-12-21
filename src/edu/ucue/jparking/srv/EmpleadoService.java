@@ -12,6 +12,7 @@ import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Empleado;
 import edu.ucue.jparking.srv.Validaciones;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import java.util.Set;
 
 /**
@@ -31,7 +32,7 @@ public class EmpleadoService {
      * @throws UsuarioYaExistenteException
      * @throws CedulaNoValidaException 
      */
-    public void add(String cedula, String nombre, String apellido, String direccion, String telefono) throws UsuarioYaExistenteException, CedulaNoValidaException {
+    public void add(String cedula, String nombre, String apellido, String direccion, String telefono) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException {
         
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         validar.validarCedula(cedula);
@@ -73,7 +74,7 @@ public class EmpleadoService {
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException 
      */    
-    public void mod(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException{
+    public void mod(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion, telefono);
         usuariosDAO.modUsuario(cedula, nombre, apellido,direccion,telefono, estado);
