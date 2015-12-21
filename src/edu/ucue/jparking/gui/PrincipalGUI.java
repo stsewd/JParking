@@ -832,8 +832,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
-        
-        
+
         EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
         editarParqueaderoGUI.setLocationRelativeTo(this);
         
@@ -842,7 +841,18 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
         // TODO add your handling code here:
+        int row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        UsuarioGUI usuarioGUI = new UsuarioGUI(this, true);
         
+        usuarioGUI.cargarDatos(cedula);
+        
+        usuarioGUI.setLocationRelativeTo(this);
+        usuarioGUI.setVisible(true);
     }//GEN-LAST:event_VerBtnActionPerformed
 
     /**
