@@ -59,7 +59,7 @@ public class PuertasDAO implements PuertasDAOInterface {
 
     @Override
     public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException {
-        return (Set<Puerta>) CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas().values();
+        return new HashSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas().values());
     }
 
     @Override

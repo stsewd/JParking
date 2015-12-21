@@ -80,8 +80,9 @@ public class PuertaService {
      * @return
      * @throws CampusNoExistenteException 
      */
-    public Set<Puerta> getPuertas(String idCampus) throws CampusNoExistenteException, CodigoNoValidoException{
-        validaciones.validarCodigo(idCampus);
+    public Set<Puerta> getPuertas(String idCampus) throws CampusNoExistenteException{
+        if(idCampus == null || idCampus.trim().length() == 0)
+            throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
         return puertasDAO.getPuertas(idCampus);
     }
     /**
