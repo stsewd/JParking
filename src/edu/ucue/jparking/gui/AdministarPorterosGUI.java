@@ -265,6 +265,10 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         crearPorteroGUI.setLocationRelativeTo(this);
         crearPorteroGUI.Cargar(nombreCampus);
         crearPorteroGUI.setVisible(true);
+        try {
+            listarPorteros();
+        } catch (CampusNoExistenteException ex) {
+        }
     }//GEN-LAST:event_CrearPorteroBtnActionPerformed
 
     private void ModificarPorteroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPorteroBtnActionPerformed
@@ -288,6 +292,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         
         try {
             editarPorteroGUI.CargarDatos(cedula);
+            editarPorteroGUI.CargarCampus(nombreCampus);
             editarPorteroGUI.HabilitarCampos();
             editarPorteroGUI.setVisible(true);
             

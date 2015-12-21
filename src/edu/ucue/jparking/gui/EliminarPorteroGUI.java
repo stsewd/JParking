@@ -121,16 +121,11 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         try {
             porterosService.delPortero(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "El portero se a elminado con exito!!", "Mensaje", JOptionPane.OK_OPTION);
-            
             this.setVisible(false);
-        } catch (CedulaNoValidaException ex) {
-            Logger.getLogger(EliminarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PorteroNoExistenteException ex) {
-            Logger.getLogger(EliminarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CampusNoExistenteException ex) {
-            Logger.getLogger(EliminarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+            this.setVisible(false);
+        } catch (CedulaNoValidaException | PorteroNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed

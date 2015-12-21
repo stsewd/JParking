@@ -11,6 +11,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Estudiante;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
@@ -23,7 +24,7 @@ public class UsuarioService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
     
-    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException{
+    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException{
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.add(cedula, nombre, apellido,direccion,telefono);

@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -203,6 +204,8 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
         } catch (PorteroYaExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (TelefonoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
             

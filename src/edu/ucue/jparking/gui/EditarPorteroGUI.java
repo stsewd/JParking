@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -240,6 +241,10 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         CampusTF.setText(portero.getCampus());
     }
     
+    public void CargarCampus(String campus){
+        CampusTF.setText(campus);
+    }
+    
     private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
         // TODO add your handling code here:
 /*
@@ -281,6 +286,8 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         } catch (PorteroNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (TelefonoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CrearBtnActionPerformed
