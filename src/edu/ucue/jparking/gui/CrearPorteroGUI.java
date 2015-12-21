@@ -180,6 +180,9 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void Cargar(String campus){
+        CampusTF.setText(campus);
+    }
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed

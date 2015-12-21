@@ -160,6 +160,8 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
             
         

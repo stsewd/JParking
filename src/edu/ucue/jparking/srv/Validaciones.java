@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.dao.CampusDAO;
+import edu.ucue.jparking.dao.PuertasDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
+import edu.ucue.jparking.srv.objetos.Puerta;
 
 /**
  *
@@ -16,6 +22,12 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 public class Validaciones {
     //private String aux;
 
+public void ComprobarParqueadero(String id) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException{
+    ParqueaderoService parqueaderoService = new ParqueaderoService();
+    Parqueadero parqueadero = parqueaderoService.getParqueadero(id);
+    if(parqueadero.isActivo()==false)
+        throw new ParquaderoInactivoException(parqueadero.getUbicacion());
+}
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     boolean cedulaCorrecta = false;
     try {
@@ -66,7 +78,7 @@ public void ValidarCampus(String nombre,String direccion){
             throw new IllegalArgumentException("La direccion del campus no puede estar vacia");
 }
 
-public void ValidarDatos(String cedula, String nombre, String apellidos, String direccion, String telefono)
+public void ValidarDatos(String cedula, String nombre, String apellidos, String direccion, String telefono) throws TelefonoNoValidoException
     {
         if(cedula==null || cedula.trim().length()==0)
             throw new IllegalArgumentException("El campo cedula no puede estar vacio");
@@ -78,8 +90,18 @@ public void ValidarDatos(String cedula, String nombre, String apellidos, String 
             throw new IllegalArgumentException("El argumento direccion no puede estar vacio");
         if(telefono==null || telefono.trim().length()==0)
             throw new IllegalArgumentException("El argumento telefono no puede estar vacio");
-        
+        ValidarTelefono(telefono);
     }
+private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
+    if(telefono.trim().length()!=10)
+        throw new TelefonoNoValidoException();
+    try{
+            Integer.parseInt(telefono.toString());
+        }catch(Exception e){
+            throw new TelefonoNoValidoException();
+        }
+        
+}
 public void ValidarPuerta(String ubicacion,String id,String idCampus){
     if(ubicacion==null||ubicacion.trim().length()==0)
             throw new IllegalArgumentException("El campo ubicaion no puede ser nulo");
