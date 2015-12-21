@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
+import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.dao.CampusDAO;
@@ -14,13 +17,39 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.util.Calendar;
 
 /**
  *
  * @author Franklin Lara
  */
 public class Validaciones {
+
+    static void validarFecha(Calendar fechaInicio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     //private String aux;
+
+    public static void validarFecha(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+        if(fechaInicio == null)
+            throw new IllegalArgumentException("Fecha inicial no valida.");
+        if(fechaFinal == null)
+            throw new IllegalArgumentException("Fecha final no valida.");
+        
+        //Si estás leyendo esto, pasar dos fechas iguales
+        //esta dando problemas...
+        //bueno, te toca implementar un método que compare
+        //mes/dia/año porque el equals y == no sirven :)
+        //
+        if(fechaFinal == fechaInicio)
+            throw new FechaInicialIgualAFechaFinalException(fechaInicio);
+        
+        if(fechaInicio.after(fechaFinal))
+            throw new FechaInicialMayorAFechaFinalException(fechaInicio, fechaFinal);
+        
+        if(fechaFinal.before(fechaInicio))
+            throw new FechaFinalMenorAFechaInicialException(fechaInicio, fechaFinal);
+    }
 
 public void ComprobarParqueadero(String id) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException{
     ParqueaderoService parqueaderoService = new ParqueaderoService();

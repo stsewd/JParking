@@ -33,29 +33,14 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     public AdministrarPuertasGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        PuertaService puertaService = new PuertaService();
-        try {
-            puertaService.addpuerta("primero", "a12", "central");
-            puertaService.addpuerta("seundo", "a13", "central");
-        } catch (CodigoNoValidoException ex) {
-            Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PuertaYaExistenteException ex) {
-            Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CampusNoExistenteException ex) {
-            Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
         //cargando campus en el combo
         cargarCampusCB();
-        
-        
         try {
             //cargando las puertas
             listarPuertas();
         } catch (CampusNoExistenteException ex) {
         } catch (CodigoNoValidoException ex) {
         }
-        
         
         //Centrar ventana
         setLocationRelativeTo(null);
@@ -236,7 +221,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         }
     }
     
-    private void listarPuertas() throws CampusNoExistenteException, CodigoNoValidoException{
+    public void listarPuertas() throws CampusNoExistenteException, CodigoNoValidoException{
         
         PuertaService puertaService = new PuertaService();
 
@@ -250,12 +235,12 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) TablaPuertas.getModel();
 
         //Borrar elementos anteriores
-        for(int i = 0; i < model.getRowCount(); i++)
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
 
         int n = 1;
         for(Puerta p : puertas)
-            model.addRow(new Object[]{n++,p.getId(),p.getUbicacion()});
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion()});
     }
 
     private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed
@@ -270,16 +255,18 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         String campus = (String)CampusCB.getSelectedItem();
-        if(campus==null || campus.trim().length()==0) 
-            JOptionPane.showMessageDialog(rootPane, "El campus no puede estra vacio", "Error", JOptionPane.OK_OPTION);
+        if(campus==null || campus.trim().length()==0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha selccionado ningun campus.", "Error", JOptionPane.OK_OPTION);
+            return;
+        }
+        
         CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI(null, rootPaneCheckingEnabled);
         crearPuertaGUI.setLocationRelativeTo(this);
         crearPuertaGUI.asignarCampus(campus);
         crearPuertaGUI.setVisible(true);
         try {
             listarPuertas();
-        } catch (CampusNoExistenteException ex) {
-        } catch (CodigoNoValidoException ex) {
+        } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
         }
     }//GEN-LAST:event_CrearPuertaBtnActionPerformed
 
@@ -300,7 +287,11 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         eliminarPuertaGUI.setLocationRelativeTo(this);
         eliminarPuertaGUI.cargarCodigo(codigo,nombreCampus);
         eliminarPuertaGUI.setVisible(true);
-        
+        try {
+            listarPuertas();
+        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException ex) {
+        }
     }//GEN-LAST:event_EliminarPuertabtnActionPerformed
 
     private void ModificarPuertaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPuertaBtnActionPerformed

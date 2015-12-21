@@ -24,4 +24,9 @@ public class RegistroUsuario extends Registro {
     public TipoModificacion getTipoModificacion() {
         return tipoModificacion;
     }
+
+    @Override
+    public String getTipoAccionString() {
+        return tipoModificacion.toString();
+    }
 }

@@ -28,5 +28,10 @@ public class RegistroAccesoParqueadero extends Registro {
     public TipoAcceso getTipoAcceso() {
         return tipoAcceso;
     }
+
+    @Override
+    public String getTipoAccionString() {
+        return tipoAcceso.toString();
+    }
     
 }

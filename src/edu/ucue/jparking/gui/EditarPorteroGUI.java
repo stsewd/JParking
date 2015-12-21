@@ -221,7 +221,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         CedulaTF1.setEditable(false);
         NombresTF.setEditable(true);
         ApellidosTF.setEditable(true);
-        CampusTF.setEditable(true);
+        CampusTF.setEditable(false);
         DireccionTF2.setEditable(true);
         TelefonoTF.setEditable(true);
         EstadoCK.setEnabled(true);

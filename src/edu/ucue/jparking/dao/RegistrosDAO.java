@@ -11,6 +11,7 @@ import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.registros.Registro;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -53,7 +54,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     
     @Override
     public Set<Registro> getRegistros(){
-        return (Set<Registro>) this.registros.values();
+        return new HashSet<>(this.registros.values());
     }
 
     @Override
