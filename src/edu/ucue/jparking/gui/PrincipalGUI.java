@@ -797,7 +797,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void AdministarPuertasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdministarPuertasMenuItemActionPerformed
         // TODO add your handling code here:
-        AdministrarPuertasGUI administrarPuertasGUI = new AdministrarPuertasGUI(this, rootPaneCheckingEnabled);
+        AdministrarPuertasGUI administrarPuertasGUI = new AdministrarPuertasGUI(this, true);
         administrarPuertasGUI.setLocationRelativeTo(this);
         administrarPuertasGUI.setVisible(true);
     }//GEN-LAST:event_AdministarPuertasMenuItemActionPerformed
