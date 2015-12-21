@@ -30,12 +30,12 @@ public class PorterosService {
      * @param telefono
      * @throws CedulaNoValidaException 
      */
-    public void addPortero(String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException
+    public void addPortero(String campus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException
     {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         Portero portero = new Portero(cedula, nombre, apellido, direccion, telefono, nombre);
-        porterosDAO.addPortero(nombre, portero);
+        porterosDAO.addPortero(campus, portero);
     }
     /**
      * 

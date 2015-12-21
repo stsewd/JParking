@@ -220,7 +220,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         }
     }
     
-    private void listarPorteros() throws CampusNoExistenteException{
+    public void listarPorteros() throws CampusNoExistenteException{
         
         PorterosService porterosService = new PorterosService();
 
@@ -234,12 +234,12 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) TablaPorteros.getModel();
 
         //Borrar elementos anteriores
-        for(int i = 0; i < model.getRowCount(); i++)
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
 
         int n = 1;
         for(Portero p : porteros)
-            model.addRow(new Object[]{n++,p.getCedula(),p.getNombres()+" "+p.getApellidos()});
+            model.addRow(new Object[]{n++, p.getCedula(), p.getNombres() + " " + p.getApellidos()});
     }
     
     private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed
@@ -253,6 +253,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         CrearPorteroGUI crearPorteroGUI = new CrearPorteroGUI(null, rootPaneCheckingEnabled);
         crearPorteroGUI.setLocationRelativeTo(this);
+        crearPorteroGUI.cargarDatos((String) CampusCB.getSelectedItem());
         crearPorteroGUI.setVisible(true);
     }//GEN-LAST:event_CrearPorteroBtnActionPerformed
 
@@ -263,15 +264,18 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
+        
         int row = TablaPorteros.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
+        
         String cedula = (String) TablaPorteros.getValueAt(row, 1);
         
-        EditarPorteroGUI editarPorteroGUI = new EditarPorteroGUI(null, rootPaneCheckingEnabled);
+        EditarPorteroGUI editarPorteroGUI = new EditarPorteroGUI(null, true, this);
         editarPorteroGUI.setLocationRelativeTo(this);
+        
         try {
             editarPorteroGUI.CargarDatos(cedula);
             editarPorteroGUI.HabilitarCampos();
@@ -280,7 +284,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         } catch (CedulaNoValidaException ex) {
             Logger.getLogger(AdministarPorterosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        editarPorteroGUI.setVisible(true);
+
         try {
             listarPorteros();
         } catch (CampusNoExistenteException ex) {

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class CrearPorteroGUI extends javax.swing.JDialog {
-
+    private AdministarPorterosGUI padre;
     /**
      * Creates new form CrearPortero
      */
@@ -115,7 +115,7 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombresTF)
+                            .addComponent(NombresTF, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                             .addComponent(ApellidosTF)
                             .addComponent(CedulaTF)
                             .addComponent(CampusTF)))
@@ -123,21 +123,16 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addGap(14, 14, 14)
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TelefonoTF)
-                            .addComponent(DireccionTF)))
+                            .addComponent(DireccionTF)
+                            .addComponent(TelefonoTF)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(CrearBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CancelarBtn)
-                                .addGap(12, 12, 12)))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(CrearBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CancelarBtn))
+                    .addComponent(jSeparator1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,9 +166,9 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CancelarBtn)
-                    .addComponent(CrearBtn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CrearBtn)
+                    .addComponent(CancelarBtn))
                 .addGap(15, 15, 15))
         );
 
@@ -195,8 +190,8 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
         PorterosService porterosService = new PorterosService();
         
         try {
-            porterosService.addPortero(cedula, nombre, apellido, direccion, telefono);
-            JOptionPane.showMessageDialog(rootPane, "Portero creado con exito!!", "Portero", JOptionPane.OK_OPTION);
+            porterosService.addPortero(campus, cedula, nombre, apellido, direccion, telefono);
+            JOptionPane.showMessageDialog(rootPane, "Portero creado con exito.", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
@@ -284,4 +279,8 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    public void cargarDatos(String campus) {
+        CampusTF.setText(campus);
+    }
 }

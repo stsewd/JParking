@@ -20,13 +20,18 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class EditarPorteroGUI extends javax.swing.JDialog {
-
+    private AdministarPorterosGUI padre;
     /**
      * Creates new form EditarPortero
      */
     public EditarPorteroGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    
+    public EditarPorteroGUI(java.awt.Frame parent, boolean modal, AdministarPorterosGUI padre) {
+        this(parent, modal);
+        this.padre = padre;
     }
 
     /**
@@ -225,6 +230,8 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     public void CargarDatos(String cedula) throws CedulaNoValidaException{
         PorterosService porterosService = new PorterosService();
         Portero portero = porterosService.getPortero(cedula);
+        CedulaTF1.setText(cedula);
+        CampusTF.setText(portero.getCampus());
         NombresTF.setText(portero.getNombres());
         ApellidosTF.setText(portero.getApellidos());
         DireccionTF2.setText(portero.getDireccion());
@@ -263,6 +270,12 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
             porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
             JOptionPane.showMessageDialog(rootPane, "Protero modificado existosamente!!", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
+            try {
+                getPadre().listarPorteros();
+            } catch (CampusNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }
+            
         } catch (CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (PorteroNoExistenteException ex) {
@@ -357,4 +370,11 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the padre
+     */
+    public AdministarPorterosGUI getPadre() {
+        return padre;
+    }
 }
