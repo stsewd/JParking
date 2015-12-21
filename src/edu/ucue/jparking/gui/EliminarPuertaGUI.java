@@ -5,20 +5,34 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
+import edu.ucue.jparking.srv.PuertaService;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
  */
 public class EliminarPuertaGUI extends javax.swing.JDialog {
 
+    AdministrarPuertasGUI padre;
     /**
      * Creates new form EliminarPuertaGUI
      */
     public EliminarPuertaGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        
     }
 
+    private AdministrarPuertasGUI getPadre(){
+        return padre;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +53,7 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
 
         jLabel1.setText("Código:");
 
+        CodigoTF.setEditable(false);
         CodigoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CodigoTFActionPerformed(evt);
@@ -46,8 +61,18 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         });
 
         EliminarBtn.setText("Eliminar");
+        EliminarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarBtnActionPerformed(evt);
+            }
+        });
 
         CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,9 +113,35 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void cargarCodigo(String codigo,String campus){
+        CodigoTF.setText(codigo);
+        
+    }
     private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CodigoTFActionPerformed
+
+    private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
+        // TODO add your handling code here:
+        PuertaService puertaService = new PuertaService();
+        try {
+            puertaService.delpuerta(CodigoTF.getText());
+            JOptionPane.showMessageDialog(rootPane, "La puerta se ha borrado satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
+            
+            this.setVisible(false);
+        } catch (CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PuertaNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_EliminarBtnActionPerformed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     /**
      * @param args the command line arguments

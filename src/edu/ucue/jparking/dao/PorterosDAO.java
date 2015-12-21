@@ -85,6 +85,6 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
-        return (Set<Portero>) CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().values();
+        return new HashSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().values());
     }
 }

@@ -7,9 +7,12 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
+import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.util.Set;
 import java.util.logging.Level;
@@ -29,6 +32,32 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     public AdministrarPuertasGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        /*
+        PuertaService puertaService = new PuertaService();
+        try {
+            puertaService.addpuerta("primero", "a12", "central");
+            puertaService.addpuerta("seundo", "a13", "central");
+        } catch (CodigoNoValidoException ex) {
+            Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PuertaYaExistenteException ex) {
+            Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CampusNoExistenteException ex) {
+            Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        //cargando campus en el combo
+        cargarCampusCB();
+        
+        
+        try {
+            //cargando las puertas
+            listarPuertas();
+        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException ex) {
+        }
+        
+        
+        //Centrar ventana
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -54,6 +83,11 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administar Puertas");
         setMinimumSize(new java.awt.Dimension(350, 350));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jLabel1.setText("Campus:");
 
@@ -187,7 +221,17 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cargarCampusCB(){
+        //Cargar parqueaderos en combo box
+        CampusCB.removeAllItems();
+        CampusService campusService = new CampusService();
+        for(Campus c : campusService.getCampus()){
+            CampusCB.addItem(c.getNombre());
+        }
+    }
+    
     private void listarPuertas() throws CampusNoExistenteException, CodigoNoValidoException{
+        
         PuertaService puertaService = new PuertaService();
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
@@ -212,17 +256,23 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         try {
             listarPuertas();
         } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CampusCBActionPerformed
 
     private void CrearPuertaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPuertaBtnActionPerformed
         // TODO add your handling code here:
+        
+        String campus = (String)CampusCB.getSelectedItem();
         CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI(null, rootPaneCheckingEnabled);
         crearPuertaGUI.setLocationRelativeTo(this);
+        crearPuertaGUI.asignarCampus(campus);
         crearPuertaGUI.setVisible(true);
+        try {
+            listarPuertas();
+        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException ex) {
+        }
     }//GEN-LAST:event_CrearPuertaBtnActionPerformed
 
     private void EliminarPuertabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPuertabtnActionPerformed
@@ -232,7 +282,17 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        PuertaService puertaService = new PuertaService();
+        int row = TablaPuertas.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String codigo = (String) TablaPuertas.getValueAt(row, 1);
+        EliminarPuertaGUI eliminarPuertaGUI = new EliminarPuertaGUI(null, rootPaneCheckingEnabled);
+        eliminarPuertaGUI.setLocationRelativeTo(this);
+        eliminarPuertaGUI.cargarCodigo(codigo,nombreCampus);
+        eliminarPuertaGUI.setVisible(true);
+        
     }//GEN-LAST:event_EliminarPuertabtnActionPerformed
 
     private void ModificarPuertaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPuertaBtnActionPerformed
@@ -243,19 +303,40 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
+        int row = TablaPuertas.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String codigo = (String) TablaPuertas.getValueAt(row, 1);
         EditarPuertaGUI editarPuertaGUI = new EditarPuertaGUI(null, rootPaneCheckingEnabled);
         editarPuertaGUI.setLocationRelativeTo(this);
         try {
-            editarPuertaGUI.CargarDatos(nombreCampus);
+            editarPuertaGUI.CargarDatos(codigo);
             editarPuertaGUI.HabilitarCampos();
             editarPuertaGUI.setVisible(true);
         } catch (CodigoNoValidoException ex) {
-            Logger.getLogger(AdministrarPuertasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException ex) {
-            Logger.getLogger(AdministrarPuertasGUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        
+        try {
+            listarPuertas();
+        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException ex) {
+        }
     }//GEN-LAST:event_ModificarPuertaBtnActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        try {
+            // TODO add your handling code here:
+            listarPuertas();
+        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException ex) {
+        }
+    }//GEN-LAST:event_formFocusGained
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,14 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.srv.PorterosService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
@@ -46,8 +54,18 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         jLabel1.setText("Cédula:");
 
         CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarBtnActionPerformed(evt);
+            }
+        });
 
         EliminarBtn.setText("Eliminar");
+        EliminarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,9 +108,35 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void CargarCedula(String cedula){
+        CedulaTF.setText(cedula);
+    }
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
+
+    private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
+        // TODO add your handling code here:
+        PorterosService porterosService = new PorterosService();
+        try {
+            porterosService.delPortero(CedulaTF.getText());
+            JOptionPane.showMessageDialog(rootPane, "El portero se a elminado con exito!!", "Mensaje", JOptionPane.OK_OPTION);
+            
+            this.setVisible(false);
+        } catch (CedulaNoValidaException ex) {
+            Logger.getLogger(EliminarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PorteroNoExistenteException ex) {
+            Logger.getLogger(EliminarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CampusNoExistenteException ex) {
+            Logger.getLogger(EliminarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_EliminarBtnActionPerformed
+
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
     /**
      * @param args the command line arguments
