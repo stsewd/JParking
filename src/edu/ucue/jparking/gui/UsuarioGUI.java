@@ -5,6 +5,14 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.Usuario;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
@@ -263,4 +271,25 @@ public class UsuarioGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    void cargarDatos(String cedula) {
+        UsuarioService usuarioService = new UsuarioService();
+        Usuario u = null;
+        try {
+            u = usuarioService.get(cedula);
+        } catch (UsuarioNoExistenteException | CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
+        CedulaTF.setText(cedula);
+        NombresTF.setText(u.getNombres());
+        ApellidosTF.setText(u.getApellidos());
+        DireccionTF.setText(u.getDireccion());
+        TelefonoTF.setText(u.getTelefono());
+        TipoUsuarioTF.setText(u.getTipoUsuarioString());
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        fechaContratoTF.setText(df.format(u.getFechaContrato().getTime()));
+        activoCheckB.setSelected(u.isActivo());
+    }
 }
