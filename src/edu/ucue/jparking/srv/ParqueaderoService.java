@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.dao.ParqueaderosDAO;
@@ -189,12 +190,18 @@ public class ParqueaderoService {
      * @throws UsuarioYaAgregadoException
      * @throws UsuarioNoExistenteException 
      */
+    
     public void addUsuario(String idParqueadero, String cedula) throws CedulaNoValidaException,
-            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException{
+            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException{
         
         validaciones.validarCedula(cedula);
         validaciones.validarCodigo(idParqueadero);
         validaciones.ComprobarParqueadero(idParqueadero);
+        
+        Parqueadero p = getParqueadero(idParqueadero);
+        if(p.getNumeroLugaresOcupados()>=p.getNumeroLugares())
+            throw new NumeroParqueaderosNoDisponiblesException();
+        
         parqueaderoDAO.addUsuario(idParqueadero, cedula);
         
     }

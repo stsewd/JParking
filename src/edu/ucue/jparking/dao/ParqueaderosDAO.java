@@ -186,4 +186,18 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         }
         return usuarios;
     }
+    
+    public void AgregarEspacioParqueo(String idParqueadero) throws ParqueaderoNoExistenteException{
+        Parqueadero parqueadero = getParqueadero(idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
+    }
+    
+    public void EliminarEspacioParqueo(String idParqueadero) throws ParqueaderoNoExistenteException{
+        Parqueadero parqueadero = getParqueadero(idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
+    }
 }

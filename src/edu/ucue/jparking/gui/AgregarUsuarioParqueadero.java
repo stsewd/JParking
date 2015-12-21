@@ -5,6 +5,18 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
+import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
+import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lara
@@ -34,6 +46,7 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         VerBtn = new javax.swing.JButton();
         CerrarBtn = new javax.swing.JButton();
         AgregarBtn = new javax.swing.JButton();
+        IdParqueaderolbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Usuario a un Parqueadero");
@@ -42,10 +55,20 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         jLabel1.setText("Cédula:");
 
         VerBtn.setText("Ver");
+        VerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerBtnActionPerformed(evt);
+            }
+        });
 
         CerrarBtn.setText("Cerrar");
 
         AgregarBtn.setText("Agregar");
+        AgregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,8 +98,11 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(IdParqueaderolbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -91,12 +117,41 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(IdParqueaderolbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
+        // TODO add your handling code here:
+        UsuarioGUI usuarioGUI = new UsuarioGUI(null, rootPaneCheckingEnabled);
+        usuarioGUI.setLocationRelativeTo(this);
+        usuarioGUI.cargarDatos(CedulaTF.getText());
+        usuarioGUI.setVisible(true);
+        
+    }//GEN-LAST:event_VerBtnActionPerformed
+
+    public void CargarDatos(String id){
+        IdParqueaderolbl.setText(id);
+        IdParqueaderolbl.setVisible(false);
+    }
+    private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
+        // TODO add your handling code here:
+        String cedula = CedulaTF.getText();
+        String id = IdParqueaderolbl.getText();
+        ParqueaderoService service = new ParqueaderoService();
+        try {
+            service.addUsuario(cedula, id);
+            JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
+            this.setVisible(false);
+        } catch (CedulaNoValidaException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } 
+    }//GEN-LAST:event_AgregarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +199,7 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
     private javax.swing.JButton AgregarBtn;
     private javax.swing.JTextField CedulaTF;
     private javax.swing.JButton CerrarBtn;
+    private javax.swing.JLabel IdParqueaderolbl;
     private javax.swing.JButton VerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
