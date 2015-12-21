@@ -75,7 +75,7 @@ public interface ParqueaderosDAOInterface {
      * @param numLugares 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      */
-    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares)
+    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares,boolean estado)
             throws ParqueaderoNoExistenteException;
     
     /**

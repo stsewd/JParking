@@ -15,7 +15,7 @@ public class Parqueadero {
     private Set<String> usuarios; //Cedula de usuarios
     private Set<String> puertasEntrada; //Id de puertas
     private Set<String> puertasSalida; //Id de puertas
-   
+    private boolean activo;
     private final String id;
     private String ubicacion;
     private int numeroLugares;
@@ -31,6 +31,7 @@ public class Parqueadero {
         this.puertasEntrada = new HashSet<>();
         this.puertasSalida = new HashSet<>();
         this.usuarios = new HashSet<>();
+        this.activo = true;
     }
 
 
@@ -140,4 +141,19 @@ public class Parqueadero {
     public void setNombreCampus(String nombreCampus) {
         this.nombreCampus = nombreCampus;
     }
+
+    /**
+     * @return the activo
+     */
+    public boolean isActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
 }

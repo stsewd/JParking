@@ -55,6 +55,8 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         CodigoTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         NumeroLugaresTF = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        EstadoCK = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar parqueadero");
@@ -95,6 +97,10 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
 
         NumeroLugaresTF.setEnabled(false);
 
+        jLabel5.setText("Estado:");
+
+        EstadoCK.setText("Activo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,10 +126,14 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
                         .addComponent(EditarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CerrarBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(NumeroLugaresTF, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NumeroLugaresTF, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EstadoCK))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,7 +155,11 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NumeroLugaresTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(EstadoCK))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,6 +175,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         String codigo = CodigoTF.getText();
         String ubicacion = UbicacionTF.getText();
         String Campus = CampusTF.getText();
+        boolean estado = EstadoCK.isSelected();
         int numLugares = 0;
         try{
             numLugares = Integer.parseInt(NumeroLugaresTF.getText());
@@ -171,13 +186,15 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
-            parqueaderoService.modParqueadero(codigo, ubicacion, numLugares);
+            parqueaderoService.modParqueadero(codigo, ubicacion, numLugares,estado);
             JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado satisfactoriamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
         }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (NumeroLugaresDeParqueoInsuficientesException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(IllegalArgumentException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
@@ -249,12 +266,14 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
     private javax.swing.JButton CerrarBtn;
     private javax.swing.JTextField CodigoTF;
     private javax.swing.JButton EditarBtn;
+    private javax.swing.JCheckBox EstadoCK;
     private javax.swing.JTextField NumeroLugaresTF;
     private javax.swing.JTextField UbicacionTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
@@ -268,6 +287,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         UbicacionTF.setText(parqueadero.getUbicacion());
         CampusTF.setText(parqueadero.getNombreCampus());
         NumeroLugaresTF.setText(Integer.toString(parqueadero.getNumeroLugares()));
+        EstadoCK.setSelected(parqueadero.isActivo());
     }
 
     public void habilitarCampos() {
@@ -276,6 +296,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         CampusTF.setEnabled(true);
         EditarBtn.setEnabled(true);
         NumeroLugaresTF.setEnabled(true);
+        EstadoCK.setEnabled(true);
     }
 
     /**

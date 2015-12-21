@@ -14,6 +14,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.awt.JobAttributes;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     public AdministrarPuertasGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        /*
+        
         PuertaService puertaService = new PuertaService();
         try {
             puertaService.addpuerta("primero", "a12", "central");
@@ -43,7 +44,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CampusNoExistenteException ex) {
             Logger.getLogger(PrincipalGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         //cargando campus en el combo
         cargarCampusCB();
         
@@ -165,6 +166,11 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             }
         });
         jScrollPane2.setViewportView(TablaPuertas);
+        if (TablaPuertas.getColumnModel().getColumnCount() > 0) {
+            TablaPuertas.getColumnModel().getColumn(0).setMinWidth(30);
+            TablaPuertas.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TablaPuertas.getColumnModel().getColumn(0).setMaxWidth(30);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -264,6 +270,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         String campus = (String)CampusCB.getSelectedItem();
+        if(campus==null || campus.trim().length()==0) 
+            JOptionPane.showMessageDialog(rootPane, "El campus no puede estra vacio", "Error", JOptionPane.OK_OPTION);
         CrearPuertaGUI crearPuertaGUI = new CrearPuertaGUI(null, rootPaneCheckingEnabled);
         crearPuertaGUI.setLocationRelativeTo(this);
         crearPuertaGUI.asignarCampus(campus);

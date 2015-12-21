@@ -155,6 +155,11 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             }
         });
         jScrollPane2.setViewportView(TablaPorteros);
+        if (TablaPorteros.getColumnModel().getColumnCount() > 0) {
+            TablaPorteros.getColumnModel().getColumn(0).setMinWidth(30);
+            TablaPorteros.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TablaPorteros.getColumnModel().getColumn(0).setMaxWidth(30);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -251,9 +256,14 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
 
     private void CrearPorteroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPorteroBtnActionPerformed
         // TODO add your handling code here:
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
         CrearPorteroGUI crearPorteroGUI = new CrearPorteroGUI(null, rootPaneCheckingEnabled);
         crearPorteroGUI.setLocationRelativeTo(this);
-        crearPorteroGUI.cargarDatos((String) CampusCB.getSelectedItem());
+        crearPorteroGUI.Cargar(nombreCampus);
         crearPorteroGUI.setVisible(true);
     }//GEN-LAST:event_CrearPorteroBtnActionPerformed
 
