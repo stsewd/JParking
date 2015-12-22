@@ -17,6 +17,7 @@ public abstract class Usuario extends Persona{
 
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
+    private String parqueaderoActual;
     
     //private TipoUsuario tipoUsuario;
     /**
@@ -91,6 +92,20 @@ public abstract class Usuario extends Persona{
      */
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
+    }
+
+    /**
+     * @return the parqueaderoActual
+     */
+    public String getParqueaderoActual() {
+        return parqueaderoActual;
+    }
+
+    /**
+     * @param parqueaderoActual the parqueaderoActual to set
+     */
+    public void setParqueaderoActual(String parqueaderoActual) {
+        this.parqueaderoActual = parqueaderoActual;
     }
     
 }

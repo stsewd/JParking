@@ -63,6 +63,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         CrearPuertaBtn = new javax.swing.JButton();
         ModificarPuertaBtn = new javax.swing.JButton();
         EliminarPuertabtn = new javax.swing.JButton();
+        IngresarBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPuertas = new javax.swing.JTable();
 
@@ -105,6 +106,13 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             }
         });
 
+        IngresarBtn.setText("Ingresar");
+        IngresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -115,7 +123,9 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
                 .addComponent(ModificarPuertaBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EliminarPuertabtn)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(IngresarBtn)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +134,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearPuertaBtn)
                     .addComponent(ModificarPuertaBtn)
-                    .addComponent(EliminarPuertabtn)))
+                    .addComponent(EliminarPuertabtn)
+                    .addComponent(IngresarBtn)))
         );
 
         TablaPuertas.setModel(new javax.swing.table.DefaultTableModel(
@@ -337,6 +348,27 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formFocusGained
 
+    private void IngresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarBtnActionPerformed
+        // TODO add your handling code here:
+        String nombreCampus = (String) CampusCB.getSelectedItem();
+        if(nombreCampus==null){
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        int row = TablaPuertas.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        
+        String codigo = (String) TablaPuertas.getValueAt(row, 1);
+        
+        AutenticarUsuarioGUI augui = new AutenticarUsuarioGUI(null, true);
+        augui.cargarDatos(nombreCampus, codigo);
+        augui.setLocationRelativeTo(this);
+        augui.setVisible(true);
+    }//GEN-LAST:event_IngresarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -383,6 +415,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JButton CrearPuertaBtn;
     private javax.swing.JButton EliminarPuertabtn;
+    private javax.swing.JButton IngresarBtn;
     private javax.swing.JButton ModificarPuertaBtn;
     private javax.swing.JTable TablaPuertas;
     private javax.swing.JLabel jLabel1;
