@@ -22,13 +22,14 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
-
+    private PrincipalGUI padre;
     /**
      * Creates new form AgregarUsuarioParqueadero
      */
     public AgregarUsuarioParqueadero(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.padre = (PrincipalGUI)parent;
     }
 
     /**
@@ -145,6 +146,9 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         
     }//GEN-LAST:event_VerBtnActionPerformed
 
+    public PrincipalGUI getPadre(){
+        return padre;
+    }
     public void CargarDatos(String id){
         IdParqueaderolbl.setText(id);
         IdParqueaderolbl.setVisible(false);
@@ -157,7 +161,7 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         try {
             service.addUsuario(id, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
-            
+            getPadre().listarUsuarios();
             this.setVisible(false);
         } catch (CedulaNoValidaException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

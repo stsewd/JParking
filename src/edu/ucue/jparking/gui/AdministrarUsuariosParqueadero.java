@@ -24,14 +24,14 @@ import javax.swing.table.DefaultTableModel;
  * @author lara
  */
 public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
-
+    private PrincipalGUI padre;
     /**
      * Creates new form AdministrarUsuariosParqueadero
      */
     public AdministrarUsuariosParqueadero(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        this.padre = (PrincipalGUI) parent;
         
     }
 
@@ -198,6 +198,9 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public PrincipalGUI getPadre() {
+        return padre;
+    }
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
         
         AgregarUsuarioParqueadero aup = new AgregarUsuarioParqueadero(null, rootPaneCheckingEnabled);
@@ -224,7 +227,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         try {
             service.delUsuario(idParaqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario se ha borrado exisosamente", "Mensaje", JOptionPane.OK_OPTION);
-            
+            getPadre().listarUsuarios();
         } catch (CedulaNoValidaException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
