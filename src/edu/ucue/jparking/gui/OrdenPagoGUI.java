@@ -9,6 +9,9 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.OrdenPagoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
+import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
+import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.awt.event.KeyEvent;
@@ -296,6 +299,17 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
 
     private void PagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarBtnActionPerformed
         // TODO add your handling code here:
+        OrdenPagoService ops = new OrdenPagoService();
+        try {
+            ops.pagarOrdenPago(CedulaTF.getText());
+            JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (UsuarioNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PagoYaRealizadoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_PagarBtnActionPerformed
 
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
@@ -305,6 +319,10 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                 cargarDatos(CedulaTF.getText());
                 //habilitarCampos();
             } catch (CedulaNoValidaException | UsuarioNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            } catch (ContratoNoEstablecidoException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            } catch (FueraDelDiaDePagoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }
@@ -389,7 +407,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
         OrdenPagoService ordenPagoService = new OrdenPagoService();
         UsuarioService usuarioService = new UsuarioService();
         OrdenPago  ordenPago = ordenPagoService.getOrdenPago(cedula);
@@ -407,12 +425,13 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         TipoUsuarioTF.setEnabled(true);
         fechaContratoTF.setEnabled(true);
         ValorTF.setEnabled(true);
+        PagarBtn.setEnabled(true);
         
         NombreTF.setText(u.getNombres());
         ApellidoTF.setText(u.getApellidos());
         DireccionTF.setText(u.getDireccion());
         TelefonoTF.setText(u.getTelefono());
-        TipoUsuarioTF.setText(u.getTelefono());
+        TipoUsuarioTF.setText(u.getTipoUsuarioString());
         fechaContratoTF.setText(df.format(u.getFechaContrato().getTime()));
         ValorTF.setText(Float.toString(ordenPago.getCosto()));
         FechaTF.setText(df.format(ordenPago.getFechaEmision().getTime()));

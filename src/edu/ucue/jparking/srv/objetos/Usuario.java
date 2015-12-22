@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
+import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import java.util.Calendar;
@@ -51,8 +53,9 @@ public abstract class Usuario extends Persona{
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
-        fechaActual.add(Calendar.DAY_OF_WEEK, -getDiasContrato());
-        return this.getFechaContrato().compareTo(fechaActual) < 0;
+        //fechaActual.add(Calendar.DAY_OF_WEEK, -getDiasContrato());
+        fechaActual.roll(Calendar.DAY_OF_WEEK, -getDiasContrato());
+        return this.getFechaContrato().before(fechaActual);
     }
     
     public void cancelarPago() throws PagoYaRealizadoException {
@@ -72,7 +75,16 @@ public abstract class Usuario extends Persona{
      *
      * @return La orden de pago del usuario que llama el método
      */
-    public abstract OrdenPago generarOrdenPago();
+    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException{
+        if(getFechaContrato() == null)
+            throw new ContratoNoEstablecidoException(getCedula());
+        
+        Calendar fechaActual = Calendar.getInstance();
+        fechaActual.roll(Calendar.DAY_OF_WEEK, -(getDiasContrato() - 5));
+        if(this.getFechaContrato().before(fechaActual))
+            throw new FueraDelDiaDePagoException(getDiasContrato());
+        return null;
+    }
 
     /**
      * @return the tipoUsuario
@@ -80,6 +92,5 @@ public abstract class Usuario extends Persona{
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
-
     
 }
