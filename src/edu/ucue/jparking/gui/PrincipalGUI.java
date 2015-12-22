@@ -581,6 +581,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         PagosMenu.setText("Pagos");
 
         GenerarOrdenPagoItem.setText("Generar Orden de Pago");
+        GenerarOrdenPagoItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarOrdenPagoItemActionPerformed(evt);
+            }
+        });
         PagosMenu.add(GenerarOrdenPagoItem);
 
         jMenuBar1.add(PagosMenu);
@@ -924,6 +929,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_UsuariosParqueaderoItemActionPerformed
+
+    private void GenerarOrdenPagoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarOrdenPagoItemActionPerformed
+        // TODO add your handling code here:
+        OrdenPagoGUI opgui = new OrdenPagoGUI(this, true);
+        opgui.setLocationRelativeTo(this);
+        opgui.setVisible(true);
+    }//GEN-LAST:event_GenerarOrdenPagoItemActionPerformed
 
     /**
      * @param args the command line arguments
