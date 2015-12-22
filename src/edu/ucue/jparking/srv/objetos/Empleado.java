@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 
 /**
@@ -17,8 +18,9 @@ public class Empleado extends Usuario {
     }
 
     @Override
-    public OrdenPago generarOrdenPago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException {
+        super.generarOrdenPago();
+        return new OrdenPago(getCedula(), getVALOR_PARQUEADERO());
     }
         
     /**
