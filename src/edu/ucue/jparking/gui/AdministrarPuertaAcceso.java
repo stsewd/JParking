@@ -38,16 +38,19 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPuertasEntrada = new javax.swing.JTable();
+        AgregarEntradaBtn = new javax.swing.JButton();
+        EliminarEntradaBtn = new javax.swing.JButton();
+        CerrarBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPuertasSalida = new javax.swing.JTable();
+        EliminarSalidaBtn1 = new javax.swing.JButton();
+        CerrarBtn1 = new javax.swing.JButton();
+        AgregarSalidaBtn1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         CampusTF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         ParqueaderoTF = new javax.swing.JTextField();
-        AgregarBtn = new javax.swing.JButton();
-        EliminarBtn = new javax.swing.JButton();
-        CerrarBtn = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
@@ -85,13 +88,37 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
             TablaPuertasEntrada.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
+        AgregarEntradaBtn.setText("Agregar");
+        AgregarEntradaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarEntradaBtnActionPerformed(evt);
+            }
+        });
+
+        EliminarEntradaBtn.setText("Eliminar");
+
+        CerrarBtn.setText("Cerrar");
+        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(AgregarEntradaBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EliminarEntradaBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CerrarBtn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,7 +126,12 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AgregarEntradaBtn)
+                    .addComponent(EliminarEntradaBtn)
+                    .addComponent(CerrarBtn))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Puertas de Entrada", jPanel1);
@@ -134,21 +166,50 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
             TablaPuertasSalida.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
+        EliminarSalidaBtn1.setText("Eliminar");
+
+        CerrarBtn1.setText("Cerrar");
+        CerrarBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarBtn1ActionPerformed(evt);
+            }
+        });
+
+        AgregarSalidaBtn1.setText("Agregar");
+        AgregarSalidaBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarSalidaBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(AgregarSalidaBtn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EliminarSalidaBtn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CerrarBtn1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AgregarSalidaBtn1)
+                    .addComponent(EliminarSalidaBtn1)
+                    .addComponent(CerrarBtn1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Puertas de Salida", jPanel3);
@@ -160,17 +221,6 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
         jLabel2.setText("Parqueadero:");
 
         ParqueaderoTF.setEditable(false);
-
-        AgregarBtn.setText("Agregar");
-        AgregarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarBtnActionPerformed(evt);
-            }
-        });
-
-        EliminarBtn.setText("Eliminar");
-
-        CerrarBtn.setText("Cerrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,14 +243,6 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jTabbedPane1)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AgregarBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EliminarBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CerrarBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,21 +256,29 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(ParqueaderoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AgregarBtn)
-                    .addComponent(EliminarBtn)
-                    .addComponent(CerrarBtn))
-                .addGap(10, 10, 10))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
+    private void AgregarEntradaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarEntradaBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AgregarBtnActionPerformed
+    }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
+
+    private void AgregarSalidaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarSalidaBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AgregarSalidaBtn1ActionPerformed
+
+    private void CerrarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtn1ActionPerformed
+        // TODO add your handling code here:
+        ///
+    }//GEN-LAST:event_CerrarBtn1ActionPerformed
+
+    private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CerrarBtnActionPerformed
 
     public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
         ParqueaderoService service = new ParqueaderoService();
@@ -281,10 +331,13 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AgregarBtn;
+    private javax.swing.JButton AgregarEntradaBtn;
+    private javax.swing.JButton AgregarSalidaBtn1;
     private javax.swing.JTextField CampusTF;
     private javax.swing.JButton CerrarBtn;
-    private javax.swing.JButton EliminarBtn;
+    private javax.swing.JButton CerrarBtn1;
+    private javax.swing.JButton EliminarEntradaBtn;
+    private javax.swing.JButton EliminarSalidaBtn1;
     private javax.swing.JTextField ParqueaderoTF;
     private javax.swing.JTable TablaPuertasEntrada;
     private javax.swing.JTable TablaPuertasSalida;
