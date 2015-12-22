@@ -30,6 +30,7 @@ import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesExce
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.Calendar;
 import java.util.Set;
 
 /**
@@ -197,13 +198,13 @@ public class ParqueaderoService {
         validaciones.validarCedula(cedula);
         validaciones.validarCodigo(idParqueadero);
         validaciones.ComprobarParqueadero(idParqueadero);
-        
+        Calendar fecha = Calendar.getInstance();
         Parqueadero p = getParqueadero(idParqueadero);
         if(p.getNumeroLugaresOcupados()>=p.getNumeroLugares()) {
             throw new NumeroParqueaderosNoDisponiblesException();
         } else {
             parqueaderoDAO.addUsuario(idParqueadero, cedula);
-            parqueaderoDAO.AgregarEspacioParqueo(idParqueadero);
+            parqueaderoDAO.AgregarEspacioParqueo(idParqueadero,cedula,fecha);
         }
         
         
@@ -224,7 +225,7 @@ public class ParqueaderoService {
     public void delUsuario(String idParqueadero, String cedula) throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCedula(cedula);
-        parqueaderoDAO.EliminarEspacioParqueo(idParqueadero);
+        parqueaderoDAO.EliminarEspacioParqueo(idParqueadero,cedula);
         parqueaderoDAO.delUsuario(idParqueadero, cedula);
     }
     /**

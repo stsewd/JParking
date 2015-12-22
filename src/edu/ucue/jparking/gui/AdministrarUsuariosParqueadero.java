@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
@@ -32,7 +33,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
-        
+        this.setDefaultCloseOperation(0);
     }
 
     /**
@@ -241,6 +242,12 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+        try {
+            getPadre().listarParqueaderos();
+        } catch (CampusNoExistenteException ex) {
+        }
+        getPadre().listarUsuarios();
+        
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{

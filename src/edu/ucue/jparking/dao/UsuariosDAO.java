@@ -8,6 +8,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -79,5 +80,12 @@ public class UsuariosDAO implements UsuariosDAOInterface{
                 usuarios.add(u);
         }
         return usuarios;
+    }
+    
+    public void fechaContrato(String cedula, Calendar calendar) throws UsuarioNoExistenteException{
+        if(usuarios.get(cedula) == null)
+            throw new UsuarioNoExistenteException(cedula);
+        Usuario usuario = usuarios.get(cedula);
+        usuario.setFechaContrato(calendar);
     }
 }

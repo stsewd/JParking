@@ -28,7 +28,7 @@ public abstract class Usuario extends Persona{
      */
     public Usuario(String cedula, String nombres, String apellidos, String direccion, String telefono, TipoUsuario tipoUsuario) {
         super(cedula, nombres, apellidos, direccion, telefono, tipoUsuario);
-        this.fechaContrato = Calendar.getInstance();
+        this.fechaContrato = null;
     }
 
     /**
@@ -51,14 +51,14 @@ public abstract class Usuario extends Persona{
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
-        fechaActual.add(Calendar.DAY_OF_WEEK, -diasContrato);
-        return this.fechaContrato.compareTo(fechaActual) < 0;
+        fechaActual.add(Calendar.DAY_OF_WEEK, -getDiasContrato());
+        return this.getFechaContrato().compareTo(fechaActual) < 0;
     }
     
     public void cancelarPago() throws PagoYaRealizadoException {
         if (!estaDebiendo())
             throw new PagoYaRealizadoException(this.getCedula());
-        this.fechaContrato = Calendar.getInstance();
+        this.setFechaContrato(Calendar.getInstance());
     }
     
     /**
@@ -81,4 +81,5 @@ public abstract class Usuario extends Persona{
         return tipoUsuario;
     }
 
+    
 }

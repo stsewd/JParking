@@ -162,6 +162,11 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
         ParqueaderoTF.setEditable(false);
 
         AgregarBtn.setText("Agregar");
+        AgregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarBtnActionPerformed(evt);
+            }
+        });
 
         EliminarBtn.setText("Eliminar");
 
@@ -220,6 +225,10 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AgregarBtnActionPerformed
 
     public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
         ParqueaderoService service = new ParqueaderoService();

@@ -16,6 +16,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.Calendar;
 import java.util.Set;
 
 /**
@@ -182,13 +183,13 @@ public interface ParqueaderosDAOInterface {
      * @param idParqueadero
      * @throws ParqueaderoNoExistenteException 
      */
-    public void AgregarEspacioParqueo(String idParqueadero) 
-            throws ParqueaderoNoExistenteException;
+    public void AgregarEspacioParqueo(String idParqueadero, String cedula, Calendar fecha) 
+            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
     /**
      * resta un parqueadero 
      * @param idParqueadero
      * @throws ParqueaderoNoExistenteException 
      */
-    public void EliminarEspacioParqueo(String idParqueadero) 
-            throws ParqueaderoNoExistenteException;
+    public void EliminarEspacioParqueo(String idParqueadero,String cedula) 
+            throws ParqueaderoNoExistenteException ,UsuarioNoExistenteException;
 }

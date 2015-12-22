@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
@@ -22,14 +23,17 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
-    private PrincipalGUI padre;
+    
     /**
      * Creates new form AgregarUsuarioParqueadero
      */
+    private PrincipalGUI padre;
+            
+    
     public AgregarUsuarioParqueadero(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.padre = (PrincipalGUI)parent;
+        this.padre = (PrincipalGUI) parent;
     }
 
     /**
@@ -146,9 +150,7 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         
     }//GEN-LAST:event_VerBtnActionPerformed
 
-    public PrincipalGUI getPadre(){
-        return padre;
-    }
+    
     public void CargarDatos(String id){
         IdParqueaderolbl.setText(id);
         IdParqueaderolbl.setVisible(false);
@@ -161,8 +163,10 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         try {
             service.addUsuario(id, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
-            getPadre().listarUsuarios();
             this.setVisible(false);
+            //getPadre().listarParqueaderos();
+            //getPadre().listarUsuarios();
+            //getPadre().listarUsuarios();
         } catch (CedulaNoValidaException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } 
@@ -215,6 +219,7 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarBtn;
     private javax.swing.JTextField CedulaTF;
@@ -224,4 +229,11 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    /**
+     * @return the padre
+     */
+    public PrincipalGUI getPadre() {
+        return padre;
+    }
+
 }

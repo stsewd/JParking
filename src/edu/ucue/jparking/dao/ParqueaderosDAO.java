@@ -15,6 +15,7 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -187,17 +188,19 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         return usuarios;
     }
     
-    public void AgregarEspacioParqueo(String idParqueadero) throws ParqueaderoNoExistenteException{
+    public void AgregarEspacioParqueo(String idParqueadero, String cedula, Calendar fecha) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException{
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
+        UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
     }
     
-    public void EliminarEspacioParqueo(String idParqueadero) throws ParqueaderoNoExistenteException{
+    public void EliminarEspacioParqueo(String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException{
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
+        UsuariosDAO.getInstance().fechaContrato(cedula, null);
     }
 }

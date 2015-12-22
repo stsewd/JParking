@@ -283,9 +283,13 @@ public class UsuarioGUI extends javax.swing.JDialog {
         DireccionTF.setText(u.getDireccion());
         TelefonoTF.setText(u.getTelefono());
         TipoUsuarioTF.setText(u.getTipoUsuarioString());
+        if(u.getFechaContrato()==null){
+            fechaContratoTF.setText("No Existe un contrato de parqueo");
+        }else{
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            fechaContratoTF.setText(df.format(u.getFechaContrato().getTime()));
+        }
         
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        fechaContratoTF.setText(df.format(u.getFechaContrato().getTime()));
         activoCheckB.setSelected(u.isActivo());
     }
 }
