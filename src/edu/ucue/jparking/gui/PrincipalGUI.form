@@ -158,6 +158,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Generar Orden de Pago"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GenerarOrdenPagoItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

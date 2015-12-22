@@ -13,19 +13,19 @@ import java.util.Calendar;
  */
 public class OrdenPago {
     
-    private String cadulaUsuario;
+    private String cedulaUsuario;
     private float costo;
     private Calendar fechaEmision;
 
     public OrdenPago(String cadulaUsuario, float costo) {
-        this.cadulaUsuario = cadulaUsuario;
+        this.cedulaUsuario = cadulaUsuario;
         this.costo = costo;
         this.fechaEmision = Calendar.getInstance();
     }
 
     
     public void setCadulaUsuario(String cadulaUsuario) {
-        this.cadulaUsuario = cadulaUsuario;
+        this.cedulaUsuario = cadulaUsuario;
     }
 
     public void setCosto(float costo) {
@@ -34,5 +34,26 @@ public class OrdenPago {
 
     public void setFechaEmision(Calendar fechaEmision) {
         this.fechaEmision = fechaEmision;
+    }
+
+    /**
+     * @return the cedulaUsuario
+     */
+    public String getCedulaUsuario() {
+        return cedulaUsuario;
+    }
+
+    /**
+     * @return the costo
+     */
+    public float getCosto() {
+        return costo;
+    }
+
+    /**
+     * @return the fechaEmision
+     */
+    public Calendar getFechaEmision() {
+        return fechaEmision;
     }
 }
