@@ -68,7 +68,11 @@ public class UsuarioService {
     
     public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
         validaciones.validarCedula(cedula);
-        return usuariosDAO.getUsuario(cedula);
+        Usuario u =usuariosDAO.getUsuario(cedula); 
+        if (u == null)        
+            throw new UsuarioNoExistenteException(cedula);
+        return u;
+        
         /*
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();

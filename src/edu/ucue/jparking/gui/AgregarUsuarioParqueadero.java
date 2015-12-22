@@ -133,10 +133,15 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
 
     private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
         // TODO add your handling code here:
-        UsuarioGUI usuarioGUI = new UsuarioGUI(null, rootPaneCheckingEnabled);
+        UsuarioGUI usuarioGUI = new UsuarioGUI(null, true);
         usuarioGUI.setLocationRelativeTo(this);
-        usuarioGUI.cargarDatos(CedulaTF.getText());
-        usuarioGUI.setVisible(true);
+        try {
+            usuarioGUI.cargarDatos(CedulaTF.getText());
+            usuarioGUI.setVisible(true);
+        } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
         
     }//GEN-LAST:event_VerBtnActionPerformed
 

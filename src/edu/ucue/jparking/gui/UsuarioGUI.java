@@ -272,14 +272,10 @@ public class UsuarioGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    void cargarDatos(String cedula) {
+    public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
         UsuarioService usuarioService = new UsuarioService();
-        Usuario u = null;
-        try {
-            u = usuarioService.get(cedula);
-        } catch (UsuarioNoExistenteException | CedulaNoValidaException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
+        Usuario u =  usuarioService.get(cedula);
+        
         
         CedulaTF.setText(cedula);
         NombresTF.setText(u.getNombres());

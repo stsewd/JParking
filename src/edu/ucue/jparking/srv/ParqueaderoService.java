@@ -199,10 +199,14 @@ public class ParqueaderoService {
         validaciones.ComprobarParqueadero(idParqueadero);
         
         Parqueadero p = getParqueadero(idParqueadero);
-        if(p.getNumeroLugaresOcupados()<=p.getNumeroLugares())
+        if(p.getNumeroLugaresOcupados()>=p.getNumeroLugares()) {
+            throw new NumeroParqueaderosNoDisponiblesException();
+        } else {
             parqueaderoDAO.addUsuario(idParqueadero, cedula);
             parqueaderoDAO.AgregarEspacioParqueo(idParqueadero);
-        throw new NumeroParqueaderosNoDisponiblesException();
+        }
+        
+        
         
         
         

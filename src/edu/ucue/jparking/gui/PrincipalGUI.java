@@ -875,10 +875,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
         UsuarioGUI usuarioGUI = new UsuarioGUI(this, true);
         
-        usuarioGUI.cargarDatos(cedula);
+        try {
+            usuarioGUI.cargarDatos(cedula);
+            usuarioGUI.setLocationRelativeTo(this);
+            usuarioGUI.setVisible(true);
+        } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
         
-        usuarioGUI.setLocationRelativeTo(this);
-        usuarioGUI.setVisible(true);
+        
     }//GEN-LAST:event_VerBtnActionPerformed
 
     private void PuertasAccesoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasAccesoItemActionPerformed

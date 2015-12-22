@@ -32,11 +32,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        try {
-            //Lista los usuarios para un campus y parqueadero determinado
-            listarUsuarios();
-        } catch (CodigoNoValidoException | ParqueaderoNoExistenteException | IllegalArgumentException | UsuarioNoExistenteException ex) {
-        }
+        
     }
 
     /**
@@ -244,13 +240,18 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
-    public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
+    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
         ParqueaderoService service = new ParqueaderoService();
         Parqueadero parqueadero =  service.getParqueadero(idParqueadero);
         ParqueaderoTF.setText(parqueadero.getUbicacion());
         CampusTF.setText(campus);
         idParqueaderoLbl.setText(parqueadero.getId());
         idParqueaderoLbl.setVisible(false);
+        
+        try {
+            listarUsuarios();
+        } catch (UsuarioNoExistenteException | IllegalArgumentException ex) {
+        }
     }
     
     private void listarUsuarios() throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException{
