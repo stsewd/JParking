@@ -9,17 +9,23 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
+import edu.ucue.jparking.srv.objetos.Puerta;
+import edu.ucue.jparking.srv.objetos.Usuario;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author lara
  */
-public class AdministrarPuertaAcceso extends javax.swing.JDialog {
+public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
 
     /**
      * Creates new form AdministrarPuertaAcceso
      */
-    public AdministrarPuertaAcceso(java.awt.Frame parent, boolean modal) {
+    public AdministrarPuertaAccesoGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -41,6 +47,7 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
         AgregarEntradaBtn = new javax.swing.JButton();
         EliminarEntradaBtn = new javax.swing.JButton();
         CerrarBtn = new javax.swing.JButton();
+        idParqueaderolbl = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPuertasSalida = new javax.swing.JTable();
@@ -51,6 +58,7 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
         CampusTF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         ParqueaderoTF = new javax.swing.JTextField();
+        idCampuslbl = new javax.swing.JLabel();
 
         jButton3.setText("jButton3");
 
@@ -118,6 +126,8 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                         .addComponent(EliminarEntradaBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CerrarBtn)
+                        .addGap(45, 45, 45)
+                        .addComponent(idParqueaderolbl)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -130,7 +140,8 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AgregarEntradaBtn)
                     .addComponent(EliminarEntradaBtn)
-                    .addComponent(CerrarBtn))
+                    .addComponent(CerrarBtn)
+                    .addComponent(idParqueaderolbl))
                 .addContainerGap())
         );
 
@@ -189,15 +200,16 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(AgregarSalidaBtn1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EliminarSalidaBtn1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CerrarBtn1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +221,7 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                     .addComponent(AgregarSalidaBtn1)
                     .addComponent(EliminarSalidaBtn1)
                     .addComponent(CerrarBtn1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Puertas de Salida", jPanel3);
@@ -238,7 +250,10 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(52, 52, 52)
-                                .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idCampuslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jTabbedPane1)))
@@ -254,21 +269,77 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(ParqueaderoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ParqueaderoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idCampuslbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException{
+        ParqueaderoService service = new ParqueaderoService();
+        Set<Puerta> puertaEntrada = service.getPuertasEntrada(idParqueaderolbl.getText());
+        
+        DefaultTableModel model = (DefaultTableModel) TablaPuertasEntrada.getModel();
+        
+        //Borrar elementos anteriores
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
+            model.removeRow(i);
+        
+        int n = 1;
+        for(Puerta p : puertaEntrada)
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion()});
+    }
+    
+    
+    private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException{
+        ParqueaderoService service = new ParqueaderoService();
+        Set<Puerta> puertaSalida = service.getPuertasSalida(idParqueaderolbl.getText());
+        
+        DefaultTableModel model = (DefaultTableModel) TablaPuertasSalida.getModel();
+        
+        //Borrar elementos anteriores
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
+            model.removeRow(i);
+        
+        int n = 1;
+        for(Puerta p : puertaSalida)
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion()});
+    }
     private void AgregarEntradaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarEntradaBtnActionPerformed
         // TODO add your handling code here:
+        AgregarPuertaAccesoGUI agregarPuertaAccesoGUI = new AgregarPuertaAccesoGUI(null, true);
+        agregarPuertaAccesoGUI.cargarDatos(idParqueaderolbl.getText(), idCampuslbl.getText(), "entrada");
+        agregarPuertaAccesoGUI.setLocationRelativeTo(this);
+        
+        try {
+            listarPuertasEntradas();
+        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+        }
+        
+        try {
+            listarPuertasSalida();
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+        }
     }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
 
     private void AgregarSalidaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarSalidaBtn1ActionPerformed
         // TODO add your handling code here:
+        AgregarPuertaAccesoGUI agregarPuertaAccesoGUI = new AgregarPuertaAccesoGUI(null, rootPaneCheckingEnabled);
+        agregarPuertaAccesoGUI.setLocationRelativeTo(this);
+        agregarPuertaAccesoGUI.cargarDatos(idParqueaderolbl.getText(), idCampuslbl.getText(), "salida");
+        try {
+            listarPuertasEntradas();
+        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+        }
+        
+        try {
+            listarPuertasSalida();
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+        }
     }//GEN-LAST:event_AgregarSalidaBtn1ActionPerformed
 
     private void CerrarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtn1ActionPerformed
@@ -285,7 +356,12 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
         Parqueadero parqueadero =  service.getParqueadero(idParqueadero);
         ParqueaderoTF.setText(parqueadero.getUbicacion());
         CampusTF.setText(campus);
-        
+        idParqueaderolbl.setText(idParqueadero);
+        idCampuslbl.setText(campus);
+        idParqueaderolbl.setVisible(false);
+        idCampuslbl.setVisible(false);
+        listarPuertasEntradas();
+        listarPuertasSalida();
         
     }
     /**
@@ -305,20 +381,21 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPuertaAcceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPuertaAccesoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPuertaAcceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPuertaAccesoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPuertaAcceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPuertaAccesoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministrarPuertaAcceso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPuertaAccesoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AdministrarPuertaAcceso dialog = new AdministrarPuertaAcceso(new javax.swing.JFrame(), true);
+                AdministrarPuertaAccesoGUI dialog = new AdministrarPuertaAccesoGUI(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -341,6 +418,8 @@ public class AdministrarPuertaAcceso extends javax.swing.JDialog {
     private javax.swing.JTextField ParqueaderoTF;
     private javax.swing.JTable TablaPuertasEntrada;
     private javax.swing.JTable TablaPuertasSalida;
+    private javax.swing.JLabel idCampuslbl;
+    private javax.swing.JLabel idParqueaderolbl;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

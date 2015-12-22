@@ -899,7 +899,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        AdministrarPuertaAcceso puertaAcceso = new AdministrarPuertaAcceso(this, rootPaneCheckingEnabled);
+        AdministrarPuertaAccesoGUI puertaAcceso = new AdministrarPuertaAccesoGUI(this, rootPaneCheckingEnabled);
         puertaAcceso.setLocationRelativeTo(this);
         try {
             puertaAcceso.CargarDatos(nombreCampus, idParqueadero);
@@ -923,7 +923,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        AdministrarUsuariosParqueadero usuariosParqueadero = new AdministrarUsuariosParqueadero(this, rootPaneCheckingEnabled);
+        AdministrarUsuariosParqueaderoGUI usuariosParqueadero = new AdministrarUsuariosParqueaderoGUI(this, rootPaneCheckingEnabled);
         usuariosParqueadero.setLocationRelativeTo(this);
         try {
             usuariosParqueadero.CargarDatos(nombreCampus, idParqueadero);

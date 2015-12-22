@@ -24,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author lara
  */
-public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
+public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
     /**
      * Creates new form AdministrarUsuariosParqueadero
      */
-    public AdministrarUsuariosParqueadero(java.awt.Frame parent, boolean modal) {
+    public AdministrarUsuariosParqueaderoGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
@@ -167,7 +167,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(AgregarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,7 +184,6 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AgregarBtn)
@@ -204,7 +203,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
     }
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
         
-        AgregarUsuarioParqueadero aup = new AgregarUsuarioParqueadero(null, rootPaneCheckingEnabled);
+        AgregarUsuarioParqueaderoGUI aup = new AgregarUsuarioParqueaderoGUI(null, rootPaneCheckingEnabled);
         aup.setLocationRelativeTo(this);
         aup.CargarDatos(idParqueaderoLbl.getText());
         aup.setVisible(true);
@@ -295,20 +294,21 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueaderoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueaderoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueaderoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarUsuariosParqueaderoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AdministrarUsuariosParqueadero dialog = new AdministrarUsuariosParqueadero(new javax.swing.JFrame(), true);
+                AdministrarUsuariosParqueaderoGUI dialog = new AdministrarUsuariosParqueaderoGUI(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

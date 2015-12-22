@@ -125,10 +125,10 @@ private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
     if(telefono.trim().length()!=10)
         throw new TelefonoNoValidoException();
     try{
-            Integer.parseInt(telefono.toString());
-        }catch(Exception e){
-            throw new TelefonoNoValidoException();
-        }
+        Integer.parseInt(telefono.toString());
+    }catch(Exception e){
+        throw new TelefonoNoValidoException();
+    }
         
 }
 public void ValidarPuerta(String ubicacion,String id,String idCampus){

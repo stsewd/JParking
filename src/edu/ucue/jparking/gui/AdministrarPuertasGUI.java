@@ -139,7 +139,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
