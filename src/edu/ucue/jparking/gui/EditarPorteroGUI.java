@@ -64,6 +64,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Portero");
+        setResizable(false);
 
         jLabel4.setText("Estado:");
 

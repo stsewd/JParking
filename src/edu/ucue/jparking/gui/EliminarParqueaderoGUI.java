@@ -46,7 +46,8 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Eliminar parqueadero");
+        setTitle("Eliminar Parqueadero");
+        setResizable(false);
 
         jLabel1.setText("Código:");
 

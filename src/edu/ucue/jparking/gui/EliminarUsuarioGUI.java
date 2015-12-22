@@ -45,7 +45,8 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
         EliminarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Eliminar usuario");
+        setTitle("Eliminar Usuario");
+        setResizable(false);
 
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

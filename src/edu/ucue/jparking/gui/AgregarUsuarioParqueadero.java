@@ -56,6 +56,7 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Usuario a un Parqueadero");
         setMinimumSize(new java.awt.Dimension(294, 110));
+        setResizable(false);
 
         jLabel1.setText("Cédula:");
 

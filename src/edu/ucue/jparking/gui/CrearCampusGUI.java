@@ -49,6 +49,7 @@ public class CrearCampusGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Campus");
+        setResizable(false);
 
         jLabel1.setText("Nombre:");
 

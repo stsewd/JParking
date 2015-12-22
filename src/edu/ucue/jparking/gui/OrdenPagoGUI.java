@@ -65,6 +65,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         fechaContratoTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Orden de Pago");
+        setResizable(false);
 
         jLabel4.setText("Tipo de Usuario:");
 

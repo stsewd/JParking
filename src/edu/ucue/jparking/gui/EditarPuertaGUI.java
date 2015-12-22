@@ -50,6 +50,7 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Puerta");
+        setResizable(false);
 
         jLabel2.setText("Ubicación:");
 

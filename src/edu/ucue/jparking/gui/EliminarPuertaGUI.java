@@ -49,7 +49,8 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Eliminar puerta");
+        setTitle("Eliminar Puerta");
+        setResizable(false);
 
         jLabel1.setText("Código:");
 

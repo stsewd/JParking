@@ -56,6 +56,8 @@ public class UsuarioGUI extends javax.swing.JDialog {
         activoCheckB = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Informacion del Usuario");
+        setResizable(false);
 
         jLabel3.setText("Apellidos:");
 

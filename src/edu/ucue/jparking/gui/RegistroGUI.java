@@ -58,6 +58,7 @@ public class RegistroGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro");
+        setResizable(false);
 
         jLabel1.setText("Tipo registro:");
 
@@ -104,7 +105,7 @@ public class RegistroGUI extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CerrarBtn)
                 .addGap(12, 12, 12))
             .addGroup(layout.createSequentialGroup()

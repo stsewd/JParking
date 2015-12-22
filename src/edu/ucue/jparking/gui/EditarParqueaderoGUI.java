@@ -59,7 +59,8 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         EstadoCK = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Editar parqueadero");
+        setTitle("Editar Parqueadero");
+        setResizable(false);
 
         CampusTF.setEditable(false);
         CampusTF.setEnabled(false);

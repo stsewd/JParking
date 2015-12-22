@@ -54,7 +54,8 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         CrearBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Crear parqueadero");
+        setTitle("Crear Parqueadero");
+        setResizable(false);
 
         jLabel1.setText("Código:");
 

@@ -43,7 +43,8 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         EliminarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Eliminar portero");
+        setTitle("Eliminar Portero");
+        setResizable(false);
 
         CedulaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

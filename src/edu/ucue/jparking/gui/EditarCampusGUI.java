@@ -49,6 +49,7 @@ public class EditarCampusGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Campus");
+        setResizable(false);
 
         EditarBtn.setText("Editar");
         EditarBtn.addActionListener(new java.awt.event.ActionListener() {
