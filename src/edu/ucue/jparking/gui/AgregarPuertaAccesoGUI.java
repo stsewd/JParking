@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.PuertaService;
@@ -45,7 +46,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        CampusTF = new javax.swing.JTextField();
         UbicacionCB = new javax.swing.JComboBox();
         idCampuslbl = new javax.swing.JLabel();
         idPuertaCB = new javax.swing.JComboBox();
@@ -64,10 +65,10 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
 
         jLabel2.setText("Campus:");
 
-        jTextField1.setEditable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        CampusTF.setEditable(false);
+        CampusTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                CampusTFActionPerformed(evt);
             }
         });
 
@@ -116,7 +117,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,7 +126,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -150,13 +151,14 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargarParqueaderosCB() throws CampusNoExistenteException {
+    private void cargarPuertasCB() throws CampusNoExistenteException {
         //Cargar parqueaderos en combo box
         UbicacionCB.removeAllItems();
         PuertaService service = new PuertaService();
         for(Puerta p : service.getPuertas(idCampuslbl.getText())){
         UbicacionCB.addItem(p.getUbicacion());
-        idPuertaCB.addItem(p.getId());}
+        idPuertaCB.addItem(p.getId());
+        }
         
     }
     
@@ -164,11 +166,16 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         idCampuslbl.setText(campus);
         idParqueaderolbl.setText(idParqueadero);
         TipoAccesolbl.setText(tipoAcceso);
+        CampusTF.setText(campus);
+        try {
+            cargarPuertasCB();
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        }
     }
     
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void CampusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_CampusTFActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO add your handling code here:
@@ -189,7 +196,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 service.addPuertaEntrada(idParqueaderolbl.getText(), idPuerta);
                 JOptionPane.showMessageDialog(rootPane, "La puerta a sido añadida con exito", "Mensaje", JOptionPane.OK_OPTION);
                 this.setVisible(false);
-            } catch (ParqueaderoNoExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException ex) {
+            } catch (ParqueaderoNoExistenteException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }else{
@@ -248,6 +255,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarBtn;
+    private javax.swing.JTextField CampusTF;
     private javax.swing.JButton CerrarBtn;
     private javax.swing.JLabel TipoAccesolbl;
     private javax.swing.JComboBox UbicacionCB;
@@ -256,6 +264,5 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
     private javax.swing.JComboBox idPuertaCB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

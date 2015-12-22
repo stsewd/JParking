@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -14,6 +15,7 @@ import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -104,6 +106,11 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         });
 
         EliminarEntradaBtn.setText("Eliminar");
+        EliminarEntradaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarEntradaBtnActionPerformed(evt);
+            }
+        });
 
         CerrarBtn.setText("Cerrar");
         CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +185,11 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         }
 
         EliminarSalidaBtn1.setText("Eliminar");
+        EliminarSalidaBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarSalidaBtn1ActionPerformed(evt);
+            }
+        });
 
         CerrarBtn1.setText("Cerrar");
         CerrarBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +326,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         AgregarPuertaAccesoGUI agregarPuertaAccesoGUI = new AgregarPuertaAccesoGUI(null, true);
         agregarPuertaAccesoGUI.cargarDatos(idParqueaderolbl.getText(), idCampuslbl.getText(), "entrada");
         agregarPuertaAccesoGUI.setLocationRelativeTo(this);
-        
+        agregarPuertaAccesoGUI.setVisible(true);
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
@@ -331,6 +343,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         AgregarPuertaAccesoGUI agregarPuertaAccesoGUI = new AgregarPuertaAccesoGUI(null, rootPaneCheckingEnabled);
         agregarPuertaAccesoGUI.setLocationRelativeTo(this);
         agregarPuertaAccesoGUI.cargarDatos(idParqueaderolbl.getText(), idCampuslbl.getText(), "salida");
+        agregarPuertaAccesoGUI.setVisible(true);
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
@@ -344,12 +357,58 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
 
     private void CerrarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtn1ActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         ///
     }//GEN-LAST:event_CerrarBtn1ActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
+
+    private void EliminarSalidaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarSalidaBtn1ActionPerformed
+        // TODO add your handling code here:
+        int row = TablaPuertasSalida.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idPuerta = (String) TablaPuertasSalida.getValueAt(row, 1);
+        ParqueaderoService service = new ParqueaderoService();
+        try {
+            service.delPuertaSalida(idParqueaderolbl.getText(), idPuerta);
+            JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        try {
+            listarPuertasSalida();
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+        }
+    }//GEN-LAST:event_EliminarSalidaBtn1ActionPerformed
+
+    private void EliminarEntradaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEntradaBtnActionPerformed
+
+        // TODO add your handling code here:
+        int row = TablaPuertasEntrada.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idPuerta = (String) TablaPuertasEntrada.getValueAt(row, 1);
+        ParqueaderoService service = new ParqueaderoService();
+        try {
+            service.delPuertaEntrada(idParqueaderolbl.getText(), idPuerta);
+            JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
+        try {
+            listarPuertasEntradas();
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+        }
+    }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 
     public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
         ParqueaderoService service = new ParqueaderoService();
