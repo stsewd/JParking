@@ -33,7 +33,7 @@ public class OrdenPagoService {
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException 
      */
-    public OrdenPago optenerOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
+    public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
         validaciones.validarCedula(cedula);
         return usuariosDAO.getUsuario(cedula).generarOrdenPago();
     }

@@ -315,11 +315,9 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
         // TODO add your handling code here:
-
-        UsuarioService usuarioService = new UsuarioService();
-
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
+                UsuarioService usuarioService = new UsuarioService();
                 cargarDatos(CedulaTF.getText());
                 habilitarCampos();
             } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
