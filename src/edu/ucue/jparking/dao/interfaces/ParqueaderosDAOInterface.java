@@ -177,4 +177,18 @@ public interface ParqueaderosDAOInterface {
      */
     public Set<Usuario> getUsuarios(String idParqueadero)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
+    /**
+     * agrega un numero de espacio en el parqueadero
+     * @param idParqueadero
+     * @throws ParqueaderoNoExistenteException 
+     */
+    public void AgregarEspacioParqueo(String idParqueadero) 
+            throws ParqueaderoNoExistenteException;
+    /**
+     * resta un parqueadero 
+     * @param idParqueadero
+     * @throws ParqueaderoNoExistenteException 
+     */
+    public void EliminarEspacioParqueo(String idParqueadero) 
+            throws ParqueaderoNoExistenteException;
 }

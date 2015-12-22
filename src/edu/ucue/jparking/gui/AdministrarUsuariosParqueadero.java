@@ -35,7 +35,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         try {
             //Lista los usuarios para un campus y parqueadero determinado
             listarUsuarios();
-        } catch (CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
+        } catch (CodigoNoValidoException | ParqueaderoNoExistenteException | IllegalArgumentException | UsuarioNoExistenteException ex) {
         }
     }
 
@@ -211,7 +211,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         
         try {
             listarUsuarios();
-        } catch (CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
@@ -226,7 +226,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
         ParqueaderoService service = new ParqueaderoService();
         try {
-            service.delUsuario(cedula, idParaqueadero);
+            service.delUsuario(idParaqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario se ha borrado exisosamente", "Mensaje", JOptionPane.OK_OPTION);
             
         } catch (CedulaNoValidaException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
@@ -235,7 +235,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         
         try {
             listarUsuarios();
-        } catch (CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
@@ -249,7 +249,7 @@ public class AdministrarUsuariosParqueadero extends javax.swing.JDialog {
         Parqueadero parqueadero =  service.getParqueadero(idParqueadero);
         ParqueaderoTF.setText(parqueadero.getUbicacion());
         CampusTF.setText(campus);
-        idParqueaderoLbl.setText(idParqueadero);
+        idParqueaderoLbl.setText(parqueadero.getId());
         idParqueaderoLbl.setVisible(false);
     }
     

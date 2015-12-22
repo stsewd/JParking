@@ -62,6 +62,11 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         });
 
         CerrarBtn.setText("Cerrar");
+        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarBtnActionPerformed(evt);
+            }
+        });
 
         AgregarBtn.setText("Agregar");
         AgregarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -145,13 +150,19 @@ public class AgregarUsuarioParqueadero extends javax.swing.JDialog {
         String id = IdParqueaderolbl.getText();
         ParqueaderoService service = new ParqueaderoService();
         try {
-            service.addUsuario(cedula, id);
+            service.addUsuario(id, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
+            
             this.setVisible(false);
         } catch (CedulaNoValidaException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } 
     }//GEN-LAST:event_AgregarBtnActionPerformed
+
+    private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CerrarBtnActionPerformed
 
     /**
      * @param args the command line arguments

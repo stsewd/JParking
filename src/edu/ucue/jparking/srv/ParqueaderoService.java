@@ -199,10 +199,12 @@ public class ParqueaderoService {
         validaciones.ComprobarParqueadero(idParqueadero);
         
         Parqueadero p = getParqueadero(idParqueadero);
-        if(p.getNumeroLugaresOcupados()>=p.getNumeroLugares())
-            throw new NumeroParqueaderosNoDisponiblesException();
+        if(p.getNumeroLugaresOcupados()<=p.getNumeroLugares())
+            parqueaderoDAO.addUsuario(idParqueadero, cedula);
+            parqueaderoDAO.AgregarEspacioParqueo(idParqueadero);
+        throw new NumeroParqueaderosNoDisponiblesException();
         
-        parqueaderoDAO.addUsuario(idParqueadero, cedula);
+        
         
     }
     /**
@@ -218,6 +220,7 @@ public class ParqueaderoService {
     public void delUsuario(String idParqueadero, String cedula) throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCedula(cedula);
+        parqueaderoDAO.EliminarEspacioParqueo(idParqueadero);
         parqueaderoDAO.delUsuario(idParqueadero, cedula);
     }
     /**
