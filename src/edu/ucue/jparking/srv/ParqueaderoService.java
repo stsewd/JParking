@@ -15,6 +15,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
@@ -132,10 +133,15 @@ public class ParqueaderoService {
      * @throws PuertaNoExistenteException
      * @throws PuertaYaAgregadaException 
      */
-    public void addPuertaEntrada(String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException{
+    public void addPuertaEntrada(String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         validaciones.ComprobarParqueadero(idParqueadero);
+        Set<Puerta> entradas = parqueaderoDAO.getPuertasEntrada(idParqueadero);
+        PuertaService ps = new PuertaService();
+        Puerta p = ps.getPuerta(idPuerta);
+        if(entradas.contains(p)==true)
+            throw new PuertaYaAgregadaException(idPuerta);
         parqueaderoDAO.addPuertaEntrada(idParqueadero, idPuerta);
         
     }
@@ -151,6 +157,11 @@ public class ParqueaderoService {
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         validaciones.ComprobarParqueadero(idParqueadero);
+        Set<Puerta> salidas = parqueaderoDAO.getPuertasSalida(idParqueadero);
+        PuertaService ps = new PuertaService();
+        Puerta p = ps.getPuerta(idPuerta);
+        if(salidas.contains(p)==true)
+            throw new PuertaYaAgregadaException(idPuerta);
         parqueaderoDAO.addPuertaSalida(idParqueadero, idPuerta);
     }
     /**
