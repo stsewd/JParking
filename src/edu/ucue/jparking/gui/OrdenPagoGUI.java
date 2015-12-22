@@ -10,6 +10,7 @@ import edu.ucue.jparking.srv.OrdenPagoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
+import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -321,6 +322,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             } catch (ContratoNoEstablecidoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            } catch (FueraDelDiaDePagoException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CedulaTFKeyPressed
@@ -404,7 +407,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException {
+    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
         OrdenPagoService ordenPagoService = new OrdenPagoService();
         UsuarioService usuarioService = new UsuarioService();
         OrdenPago  ordenPago = ordenPagoService.getOrdenPago(cedula);

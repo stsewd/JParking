@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
@@ -74,9 +75,14 @@ public abstract class Usuario extends Persona{
      *
      * @return La orden de pago del usuario que llama el método
      */
-    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException{
+    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException{
         if(getFechaContrato() == null)
             throw new ContratoNoEstablecidoException(getCedula());
+        
+        Calendar fechaActual = Calendar.getInstance();
+        fechaActual.roll(Calendar.DAY_OF_WEEK, -(getDiasContrato() - 5));
+        if(this.getFechaContrato().before(fechaActual))
+            throw new FueraDelDiaDePagoException(getDiasContrato());
         return null;
     }
 

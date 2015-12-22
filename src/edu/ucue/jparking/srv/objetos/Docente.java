@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 
@@ -25,7 +26,7 @@ public class Docente extends Usuario {
     }
 
     @Override
-    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException {
+    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException {
         super.generarOrdenPago();
         return new OrdenPago(getCedula(), getVALOR_PARQUEADERO());
     }
