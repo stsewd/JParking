@@ -135,12 +135,14 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        UsuariosDAO.getInstance().getUsuario(cedula);
+        
+        Usuario u = UsuariosDAO.getInstance().getUsuario(cedula);
         
         if(parqueadero.getUsuarios().contains(cedula))
             throw new UsuarioYaAgregadoException(cedula);
         
         parqueadero.getUsuarios().add(cedula);
+        UsuariosDAO.getInstance().addPaqueadero(cedula, parqueadero.getId());
     }
 
     @Override
@@ -150,6 +152,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         if(!parqueadero.getUsuarios().contains(cedula))
             throw new UsuarioNoAgregadoException(cedula);
         parqueadero.getUsuarios().remove(cedula);
+        UsuariosDAO.getInstance().delParqueadero(cedula, idParqueadero);
     }
 
     @Override
@@ -188,6 +191,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         return usuarios;
     }
     
+    @Override
     public void AgregarEspacioParqueo(String idParqueadero, String cedula, Calendar fecha) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException{
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)
@@ -196,6 +200,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
     }
     
+    @Override
     public void EliminarEspacioParqueo(String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException{
         Parqueadero parqueadero = getParqueadero(idParqueadero);
         if(parqueadero == null)

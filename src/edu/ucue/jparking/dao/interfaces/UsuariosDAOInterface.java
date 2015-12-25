@@ -8,6 +8,7 @@ package edu.ucue.jparking.dao.interfaces;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public interface UsuariosDAOInterface {
      * @return
      * @throws UsuarioNoExistenteException 
      */
-    public abstract Usuario getUsuario(String cedula)
+    public Usuario getUsuario(String cedula)
             throws UsuarioNoExistenteException;
     
     /**
@@ -48,22 +49,33 @@ public interface UsuariosDAOInterface {
      * @param cedula
      * @param nombres
      * @param apellidos
+     * @param direccion
+     * @param telefono
      * @param activo
      * @throws UsuarioNoExistenteException 
      */
-    public abstract void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
+    public void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
             throws UsuarioNoExistenteException;
     
     /**
      * Retorna todos los usuarios registrados
      * @return 
      */
-    public abstract Set<Usuario> getUsuarios();
+    public Set<Usuario> getUsuarios();
     
     /**
      * Retorna una lista del tipo de usuario especificado
      * @param tipoUsuario
      * @return 
      */
-    public abstract Set<Usuario> getUsuarios(TipoUsuario tipoUsuario);
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario);
+    
+    /**
+     * Retorna todos los parqueaderos asociado a un usuario
+     * @param cedula
+     * @return 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
+     */
+    public Set<Parqueadero> getParqueaderos(String cedula)
+            throws UsuarioNoExistenteException;
 }

@@ -5,16 +5,19 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
-import edu.ucue.jparking.srv.objetos.Estudiante;
-import edu.ucue.jparking.srv.objetos.Persona;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Portero;
+import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
 
@@ -70,7 +73,7 @@ public class UsuarioService {
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
-    public void autenticarUsuario(String campus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
+    public void autenticarUsuario(String campus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException{
         validaciones.validarCedula(cedula);
         if(campus == null || campus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
@@ -78,16 +81,42 @@ public class UsuarioService {
             throw new IllegalArgumentException("El argumento idPuerta no puede ser nulo.");
         
         PorterosService porterosService = new PorterosService();
-        CampusService campusService = new CampusService();
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         
         Portero portero = porterosService.getPortero(cedula);
         if(portero != null){
-            Usuario u = get(cedula);
+            //Permitir acceso
+            if(portero.getCampus().compareToIgnoreCase(campus) != 0)
+                throw new AccesoNoAutorizadoException(cedula, portero.getTipoUsuarioString(), campus, idPuerta);
+            return;
         }
         
-        throw new IllegalArgumentException("FALTA IMPLEMENTAR");
+        Usuario u = get(cedula);
+        boolean encontrado = false;
         
+        for(Parqueadero p : UsuariosDAO.getInstance().getParqueaderos(cedula)){
+            for(Puerta pu : parqueaderoService.getPuertasEntrada(p.getId())){
+                if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
+                    encontrado = true;
+                    break;
+                }
+            }
+            
+            if(encontrado)
+                break;
+            
+            for(Puerta pu : parqueaderoService.getPuertasSalida(p.getId())){
+                if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
+                    encontrado = true;
+                    break;
+                }
+            }
+            if(encontrado)
+                break;
+        }
+        
+        if(!encontrado)
+            throw new AccesoNoAutorizadoException(cedula, u.getTipoUsuarioString(), campus, idPuerta);
     }
   
 }

@@ -29,8 +29,6 @@ public class Portero extends Persona{
      */
     public void setCampus(String campus) {
         this.campus = campus;
-    }
-
-    
+    }    
     
 }

@@ -8,6 +8,8 @@ import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -17,7 +19,8 @@ public abstract class Usuario extends Persona{
 
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
-    private String parqueaderoActual;
+    private Set<String> parqueaderos;
+    private boolean dentro;
     
     //private TipoUsuario tipoUsuario;
     /**
@@ -32,6 +35,8 @@ public abstract class Usuario extends Persona{
     public Usuario(String cedula, String nombres, String apellidos, String direccion, String telefono, TipoUsuario tipoUsuario) {
         super(cedula, nombres, apellidos, direccion, telefono, tipoUsuario);
         this.fechaContrato = null;
+        this.parqueaderos = new HashSet<>();
+        this.dentro = false;
     }
 
     /**
@@ -75,6 +80,8 @@ public abstract class Usuario extends Persona{
     /**
      *
      * @return La orden de pago del usuario que llama el método
+     * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException
+     * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException
      */
     public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException{
         if(getFechaContrato() == null)
@@ -88,24 +95,31 @@ public abstract class Usuario extends Persona{
     }
 
     /**
-     * @return the tipoUsuario
+     * @return the parqueaderos
      */
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+    public Set<String> getParqueaderos() {
+        return parqueaderos;
     }
 
     /**
-     * @return the parqueaderoActual
+     * @param parqueaderos the parqueaderos to set
      */
-    public String getParqueaderoActual() {
-        return parqueaderoActual;
+    public void setParqueaderos(Set<String> parqueaderos) {
+        this.parqueaderos = parqueaderos;
     }
 
     /**
-     * @param parqueaderoActual the parqueaderoActual to set
+     * @return the dentro
      */
-    public void setParqueaderoActual(String parqueaderoActual) {
-        this.parqueaderoActual = parqueaderoActual;
+    public boolean isDentro() {
+        return dentro;
+    }
+
+    /**
+     * @param dentro the dentro to set
+     */
+    public void setDentro(boolean dentro) {
+        this.dentro = dentro;
     }
     
 }

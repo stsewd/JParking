@@ -7,6 +7,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public class UsuariosDAO implements UsuariosDAOInterface{
         
     @Override
     public Set<Usuario> getUsuarios(){
-        return new LinkedHashSet<Usuario>(usuarios.values());
+        return new LinkedHashSet<>(usuarios.values());
     }
 
     @Override
@@ -87,5 +88,22 @@ public class UsuariosDAO implements UsuariosDAOInterface{
             throw new UsuarioNoExistenteException(cedula);
         Usuario usuario = usuarios.get(cedula);
         usuario.setFechaContrato(calendar);
+    }
+
+    @Override
+    public Set<Parqueadero> getParqueaderos(String cedula) throws UsuarioNoExistenteException {
+        Set<Parqueadero> parqueaderos = new HashSet<>();
+        for(String p : getUsuario(cedula).getParqueaderos()){
+            parqueaderos.add(ParqueaderosDAO.getInstance().getParqueadero(p));
+        }
+        return parqueaderos;
+    }
+
+    public void addPaqueadero(String cedula, String idParqueadero) throws UsuarioNoExistenteException {
+        getUsuario(cedula).getParqueaderos().add(idParqueadero);
+    }
+    
+    public void delParqueadero(String cedula, String idParqueadero) throws UsuarioNoExistenteException{
+        getUsuario(cedula).getParqueaderos().remove(idParqueadero);
     }
 }
