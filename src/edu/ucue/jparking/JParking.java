@@ -26,11 +26,11 @@
  */
 package edu.ucue.jparking;
 
+import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.gui.PrincipalGUI;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -45,16 +45,24 @@ public class JParking {
     public static void main(String[] args) {
         //PrincipalGUI.main(args);
         //PrincipalGUI pgui = new PrincipalGUI();
-        try { 
+        try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); 
         } 
         catch(Exception e){
             try {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             } catch (Exception ex) {
+                //Carga interfaz por defecto
             }
         }
         PrincipalGUI pgui = new PrincipalGUI();
+        try {
+            //Tests
+            Test.cargarUsuarios();
+            pgui.listarUsuarios();
+        } catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
+            System.out.println(ex.getMessage());
+        }
         pgui.setVisible(true);
     }
 }

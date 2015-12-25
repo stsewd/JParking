@@ -11,5 +11,6 @@ package edu.ucue.jparking.srv.enums;
  */
 public enum TipoAcceso {
     ENTRADA,
-    SALIDA;
+    SALIDA,
+    PASS;
 }
