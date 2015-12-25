@@ -139,7 +139,7 @@ public class CrearCampusGUI extends javax.swing.JDialog {
             campusService.addCampus(nombre, ubicacion);
             JOptionPane.showMessageDialog(rootPane, "Campus guardado con exito", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
-            getPadre().cargarParqueaderosCB();
+            getPadre().cargarCampusCB();
         } catch (CampusExistenteExeption | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }

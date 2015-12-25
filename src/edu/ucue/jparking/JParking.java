@@ -26,10 +26,16 @@
  */
 package edu.ucue.jparking;
 
+import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.gui.PrincipalGUI;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -56,13 +62,30 @@ public class JParking {
             }
         }
         PrincipalGUI pgui = new PrincipalGUI();
+        
+        //Inicion de tests
         try {
-            //Tests
             Test.cargarUsuarios();
             pgui.listarUsuarios();
         } catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        try {
+            Test.cargarCampus();
+            pgui.cargarCampusCB();
+        } catch (CampusExistenteExeption ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        try {
+            Test.cargarParqueaderos();
+            pgui.listarParqueaderos();
+        } catch (ParqueaderoYaExistenteException | CampusNoExistenteException | CodigoNoValidoException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        //Fin de tests
         pgui.setVisible(true);
     }
 }

@@ -38,9 +38,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
      * Creates new form PrincipalGUI
      */
     public PrincipalGUI() {
-        initComponents();
-        
-        
+        initComponents();        
         
         //Establecer icono de aplicacion
         ImageIcon imgIcon = new ImageIcon("../JParking/img/transport122.png");
@@ -54,13 +52,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         
         //Cargar campus en combobox
-        cargarParqueaderosCB();
+        cargarCampusCB();
         
         //Centrar ventana
         setLocationRelativeTo(null);
     }
     
-    public void cargarParqueaderosCB(){
+    public void cargarCampusCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         CampusService campusService = new CampusService();
@@ -788,7 +786,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        cargarParqueaderosCB();
+        cargarCampusCB();
     }//GEN-LAST:event_EliminarCampusMenuItemActionPerformed
 
     private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
