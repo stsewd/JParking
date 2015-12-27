@@ -128,7 +128,7 @@ private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
     for(int i = 0; i < telefono.length(); i++){
         if(!Character.isDigit(telefono.charAt(i)))
             throw new TelefonoNoValidoException();
-    }   
+    }
 }
 public void ValidarPuerta(String ubicacion,String id,String idCampus){
     if(ubicacion==null||ubicacion.trim().length()==0)
