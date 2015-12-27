@@ -35,9 +35,10 @@ public class RegistroAccesoParqueaderoService {
     public void addAcceso(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
         validaciones.validarCedula(cedula);
         Persona persona = UsuariosDAO.getInstance().getUsuario(cedula);
-        Registro registro = new RegistroAccesoParqueadero(persona, TipoAcceso.ENTRADA);
+        Registro registro = new RegistroAccesoParqueadero(persona, TipoAcceso.PASS);
         registrosDAO.addRegistro(registro);
     }
+    
     /**
      * 
      * 
@@ -46,6 +47,7 @@ public class RegistroAccesoParqueaderoService {
     public Set<Registro> getAcceso(){
         return registrosDAO.getRegistros(TipoRegistro.ACCESO_PARQUEADERO);
     }
+    
     /**
      * 
      * @param fechaInicio
