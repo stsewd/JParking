@@ -89,7 +89,7 @@ public abstract class Usuario extends Persona{
         
         Calendar fechaActual = Calendar.getInstance();
         fechaActual.roll(Calendar.DAY_OF_WEEK, -(getDiasContrato() - 5));
-        if(this.getFechaContrato().before(fechaActual))
+        if(fechaActual.before(this.getFechaContrato()))
             throw new FueraDelDiaDePagoException(getDiasContrato());
         return null;
     }
