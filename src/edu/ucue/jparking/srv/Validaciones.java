@@ -28,7 +28,6 @@ public class Validaciones {
     static void validarFecha(Calendar fechaInicio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    //private String aux;
 
     public static void validarFecha(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
         if(fechaInicio == null)
@@ -57,19 +56,20 @@ public void ComprobarParqueadero(String id) throws ParqueaderoNoExistenteExcepti
     if(parqueadero.isActivo()==false)
         throw new ParquaderoInactivoException(parqueadero.getUbicacion());
 }
+
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     boolean cedulaCorrecta = false;
     try {
-        if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+        if (cedula.length() == 10)
         {
             int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
             if (tercerDigito < 6) {
                 // Coeficientes de validación cédula
                 // El decimo digito se lo considera dígito verificador
-                 int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
-                 int verificador = Integer.parseInt(cedula.substring(9,10));
-                 int suma = 0;
-                 int digito = 0;
+                int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+                int verificador = Integer.parseInt(cedula.substring(9,10));
+                int suma = 0;
+                int digito = 0;
                 for (int i = 0; i < (cedula.length() - 1); i++) {
                  digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
                  suma += ((digito % 10) + (digito / 10));
@@ -124,12 +124,11 @@ public void ValidarDatos(String cedula, String nombre, String apellidos, String 
 private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
     if(telefono.trim().length()!=10)
         throw new TelefonoNoValidoException();
-    try{
-        Integer.parseInt(telefono.toString());
-    }catch(Exception e){
-        throw new TelefonoNoValidoException();
-    }
-        
+    telefono = telefono.trim();
+    for(int i = 0; i < telefono.length(); i++){
+        if(!Character.isDigit(telefono.charAt(i)))
+            throw new TelefonoNoValidoException();
+    }   
 }
 public void ValidarPuerta(String ubicacion,String id,String idCampus){
     if(ubicacion==null||ubicacion.trim().length()==0)
