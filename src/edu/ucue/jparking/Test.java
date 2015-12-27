@@ -8,9 +8,13 @@ package edu.ucue.jparking;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.PorterosService;
+import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -22,9 +26,6 @@ import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
  * @author Santos 
  */
 public class Test {
-    /**
-     * Clase con campus y usuarios de prueba.
-     */
     
     //Usuarios
     private static final String[][] usuarios = {
@@ -84,6 +85,32 @@ public class Test {
         {"0105688816", "LATA CHUQUI", "MILTON GEOVANNY"}
     };
     
+    //Porteros
+    private static final String[][] porteros = {
+        {"0105456883", "RAIBAN VERA", "ELVIS FABIAN"},
+        {"0104800164", "RAMOS CORONEL", "PABLO ESTEBAN"},
+        {"0105561989", "REA ASMAL", "SEBASTIAN ALEJANDRO"},
+        {"0105742811", "REA ORELLANA", "WILLIAM FERNANDO"},
+        {"0105175038", "REIBÁN MOROCHO", "GILSON XAVIER"},
+        {"0302076955", "REINO ABAD", "PAOLA GABRIELA"},
+        {"0105812465", "REINO CHERREZ", "MATEO JUAN"},
+        {"0302991104", "REINO CRIOLLO", "RUTH ALEXANDRA"},
+        {"0105389993", "REINO PARRA", "CHRISTIAN ALEJANDRO"},
+        {"0105547376", "REINOSO DELGADO", "JOEL FRANCISCO"},
+        {"0302712856", "REINOSO QUINTEROS", "JOHNNY GABRIEL"},
+        {"1400757116", "REINOZO TRELLES", "EDISSON SANTIAGO"},
+        {"0106419534", "REMACHE FARINANGO", "PAOLA MARIBEL"},
+        {"0105730667", "REMACHE ORELLANA", "JORGE MAURICIO"},
+        {"0106633449", "RENDON LOJA", "RONALDO SEBASTIAN"},
+        {"0105925077", "REYES ESPINOZA", "JONNATHAN FABRICIO"},
+        {"0106433816", "RIOS CEDILLO", "ESTEBAN JAVIER"},
+        {"1400682710", "RIVADENEIRA", "ERAZO THALIA GABRIELA"},
+        {"1104660962", "RIVAS", "TORRES CIDER"},
+        {"0105822787", "RIVAS VÁSQUEZ", "CARLOS EDUARDO"},
+        {"0105180533", "RIVERA GUTIERREZ", "LUIS XAVIER"},
+        {"0106728884", "RIVERA ORTIZ", "LENIN MARCELO"}
+    };
+    
     private static final TipoUsuario[] tipoUsuario = {TipoUsuario.DOCENTE, TipoUsuario.EMPLEADO, TipoUsuario.ESTUDIANTE};
     
     
@@ -100,7 +127,7 @@ public class Test {
     public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException{
         UsuarioService us = new UsuarioService();
         for(int i = 0; i<usuarios.length; i++)
-            us.add(usuarios[i][0], usuarios[i][1], usuarios[i][2], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
+            us.add(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
     }
     
     public static void cargarCampus() throws CampusExistenteExeption{
@@ -109,9 +136,21 @@ public class Test {
             cs.addCampus(campus[i][0], campus[i][1]);
     }
     
-    public static void cargarParqueaderos() throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException{
+    public static void cargarParqueaderos(int numParqueaderos) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException{
         ParqueaderoService ps = new ParqueaderoService();
-        for(int i = 0; i<60; i++)
-            ps.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 30 +1), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
+        for(int i = 0; i < numParqueaderos; i++)
+            ps.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
+    }
+    
+    public static void cargarPorteros() throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException {
+        PorterosService ps = new PorterosService();
+        for(int i = 0; i<porteros.length; i++)
+            ps.addPortero(campus[(int)(Math.random()*100 % campus.length)][0], porteros[i][0], porteros[i][2], porteros[i][1], "Direccion A", "0123456789");
+    }
+    
+    public static void cargarPuertas(int numPuertas) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException {
+        PuertaService ps = new PuertaService();
+        for(int i = 0; i < numPuertas; i++)
+            ps.addpuerta("Ubicacion B", "A" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
 }

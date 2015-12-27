@@ -29,13 +29,13 @@ package edu.ucue.jparking;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.gui.PrincipalGUI;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -49,8 +49,6 @@ public class JParking {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //PrincipalGUI.main(args);
-        //PrincipalGUI pgui = new PrincipalGUI();
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); 
         } 
@@ -79,13 +77,26 @@ public class JParking {
         }
         
         try {
-            Test.cargarParqueaderos();
+            Test.cargarParqueaderos(35);
             pgui.listarParqueaderos();
         } catch (ParqueaderoYaExistenteException | CampusNoExistenteException | CodigoNoValidoException ex) {
             System.out.println(ex.getMessage());
         }
         
+        try {
+            Test.cargarPorteros();
+        } catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        try {
+            Test.cargarPuertas(35);
+        } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
         //Fin de tests
+        
         pgui.setVisible(true);
     }
 }
