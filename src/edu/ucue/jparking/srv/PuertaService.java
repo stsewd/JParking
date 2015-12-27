@@ -35,6 +35,7 @@ public class PuertaService {
         Puerta puerta = new Puerta(ubicacion, id, idCampus);
         puertasDAO.addPuerta(idCampus, puerta);
     }
+    
     /**
      * 
      * @param id
