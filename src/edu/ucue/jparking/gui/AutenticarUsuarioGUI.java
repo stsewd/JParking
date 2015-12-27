@@ -5,9 +5,14 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -138,9 +143,16 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
         UsuarioService us = new UsuarioService();
         try {
             us.autenticarUsuario(CampusTF.getText(), PuertaIdTF.getText(), CedulaTF.getText());
+            JOptionPane.showMessageDialog(rootPane, "Usuario autenticado correctamente.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (UsuarioNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (AccesoNoAutorizadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
