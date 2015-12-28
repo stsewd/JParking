@@ -860,11 +860,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        
-        
+
         EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
         editarParqueaderoGUI.setLocationRelativeTo(this);
-        
+        try {
+            editarParqueaderoGUI.cargarDatos(idParqueadero);
+        } catch (ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
         editarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
 
