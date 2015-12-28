@@ -8,6 +8,8 @@ package edu.ucue.jparking;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
@@ -124,7 +126,7 @@ public class Test {
     };
     
     
-    public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException{
+    public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException{
         UsuarioService us = new UsuarioService();
         for(int i = 0; i<usuarios.length; i++)
             us.add(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
@@ -142,7 +144,7 @@ public class Test {
             ps.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
     
-    public static void cargarPorteros() throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException {
+    public static void cargarPorteros() throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException {
         PorterosService ps = new PorterosService();
         for(int i = 0; i<porteros.length; i++)
             ps.addPortero(campus[(int)(Math.random()*100 % campus.length)][0], porteros[i][0], porteros[i][2], porteros[i][1], "Direccion A", "0123456789");

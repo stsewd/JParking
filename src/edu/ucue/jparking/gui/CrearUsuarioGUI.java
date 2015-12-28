@@ -5,10 +5,13 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -198,6 +201,8 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
             getPadre().listarUsuarios();
             this.setVisible(false);
         } catch (UsuarioYaExistenteException | CedulaNoValidaException |TelefonoNoValidoException | IllegalArgumentException ex ) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (PersonaYaRegistradoComoPorteroException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
 

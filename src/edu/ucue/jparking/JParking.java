@@ -29,6 +29,8 @@ package edu.ucue.jparking;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
@@ -36,6 +38,8 @@ import edu.ucue.jparking.gui.PrincipalGUI;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -67,6 +71,8 @@ public class JParking {
             pgui.listarUsuarios();
         } catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
             System.out.println(ex.getMessage());
+        } catch (PersonaYaRegistradoComoPorteroException ex) {
+            System.out.println(ex.getMessage());
         }
         
         try {
@@ -86,6 +92,8 @@ public class JParking {
         try {
             Test.cargarPorteros();
         } catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
+            System.out.println(ex.getMessage());
+        } catch (PersonaYaRegistradaComoUsuarioException ex) {
             System.out.println(ex.getMessage());
         }
         
