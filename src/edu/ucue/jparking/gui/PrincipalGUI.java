@@ -20,8 +20,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -41,7 +39,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         initComponents();        
         
         //Establecer icono de aplicacion
-        ImageIcon imgIcon = new ImageIcon("../JParking/img/transport122.png");
+        ImageIcon imgIcon = new ImageIcon("img/transport122.png");
         this.setIconImage(imgIcon.getImage());
         
         //Listar usuarios en tabla
@@ -667,6 +665,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void AcercaDeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeMenuItemActionPerformed
         // TODO add your handling code here:
+        AcercaDe ad = new AcercaDe(this, true);
+        ad.setLocationRelativeTo(this);
+        ad.cargarImagen();
+        ad.setVisible(true);
     }//GEN-LAST:event_AcercaDeMenuItemActionPerformed
 
     private void EliminarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoBtnActionPerformed

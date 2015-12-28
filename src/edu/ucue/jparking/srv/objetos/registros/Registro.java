@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ucue.jparking.srv.registros;
+package edu.ucue.jparking.srv.objetos.registros;
 
 import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.enums.TipoRegistro;

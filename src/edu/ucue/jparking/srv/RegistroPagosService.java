@@ -13,8 +13,8 @@ import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Usuario;
-import edu.ucue.jparking.srv.registros.Registro;
-import edu.ucue.jparking.srv.registros.RegistroPagos;
+import edu.ucue.jparking.srv.objetos.registros.Registro;
+import edu.ucue.jparking.srv.objetos.registros.RegistroPagos;
 import java.util.Calendar;
 import java.util.Set;
 

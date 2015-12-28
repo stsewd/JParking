@@ -7,7 +7,7 @@ package edu.ucue.jparking.dao.interfaces;
 
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
-import edu.ucue.jparking.srv.registros.Registro;
+import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.util.Calendar;
 import java.util.Set;
 

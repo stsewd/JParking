@@ -8,7 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.RegistroService;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
-import edu.ucue.jparking.srv.registros.Registro;
+import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
