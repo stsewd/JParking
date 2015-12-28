@@ -41,10 +41,13 @@ public class PuertasDAO implements PuertasDAOInterface {
     }
 
     @Override
-    public void delPuerta(String id) throws PuertaNoExistenteException, CampusNoExistenteException {
-        Puerta puerta = getPuerta(id);
+    public void delPuerta(String nombreCampus, String id) throws PuertaNoExistenteException, CampusNoExistenteException {
+        Puerta puerta = getPuerta(nombreCampus, id);
         if(puerta == null)
             throw new PuertaNoExistenteException(id);
+        //Eliminar dependencias
+        
+        //Fin de dependencias
         CampusDAO.getInstancia().getCampus(puerta.getIdCampus()).getPuertas().remove(id);
     }
 
@@ -63,8 +66,8 @@ public class PuertasDAO implements PuertasDAOInterface {
     }
 
     @Override
-    public void modPuerta(String id, String ubicacion, boolean activa) throws PuertaNoExistenteException, CampusNoExistenteException {
-        Puerta puerta = getPuerta(id);
+    public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activa) throws PuertaNoExistenteException, CampusNoExistenteException {
+        Puerta puerta = getPuerta(nombreCampus, id);
         if(puerta == null)
             throw new PuertaNoExistenteException(id);
         puerta.setUbicacion(ubicacion);
@@ -72,13 +75,9 @@ public class PuertasDAO implements PuertasDAOInterface {
     }
 
     @Override
-    public Puerta getPuerta(String id) {
-        Puerta puerta;
-        for(Campus c : CampusDAO.getInstancia().getCampus()){
-            puerta = c.getPuertas().get(id);
-            if(puerta != null)
-                return puerta;
-        }
-        return null;
+    public Puerta getPuerta(String nombreCampus, String id) throws CampusNoExistenteException {
+        Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
+        Puerta puerta = campus.getPuertas().get(id);
+        return puerta;
     }
 }

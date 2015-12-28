@@ -29,20 +29,24 @@ public interface PuertasDAOInterface {
     
     /**
      * Elimina una puerta dado su identificador
+     * @param nombreCampus
      * @param id
      * @throws PuertaNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public abstract void delPuerta(String id)
+    public abstract void delPuerta(String nombreCampus, String id)
             throws PuertaNoExistenteException, CampusNoExistenteException;
     
     /**
      * Retorna una puerta dado su identificador
      * Si la puerta no existe retorna null.
+     * @param nombreCampus
      * @param id
      * @return 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public abstract Puerta getPuerta(String id);
+    public abstract Puerta getPuerta(String nombreCampus, String id)
+            throws CampusNoExistenteException;
     
     /**
      * Obtiene todas las puertas registradas
@@ -62,12 +66,13 @@ public interface PuertasDAOInterface {
     /**
      * Modifica la ubicacion y estado de una puerta
      * dado su id.
+     * @param nombreCampus
      * @param id
      * @param ubicacion
      * @param activa
      * @throws PuertaNoExistenteException
      * @throws CampusNoExistenteException 
      */
-    public abstract void modPuerta(String id, String ubicacion, boolean activa)
+    public abstract void modPuerta(String nombreCampus, String id, String ubicacion, boolean activa)
             throws PuertaNoExistenteException, CampusNoExistenteException;
 }
