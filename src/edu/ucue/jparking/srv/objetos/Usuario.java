@@ -59,9 +59,8 @@ public abstract class Usuario extends Persona{
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
-        //fechaActual.add(Calendar.DAY_OF_WEEK, -getDiasContrato());
         fechaActual.roll(Calendar.DAY_OF_WEEK, -getDiasContrato());
-        return this.getFechaContrato().before(fechaActual);
+        return fechaActual.after(this.getFechaContrato());
     }
     
     public void cancelarPago() throws PagoYaRealizadoException {

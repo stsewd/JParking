@@ -50,6 +50,5 @@ public class OrdenPagoService {
     public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException{
         validaciones.validarCedula(cedula);
         usuariosDAO.getUsuario(cedula).cancelarPago();
-    }   
-    
+    }
 }
