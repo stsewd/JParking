@@ -20,7 +20,6 @@ public abstract class Usuario extends Persona{
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
     private Set<String> parqueaderos;
-    private boolean dentro;
     
     //private TipoUsuario tipoUsuario;
     /**
@@ -36,7 +35,6 @@ public abstract class Usuario extends Persona{
         super(cedula, nombres, apellidos, direccion, telefono, tipoUsuario);
         this.fechaContrato = null;
         this.parqueaderos = new HashSet<>();
-        this.dentro = false;
     }
 
     /**
@@ -105,20 +103,5 @@ public abstract class Usuario extends Persona{
      */
     public void setParqueaderos(Set<String> parqueaderos) {
         this.parqueaderos = parqueaderos;
-    }
-
-    /**
-     * @return the dentro
-     */
-    public boolean isDentro() {
-        return dentro;
-    }
-
-    /**
-     * @param dentro the dentro to set
-     */
-    public void setDentro(boolean dentro) {
-        this.dentro = dentro;
-    }
-    
+    }    
 }
