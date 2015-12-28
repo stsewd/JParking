@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
@@ -22,9 +23,10 @@ public interface UsuariosDAOInterface {
      * existir el usuario se lanza una excepcion.
      * @param usuario Usuarion a ser agregado
      * @throws UsuarioYaExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException 
      */
     public abstract void addUsuario(Usuario usuario)
-            throws UsuarioYaExistenteException;
+            throws UsuarioYaExistenteException, PersonaYaRegistradoComoPorteroException;
     
     /**
      * Eliminar un usuario dado su numero de cedula.

@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.*;
 import edu.ucue.jparking.srv.objetos.Portero;
@@ -22,9 +23,11 @@ public interface PorterosDAOInterface {
      * @param portero
      * @throws CampusNoExistenteException
      * @throws PorteroYaExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException 
      */
     public void addPortero(String nombreCampus, Portero portero)
-            throws CampusNoExistenteException, PorteroYaExistenteException;
+            throws CampusNoExistenteException, PorteroYaExistenteException,
+            PersonaYaRegistradaComoUsuarioException;
     
     /**
      * Elimina un portero dado su cedula

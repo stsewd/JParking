@@ -5,9 +5,11 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
@@ -33,12 +35,14 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public void addPortero(String nombreCampus, Portero portero)
-            throws CampusNoExistenteException, PorteroYaExistenteException {
-        
-        if(getPortero(portero.getCedula()) == null){
-            CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().put(portero.getCedula(), portero);
-        }else {
+            throws CampusNoExistenteException, PorteroYaExistenteException,PersonaYaRegistradaComoUsuarioException {
+        if(getPortero(portero.getCedula()) != null)
             throw new PorteroYaExistenteException(portero.getCedula());
+        try{
+            UsuariosDAO.getInstance().getUsuario(portero.getCedula());
+            throw new PersonaYaRegistradaComoUsuarioException(portero.getCedula());
+        }catch (UsuarioNoExistenteException ex){
+            CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().put(portero.getCedula(), portero);
         }
     }
 

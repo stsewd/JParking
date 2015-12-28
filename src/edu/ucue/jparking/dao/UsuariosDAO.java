@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
@@ -35,9 +36,11 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     }
     
     @Override
-    public void addUsuario(Usuario usuario) throws UsuarioYaExistenteException{
+    public void addUsuario(Usuario usuario) throws UsuarioYaExistenteException, PersonaYaRegistradoComoPorteroException{
         if(usuarios.get(usuario.getCedula()) != null)
             throw new UsuarioYaExistenteException(usuario.getCedula());
+        if(PorterosDAO.getInstance().getPortero(usuario.getCedula()) != null)
+            throw new PersonaYaRegistradoComoPorteroException(usuario.getCedula());
         usuarios.put(usuario.getCedula(), usuario);
     }
     
