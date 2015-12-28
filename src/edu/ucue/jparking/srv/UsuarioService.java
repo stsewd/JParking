@@ -10,6 +10,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
@@ -74,7 +75,7 @@ public class UsuarioService {
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
-    public void autenticarUsuario(String campus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException{
+    public void autenticarUsuario(String campus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException{
         validaciones.validarCedula(cedula);
         if(campus == null || campus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
