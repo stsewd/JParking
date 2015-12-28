@@ -61,7 +61,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(305, 120));
         setResizable(false);
 
-        jLabel1.setText("Puertas:");
+        jLabel1.setText("Puerta:");
 
         jLabel2.setText("Campus:");
 
@@ -69,6 +69,12 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         CampusTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampusTFActionPerformed(evt);
+            }
+        });
+
+        UbicacionCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbicacionCBActionPerformed(evt);
             }
         });
 
@@ -109,15 +115,14 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                                 .addComponent(AgregarBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CerrarBtn))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(UbicacionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(UbicacionCB, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,7 +161,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         UbicacionCB.removeAllItems();
         PuertaService service = new PuertaService();
         for(Puerta p : service.getPuertas(idCampuslbl.getText())){
-        UbicacionCB.addItem(p.getUbicacion());
+        UbicacionCB.addItem("(" + p.getId() + ") " + p.getUbicacion());
         idPuertaCB.addItem(p.getId());
         }
         
@@ -198,6 +203,8 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            } catch (CampusNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }else{
             try {
@@ -206,9 +213,15 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            } catch (CampusNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed
+
+    private void UbicacionCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbicacionCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UbicacionCBActionPerformed
 
     /**
      * @param args the command line arguments

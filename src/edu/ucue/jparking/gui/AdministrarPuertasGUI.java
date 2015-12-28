@@ -161,6 +161,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        TablaPuertas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        TablaPuertas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(TablaPuertas);
         if (TablaPuertas.getColumnModel().getColumnCount() > 0) {
             TablaPuertas.getColumnModel().getColumn(0).setMinWidth(30);
@@ -296,12 +298,14 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         String codigo = (String) TablaPuertas.getValueAt(row, 1);
         EliminarPuertaGUI eliminarPuertaGUI = new EliminarPuertaGUI(null, rootPaneCheckingEnabled);
         eliminarPuertaGUI.setLocationRelativeTo(this);
-        eliminarPuertaGUI.cargarCodigo(codigo,nombreCampus);
+        eliminarPuertaGUI.cargarCodigo(codigo, nombreCampus);
         eliminarPuertaGUI.setVisible(true);
         try {
             listarPuertas();
         } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (CodigoNoValidoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarPuertabtnActionPerformed
 
@@ -322,7 +326,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         EditarPuertaGUI editarPuertaGUI = new EditarPuertaGUI(null, rootPaneCheckingEnabled);
         editarPuertaGUI.setLocationRelativeTo(this);
         try {
-            editarPuertaGUI.CargarDatos(codigo);
+            editarPuertaGUI.CargarDatos(nombreCampus, codigo);
             editarPuertaGUI.HabilitarCampos();
             editarPuertaGUI.setVisible(true);
         } catch (CodigoNoValidoException ex) {
@@ -330,6 +334,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         } catch (PuertaNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         try {

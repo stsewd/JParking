@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
@@ -91,6 +92,8 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        TablaPuertasEntrada.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        TablaPuertasEntrada.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaPuertasEntrada);
         if (TablaPuertasEntrada.getColumnModel().getColumnCount() > 0) {
             TablaPuertasEntrada.getColumnModel().getColumn(0).setMinWidth(30);
@@ -131,11 +134,10 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
                         .addComponent(AgregarEntradaBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EliminarEntradaBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CerrarBtn)
-                        .addGap(45, 45, 45)
+                        .addGap(100, 100, 100)
                         .addComponent(idParqueaderolbl)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CerrarBtn)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -212,16 +214,14 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(AgregarSalidaBtn1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EliminarSalidaBtn1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CerrarBtn1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CerrarBtn1)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,16 +254,14 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(ParqueaderoTF))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(52, 52, 52)
-                                .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CampusTF, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(ParqueaderoTF))
+                        .addGap(15, 15, 15)
                         .addComponent(idCampuslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -291,7 +289,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException{
+    private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
         Set<Puerta> puertaEntrada = service.getPuertasEntrada(idParqueaderolbl.getText());
         
@@ -307,7 +305,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     }
     
     
-    private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException{
+    private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
         Set<Puerta> puertaSalida = service.getPuertasSalida(idParqueaderolbl.getText());
         
@@ -330,11 +328,17 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
 
@@ -347,11 +351,17 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarSalidaBtn1ActionPerformed
 
@@ -380,10 +390,15 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarSalidaBtn1ActionPerformed
 
@@ -402,18 +417,23 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusNoExistenteException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 
-    public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException{
+    public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
         Parqueadero parqueadero =  service.getParqueadero(idParqueadero);
-        ParqueaderoTF.setText(parqueadero.getUbicacion());
+        ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);
         idParqueaderolbl.setText(idParqueadero);
         idCampuslbl.setText(campus);
@@ -421,7 +441,6 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         idCampuslbl.setVisible(false);
         listarPuertasEntradas();
         listarPuertasSalida();
-        
     }
     /**
      * @param args the command line arguments

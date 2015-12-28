@@ -11,6 +11,8 @@ import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -171,9 +173,9 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         CampusTF.setEditable(false);
     }
     
-    public void CargarDatos(String codigo) throws CodigoNoValidoException, PuertaNoExistenteException{
+    public void CargarDatos(String nombreCampus, String codigo) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException{
         PuertaService puertaService = new PuertaService();
-        Puerta puerta = puertaService.getPuerta(codigo);
+        Puerta puerta = puertaService.getPuerta(nombreCampus, codigo);
         CodigoTF.setText(codigo);
         UbicacionTF.setText(puerta.getUbicacion());
         EstadoCK.setSelected(puerta.estaActiva());
@@ -184,7 +186,7 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
-                CargarDatos(CodigoTF.getText());
+                CargarDatos(CampusTF.getText(), CodigoTF.getText());
                 HabilitarCampos();
             } catch (CodigoNoValidoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
@@ -192,6 +194,8 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
             }catch(IllegalArgumentException ex){
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
+            } catch (CampusNoExistenteException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CodigoTFKeyPressed
@@ -209,8 +213,8 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         boolean estado = EstadoCK.isSelected();
         PuertaService puertaService = new PuertaService();
         try {
-            puertaService.modPuerta(ubicacion, codigo, campus, estado);
-            JOptionPane.showMessageDialog(rootPane, "Puerta modificada con exito!!", "Puerta", JOptionPane.OK_OPTION);
+            puertaService.modPuerta(campus, codigo, ubicacion, estado);
+            JOptionPane.showMessageDialog(rootPane, "Puerta modificada con exito.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

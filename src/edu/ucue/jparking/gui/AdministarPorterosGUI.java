@@ -123,7 +123,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearPorteroBtn)
                     .addComponent(ModificarPorteroBtn)
@@ -153,6 +153,8 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        TablaPorteros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        TablaPorteros.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(TablaPorteros);
         if (TablaPorteros.getColumnModel().getColumnCount() > 0) {
             TablaPorteros.getColumnModel().getColumn(0).setMinWidth(30);
@@ -190,7 +192,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Porteros", jPanel1);
