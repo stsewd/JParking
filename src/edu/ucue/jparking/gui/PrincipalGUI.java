@@ -679,9 +679,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
+        String campus = (String) CampusCB.getSelectedItem();
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
         EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
-        eliminarParqueaderoGUI.cargarDatos(idParqueadero);
+        eliminarParqueaderoGUI.cargarDatos(idParqueadero, campus);
         eliminarParqueaderoGUI.setLocationRelativeTo(this);
         eliminarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
@@ -838,17 +839,17 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        
+        String campus = (String) CampusCB.getSelectedItem();
         EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
         editarParqueaderoGUI.setLocationRelativeTo(this);
                
         try {
-            editarParqueaderoGUI.cargarDatos(idParqueadero);
+            editarParqueaderoGUI.cargarDatos(idParqueadero,campus);
             editarParqueaderoGUI.habilitarCampos();
             editarParqueaderoGUI.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
+        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
+        } 
     }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
 
     private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
@@ -859,14 +860,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-
+        String nombreCampus = (String) CampusCB.getSelectedItem();
         EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
         editarParqueaderoGUI.setLocationRelativeTo(this);
         try {
-            editarParqueaderoGUI.cargarDatos(idParqueadero);
-        } catch (ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CodigoNoValidoException ex) {
+            editarParqueaderoGUI.cargarDatos(idParqueadero, nombreCampus);
+        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         editarParqueaderoGUI.setVisible(true);
@@ -937,7 +936,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         try {
             usuariosParqueadero.CargarDatos(nombreCampus, idParqueadero);
             usuariosParqueadero.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
+        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         

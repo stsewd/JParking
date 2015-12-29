@@ -175,7 +175,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         String codigo = CodigoTF.getText();
         String ubicacion = UbicacionTF.getText();
-        String Campus = CampusTF.getText();
+        String campus = CampusTF.getText();
         boolean estado = EstadoCK.isSelected();
         int numLugares = 0;
         try{
@@ -187,7 +187,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
-            parqueaderoService.modParqueadero(codigo, ubicacion, numLugares,estado);
+            parqueaderoService.modParqueadero(campus, codigo, ubicacion, numLugares, estado);
             JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado satisfactoriamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
@@ -209,7 +209,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             try {
-                cargarDatos(CodigoTF.getText());
+                cargarDatos(CodigoTF.getText(), CampusTF.getText());
                 habilitarCampos();
                 JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado exitosamente.", "Aviso", JOptionPane.OK_OPTION);
                 this.setVisible(false);
@@ -278,9 +278,9 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String parqueaderoId) throws ParqueaderoNoExistenteException, CodigoNoValidoException {
+    public void cargarDatos(String parqueaderoId, String campus) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException {
         ParqueaderoService parqueaderoService = new ParqueaderoService();
-        Parqueadero parqueadero = parqueaderoService.getParqueadero(parqueaderoId);
+        Parqueadero parqueadero = parqueaderoService.getParqueadero(campus, parqueaderoId);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(parqueaderoId);
         

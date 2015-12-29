@@ -29,7 +29,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="campuslbl" min="-2" pref="69" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="EliminarBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CancelarBtn" min="-2" max="-2" attributes="0"/>
@@ -60,8 +62,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="CancelarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="EliminarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campuslbl" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,6 +97,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="campuslbl">
     </Component>
   </SubComponents>
 </Form>

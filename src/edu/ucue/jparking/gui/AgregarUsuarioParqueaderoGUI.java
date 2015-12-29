@@ -54,6 +54,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
         VerBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         IdParqueaderolbl = new javax.swing.JTextField();
+        campuslbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Usuario a un Parqueadero");
@@ -95,7 +96,8 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 166, Short.MAX_VALUE)
+                        .addComponent(campuslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(VerBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AgregarBtn)
@@ -129,8 +131,9 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(VerBtn)
                     .addComponent(CerrarBtn)
-                    .addComponent(AgregarBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AgregarBtn)
+                    .addComponent(campuslbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -149,16 +152,18 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_VerBtnActionPerformed
 
     
-    public void CargarDatos(String id){
+    public void CargarDatos(String id, String campus){
         IdParqueaderolbl.setText(id);
+        campuslbl.setText(campus);
     }
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
         // TODO add your handling code here:
         String cedula = CedulaTF.getText();
         String id = IdParqueaderolbl.getText();
+        String campus = campuslbl.getText();
         ParqueaderoService service = new ParqueaderoService();
         try {
-            service.addUsuario(id, cedula);
+            service.addUsuario(campus, id, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CedulaNoValidaException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
@@ -221,6 +226,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
     private javax.swing.JButton CerrarBtn;
     private javax.swing.JTextField IdParqueaderolbl;
     private javax.swing.JButton VerBtn;
+    private javax.swing.JLabel campuslbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

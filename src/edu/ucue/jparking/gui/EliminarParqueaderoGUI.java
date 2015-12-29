@@ -44,6 +44,7 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         EliminarBtn = new javax.swing.JButton();
         CancelarBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        campuslbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Eliminar Parqueadero");
@@ -79,7 +80,9 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
+                        .addComponent(campuslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(EliminarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelarBtn))
@@ -103,8 +106,9 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelarBtn)
-                    .addComponent(EliminarBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(EliminarBtn)
+                    .addComponent(campuslbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -123,7 +127,7 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
-            parqueaderoService.delParqueadero(CodigoTF.getText());
+            parqueaderoService.delParqueadero(campuslbl.getText(), CodigoTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Parqueadero eliminado satisfactoriamente.","Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
@@ -178,11 +182,14 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
     private javax.swing.JButton CancelarBtn;
     private javax.swing.JTextField CodigoTF;
     private javax.swing.JButton EliminarBtn;
+    private javax.swing.JLabel campuslbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String idParqueadero) {
+    public void cargarDatos(String idParqueadero,String campus) {
         CodigoTF.setText(idParqueadero);
+        campuslbl.setText(campus);
+        campuslbl.setVisible(false);
     }
 }
