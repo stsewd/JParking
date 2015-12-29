@@ -245,7 +245,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
 
         int n = 1;
         for(Portero p : porteros)
-            model.addRow(new Object[]{n++, p.getCedula(), p.getNombres() + " " + p.getApellidos()});
+            model.addRow(new Object[]{n++, p.getCedula(), p.getApellidos()+ " " + p.getNombres()});
     }
     
     private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed

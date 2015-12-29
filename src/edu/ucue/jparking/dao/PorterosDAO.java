@@ -16,6 +16,7 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -81,7 +82,7 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public Set<Portero> getPorteros() {
-        Set<Portero> porteros = new HashSet<>(); 
+        Set<Portero> porteros = new TreeSet<>(); 
         for(Campus c : CampusDAO.getInstancia().getCampus())
             porteros.addAll((Collection<? extends Portero>) c.getPorteros());
         return porteros;
@@ -89,6 +90,6 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
-        return new HashSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().values());
+        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().values());
     }
 }
