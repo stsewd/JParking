@@ -53,7 +53,6 @@ public class PorterosDAO implements PorterosDAOInterface {
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
-        String campus = portero.getCampus();
         CampusDAO.getInstancia().getCampus(portero.getCampus()).getPorteros().remove(cedula);
     }
 

@@ -21,8 +21,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -100,7 +98,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         int n = 1;
         for(Usuario u : usuarios)
-            model.addRow(new Object[]{n++, u.getCedula(), u.getNombres() + " " + u.getApellidos()});
+            model.addRow(new Object[]{n++, u.getCedula(), u.getApellidos()+ " " + u.getNombres()});
     }
     
     public void listarParqueaderos() throws CampusNoExistenteException{

@@ -47,6 +47,14 @@ public class CampusDAO implements CampusDAOInterface {
         if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
         }
+        
+        /*************************
+         * Eliminar depencias:
+         * 
+         * Parqueaderos del campus que contiene un usuario.
+         * 
+        ***************************/
+        
         mapCampus.remove(nombre);
     }
 

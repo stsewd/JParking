@@ -9,7 +9,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  *
  * @author Santos Gallegos
  */
-public class Portero extends Persona{
+public class Portero extends Persona {
     private String campus;
 
     public Portero(String campus, String cedula, String nombres, String apellidos, String direccion, String telefono) {

@@ -100,7 +100,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         Set<Parqueadero> parqueaderos = new HashSet<>();
         
         /****************************************************
-         * No te olvides de manear varibles de instancia dentro
+         * No te olvides de manejar varibles de instancia dentro
          * de la lista de parqueaderos de un usuario
          * en lugar de sólo el id.
         *******************************************************/
