@@ -187,23 +187,4 @@ public interface ParqueaderosDAOInterface {
      */
     public Set<Usuario> getUsuarios(String idParqueadero)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
-    /**
-     * agrega un numero de espacio en el parqueadero
-     * @param idParqueadero
-     * @param cedula
-     * @param fecha
-     * @throws ParqueaderoNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
-     */
-    public void AgregarEspacioParqueo(String idParqueadero, String cedula, Calendar fecha) 
-            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
-    /**
-     * resta un parqueadero 
-     * @param idParqueadero
-     * @param cedula
-     * @throws ParqueaderoNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
-     */
-    public void EliminarEspacioParqueo(String idParqueadero, String cedula) 
-            throws ParqueaderoNoExistenteException , UsuarioNoExistenteException;
 }

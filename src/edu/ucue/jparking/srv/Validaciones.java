@@ -17,6 +17,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
@@ -25,6 +26,7 @@ import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
+import java.util.Set;
 
 /**
  *
@@ -93,6 +95,22 @@ public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, 
         throw new CampusNoExistenteException(idCampus);
     if(campus.isActivo()==false)
         throw new  CampusInactivoException(idCampus);
+}
+
+public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException{
+    ParqueaderoService parqueaderoService = new ParqueaderoService();
+    UsuarioService usuarioService = new UsuarioService();
+    Usuario usuario = usuarioService.get(cedula);
+    for (Parqueadero p : parqueaderoService.getParqueaderos()) {
+        for (Usuario u: parqueaderoService.getUsuarios(p.getId())) {
+            if(u.equals(usuario)){
+                return true;
+            }
+        }
+    }
+    
+    
+    return false;
 }
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     boolean cedulaCorrecta = false;

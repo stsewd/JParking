@@ -195,26 +195,4 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         }
         return usuarios;
     }
-    
-    @Override
-    public void AgregarEspacioParqueo(String idParqueadero, String cedula, Calendar fecha) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException{
-        Parqueadero parqueadero = getParqueadero(idParqueadero);
-        if(parqueadero == null)
-            throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
-        UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
-        throw new IllegalArgumentException("Verificar linea 200 de parqueaderos DAO");
-        //La linea 200 agregar espacion de parqueo y eliminar
-        //espacio de parqueso corresponde al service!
-        //Cambiar fecha de contrato
-    }
-    
-    @Override
-    public void EliminarEspacioParqueo(String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException{
-        Parqueadero parqueadero = getParqueadero(idParqueadero);
-        if(parqueadero == null)
-            throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
-        UsuariosDAO.getInstance().fechaContrato(cedula, null);
-    }
 }
