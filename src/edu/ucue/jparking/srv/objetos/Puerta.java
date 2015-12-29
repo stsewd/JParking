@@ -7,7 +7,7 @@ package edu.ucue.jparking.srv.objetos;
  *
  * @author Santos Gallegos
  */
-public class Puerta {
+public class Puerta implements Comparable<Puerta> {
     
     private final String id;
     private String ubicacion;
@@ -57,6 +57,11 @@ public class Puerta {
      */
     public void setIdCampus(String idCampus) {
         this.idCampus = idCampus;
+    }
+
+    @Override
+    public int compareTo(Puerta o) {
+        return getId().compareToIgnoreCase(o.getId());
     }
 
     

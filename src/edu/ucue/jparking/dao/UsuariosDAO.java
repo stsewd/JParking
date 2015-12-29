@@ -50,6 +50,11 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     public void delUsuario(String cedula) throws UsuarioNoExistenteException{
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
+        /******************************
+         * Eliminar dependencias:
+         * Eliminar usuario de todos los parqueaderos.
+         * 
+         ******************************/
         usuarios.remove(cedula);
     }
     

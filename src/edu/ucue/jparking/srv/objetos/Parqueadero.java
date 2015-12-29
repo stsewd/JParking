@@ -10,7 +10,7 @@ import java.util.Set;
  *
  * @author Santos Gallegos
  */
-public class Parqueadero {
+public class Parqueadero implements Comparable<Parqueadero> {
     
     private Set<String> usuarios; //Cedula de usuarios
     private Set<String> puertasEntrada; //Id de puertas
@@ -154,6 +154,11 @@ public class Parqueadero {
      */
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    @Override
+    public int compareTo(Parqueadero o) {
+        return getId().compareToIgnoreCase(o.getId());
     }
     
 }

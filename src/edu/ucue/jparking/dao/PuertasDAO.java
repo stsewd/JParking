@@ -12,8 +12,8 @@ import edu.ucue.jparking.dao.interfaces.PuertasDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -45,15 +45,16 @@ public class PuertasDAO implements PuertasDAOInterface {
         Puerta puerta = getPuerta(nombreCampus, id);
         if(puerta == null)
             throw new PuertaNoExistenteException(id);
-        //Eliminar dependencias
-        
-        //Fin de dependencias
+        /*******************************
+         * Eliminar dependencias
+         * 
+        ***********************************/
         CampusDAO.getInstancia().getCampus(puerta.getIdCampus()).getPuertas().remove(id);
     }
 
     @Override
     public Set<Puerta> getPuertas() {
-        Set<Puerta> puertas = new HashSet<>();
+        Set<Puerta> puertas = new TreeSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             puertas.addAll((Collection<? extends Puerta>) c.getPuertas());
         }
@@ -62,7 +63,7 @@ public class PuertasDAO implements PuertasDAOInterface {
 
     @Override
     public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException {
-        return new HashSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas().values());
+        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas().values());
     }
 
     @Override

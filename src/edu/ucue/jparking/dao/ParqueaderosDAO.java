@@ -18,6 +18,7 @@ import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -47,6 +48,12 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     public void delParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException {
         if(getParqueadero(nombreCampus, idParqueadero) == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
+        
+        /***************************************************************
+         * Eliminar dependencias
+         * Eliminar parqueadero de todos los usuarios de este parqueadero.
+         ****************************************************************/
+        
         CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().remove(idParqueadero);
     }
 
@@ -60,7 +67,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Parqueadero> getParqueaderos() {
-        Set<Parqueadero> parqueaderos = new HashSet<>();
+        Set<Parqueadero> parqueaderos = new TreeSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             parqueaderos.addAll(c.getParqueaderos().values());
         }
@@ -69,7 +76,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Parqueadero> getParqueaderos(String nombreCampus) throws CampusNoExistenteException {
-        return new HashSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().values());
+        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().values());
     }
 
     @Override
@@ -153,7 +160,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException {
-        Set<Puerta> puertas = new HashSet<>();
+        Set<Puerta> puertas = new TreeSet<>();
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
@@ -164,7 +171,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException {
-        Set<Puerta> puertas = new HashSet<>();
+        Set<Puerta> puertas = new TreeSet<>();
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
@@ -175,7 +182,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException {
-        Set<Usuario> usuarios = new HashSet<>();
+        Set<Usuario> usuarios = new TreeSet<>();
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
