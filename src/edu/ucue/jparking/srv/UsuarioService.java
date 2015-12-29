@@ -75,9 +75,9 @@ public class UsuarioService {
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
-    public void autenticarUsuario(String campus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException{
+    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException{
         validaciones.validarCedula(cedula);
-        if(campus == null || campus.trim().length() == 0)
+        if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
         if(idPuerta == null || idPuerta.trim().length() == 0)
             throw new IllegalArgumentException("El argumento idPuerta no puede ser nulo.");
@@ -88,8 +88,8 @@ public class UsuarioService {
         Portero portero = porterosService.getPortero(cedula);
         if(portero != null){
             //Permitir acceso
-            if(portero.getCampus().compareToIgnoreCase(campus) != 0)
-                throw new AccesoNoAutorizadoException(cedula, portero.getTipoUsuarioString(), campus, idPuerta);
+            if(portero.getCampus().compareToIgnoreCase(nombreCampus) != 0)
+                throw new AccesoNoAutorizadoException(cedula, portero.getTipoUsuarioString(), nombreCampus, idPuerta);
             return;
         }
         
@@ -97,7 +97,7 @@ public class UsuarioService {
         boolean encontrado = false;
         
         for(Parqueadero p : UsuariosDAO.getInstance().getParqueaderos(cedula)){
-            for(Puerta pu : parqueaderoService.getPuertasEntrada(p.getId())){
+            for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){
                 if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
                     encontrado = true;
                     break;
@@ -107,7 +107,7 @@ public class UsuarioService {
             if(encontrado)
                 break;
             
-            for(Puerta pu : parqueaderoService.getPuertasSalida(p.getId())){
+            for(Puerta pu : parqueaderoService.getPuertasSalida(nombreCampus, p.getId())){
                 if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
                     encontrado = true;
                     break;
@@ -118,7 +118,7 @@ public class UsuarioService {
         }
         
         if(!encontrado)
-            throw new AccesoNoAutorizadoException(cedula, u.getTipoUsuarioString(), campus, idPuerta);
+            throw new AccesoNoAutorizadoException(cedula, u.getTipoUsuarioString(), nombreCampus, idPuerta);
     }
   
 }

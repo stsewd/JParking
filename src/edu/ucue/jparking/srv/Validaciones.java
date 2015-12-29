@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
+
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
@@ -11,13 +12,10 @@ import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import edu.ucue.jparking.dao.CampusDAO;
-import edu.ucue.jparking.dao.PuertasDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
@@ -59,24 +57,24 @@ public class Validaciones {
             throw new FechaFinalMenorAFechaInicialException(fechaInicio, fechaFinal);
     }
 
-public void ComprobarParqueadero(String id) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException{
+public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException{
     ParqueaderoService parqueaderoService = new ParqueaderoService();
-    Parqueadero parqueadero = parqueaderoService.getParqueadero(id);
+    Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
     if(parqueadero==null)
-        throw new ParqueaderoNoExistenteException(id);
+        throw new ParqueaderoNoExistenteException(idParqueadero);
     if(parqueadero.isActivo()==false)
         throw new ParquaderoInactivoException(parqueadero.getUbicacion());
 }
 
-public void ComprobarPuerta(String idparqueadero, String idpuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException{
+public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException{
     PuertaService service = new PuertaService();
     ParqueaderoService parqueaderoService = new ParqueaderoService();
-    Parqueadero parqueadero = parqueaderoService.getParqueadero(idparqueadero);
-    Puerta puerta = service.getPuerta(parqueadero.getNombreCampus(), idpuerta);
+    Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
+    Puerta puerta = service.getPuerta(parqueadero.getNombreCampus(), idPuerta);
     if(puerta==null)
-        throw new PuertaNoExistenteException(idpuerta);
+        throw new PuertaNoExistenteException(idPuerta);
     if(puerta.estaActiva()==false)
-        throw new PuertaInactivaException(idpuerta);
+        throw new PuertaInactivaException(idPuerta);
 }
 
 public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException{
@@ -102,14 +100,13 @@ public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusN
     UsuarioService usuarioService = new UsuarioService();
     Usuario usuario = usuarioService.get(cedula);
     Set<Parqueadero> parqueaderos = parqueaderoService.getParqueaderos();
-    //aqui me da el error no me retorna el set<Parqueadero>
-    for (Parqueadero p :parqueaderos) {
-        if(parqueaderoService.getUsuarios(p.getId()).contains(usuario)){
+    for(Parqueadero p : parqueaderos) {
+        if(p.getUsuarios().contains(cedula))
             return true;
-        }
     }
     return false;
 }
+
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     boolean cedulaCorrecta = false;
     try {
@@ -218,4 +215,3 @@ public void ValidarParqueadero(String ubicacion, int numeroLugares, String id, S
         throw new IllegalArgumentException("El argumento nombre no puede estra vacio");
 }
 }
-
