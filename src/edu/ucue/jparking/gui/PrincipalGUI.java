@@ -668,7 +668,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void AcercaDeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeMenuItemActionPerformed
         // TODO add your handling code here:
-        AcercaDe ad = new AcercaDe(this, true);
+        AcercaDeGUI ad = new AcercaDeGUI(this, true);
         ad.setLocationRelativeTo(this);
         ad.cargarImagen();
         ad.setVisible(true);

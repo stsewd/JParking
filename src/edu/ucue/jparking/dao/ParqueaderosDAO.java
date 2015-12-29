@@ -67,7 +67,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     public Set<Parqueadero> getParqueaderos() {
         Set<Parqueadero> parqueaderos = new HashSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
-            parqueaderos.add((Parqueadero) c.getParqueaderos().values());
+            parqueaderos.addAll(c.getParqueaderos().values());
         }
         return parqueaderos;
     }

@@ -114,6 +114,7 @@ public class Test {
         {"0106728884", "RIVERA ORTIZ", "LENIN MARCELO"}
     };
     
+    //Tipos de usuario
     private static final TipoUsuario[] tipoUsuario = {TipoUsuario.DOCENTE, TipoUsuario.EMPLEADO, TipoUsuario.ESTUDIANTE};
     
     
