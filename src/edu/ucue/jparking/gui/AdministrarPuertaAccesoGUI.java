@@ -291,7 +291,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
 
     private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
-        Set<Puerta> puertaEntrada = service.getPuertasEntrada(idParqueaderolbl.getText());
+        Set<Puerta> puertaEntrada = service.getPuertasEntrada(CampusTF.getText(), idParqueaderolbl.getText());
         
         DefaultTableModel model = (DefaultTableModel) TablaPuertasEntrada.getModel();
         
@@ -307,7 +307,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     
     private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
-        Set<Puerta> puertaSalida = service.getPuertasSalida(idParqueaderolbl.getText());
+        Set<Puerta> puertaSalida = service.getPuertasSalida(CampusTF.getText(), idParqueaderolbl.getText());
         
         DefaultTableModel model = (DefaultTableModel) TablaPuertasSalida.getModel();
         
@@ -384,18 +384,14 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         String idPuerta = (String) TablaPuertasSalida.getValueAt(row, 1);
         ParqueaderoService service = new ParqueaderoService();
         try {
-            service.delPuertaSalida(idParqueaderolbl.getText(), idPuerta);
+            service.delPuertaSalida(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
-        } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         try {
             listarPuertasSalida();
-        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarSalidaBtn1ActionPerformed
@@ -411,26 +407,22 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         String idPuerta = (String) TablaPuertasEntrada.getValueAt(row, 1);
         ParqueaderoService service = new ParqueaderoService();
         try {
-            service.delPuertaEntrada(idParqueaderolbl.getText(), idPuerta);
+            service.delPuertaEntrada(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
-        } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasEntradas();
-        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 
     public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
-        Parqueadero parqueadero =  service.getParqueadero(idParqueadero);
+        Parqueadero parqueadero =  service.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);
         idParqueaderolbl.setText(idParqueadero);
