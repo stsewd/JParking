@@ -3,11 +3,13 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
@@ -96,8 +98,20 @@ public class UsuariosDAO implements UsuariosDAOInterface{
     @Override
     public Set<Parqueadero> getParqueaderos(String cedula) throws UsuarioNoExistenteException {
         Set<Parqueadero> parqueaderos = new HashSet<>();
-        for(String p : getUsuario(cedula).getParqueaderos()){
-            parqueaderos.add(ParqueaderosDAO.getInstance().getParqueadero(p));
+        
+        /****************************************************
+         * No te olvides de manear varibles de instancia dentro
+         * de la lista de parqueaderos de un usuario
+         * en lugar de sólo el id.
+        *******************************************************/
+        
+        for(Campus campus : CampusDAO.getInstancia().getCampus()){
+            for(String idParqueadero : getUsuario(cedula).getParqueaderos()){
+                try {
+                    parqueaderos.add(ParqueaderosDAO.getInstance().getParqueadero(campus.getNombre(), idParqueadero));
+                } catch (CampusNoExistenteException ex) {
+                }
+            }
         }
         return parqueaderos;
     }
