@@ -64,41 +64,41 @@ public class JParking {
         }
         PrincipalGUI pgui = new PrincipalGUI();
         
-        //Inicion de tests
+        //Inicio de tests
         try {
             Test.cargarUsuarios();
             pgui.listarUsuarios();
-        } catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
+        }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
             System.out.println(ex.getMessage());
-        } catch (PersonaYaRegistradoComoPorteroException ex) {
+        }catch (PersonaYaRegistradoComoPorteroException ex) {
             System.out.println(ex.getMessage());
         }
         
         try {
             Test.cargarCampus();
             pgui.cargarCampusCB();
-        } catch (CampusExistenteExeption ex) {
+        }catch (CampusExistenteExeption ex) {
             System.out.println(ex.getMessage());
         }
         
         try {
             Test.cargarParqueaderos(35);
             pgui.listarParqueaderos();
-        } catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException ex) {
+        }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException ex) {
             System.out.println(ex.getMessage());
         } 
         
         try {
             Test.cargarPorteros();
-        } catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
+        }catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
             System.out.println(ex.getMessage());
-        } catch (PersonaYaRegistradaComoUsuarioException ex) {
+        }catch (PersonaYaRegistradaComoUsuarioException ex) {
             System.out.println(ex.getMessage());
         }
         
         try {
             Test.cargarPuertas(35);
-        } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException ex) {
+        }catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
         
