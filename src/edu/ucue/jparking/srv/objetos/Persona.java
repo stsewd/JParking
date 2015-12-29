@@ -9,7 +9,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  *
  * @author Santos Gallegos
  */
-public abstract class Persona {
+public abstract class Persona implements Comparable<Persona>{
     
     protected final TipoUsuario tipoUsuario;
     
@@ -127,5 +127,9 @@ public abstract class Persona {
     public String getTipoUsuarioString(){
         return tipoUsuario.toString();
     }
-    
+
+    @Override
+    public int compareTo(Persona o) {
+        return (getApellidos() + getNombres()).compareTo(o.getApellidos() + o.getNombres());
+    }
 }

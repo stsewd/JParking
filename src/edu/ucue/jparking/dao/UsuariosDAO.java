@@ -13,22 +13,22 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
  * @author Santos Gallegos
  */
-public class UsuariosDAO implements UsuariosDAOInterface{
+public class UsuariosDAO implements UsuariosDAOInterface {
     private static Map<String, Usuario> usuarios; //Mapa<Cedula, Usuario>>
     private static UsuariosDAO instance;
 
     private UsuariosDAO() {
-        usuarios = new HashMap<>();
+        usuarios = new TreeMap<>();
     }
     
     public static UsuariosDAO getInstance(){
@@ -74,12 +74,12 @@ public class UsuariosDAO implements UsuariosDAOInterface{
         
     @Override
     public Set<Usuario> getUsuarios(){
-        return new LinkedHashSet<>(usuarios.values());
+        return new TreeSet<>(usuarios.values());
     }
 
     @Override
     public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
-        Set<Usuario> usuarios = new HashSet<>();
+        Set<Usuario> usuarios = new TreeSet<>();
         
         for(Usuario u : getUsuarios()){
             if(u.getTipoUsuario() == tipoUsuario)
