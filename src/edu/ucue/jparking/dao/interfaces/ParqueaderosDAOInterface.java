@@ -36,21 +36,24 @@ public interface ParqueaderosDAOInterface {
     
     /**
      * Elimina un parqueadero dado su id
+     * @param nombreCampus
      * @param idParqueadero 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void delParqueadero(String idParqueadero)
+    public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException;
     
     /**
      * Obtiene un parqueadero dado su id
+     * @param nombreCampus
      * @param idParqueadero
      * @return Parqueadero
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException
      */
-    public Parqueadero getParqueadero(String idParqueadero)
-            throws ParqueaderoNoExistenteException;
+    public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException;
     
     /**
      * Retorna un set con todos los parqueaderos registrados
@@ -71,17 +74,20 @@ public interface ParqueaderosDAOInterface {
     
     /**
      * Modifica los campos: ubicacion de un parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @param ubicacion 
      * @param numLugares 
      * @param estado 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void modParqueadero(String idParqueadero, String ubicacion, int numLugares, boolean estado)
-            throws ParqueaderoNoExistenteException;
+    public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares, boolean estado)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException;
     
     /**
      * Agrega una puerta de entrada a un parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @param idPuerta 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
@@ -89,13 +95,14 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void addPuertaEntrada(String idParqueadero, String idPuerta)
+    public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException,
             PuertaYaAgregadaException, CampusNoExistenteException;
     
     
     /**
      * Agrega una puerta de salida a un parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @param idPuerta 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
@@ -103,88 +110,99 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void addPuertaSalida(String idParqueadero, String idPuerta)
+    public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException,
             PuertaYaAgregadaException, CampusNoExistenteException;
     
     /**
      * Elimina una puerta de entrada al parqueadero dada su id
+     * @param nombreCampus
      * @param idParqueadero
      * @param idPuerta 
      * @throws edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void delPuertaEntrada(String idParqueadero, String idPuerta)
+    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
             CampusNoExistenteException;
     
     /**
      * Elimina una puerta de salida al parqueadero dada su id
+     * @param nombreCampus
      * @param idParqueadero
      * @param idPuerta 
      * @throws edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void delPuertaSalida(String idParqueadero, String idPuerta)
+    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
             CampusNoExistenteException;
     
     /**
      * Retorna un set con todas las puertas de entrada de un
      * parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @return
      * @throws ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public Set<Puerta> getPuertasEntrada(String idParqueadero)
+    public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException;
     
     /**
      * Retorna un set con todas las puertas de salida de un
      * parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @return
      * @throws ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public Set<Puerta> getPuertasSalida(String idParqueadero)
+    public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException;
     
     /**
      * Agrega un usuario dado su cedula a un parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @param cedula
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException
      */
-    public void addUsuario(String idParqueadero, String cedula)
+    public void addUsuario(String nombreCampus, String idParqueadero, String cedula)
             throws ParqueaderoNoExistenteException, UsuarioYaAgregadoException,
-            UsuarioNoExistenteException;
+            UsuarioNoExistenteException, CampusNoExistenteException;
     
     /**
      * Eliminar un usuario de un parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @param cedula 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void delUsuario(String idParqueadero, String cedula)
+    public void delUsuario(String nombreCampus, String idParqueadero, String cedula)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException,
-            UsuarioNoAgregadoException;
+            UsuarioNoAgregadoException, CampusNoExistenteException;
     
     /**
      * Retorna un set con todos los usuarios pertenecientes a un
      * parqueadero dado su id.
+     * @param nombreCampus
      * @param idParqueadero
      * @return
      * @throws ParqueaderoNoExistenteException
      * @throws UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public Set<Usuario> getUsuarios(String idParqueadero)
-            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException;
+    public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero)
+            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException,
+            CampusNoExistenteException;
 }
