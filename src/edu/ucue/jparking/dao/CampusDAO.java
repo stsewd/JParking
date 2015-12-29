@@ -7,10 +7,10 @@ import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -70,6 +70,6 @@ public class CampusDAO implements CampusDAOInterface {
 
     @Override
     public Set<Campus> getCampus() {
-        return new HashSet<>(mapCampus.values());
+        return new TreeSet<>(mapCampus.values());
     }
 }

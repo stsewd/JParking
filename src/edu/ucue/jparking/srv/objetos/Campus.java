@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author Santos Gallegos
  */
-public class Campus {
+public class Campus implements Comparable<Campus> {
     private final String nombre;
     private String direccion;
     private static final HoraDia horaApertura = new HoraDia(6, 30);
@@ -99,5 +99,9 @@ public class Campus {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+
+    @Override
+    public int compareTo(Campus o) {
+        return getNombre().compareTo(o.getNombre());
+    }
 }
