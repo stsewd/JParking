@@ -5,6 +5,9 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
@@ -28,6 +31,7 @@ import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -53,9 +57,10 @@ public class ParqueaderoService {
      * @throws ParqueaderoYaExistenteException
      * @throws CampusNoExistenteException 
      */
-    public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException{
+    public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException{
         validaciones.ValidarParqueadero(ubicacion, numeroLugares, id, nombreCampus);
         validaciones.validarCodigo(id);
+        validaciones.ComprobarCampus(nombreCampus);
         Parqueadero parqueadero = new Parqueadero(ubicacion, numeroLugares, id, nombreCampus);
         parqueaderoDAO.addParqueadero(nombreCampus, parqueadero);
     }
@@ -100,6 +105,7 @@ public class ParqueaderoService {
     public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException{
         if(idCampus==null || idCampus.trim().length() == 0)
             throw new IllegalArgumentException("El id campus no puede estar vacio");
+        
         return parqueaderoDAO.getParqueaderos(idCampus);
     }
     
@@ -139,10 +145,11 @@ public class ParqueaderoService {
      * @throws PuertaNoExistenteException
      * @throws PuertaYaAgregadaException 
      */
-    public void addPuertaEntrada(String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException, CampusNoExistenteException{
+    public void addPuertaEntrada(String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         validaciones.ComprobarParqueadero(idParqueadero);
+        validaciones.ComprobarPuerta(idParqueadero, idPuerta);
         parqueaderoDAO.addPuertaEntrada(idParqueadero, idPuerta);
     }
     
@@ -154,10 +161,11 @@ public class ParqueaderoService {
      * @throws PuertaNoExistenteException
      * @throws PuertaYaAgregadaException 
      */
-    public void addPuertaSalida(String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException{
+    public void addPuertaSalida(String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, PuertaInactivaException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         validaciones.ComprobarParqueadero(idParqueadero);
+        validaciones.ComprobarPuerta(idParqueadero, idPuerta);
         parqueaderoDAO.addPuertaSalida(idParqueadero, idPuerta);
     }
     /**
@@ -200,11 +208,12 @@ public class ParqueaderoService {
      */
     
     public void addUsuario(String idParqueadero, String cedula) throws CedulaNoValidaException,
-            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException{
+            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException{
         
         validaciones.validarCedula(cedula);
         validaciones.validarCodigo(idParqueadero);
         validaciones.ComprobarParqueadero(idParqueadero);
+        validaciones.ComprobarUsuario(cedula);
         Calendar fecha = Calendar.getInstance();
         Parqueadero p = getParqueadero(idParqueadero);
         if(p.getNumeroLugaresOcupados()>=p.getNumeroLugares()) {

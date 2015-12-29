@@ -14,6 +14,7 @@ import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
@@ -48,7 +49,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         listarUsuarios();
         try {
             listarParqueaderos();
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException  ex) {
         }
         
         //Cargar campus en combobox

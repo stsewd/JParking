@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
+import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
+import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
@@ -13,10 +15,15 @@ import edu.ucue.jparking.dao.CampusDAO;
 import edu.ucue.jparking.dao.PuertasDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
 
 /**
@@ -53,10 +60,40 @@ public class Validaciones {
 public void ComprobarParqueadero(String id) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException{
     ParqueaderoService parqueaderoService = new ParqueaderoService();
     Parqueadero parqueadero = parqueaderoService.getParqueadero(id);
+    if(parqueadero==null)
+        throw new ParqueaderoNoExistenteException(id);
     if(parqueadero.isActivo()==false)
         throw new ParquaderoInactivoException(parqueadero.getUbicacion());
 }
 
+public void ComprobarPuerta(String idparqueadero, String idpuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException{
+    PuertaService service = new PuertaService();
+    ParqueaderoService parqueaderoService = new ParqueaderoService();
+    Parqueadero parqueadero = parqueaderoService.getParqueadero(idparqueadero);
+    Puerta puerta = service.getPuerta(parqueadero.getNombreCampus(), idpuerta);
+    if(puerta==null)
+        throw new PuertaNoExistenteException(idpuerta);
+    if(puerta.estaActiva()==false)
+        throw new PuertaInactivaException(idpuerta);
+}
+
+public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException{
+    UsuarioService service = new UsuarioService();
+    Usuario usuario = service.get(cedula);
+    if(usuario==null)
+        throw new UsuarioNoExistenteException(cedula);
+    if(usuario.isActivo()==false)
+        throw new UsuarioInactivoException();
+}
+
+public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, CampusInactivoException{
+    CampusService campusService = new CampusService();
+    Campus campus = campusService.getCampus(idCampus);
+    if(campus==null)
+        throw new CampusNoExistenteException(idCampus);
+    if(campus.isActivo()==false)
+        throw new  CampusInactivoException(idCampus);
+}
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
     boolean cedulaCorrecta = false;
     try {

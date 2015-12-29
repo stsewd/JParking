@@ -19,6 +19,7 @@ import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
@@ -138,7 +139,7 @@ public class Test {
             cs.addCampus(campus[i][0], campus[i][1]);
     }
     
-    public static void cargarParqueaderos(int numParqueaderos) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException{
+    public static void cargarParqueaderos(int numParqueaderos) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException{
         ParqueaderoService ps = new ParqueaderoService();
         for(int i = 0; i < numParqueaderos; i++)
             ps.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);

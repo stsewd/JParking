@@ -14,6 +14,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import javax.swing.JOptionPane;
 
 /**
@@ -161,7 +162,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
             //getPadre().listarParqueaderos();
             //getPadre().listarUsuarios();
             //getPadre().listarUsuarios();
-        } catch (CedulaNoValidaException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
+        } catch (CedulaNoValidaException |UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } 
     }//GEN-LAST:event_AgregarBtnActionPerformed

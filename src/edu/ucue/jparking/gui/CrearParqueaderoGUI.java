@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,9 +162,9 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane,"Parqueadero creado con exito", "Parqueadero", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
-        }catch (ParqueaderoYaExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
+        }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } 
+        }
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
