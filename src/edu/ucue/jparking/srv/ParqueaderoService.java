@@ -333,8 +333,6 @@ public class ParqueaderoService {
         }else{
             EliminarEspacioParqueo(nombreCampus, idParqueadero, cedula, 1);
         }
-        EliminarEspacioParqueo(nombreCampus, idParqueadero, cedula);
-        
     }
     
     /**
