@@ -252,13 +252,12 @@ public class ParqueaderoService {
         if(p.getNumeroLugaresOcupados()>=p.getNumeroLugares()) {
             throw new NumeroParqueaderosNoDisponiblesException();
         } else {
-            
-            if(validaciones.ComprobarUsuarioAsignadoParqueadero(cedula)==false){
-                parqueaderoDAO.addUsuario(idParqueadero, cedula);
-                AgregarEspacioParqueo(idParqueadero, cedula, fecha);
-            }else{
+            if(validaciones.ComprobarUsuarioAsignadoParqueadero(cedula)==true){
                 parqueaderoDAO.addUsuario(idParqueadero, cedula);
                 AgregarEspacioParqueo(idParqueadero, cedula);
+            }else{
+                parqueaderoDAO.addUsuario(idParqueadero, cedula);
+                AgregarEspacioParqueo(idParqueadero, cedula, fecha);
             }
             
         }

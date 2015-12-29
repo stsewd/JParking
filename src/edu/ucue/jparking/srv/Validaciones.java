@@ -101,15 +101,13 @@ public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusN
     ParqueaderoService parqueaderoService = new ParqueaderoService();
     UsuarioService usuarioService = new UsuarioService();
     Usuario usuario = usuarioService.get(cedula);
-    for (Parqueadero p : parqueaderoService.getParqueaderos()) {
-        for (Usuario u: parqueaderoService.getUsuarios(p.getId())) {
-            if(u.equals(usuario)){
-                return true;
-            }
+    Set<Parqueadero> parqueaderos = parqueaderoService.getParqueaderos();
+    //aqui me da el error no me retorna el set<Parqueadero>
+    for (Parqueadero p :parqueaderos) {
+        if(parqueaderoService.getUsuarios(p.getId()).contains(usuario)){
+            return true;
         }
     }
-    
-    
     return false;
 }
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {

@@ -327,9 +327,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         agregarPuertaAccesoGUI.setVisible(true);
         try {
             listarPuertasEntradas();
-        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
