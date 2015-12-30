@@ -71,11 +71,23 @@ public class PrincipalGUI extends javax.swing.JFrame {
         EliminarUsuarioBtn.setIcon(new ImageIcon("img/close7.png"));
         AgregarBtn.setIcon(new ImageIcon("img/keyboard53.png"));
         
+        CrearParqueaderoBtn.setIcon(new ImageIcon("img/add139.png"));
+        EliminarParqueaderoBtn.setIcon(new ImageIcon("img/close7.png"));
+        ModificarParqueaderoBtn.setIcon(new ImageIcon("img/pencil41.png"));
+        UsuariosParqBtn.setIcon(new ImageIcon("img/user7.png"));
+        PuertasBtn.setIcon(new ImageIcon("img/barriers.png"));
+        
         VerBtn.setText(null);
         CrearUsuarioBtn.setText(null);
         ModificarUsuarioBtn.setText(null);
         EliminarUsuarioBtn.setText(null);
         AgregarBtn.setText(null);
+        PuertasBtn.setText(null);
+        
+        CrearParqueaderoBtn.setText(null);
+        EliminarParqueaderoBtn.setText(null);
+        ModificarParqueaderoBtn.setText(null);
+        UsuariosParqBtn.setText(null);
     }
     
     public void cargarCampusCB(){
@@ -159,10 +171,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         CampusCB = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaParqueaderos = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
+        jToolBar3 = new javax.swing.JToolBar();
         CrearParqueaderoBtn = new javax.swing.JButton();
-        ModificarParqueaderoBtn = new javax.swing.JButton();
         EliminarParqueaderoBtn = new javax.swing.JButton();
+        ModificarParqueaderoBtn = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JToolBar.Separator();
         UsuariosParqBtn = new javax.swing.JButton();
         PuertasBtn = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -212,7 +225,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JParking- Gestion de los Parqueaderos de la Universidad de Cuenca");
         setMinimumSize(new java.awt.Dimension(800, 430));
-        setPreferredSize(new java.awt.Dimension(868, 430));
 
         jSplitPane1.setDividerLocation(350);
         jSplitPane1.setDividerSize(15);
@@ -259,19 +271,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
             TablaParqueaderos.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
+        jToolBar3.setFloatable(false);
+        jToolBar3.setRollover(true);
+
         CrearParqueaderoBtn.setText("Crear");
         CrearParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CrearParqueaderoBtnActionPerformed(evt);
             }
         });
-
-        ModificarParqueaderoBtn.setText("Modificar");
-        ModificarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarParqueaderoBtnActionPerformed(evt);
-            }
-        });
+        jToolBar3.add(CrearParqueaderoBtn);
 
         EliminarParqueaderoBtn.setText("Eliminar");
         EliminarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -279,6 +288,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 EliminarParqueaderoBtnActionPerformed(evt);
             }
         });
+        jToolBar3.add(EliminarParqueaderoBtn);
+
+        ModificarParqueaderoBtn.setText("Modificar");
+        ModificarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarParqueaderoBtnActionPerformed(evt);
+            }
+        });
+        jToolBar3.add(ModificarParqueaderoBtn);
+        jToolBar3.add(jSeparator7);
 
         UsuariosParqBtn.setText("Usuarios");
         UsuariosParqBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -286,6 +305,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 UsuariosParqBtnActionPerformed(evt);
             }
         });
+        jToolBar3.add(UsuariosParqBtn);
 
         PuertasBtn.setText("Puertas");
         PuertasBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -293,34 +313,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 PuertasBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(CrearParqueaderoBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ModificarParqueaderoBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EliminarParqueaderoBtn)
-                .addGap(18, 18, 18)
-                .addComponent(UsuariosParqBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PuertasBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CrearParqueaderoBtn)
-                    .addComponent(ModificarParqueaderoBtn)
-                    .addComponent(EliminarParqueaderoBtn)
-                    .addComponent(UsuariosParqBtn)
-                    .addComponent(PuertasBtn)))
-        );
+        jToolBar3.add(PuertasBtn);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -329,16 +322,17 @@ public class PrincipalGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -349,10 +343,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
 
         jTabbedPane1.addTab("Parqueaderos", jPanel2);
@@ -1187,7 +1181,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -1196,10 +1189,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JToolBar jToolBar3;
     // End of variables declaration//GEN-END:variables
 }
