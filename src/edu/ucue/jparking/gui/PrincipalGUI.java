@@ -394,7 +394,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
             TablaUsuarios.getColumnModel().getColumn(0).setMinWidth(30);
             TablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(30);
             TablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(30);
-            TablaUsuarios.getColumnModel().getColumn(1).setMaxWidth(300);
         }
 
         jLabel4.setText("Tipo Usuario:");
