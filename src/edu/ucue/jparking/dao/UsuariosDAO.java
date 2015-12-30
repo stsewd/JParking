@@ -118,23 +118,14 @@ public class UsuariosDAO implements UsuariosDAOInterface {
          * de la lista de parqueaderos de un usuario
          * en lugar de sólo el id.
         *******************************************************/
-        
-        for(Campus campus : CampusDAO.getInstancia().getCampus()){
-            for(String idParqueadero : getUsuario(cedula).getParqueaderos()){
-                try {
-                    parqueaderos.add(ParqueaderosDAO.getInstance().getParqueadero(campus.getNombre(), idParqueadero));
-                } catch (CampusNoExistenteException ex) {
-                }
-            }
-        }
-        return parqueaderos;
+        return getUsuario(cedula).getParqueaderos();
     }
 
-    public void addPaqueadero(String cedula, String idParqueadero) throws UsuarioNoExistenteException {
-        getUsuario(cedula).getParqueaderos().add(idParqueadero);
+    public void addPaqueadero(String cedula, String nombreCampus, String idParqueadero) throws UsuarioNoExistenteException, CampusNoExistenteException {
+        getUsuario(cedula).getParqueaderos().add(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
     }
     
-    public void delParqueadero(String cedula, String idParqueadero) throws UsuarioNoExistenteException{
-        getUsuario(cedula).getParqueaderos().remove(idParqueadero);
+    public void delParqueadero(String cedula, String nombreCampus, String idParqueadero) throws UsuarioNoExistenteException, CampusNoExistenteException{
+        getUsuario(cedula).getParqueaderos().remove(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
     }
 }
