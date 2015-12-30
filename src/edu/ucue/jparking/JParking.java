@@ -47,6 +47,8 @@ import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 
 /**
@@ -118,7 +120,7 @@ public class JParking {
         
         try {
             Test.cargarPuertasParqueaderos();
-        } catch (CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
+        } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
             System.out.println(ex.getMessage());
         }
         //Fin de tests
