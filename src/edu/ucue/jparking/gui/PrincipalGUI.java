@@ -11,6 +11,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
@@ -19,7 +20,9 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -439,6 +442,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         );
 
         AgregarBtn.setText("Agregar >>");
+        AgregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -591,7 +599,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(EliminarParqueaderoMenuItem);
         ParqueaderosMenu.add(jSeparator4);
 
-        PuertasAccesoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        PuertasAccesoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         PuertasAccesoItem.setText("Puertas Acceso");
         PuertasAccesoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -601,7 +609,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(PuertasAccesoItem);
         ParqueaderosMenu.add(jSeparator5);
 
-        UsuariosParqueaderoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        UsuariosParqueaderoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         UsuariosParqueaderoItem.setText("Usuarios Paqueadero");
         UsuariosParqueaderoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1036,6 +1044,35 @@ public class PrincipalGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         usuariosParqueadero();
     }//GEN-LAST:event_UsuariosParqBtnActionPerformed
+
+    private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
+        // TODO add your handling code here:
+        String campus = (String) CampusCB.getSelectedItem();
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        
+        row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        
+        ParqueaderoService parqueaderoService = new ParqueaderoService();
+        
+        
+        try {
+            parqueaderoService.addUsuario(campus, idParqueadero, cedula);
+            JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } 
+    }//GEN-LAST:event_AgregarBtnActionPerformed
 
     /**
      * @param args the command line arguments
