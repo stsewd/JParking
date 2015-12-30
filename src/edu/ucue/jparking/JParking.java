@@ -110,13 +110,11 @@ public class JParking {
             System.out.println(ex.getMessage());
         }
         
-        /*
         try {
             Test.cargarUsuariosParqueaderos();
         } catch (CedulaNoValidaException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | ParquaderoInactivoException | NumeroParqueaderosNoDisponiblesException | UsuarioInactivoException | CampusNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
-        */
         
         try {
             Test.cargarPuertasParqueaderos();
