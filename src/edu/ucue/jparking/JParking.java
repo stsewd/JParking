@@ -121,8 +121,6 @@ public class JParking {
             Test.cargarPuertasParqueaderos();
         } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
             System.out.println(ex.getMessage());
-        } catch (CampusInactivoException ex) {
-            System.out.println(ex.getMessage());
         }
         //Fin de tests
         

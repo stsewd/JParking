@@ -198,4 +198,8 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         campuslbl.setText(campus);
         campuslbl.setVisible(false);
     }
+    public void CargarDatos(String campus){
+        campuslbl.setText(campus);
+        campuslbl.setVisible(false);
+    }
 }

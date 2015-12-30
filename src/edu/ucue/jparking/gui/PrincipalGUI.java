@@ -735,9 +735,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
-        
+        String campus = (String) CampusCB.getSelectedItem();
+        if(campus == null || campus.trim().length() == 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
         EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
         eliminarParqueaderoGUI.setLocationRelativeTo(this);
+        eliminarParqueaderoGUI.CargarDatos(campus);
         eliminarParqueaderoGUI.setVisible(true);
     }//GEN-LAST:event_EliminarParqueaderoMenuItemActionPerformed
 
@@ -757,6 +762,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String campus = (String) CampusCB.getSelectedItem();
+        if(campus == null || campus.trim().length() == 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
         Validaciones validaciones = new Validaciones();
         try {
@@ -930,6 +939,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void ModificarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoBtnActionPerformed
         // TODO add your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
+        if(campus == null || campus.trim().length() == 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
         int row = TablaParqueaderos.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
