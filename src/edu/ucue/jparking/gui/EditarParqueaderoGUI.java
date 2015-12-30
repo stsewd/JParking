@@ -10,11 +10,11 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -278,7 +278,10 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String parqueaderoId, String campus) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException {
+    public void cargarDatos(String parqueaderoId, String campus)
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException,
+            CampusNoExistenteException 
+    {
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         Parqueadero parqueadero = parqueaderoService.getParqueadero(campus, parqueaderoId);
         if(parqueadero == null)

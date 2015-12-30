@@ -4,7 +4,7 @@
  * @author Santos Gallegos <santos_g@outlook.com>
  * @author  Franklin Lara <larafranklin@outlook.com> 
  *  
- * @version 0.0.7-alfa
+ * @version 0.0.8-alfa
  *
  * Descripcion del programa:
  * Permite al adminstrador crear campus, parqueaderos dentro de estos.
@@ -36,7 +36,6 @@ import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.gui.PrincipalGUI;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
@@ -121,6 +120,8 @@ public class JParking {
         try {
             Test.cargarPuertasParqueaderos();
         } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
+            System.out.println(ex.getMessage());
+        } catch (CampusInactivoException ex) {
             System.out.println(ex.getMessage());
         }
         //Fin de tests

@@ -65,6 +65,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         ModificarPuertaBtn = new javax.swing.JButton();
         EliminarPuertabtn = new javax.swing.JButton();
         IngresarBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPuertas = new javax.swing.JTable();
 
@@ -114,6 +115,13 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -126,7 +134,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
                 .addComponent(EliminarPuertabtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(IngresarBtn)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +145,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
                     .addComponent(CrearPuertaBtn)
                     .addComponent(ModificarPuertaBtn)
                     .addComponent(EliminarPuertabtn)
-                    .addComponent(IngresarBtn)))
+                    .addComponent(IngresarBtn)
+                    .addComponent(jButton1)))
         );
 
         TablaPuertas.setModel(new javax.swing.table.DefaultTableModel(
@@ -375,6 +385,11 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         augui.setVisible(true);
     }//GEN-LAST:event_IngresarBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,6 +439,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     private javax.swing.JButton IngresarBtn;
     private javax.swing.JButton ModificarPuertaBtn;
     private javax.swing.JTable TablaPuertas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

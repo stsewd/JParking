@@ -420,7 +420,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 
-    public void CargarDatos(String campus,String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
+    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
         ParqueaderoService service = new ParqueaderoService();
         Parqueadero parqueadero =  service.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());

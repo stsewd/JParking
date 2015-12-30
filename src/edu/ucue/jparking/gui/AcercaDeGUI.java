@@ -46,6 +46,7 @@ public class AcercaDeGUI extends javax.swing.JDialog {
         IconoJPlbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Acerca de JParking");
         setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -89,8 +90,7 @@ public class AcercaDeGUI extends javax.swing.JDialog {
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, 0)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3))
-                        .addGap(0, 0, 0))
+                            .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(AceptarBtn)
