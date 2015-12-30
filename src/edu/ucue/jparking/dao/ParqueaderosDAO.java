@@ -154,7 +154,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             throw new UsuarioYaAgregadoException(cedula);
         
         parqueadero.getUsuarios().add(cedula);
-        UsuariosDAO.getInstance().addPaqueadero(cedula, idParqueadero);
+        UsuariosDAO.getInstance().addPaqueadero(cedula, nombreCampus, idParqueadero);
     }
 
     @Override
@@ -166,7 +166,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         
         parqueadero.getUsuarios().remove(cedula);
         
-        UsuariosDAO.getInstance().delParqueadero(cedula, idParqueadero);
+        UsuariosDAO.getInstance().delParqueadero(cedula, nombreCampus, idParqueadero);
     }
 
     @Override

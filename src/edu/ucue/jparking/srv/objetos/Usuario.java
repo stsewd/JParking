@@ -8,7 +8,9 @@ import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -19,7 +21,7 @@ public abstract class Usuario extends Persona{
 
     private Calendar fechaContrato;
     private static final int diasContrato = 30;
-    private Set<String> parqueaderos;
+    private Set<Parqueadero> parqueaderos;
     
     //private TipoUsuario tipoUsuario;
     /**
@@ -94,14 +96,14 @@ public abstract class Usuario extends Persona{
     /**
      * @return the parqueaderos
      */
-    public Set<String> getParqueaderos() {
+    public Set<Parqueadero> getParqueaderos() {
         return parqueaderos;
     }
 
     /**
      * @param parqueaderos the parqueaderos to set
      */
-    public void setParqueaderos(Set<String> parqueaderos) {
+    public void setParqueaderos(Set<Parqueadero> parqueaderos) {
         this.parqueaderos = parqueaderos;
     }    
 }

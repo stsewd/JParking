@@ -64,7 +64,6 @@ public class UsuarioService {
         if (u == null)        
             throw new UsuarioNoExistenteException(cedula);
         return u;
-        
     }
        
     public Set<Usuario> getLista(){
