@@ -83,6 +83,7 @@ public class UsuarioService {
         
         PorterosService porterosService = new PorterosService();
         ParqueaderoService parqueaderoService = new ParqueaderoService();
+        PuertaService puertaService = new PuertaService();
         
         Portero portero = porterosService.getPortero(cedula);
         if(portero != null){
@@ -95,7 +96,10 @@ public class UsuarioService {
         Usuario u = get(cedula);
         boolean encontrado = false;
         
-        for(Parqueadero p : UsuariosDAO.getInstance().getParqueaderos(cedula)){
+        for(Parqueadero p : parqueaderoService.getParqueaderos(nombreCampus)){
+            if(!p.getUsuarios().contains(cedula))
+                break;
+            
             for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){
                 if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
                     encontrado = true;
@@ -112,6 +116,7 @@ public class UsuarioService {
                     break;
                 }
             }
+            
             if(encontrado)
                 break;
         }

@@ -36,7 +36,6 @@ import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.gui.PrincipalGUI;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
@@ -119,6 +118,8 @@ public class JParking {
         try {
             Test.cargarPuertasParqueaderos();
         } catch (CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
+            System.out.println(ex.getMessage());
+        } catch (CampusInactivoException ex) {
             System.out.println(ex.getMessage());
         }
         //Fin de tests
