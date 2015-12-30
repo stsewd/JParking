@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
@@ -35,6 +36,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
+        campuslbl.setVisible(false);
     }
 
     /**
@@ -166,7 +168,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
             service.addUsuario(campus, id, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario a sido añadido satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (CedulaNoValidaException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
+        } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } 
     }//GEN-LAST:event_AgregarBtnActionPerformed

@@ -168,13 +168,14 @@ public class ParqueaderoService {
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      * @throws edu.ucue.jparking.srv.excepciones.PuertaInactivaException 
      */
-    public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException{
+    public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");
         validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
         validaciones.ComprobarPuerta(nombreCampus, idParqueadero, idPuerta);
+        validaciones.ComprobarCampus(nombreCampus);
         parqueaderoDAO.addPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
     
@@ -191,14 +192,14 @@ public class ParqueaderoService {
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      * @throws edu.ucue.jparking.srv.excepciones.PuertaInactivaException 
      */
-    public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, PuertaInactivaException{
+    public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");        
         validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
         validaciones.ComprobarPuerta(nombreCampus, idParqueadero, idPuerta);
-        
+        validaciones.ComprobarCampus(nombreCampus);
         parqueaderoDAO.addPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
     
@@ -296,13 +297,14 @@ public class ParqueaderoService {
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
     public void addUsuario(String nombreCampus, String idParqueadero, String cedula) throws CedulaNoValidaException,
-            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException{
+            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException, CampusInactivoException{
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");
         validaciones.validarCedula(cedula);
         validaciones.validarCodigo(idParqueadero);
         validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
         validaciones.ComprobarUsuario(cedula);
+        validaciones.ComprobarCampus(nombreCampus);
         Calendar fecha = Calendar.getInstance();
         Parqueadero p = getParqueadero(nombreCampus, idParqueadero);
         if(p.getNumeroLugaresOcupados() >= p.getNumeroLugares()) {

@@ -13,6 +13,7 @@ import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.PuertaService;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
@@ -202,7 +203,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 service.addPuertaEntrada(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
                 JOptionPane.showMessageDialog(rootPane, "La puerta a sido añadida con exito", "Mensaje", JOptionPane.OK_OPTION);
                 this.setVisible(false);
-            } catch (ParqueaderoNoExistenteException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
+            } catch (ParqueaderoNoExistenteException | CampusInactivoException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }else{
@@ -210,7 +211,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 service.addPuertaSalida(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
                 JOptionPane.showMessageDialog(rootPane, "La puerta a sido añadida con exito", "Mensaje", JOptionPane.OK_OPTION);
                 this.setVisible(false);
-            } catch (ParqueaderoNoExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
+            } catch (ParqueaderoNoExistenteException | CampusInactivoException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }

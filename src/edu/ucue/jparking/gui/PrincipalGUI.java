@@ -14,10 +14,12 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.Validaciones;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -653,15 +655,22 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-            
-        CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
-        crearParqueaderoGUI.setLocationRelativeTo(this);
-        crearParqueaderoGUI.CargarDatos(campus);
-        crearParqueaderoGUI.setVisible(true);
+        Validaciones validaciones = new Validaciones();
+        try {
+            validaciones.ComprobarCampus(campus);
+            CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
+            crearParqueaderoGUI.setLocationRelativeTo(this);
+            crearParqueaderoGUI.CargarDatos(campus);
+            crearParqueaderoGUI.setVisible(true);
+        } catch (CampusNoExistenteException | CampusInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
     }//GEN-LAST:event_CrearParqueaderoMenuItemActionPerformed
 
     private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed
         // TODO add your handling code here:
+        
         EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
         eliminarParqueaderoGUI.setLocationRelativeTo(this);
         eliminarParqueaderoGUI.setVisible(true);
@@ -684,10 +693,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String campus = (String) CampusCB.getSelectedItem();
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
-        eliminarParqueaderoGUI.cargarDatos(idParqueadero, campus);
-        eliminarParqueaderoGUI.setLocationRelativeTo(this);
-        eliminarParqueaderoGUI.setVisible(true);
+        Validaciones validaciones = new Validaciones();
+        try {
+            validaciones.ComprobarCampus(campus);
+            EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
+            eliminarParqueaderoGUI.cargarDatos(idParqueadero, campus);
+            eliminarParqueaderoGUI.setLocationRelativeTo(this);
+            eliminarParqueaderoGUI.setVisible(true);
+        } catch (CampusNoExistenteException | CampusInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
 
     private void CrearParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoBtnActionPerformed
@@ -697,11 +712,17 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-            
-        CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
-        crearParqueaderoGUI.setLocationRelativeTo(this);
-        crearParqueaderoGUI.CargarDatos(campus);
-        crearParqueaderoGUI.setVisible(true);
+        Validaciones validaciones = new Validaciones();
+        try {
+            validaciones.ComprobarCampus(campus);
+            CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
+            crearParqueaderoGUI.setLocationRelativeTo(this);
+            crearParqueaderoGUI.CargarDatos(campus);
+            crearParqueaderoGUI.setVisible(true);
+        } catch (CampusNoExistenteException | CampusInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
     }//GEN-LAST:event_CrearParqueaderoBtnActionPerformed
 
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
@@ -843,23 +864,25 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void ModificarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoBtnActionPerformed
         // TODO add your handling code here:
+        String campus = (String) CampusCB.getSelectedItem();
         int row = TablaParqueaderos.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        String campus = (String) CampusCB.getSelectedItem();
-        EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
-        editarParqueaderoGUI.setLocationRelativeTo(this);
-               
+        Validaciones validaciones = new Validaciones();
         try {
+            validaciones.ComprobarCampus(campus);
+            EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
+            editarParqueaderoGUI.setLocationRelativeTo(this);
             editarParqueaderoGUI.cargarDatos(idParqueadero,campus);
             editarParqueaderoGUI.habilitarCampos();
             editarParqueaderoGUI.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
+        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | CampusInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } 
+        }
+        
     }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
 
     private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
@@ -871,14 +894,17 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
         String nombreCampus = (String) CampusCB.getSelectedItem();
-        EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
-        editarParqueaderoGUI.setLocationRelativeTo(this);
+        Validaciones validaciones = new Validaciones();
         try {
+            validaciones.ComprobarCampus(nombreCampus);
+            EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
+            editarParqueaderoGUI.setLocationRelativeTo(this);
             editarParqueaderoGUI.cargarDatos(idParqueadero, nombreCampus);
-        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
+            editarParqueaderoGUI.setVisible(true);
+        } catch (CampusInactivoException | ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        editarParqueaderoGUI.setVisible(true);
+        
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
 
     private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
@@ -904,6 +930,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void PuertasAccesoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasAccesoItemActionPerformed
         // TODO add your handling code here:
+        Validaciones validaciones = new Validaciones();
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -918,11 +945,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         AdministrarPuertaAccesoGUI puertaAcceso = new AdministrarPuertaAccesoGUI(this, rootPaneCheckingEnabled);
         puertaAcceso.setLocationRelativeTo(this);
         try {
+            validaciones.ComprobarCampus(nombreCampus);
+            validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
             puertaAcceso.CargarDatos(nombreCampus, idParqueadero);
             puertaAcceso.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (ParqueaderoNoExistenteException | CampusInactivoException | ParquaderoInactivoException | CodigoNoValidoException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
@@ -930,6 +957,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void UsuariosParqueaderoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosParqueaderoItemActionPerformed
         // TODO add your handling code here:
+        Validaciones validaciones = new Validaciones();
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -944,9 +972,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         AdministrarUsuariosParqueaderoGUI usuariosParqueadero = new AdministrarUsuariosParqueaderoGUI(this, rootPaneCheckingEnabled);
         usuariosParqueadero.setLocationRelativeTo(this);
         try {
+            validaciones.ComprobarCampus(nombreCampus);
+            validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
             usuariosParqueadero.CargarDatos(nombreCampus, idParqueadero);
             usuariosParqueadero.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
+        } catch (CampusInactivoException | ParquaderoInactivoException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         

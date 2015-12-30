@@ -271,10 +271,11 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idCampuslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idCampuslbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(CampusTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -331,9 +332,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         
         try {
             listarPuertasSalida();
-        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
@@ -346,9 +345,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         agregarPuertaAccesoGUI.setVisible(true);
         try {
             listarPuertasEntradas();
-        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
+        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         

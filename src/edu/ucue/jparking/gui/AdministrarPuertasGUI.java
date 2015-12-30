@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.PuertaService;
+import edu.ucue.jparking.srv.Validaciones;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
@@ -366,9 +367,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        
+        Validaciones validaciones = new Validaciones();
         String codigo = (String) TablaPuertas.getValueAt(row, 1);
-        
         AutenticarUsuarioGUI augui = new AutenticarUsuarioGUI(null, true);
         augui.cargarDatos(nombreCampus, codigo);
         augui.setLocationRelativeTo(this);

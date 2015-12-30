@@ -34,6 +34,8 @@ import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -183,7 +185,7 @@ public class Test {
             for(int j = 0; j < (int) (Math.random()*100 % 3 + 1); j++){
                 try{
                     ps.addUsuario(nombreCampus, parqueaderos[(int)(Math.random()*100 % parqueaderos.length)].getId(), usuarios[i][0]);
-                }catch(UsuarioYaAgregadoException ex) {
+                }catch(UsuarioYaAgregadoException | CampusInactivoException ex) {
                 }
             }
         }
@@ -193,7 +195,7 @@ public class Test {
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
             PuertaNoExistenteException, CodigoNoValidoException,
             ParquaderoInactivoException, PuertaYaExistenteException,
-            PuertaInactivaException 
+            PuertaInactivaException, CampusInactivoException 
     {
         ParqueaderoService ps = new ParqueaderoService();
         
