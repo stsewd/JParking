@@ -63,6 +63,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         //Centrar ventana
         setLocationRelativeTo(null);
+        
+        //Botones
+        VerBtn.setIcon(new ImageIcon("img/more16.png"));
+        CrearUsuarioBtn.setIcon(new ImageIcon("img/add139.png"));
+        ModificarUsuarioBtn.setIcon(new ImageIcon("img/pencil41.png"));
+        EliminarUsuarioBtn.setIcon(new ImageIcon("img/close7.png"));
+        AgregarBtn.setIcon(new ImageIcon("img/keyboard53.png"));
+        
+        VerBtn.setText(null);
+        CrearUsuarioBtn.setText(null);
+        ModificarUsuarioBtn.setText(null);
+        EliminarUsuarioBtn.setText(null);
+        AgregarBtn.setText(null);
     }
     
     public void cargarCampusCB(){
@@ -158,11 +171,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
         TablaUsuarios = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         TipoUsuarioCB = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
-        ModificarUsuarioBtn = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        jToolBar2 = new javax.swing.JToolBar();
+        VerBtn = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         CrearUsuarioBtn = new javax.swing.JButton();
         EliminarUsuarioBtn = new javax.swing.JButton();
-        VerBtn = new javax.swing.JButton();
+        ModificarUsuarioBtn = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
         AgregarBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
@@ -295,7 +311,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearParqueaderoBtn)
                     .addComponent(ModificarParqueaderoBtn)
@@ -322,7 +338,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                                 .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                         .addGap(10, 10, 10)))
                 .addContainerGap())
         );
@@ -334,7 +350,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -388,65 +404,73 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
 
-        ModificarUsuarioBtn.setText("Modificar");
-        ModificarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarUsuarioBtnActionPerformed(evt);
-            }
-        });
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
 
-        CrearUsuarioBtn.setText("Crear");
-        CrearUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearUsuarioBtnActionPerformed(evt);
-            }
-        });
-
-        EliminarUsuarioBtn.setText("Eliminar");
-        EliminarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarUsuarioBtnActionPerformed(evt);
-            }
-        });
+        jToolBar2.setFloatable(false);
+        jToolBar2.setRollover(true);
 
         VerBtn.setText("Ver");
+        VerBtn.setToolTipText("Ver usuario");
+        VerBtn.setFocusable(false);
+        VerBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        VerBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         VerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VerBtnActionPerformed(evt);
             }
         });
+        jToolBar2.add(VerBtn);
+        jToolBar2.add(jSeparator2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(VerBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CrearUsuarioBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ModificarUsuarioBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EliminarUsuarioBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CrearUsuarioBtn)
-                    .addComponent(ModificarUsuarioBtn)
-                    .addComponent(EliminarUsuarioBtn)
-                    .addComponent(VerBtn)))
-        );
+        CrearUsuarioBtn.setText("Crear");
+        CrearUsuarioBtn.setToolTipText("Crear nuevo usuario");
+        CrearUsuarioBtn.setFocusable(false);
+        CrearUsuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CrearUsuarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CrearUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearUsuarioBtnActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(CrearUsuarioBtn);
+
+        EliminarUsuarioBtn.setText("Eliminar");
+        EliminarUsuarioBtn.setToolTipText("Eliminar usuario");
+        EliminarUsuarioBtn.setFocusable(false);
+        EliminarUsuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        EliminarUsuarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        EliminarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarUsuarioBtnActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(EliminarUsuarioBtn);
+
+        ModificarUsuarioBtn.setText("Modificar");
+        ModificarUsuarioBtn.setToolTipText("Modificar usuario");
+        ModificarUsuarioBtn.setFocusable(false);
+        ModificarUsuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ModificarUsuarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ModificarUsuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarUsuarioBtnActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(ModificarUsuarioBtn);
+        jToolBar2.add(jSeparator3);
 
         AgregarBtn.setText("Agregar >>");
+        AgregarBtn.setToolTipText("Agregar usuario a parqueadero");
+        AgregarBtn.setFocusable(false);
+        AgregarBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        AgregarBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         AgregarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarBtnActionPerformed(evt);
             }
         });
+        jToolBar2.add(AgregarBtn);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -457,14 +481,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AgregarBtn)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 79, Short.MAX_VALUE))
+                    .addComponent(jToolBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -475,11 +499,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarBtn))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -667,7 +691,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1152,16 +1176,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     // End of variables declaration//GEN-END:variables
 }
