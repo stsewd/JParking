@@ -102,7 +102,7 @@ public class UsuarioService {
         
         for(Parqueadero p : getParqueaderos(cedula)){
             if(p.getNombreCampus().compareToIgnoreCase(nombreCampus) != 0)
-                break;
+                continue;
             
             for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){
                 if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){

@@ -260,8 +260,18 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
 
         UsuariosParqBtn.setText("Usuarios");
+        UsuariosParqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuariosParqBtnActionPerformed(evt);
+            }
+        });
 
         PuertasBtn.setText("Puertas");
+        PuertasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PuertasBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -581,6 +591,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(EliminarParqueaderoMenuItem);
         ParqueaderosMenu.add(jSeparator4);
 
+        PuertasAccesoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         PuertasAccesoItem.setText("Puertas Acceso");
         PuertasAccesoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,6 +601,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ParqueaderosMenu.add(PuertasAccesoItem);
         ParqueaderosMenu.add(jSeparator5);
 
+        UsuariosParqueaderoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         UsuariosParqueaderoItem.setText("Usuarios Paqueadero");
         UsuariosParqueaderoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -950,6 +962,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void PuertasAccesoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasAccesoItemActionPerformed
         // TODO add your handling code here:
+        puertasAccesoParqueadero();
+    }//GEN-LAST:event_PuertasAccesoItemActionPerformed
+
+    public void puertasAccesoParqueadero(){
         Validaciones validaciones = new Validaciones();
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
@@ -972,11 +988,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (ParqueaderoNoExistenteException | CampusInactivoException | ParquaderoInactivoException | CodigoNoValidoException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        
-    }//GEN-LAST:event_PuertasAccesoItemActionPerformed
-
+    }
+    
     private void UsuariosParqueaderoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosParqueaderoItemActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:      
+        usuariosParqueadero();
+    }//GEN-LAST:event_UsuariosParqueaderoItemActionPerformed
+
+    public void usuariosParqueadero(){
         Validaciones validaciones = new Validaciones();
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
@@ -999,16 +1018,24 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (CampusInactivoException | ParquaderoInactivoException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
-        
-        
-    }//GEN-LAST:event_UsuariosParqueaderoItemActionPerformed
-
+    }
+    
     private void GenerarOrdenPagoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarOrdenPagoItemActionPerformed
         // TODO add your handling code here:
         OrdenPagoGUI opgui = new OrdenPagoGUI(this, true);
         opgui.setLocationRelativeTo(this);
         opgui.setVisible(true);
     }//GEN-LAST:event_GenerarOrdenPagoItemActionPerformed
+
+    private void PuertasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasBtnActionPerformed
+        // TODO add your handling code here:
+        puertasAccesoParqueadero();
+    }//GEN-LAST:event_PuertasBtnActionPerformed
+
+    private void UsuariosParqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosParqBtnActionPerformed
+        // TODO add your handling code here:
+        usuariosParqueadero();
+    }//GEN-LAST:event_UsuariosParqBtnActionPerformed
 
     /**
      * @param args the command line arguments

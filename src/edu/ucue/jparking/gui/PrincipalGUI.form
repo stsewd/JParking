@@ -130,6 +130,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PuertasAccesoItem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+U"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Puertas Acceso"/>
               </Properties>
               <Events>
@@ -140,6 +143,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="UsuariosParqueaderoItem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+P"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios Paqueadero"/>
               </Properties>
               <Events>
@@ -451,11 +457,17 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Usuarios"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsuariosParqBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="PuertasBtn">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Puertas"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PuertasBtnActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
