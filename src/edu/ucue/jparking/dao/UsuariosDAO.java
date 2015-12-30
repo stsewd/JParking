@@ -5,6 +5,7 @@ package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
@@ -47,7 +48,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     }
     
     @Override
-    public void delUsuario(String cedula) throws UsuarioNoExistenteException{
+    public void delUsuario(String cedula) throws UsuarioNoExistenteException, CampusNoExistenteException{
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
         /******************************
@@ -55,6 +56,14 @@ public class UsuariosDAO implements UsuariosDAOInterface {
          * Eliminar usuario de todos los parqueaderos.
          * 
          ******************************/
+        for(Campus c : CampusDAO.getInstancia().getCampus()){
+            for(Parqueadero p : ParqueaderosDAO.getInstance().getParqueaderos(c.getNombre())){
+                try{
+                    ParqueaderosDAO.getInstance().delUsuario(c.getNombre(), p.getId(), cedula);
+                }catch (UsuarioNoAgregadoException ex){}
+            }
+        }
+        
         usuarios.remove(cedula);
     }
     

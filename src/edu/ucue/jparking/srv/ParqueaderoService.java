@@ -10,6 +10,7 @@ import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.dao.ParqueaderosDAO;
+import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -69,7 +70,10 @@ public class ParqueaderoService {
      * @throws CampusNoExistenteException 
      * @throws edu.ucue.jparking.srv.excepciones.CodigoNoValidoException 
      */
-    public void delParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException, CodigoNoValidoException{
+    public void delParqueadero(String nombreCampus, String idParqueadero)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException
+    {
         validaciones.validarCodigo(idParqueadero);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");
@@ -208,7 +212,7 @@ public class ParqueaderoService {
      * @throws CodigoNoValidoException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
+    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException{
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
@@ -224,9 +228,12 @@ public class ParqueaderoService {
      * @throws ParqueaderoNoExistenteException
      * @throws CodigoNoValidoException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException 
      */
-    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, 
-            ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException {
+    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
+            throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
+            CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException 
+    {
         validaciones.validarCodigo(idParqueadero);
         validaciones.validarCodigo(idPuerta);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
@@ -310,6 +317,7 @@ public class ParqueaderoService {
             }
         }
     }
+    
     /**
      * 
      * @param nombreCampus

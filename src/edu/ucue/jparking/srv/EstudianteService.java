@@ -9,6 +9,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Estudiante;
@@ -47,7 +48,7 @@ public class EstudianteService {
      * @throws UsuarioNoExistenteException
      * @throws CedulaNoValidaException 
      */
-    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
+    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, CampusNoExistenteException {
         validar.validarCedula(cedula);
         usuariosDAO.delUsuario(cedula);
     }

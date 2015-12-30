@@ -6,6 +6,7 @@
 package edu.ucue.jparking.dao.interfaces;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Puerta;
@@ -33,9 +34,11 @@ public interface PuertasDAOInterface {
      * @param id
      * @throws PuertaNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      */
     public abstract void delPuerta(String nombreCampus, String id)
-            throws PuertaNoExistenteException, CampusNoExistenteException;
+            throws PuertaNoExistenteException, CampusNoExistenteException,
+            ParqueaderoNoExistenteException;
     
     /**
      * Retorna una puerta dado su identificador

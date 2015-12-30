@@ -46,7 +46,7 @@ public class UsuarioService {
         }
     }
     
-    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException{
+    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException{
         if(cedula == null || cedula.trim().length() == 0)
             throw new IllegalArgumentException("El argumendo cedula no puede ser vacio.");
         validaciones.validarCedula(cedula);

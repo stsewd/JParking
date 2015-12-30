@@ -5,11 +5,14 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.PuertasDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.util.Collection;
 import java.util.Set;
@@ -41,15 +44,28 @@ public class PuertasDAO implements PuertasDAOInterface {
     }
 
     @Override
-    public void delPuerta(String nombreCampus, String id) throws PuertaNoExistenteException, CampusNoExistenteException {
-        Puerta puerta = getPuerta(nombreCampus, id);
+    public void delPuerta(String nombreCampus, String idPuerta)
+            throws PuertaNoExistenteException, CampusNoExistenteException,
+            ParqueaderoNoExistenteException
+    {
+        Puerta puerta = getPuerta(nombreCampus, idPuerta);
         if(puerta == null)
-            throw new PuertaNoExistenteException(id);
+            throw new PuertaNoExistenteException(idPuerta);
         /*******************************
          * Eliminar dependencias
-         * 
+         * Eliminar puertas de entrada/salida de todos los parqueaderos del campus
         ***********************************/
-        CampusDAO.getInstancia().getCampus(puerta.getIdCampus()).getPuertas().remove(id);
+        for(Parqueadero p : ParqueaderosDAO.getInstance().getParqueaderos(nombreCampus)){
+            try{
+                ParqueaderosDAO.getInstance().delPuertaEntrada(nombreCampus, p.getId(), idPuerta);
+            }catch (PuertaNoAgregadaException ex){}
+            
+            try{
+                ParqueaderosDAO.getInstance().delPuertaSalida(nombreCampus, p.getId(), idPuerta);
+            }catch (PuertaNoAgregadaException ex){}
+        }
+        
+        CampusDAO.getInstancia().getCampus(puerta.getIdCampus()).getPuertas().remove(idPuerta);
     }
 
     @Override

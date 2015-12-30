@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
@@ -40,9 +41,13 @@ public interface ParqueaderosDAOInterface {
      * @param idParqueadero 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
+     * @throws edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException 
      */
     public void delParqueadero(String nombreCampus, String idParqueadero)
-            throws ParqueaderoNoExistenteException, CampusNoExistenteException;
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            UsuarioNoExistenteException, UsuarioNoAgregadoException;
     
     /**
      * Obtiene un parqueadero dado su id
@@ -122,10 +127,11 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException 
      */
     public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
-            CampusNoExistenteException;
+            CampusNoExistenteException, PuertaNoAgregadaException;
     
     /**
      * Elimina una puerta de salida al parqueadero dada su id
@@ -135,10 +141,11 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException 
      */
     public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
-            CampusNoExistenteException;
+            CampusNoExistenteException, PuertaNoAgregadaException;
     
     /**
      * Retorna un set con todas las puertas de entrada de un

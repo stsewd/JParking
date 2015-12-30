@@ -7,6 +7,7 @@ package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.dao.PuertasDAO;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.PuertasDAOInterface;
@@ -43,8 +44,12 @@ public class PuertaService {
      * @throws CodigoNoValidoException
      * @throws PuertaNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      */
-    public void delpuerta(String nombreCampus, String id) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException{
+    public void delpuerta(String nombreCampus, String id)
+            throws CodigoNoValidoException, PuertaNoExistenteException,
+            CampusNoExistenteException, ParqueaderoNoExistenteException
+    {
         validaciones.validarCodigo(id);
         puertasDAO.delPuerta(nombreCampus, id);
     }
@@ -56,8 +61,12 @@ public class PuertaService {
      * @return
      * @throws CodigoNoValidoException
      * @throws PuertaNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
-    public Puerta getPuerta(String nombreCampus, String id) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException{
+    public Puerta getPuerta(String nombreCampus, String id)
+            throws CodigoNoValidoException, PuertaNoExistenteException,
+            CampusNoExistenteException
+    {
         validaciones.validarCodigo(id);
         if(puertasDAO.getPuerta(nombreCampus, id) == null)
             throw new PuertaNoExistenteException(id);

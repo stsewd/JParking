@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -16,7 +17,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -45,7 +45,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public void delParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException {
+    public void delParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException {
         if(getParqueadero(nombreCampus, idParqueadero) == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         
@@ -53,6 +53,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
          * Eliminar dependencias
          * Eliminar parqueadero de todos los usuarios de este parqueadero.
          ****************************************************************/
+        for(Usuario usuario : getUsuarios(nombreCampus, idParqueadero)){
+            ParqueaderosDAO.getInstance().delUsuario(nombreCampus, idParqueadero, usuario.getCedula());
+        }
         
         CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().remove(idParqueadero);
     }
@@ -114,22 +117,28 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CampusNoExistenteException {
+    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
+            throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
+            CampusNoExistenteException, PuertaNoAgregadaException {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
+        if(!parqueadero.getPuertasEntrada().contains(idPuerta))
+            throw new PuertaNoAgregadaException(idPuerta);
         parqueadero.getPuertasEntrada().remove(idPuerta);
     }
 
     @Override
-    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CampusNoExistenteException {
+    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CampusNoExistenteException, PuertaNoAgregadaException {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
+        if(!parqueadero.getPuertasSalida().contains(idPuerta))
+            throw new PuertaNoAgregadaException(idPuerta);
         parqueadero.getPuertasSalida().remove(idPuerta);
     }
 
@@ -154,7 +163,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(!parqueadero.getUsuarios().contains(cedula))
             throw new UsuarioNoAgregadoException(cedula);
+        
         parqueadero.getUsuarios().remove(cedula);
+        
         UsuariosDAO.getInstance().delParqueadero(cedula, idParqueadero);
     }
 

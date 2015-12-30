@@ -7,6 +7,9 @@ package edu.ucue.jparking.dao.interfaces;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
+import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.util.Set;
 
@@ -31,9 +34,13 @@ public interface CampusDAOInterface {
      * se lanza una excepcion.
      * @param nombre Nombre del campus a eliminar
      * @throws CampusNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
      */
     public abstract void delCampus(String nombre)
-            throws CampusNoExistenteException;
+            throws CampusNoExistenteException, ParqueaderoNoExistenteException,
+            UsuarioNoExistenteException, UsuarioNoAgregadoException;
     
     /**
      * Obtiene el campus buscado dado su nombre

@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
@@ -32,9 +33,10 @@ public interface UsuariosDAOInterface {
      * Eliminar un usuario dado su numero de cedula.
      * @param cedula
      * @throws UsuarioNoExistenteException
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException
      */
     public abstract void delUsuario(String cedula)
-            throws UsuarioNoExistenteException;
+            throws UsuarioNoExistenteException, CampusNoExistenteException;
     
     /**
      * Obtiene un usuario dado su numero de cedula
