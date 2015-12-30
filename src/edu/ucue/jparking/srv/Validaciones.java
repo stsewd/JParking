@@ -57,7 +57,7 @@ public class Validaciones {
             throw new FechaFinalMenorAFechaInicialException(fechaInicio, fechaFinal);
     }
 
-public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException{
+public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException{
     ParqueaderoService parqueaderoService = new ParqueaderoService();
     Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
     if(parqueadero==null)
@@ -66,7 +66,7 @@ public void ComprobarParqueadero(String nombreCampus, String idParqueadero) thro
         throw new ParquaderoInactivoException(parqueadero.getUbicacion());
 }
 
-public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException{
+public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException, ParquaderoInactivoException{
     PuertaService service = new PuertaService();
     ParqueaderoService parqueaderoService = new ParqueaderoService();
     Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);

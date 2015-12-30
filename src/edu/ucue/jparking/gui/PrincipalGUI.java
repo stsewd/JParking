@@ -147,6 +147,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         CrearParqueaderoBtn = new javax.swing.JButton();
         ModificarParqueaderoBtn = new javax.swing.JButton();
         EliminarParqueaderoBtn = new javax.swing.JButton();
+        UsuariosParqBtn = new javax.swing.JButton();
+        PuertasBtn = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -158,6 +160,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         CrearUsuarioBtn = new javax.swing.JButton();
         EliminarUsuarioBtn = new javax.swing.JButton();
         VerBtn = new javax.swing.JButton();
+        AgregarBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
         CrearCampusMenuItem = new javax.swing.JMenuItem();
@@ -256,6 +259,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
 
+        UsuariosParqBtn.setText("Usuarios");
+
+        PuertasBtn.setText("Puertas");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -266,7 +273,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addComponent(ModificarParqueaderoBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EliminarParqueaderoBtn)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(UsuariosParqBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PuertasBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,7 +286,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearParqueaderoBtn)
                     .addComponent(ModificarParqueaderoBtn)
-                    .addComponent(EliminarParqueaderoBtn)))
+                    .addComponent(EliminarParqueaderoBtn)
+                    .addComponent(UsuariosParqBtn)
+                    .addComponent(PuertasBtn)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -415,6 +428,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(VerBtn)))
         );
 
+        AgregarBtn.setText("Agregar >>");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -428,7 +443,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 23, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AgregarBtn)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -441,7 +459,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AgregarBtn))
                 .addContainerGap())
         );
 
@@ -876,7 +896,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             validaciones.ComprobarCampus(campus);
             EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
             editarParqueaderoGUI.setLocationRelativeTo(this);
-            editarParqueaderoGUI.cargarDatos(idParqueadero,campus);
+            editarParqueaderoGUI.cargarDatos(idParqueadero, campus);
             editarParqueaderoGUI.habilitarCampos();
             editarParqueaderoGUI.setVisible(true);
         } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | CampusInactivoException ex) {
@@ -1029,6 +1049,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem AcercaDeMenuItem;
     private javax.swing.JMenuItem AdministarPorterosMenuItem;
     private javax.swing.JMenuItem AdministarPuertasMenuItem;
+    private javax.swing.JButton AgregarBtn;
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JMenu CampusMenu;
@@ -1052,12 +1073,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu PagosMenu;
     private javax.swing.JMenu ParqueaderosMenu;
     private javax.swing.JMenuItem PuertasAccesoItem;
+    private javax.swing.JButton PuertasBtn;
     private javax.swing.JMenu RegistrosMenu;
     private javax.swing.JMenuItem SalirItem;
     private javax.swing.JTable TablaParqueaderos;
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JComboBox TipoUsuarioCB;
     private javax.swing.JMenu UsuariosMenu;
+    private javax.swing.JButton UsuariosParqBtn;
     private javax.swing.JMenuItem UsuariosParqueaderoItem;
     private javax.swing.JButton VerBtn;
     private javax.swing.JLabel jLabel1;

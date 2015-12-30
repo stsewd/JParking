@@ -10,11 +10,15 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
+import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -233,6 +237,10 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
             getPadre().listarUsuarios();
         } catch (CedulaNoValidaException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (CampusInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ParquaderoInactivoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } 
         
         try {
@@ -252,7 +260,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
-    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
+    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException{
         ParqueaderoService service = new ParqueaderoService();
         Parqueadero parqueadero =  service.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());

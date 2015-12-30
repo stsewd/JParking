@@ -111,7 +111,6 @@ public class UsuariosDAO implements UsuariosDAOInterface {
 
     @Override
     public Set<Parqueadero> getParqueaderos(String cedula) throws UsuarioNoExistenteException {
-        Set<Parqueadero> parqueaderos = new HashSet<>();
         
         /****************************************************
          * No te olvides de manejar varibles de instancia dentro

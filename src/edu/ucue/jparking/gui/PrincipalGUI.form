@@ -399,7 +399,11 @@
                               <Component id="ModificarParqueaderoBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="EliminarParqueaderoBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="275" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="UsuariosParqBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="PuertasBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -411,6 +415,8 @@
                                   <Component id="CrearParqueaderoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ModificarParqueaderoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="EliminarParqueaderoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="UsuariosParqBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="PuertasBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -440,6 +446,16 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarParqueaderoBtnActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="UsuariosParqBtn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Usuarios"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="PuertasBtn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Puertas"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -478,7 +494,11 @@
                                   <Component id="TipoUsuarioCB" min="-2" pref="200" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jPanel3" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="AgregarBtn" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -494,8 +514,11 @@
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" pref="318" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="AgregarBtn" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -639,6 +662,11 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="AgregarBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Agregar &gt;&gt;"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

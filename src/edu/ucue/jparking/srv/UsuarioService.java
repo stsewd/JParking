@@ -74,6 +74,11 @@ public class UsuarioService {
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
+    public Set<Parqueadero> getParqueaderos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
+        validaciones.validarCedula(cedula);
+        return usuariosDAO.getParqueaderos(cedula);
+    }
+    
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException{
         validaciones.validarCedula(cedula);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
@@ -83,7 +88,6 @@ public class UsuarioService {
         
         PorterosService porterosService = new PorterosService();
         ParqueaderoService parqueaderoService = new ParqueaderoService();
-        PuertaService puertaService = new PuertaService();
         
         Portero portero = porterosService.getPortero(cedula);
         if(portero != null){
@@ -96,8 +100,8 @@ public class UsuarioService {
         Usuario u = get(cedula);
         boolean encontrado = false;
         
-        for(Parqueadero p : parqueaderoService.getParqueaderos(nombreCampus)){
-            if(!p.getUsuarios().contains(cedula))
+        for(Parqueadero p : getParqueaderos(cedula)){
+            if(p.getNombreCampus().compareToIgnoreCase(nombreCampus) != 0)
                 break;
             
             for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){
