@@ -13,7 +13,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  */
 public class Docente extends Usuario {
     private static final float VALOR_PARQUEADERO = 50f;
-
+    private static final int diasContrato = 30;
     /**
      * @return the VALOR_PARQUEADERO
      */
@@ -29,6 +29,11 @@ public class Docente extends Usuario {
     public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException {
         super.generarOrdenPago();
         return new OrdenPago(getCedula(), getVALOR_PARQUEADERO());
+    }
+
+    @Override
+    public int getDiasContrato() {
+        return this.diasContrato;
     }
     
 }

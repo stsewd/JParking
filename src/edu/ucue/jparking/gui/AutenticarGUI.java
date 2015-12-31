@@ -9,7 +9,6 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
-import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
@@ -17,8 +16,6 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,7 +33,9 @@ public class AutenticarGUI extends javax.swing.JDialog {
         PuertasCB.setEditable(false);
         CedulaTF.setEditable(false);
         cargarCampusCB();
+        idPuertaCB.setVisible(false);
         
+        this.getRootPane().setDefaultButton(AutenticarBtn);
     }
 
     /**
@@ -183,7 +182,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AutenticarBtnActionPerformed
 
@@ -265,24 +264,24 @@ public class AutenticarGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 
-public void cargarCampusCB(){
+    public void cargarCampusCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         CampusService campusService = new CampusService();
         for(Campus c : campusService.getCampus()){
             CampusCB.addItem(c.getNombre());
         }
-}
+    }
 
-public void cargarPuertasCB() throws CampusNoExistenteException{
+    public void cargarPuertasCB() throws CampusNoExistenteException{
         //Cargar parqueaderos en combo box
         PuertasCB.removeAllItems();
         idPuertaCB.removeAllItems();
         String campus = (String) CampusCB.getSelectedItem();
         PuertaService puertaService = new PuertaService();
         for(Puerta c : puertaService.getPuertas(campus)){
-            PuertasCB.addItem(c.getUbicacion());
+            PuertasCB.addItem("(" + c.getId() + ") " + c.getUbicacion());
             idPuertaCB.addItem(c.getId());
         }
-}
+    }
 }

@@ -30,7 +30,7 @@ public class CampusService {
      * @return
      * @throws CampusExistenteExeption 
      */
-    public Campus addCampus(String nombre,String direccion) throws CampusExistenteExeption{
+    public Campus addCampus(String nombre, String direccion) throws CampusExistenteExeption{
         validar.ValidarCampus(nombre, direccion);
         Campus campus = new Campus(nombre, direccion);
         campusDAO.addCampus(campus);

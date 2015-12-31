@@ -1,0 +1,1825 @@
+commit 8593df6fa6de6a6251c68ccde4141bbaa6a940fb
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 31 00:22:04 2015 -0500
+
+    Update version
+
+commit d963750c13d69711ff223ce2e5b0eaef013a2584
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 31 00:18:38 2015 -0500
+
+    Default button
+
+commit 4f1eb20d06ac5ce81750a6ba335ef177a07d4a58
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 23:54:48 2015 -0500
+
+    Registros de emision/cobro a usuarios
+
+commit 26e9827c37c9c9bff05033ce90b4766f49db9fc1
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 23:44:50 2015 -0500
+
+    Registros de eliminacion/modificacion/acceso de Porteros
+
+commit 01a3d8e03698ce4e8a32f5acc467bd63a4e37a97
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 23:30:10 2015 -0500
+
+    Registros de eliminacion/modificacion/acceso de usuarios
+
+commit 8294427dfc2801d1077555d21bf4588aff8118ab
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 22:48:44 2015 -0500
+
+    Registros de creacion de usuario
+
+commit 805ff5e5cfefe0064746dbb087c2d633db936620
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 22:33:22 2015 -0500
+
+    Reestructurados registros
+
+commit a27b5d31ec87a51338768b4b98ba63eea5b62e14
+Author: lara <lara@lara>
+Date:   Wed Dec 30 21:26:06 2015 -0500
+
+    Exception
+
+commit f592d62b557d90cb5be47c9f05469836c44141ca
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 19:41:27 2015 -0500
+
+    Fix espaciado
+
+commit 91ce34a3f0dbaac5b165b589a3f40d4ba0739541
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 19:18:24 2015 -0500
+
+    Default button en acerca de
+
+commit 8b0994a996ba263d50bd0cc5502b2a01168e8fcf
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 19:01:00 2015 -0500
+
+    Tooltips de iconos toolbarparqueadero
+
+commit a63526845353ce9e5fad22f2783b40919ec70a8a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 18:56:20 2015 -0500
+
+    Agregada toolbar de parqueaderos
+
+commit e4527c01c251b786682afe6c5a5c1c33a35dbbaf
+Merge: 9556ebc 3096f3d
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 18:39:12 2015 -0500
+
+    Merge branch 'master' of https://github.com/stsewd/JParking
+
+commit 9556ebc8c4e16d2e66b90a54a9539e07192d227c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 18:38:19 2015 -0500
+
+    GUI
+
+commit 3096f3d438f4b6d9fc60610bdf30d2520e5ffaec
+Author: lara <lara@lara>
+Date:   Wed Dec 30 18:18:20 2015 -0500
+
+    EliminacionParqueadero
+
+commit 05bd53c4c6f7f45c70a2d373a3a7a60c75d71b6a
+Merge: 2f59654 3be7154
+Author: lara <lara@lara>
+Date:   Wed Dec 30 18:03:02 2015 -0500
+
+    Merge origin/master
+
+commit 2f59654be6034188cabd3f5d7c74b12e4db967f9
+Author: lara <lara@lara>
+Date:   Wed Dec 30 18:02:45 2015 -0500
+
+    validaciones
+
+commit 3be71540d2a7bbdc42a59128551fd80a90e5e4c6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 14:40:45 2015 -0500
+
+    Agregada toolbar de usuarios
+
+commit 8324844a77ded5a2ab63251b26e6370cb17145d2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 14:36:22 2015 -0500
+
+    Agregada toolbar de usuarios
+
+commit 23000905bd91b349524f4e5af9a689b7e8ec1535
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 14:25:59 2015 -0500
+
+    Agregada toolbar de usuarios
+
+commit 6df1c32055a572377f13b1641e4a419287f1a551
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 14:20:26 2015 -0500
+
+    Agregada toolbar de usuarios
+
+commit 1153ce39dcbc85d656a3f302897627826f7c9a3d
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 13:00:40 2015 -0500
+
+    Titulo acerca de
+
+commit 4083ef8c24193f1a2d63e181c136bfbfd2569fb7
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 12:46:29 2015 -0500
+
+    Shortcuts
+
+commit 7c5c7b2f425dc0c650145d61c049bf151476fe29
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 12:36:45 2015 -0500
+
+    Shortcuts
+
+commit 944737e583e7760a2d730e866bd4f34a62e1a754
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 12:28:01 2015 -0500
+
+    Fix autenticar usuario
+
+commit c79f38daa8193227f367fe80313c753eb7adf5f0
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Wed Dec 30 11:36:32 2015 -0500
+
+    Fix autenticar usuario
+
+commit e5f3dcd59c07d404e53e056fbbbf8be33315b1f9
+Merge: 4b0e85c 132ae5b
+Author: lara <lara@lara>
+Date:   Tue Dec 29 21:42:26 2015 -0500
+
+    Merge origin/master
+
+commit 4b0e85c509e6ffee4c1661b68707312b103c2ee8
+Author: lara <lara@lara>
+Date:   Tue Dec 29 21:42:06 2015 -0500
+
+    validaciones
+
+commit 132ae5be6b121ced447d47a01db01af3218fa527
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 20:47:31 2015 -0500
+
+    Habilitados test de usuarios
+
+commit 356128d526b594e4afcfd77533c0b46d88ccaf0f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 20:46:49 2015 -0500
+
+    Fix autenticar usuario
+
+commit e28be26f2521f83540125a724b8d89f32d47a3ae
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 19:55:07 2015 -0500
+
+    Dependencias eliminadas
+
+commit c45adcf8836676c948b16e59b5d65c677cc13442
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 18:41:58 2015 -0500
+
+    Puertas y usuarios de parqueaderos tests
+
+commit 06fccb63750cd317ddf551e3c28fc1ec769de9a0
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 17:33:36 2015 -0500
+
+    Orden natural de Puertas y parqueaderos
+
+commit 9ac924c8566be81b5781c93bdb1f2606a411bbc7
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 16:57:12 2015 -0500
+
+    Orden natural de Porteros
+
+commit 5c412af8f5994a46a890747e9c33f1f63c642e73
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 16:47:49 2015 -0500
+
+    Fix ordenes de pago
+
+commit 6cd8b02beb3370520e7e9cfb09d465dde59930eb
+Merge: 43b9bdb a2d0516
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 16:32:21 2015 -0500
+
+    Merge origin/master
+
+commit 43b9bdb177109a7d0864052226a36550d08e942a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 16:32:09 2015 -0500
+
+    GUI adaptable
+
+commit a2d051611806851b628f699a1249fcd50d868082
+Merge: a213b22 7c8f8e2
+Author: lara <lara@lara>
+Date:   Tue Dec 29 16:25:38 2015 -0500
+
+    Merge origin/master
+
+commit a213b22820c2e21d63a1efb864a2dc50a74b259d
+Author: lara <lara@lara>
+Date:   Tue Dec 29 16:25:18 2015 -0500
+
+    arreglos terminados
+
+commit 7c8f8e2fed7668239ed382014a6da78ea143428c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 16:01:42 2015 -0500
+
+    Implementado orden natural de los objetos
+
+commit a66b04328f1291d77aa062035674c7dd6a976668
+Merge: d7f491e f3bc834
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 15:01:23 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/srv/ParqueaderoService.java
+
+commit d7f491eba29741b811cec2212ca2dce6354951ba
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 14:57:58 2015 -0500
+
+    Service adaptado a los cambios del DAO
+
+commit a49e1d11de9824caae907dae178d20ab08508d49
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 13:35:09 2015 -0500
+
+    Service adaptado a los cambios del DAO
+
+commit 3aa5f2113790c76a1e6204c58ba8dbe6a3e7dd35
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 13:34:12 2015 -0500
+
+    Reestructurado DAO de parqueaderos
+
+commit 6a2605ebf32069fcb2bfdb5e30ac23717d2900c3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 13:33:50 2015 -0500
+
+    Reestructurado DAO de parqueaderos
+
+commit f3bc83472161d72b73e5b22ab51f534189ff3e08
+Author: lara <lara@lara>
+Date:   Tue Dec 29 11:04:32 2015 -0500
+
+    Contrato listo
+
+commit cb5896c3a192415731be82bb72f29f2a94214c37
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 29 10:56:19 2015 -0500
+
+    Fix getParqueaderos
+
+commit 4e1ba97ca56d131a86ea9f663fde66d3944f6713
+Author: lara <lara@lara>
+Date:   Tue Dec 29 10:46:18 2015 -0500
+
+    Contrato
+
+commit bb0a8eca2826e1dbc244e6ea16ff34d365c962cd
+Author: lara <lara@lara>
+Date:   Tue Dec 29 00:41:53 2015 -0500
+
+    validaciones para no agregar si el campus, parqueadero o usuario estan inactivos
+
+commit e92630213d6e3a223ca0761b2b2e3e268613e863
+Author: lara <lara@lara>
+Date:   Mon Dec 28 23:28:24 2015 -0500
+
+    validaciones para no agregar si el campus, parqueadero o usuario estan inactivos
+
+commit 7d7fa68cd67ee10657e81401cb26152154744a56
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 21:35:26 2015 -0500
+
+    Fiz modificar parqueadero
+
+commit 6a3014d283afac6658a2d7125384fe7c0eb9244c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 21:24:43 2015 -0500
+
+    Modificaciones GUI generales...
+
+commit 2862d230e67718300e9fca57cbea76527d56860d
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 21:24:02 2015 -0500
+
+    Validaciones removidas a DAO y agregadas otras
+
+commit d386974f8e1c6ed025c143bd4970ea02d8693db2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 21:22:45 2015 -0500
+
+    Reestructurado DAO de puertas y parqueaderos
+
+commit 83a02c7b97efb83103acb35e06ffa2ff2f1352c3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 19:55:49 2015 -0500
+
+    Excepciones capturadas
+
+commit e6fdeba425f1e362a5ca3d251f8b3d88bba679b7
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 19:51:35 2015 -0500
+
+    Excepciones capturadas
+
+commit b3b25e625273e33f8b942255c52f0e63cc4b279f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 19:48:21 2015 -0500
+
+    Validado que un portero no puede ser un usuario y viceversa
+
+commit f4bb7837c0353c6e3862e86c3eadf8fc2dec8e4a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 19:34:13 2015 -0500
+
+    Eliminado campo innecesario
+
+commit 2ef923d2cbbbe6aec6fa1ed748e238d2a974e178
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 19:21:26 2015 -0500
+
+    Registros refactor
+
+commit 5dc16cae6ea550a4c53432091e2c4f5bd0d63e36
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 19:10:33 2015 -0500
+
+    Orden de pago fixed
+
+commit a0bde5cb18da75768f0208c3cd9ba661f31d34d5
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 18:56:18 2015 -0500
+
+    Orden de pag fixed
+
+commit 9ad6ddca52e2e65ac6f39045f4761a6fedf9aa3b
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 18:40:32 2015 -0500
+
+    Fix icono
+
+commit fc2bbb94a1694d7d86a346d8111ea9471112ff8e
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 18:26:16 2015 -0500
+
+    Fix icono
+
+commit fca4ddb04911e0adb71ec4f9ab7b7f9a0c8fa324
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 18:13:17 2015 -0500
+
+    Acerca de
+
+commit f8c394e522469c7b95e6f852a305193c9759eca1
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 17:37:54 2015 -0500
+
+    Arreglado verificacion de numero telefonico
+    
+    Problema:
+    Al tratar de convertir todo el numero a int
+    el numero era muy grande para un int.
+    Solucion:
+    Comprobar caracter por caracter
+    que sea un digito.
+
+commit 76d88f86e5f681828a3fc81561a1c6b8e8af904c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 17:37:15 2015 -0500
+
+    Arreglado verificacion de numero telefonico
+    
+    Problema:
+    Al tratar de convertir todo el numero a int
+    el numero era muy grande para un int.
+    Solucion:
+    Comprobar caracter por caracter
+    que sea un digito.
+
+commit 61156d97bb1100f6e96fbe10dcc25353723fa2f6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 17:25:04 2015 -0500
+
+    Acceso uinificado (entrada, salida) -> pass
+
+commit f8212c9e15a2538f0041474ea9205f0b16287ba0
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 17:18:18 2015 -0500
+
+    Puerta service
+
+commit a843bdd5671318138a955eccc1be438c1e1576a3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 17:17:28 2015 -0500
+
+    Implementado autenticar usuario
+
+commit dc74386c3248826551a1010e5fc764d42d7d2eef
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 27 17:16:26 2015 -0500
+
+    Agregados porteros y puertas de prueba
+
+commit c9d6289eff93c8a4d8ecb14c00177c0f53a1a187
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 25 14:00:19 2015 -0500
+
+    Campus y parqueaderos de prueba
+
+commit 70b8b9c2133f2f08fbfaab185cecc606e0ea3a7a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 25 13:28:32 2015 -0500
+
+    Usuarios de prueba
+
+commit 0b1d285c74c8c85022ae3a38c5f9caede0ec8120
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 25 11:22:46 2015 -0500
+
+    Funcion autenticar usuario implementado
+
+commit 5244a29ff97edb540964f422795dd90edf498257
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 24 13:18:52 2015 -0500
+
+    Excepcion controlada
+
+commit 966f7ef41a8f1ed6497fc4229acb044c845fa67a
+Merge: d304389 e1b5c99
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 22 14:35:57 2015 -0500
+
+    Merge origin/master
+
+commit d3043891e346801492926d91315898ef846460c2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 22 14:35:32 2015 -0500
+
+    Ingreso a puertas
+
+commit e1b5c99148c22531b63bbdb7553bcedb904f4b43
+Author: lara <lara@lara>
+Date:   Tue Dec 22 14:29:10 2015 -0500
+
+    AdministrarPuertasGUI
+
+commit b790d7afada98e8aaf6fa144ec23204d34d307bc
+Merge: c185257 6b9ffe1
+Author: lara <lara@lara>
+Date:   Tue Dec 22 13:25:28 2015 -0500
+
+    Merge origin/master
+
+commit c18525746a99b040e49a3fbcfc2c09fc7f1c819b
+Author: lara <lara@lara>
+Date:   Tue Dec 22 13:25:06 2015 -0500
+
+    AdministrarPuertasGUI
+
+commit 6b9ffe11adb607171b760e924cefab6a592aa4a1
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 22 13:10:16 2015 -0500
+
+    Ordenes de pago
+
+commit 6a075cfb8c79fdd3d987bbc2255b2afb6be8382c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 22 12:46:54 2015 -0500
+
+    Ordenes de pago
+
+commit 93481071ada4dfc25f8a8f73da6ef1df5b672199
+Author: lara <lara@lara>
+Date:   Mon Dec 21 23:42:40 2015 -0500
+
+    Redizable desactivado en pantallas
+
+commit 8873b3e290a9f453e61e25c7992b7322423faa41
+Author: lara <lara@lara>
+Date:   Mon Dec 21 23:31:15 2015 -0500
+
+    AgregarUsuarios Listopara pruebas
+
+commit a722d072686fa21cb197db0002ac658ff8b1cdb8
+Author: lara <lara@lara>
+Date:   Mon Dec 21 23:19:34 2015 -0500
+
+    AgregarUsuarios Listopara pruebas
+
+commit 544ff46ad2c15f72e14fdf6889805caa609db76b
+Author: lara <lara@lara>
+Date:   Mon Dec 21 20:02:13 2015 -0500
+
+    AgregarUsuarios
+
+commit 6f99e93976679ac9055463103324303f5e02e42a
+Author: lara <lara@lara>
+Date:   Mon Dec 21 19:54:31 2015 -0500
+
+    AgregarUsuarios
+
+commit 3351b910e9523c2010790098a92e01a9984df920
+Merge: c15971f f9bc8db
+Author: lara <lara@lara>
+Date:   Mon Dec 21 19:15:09 2015 -0500
+
+    Merge origin/master
+
+commit c15971f377e8ebf138149919284a7f244a271a26
+Author: lara <lara@lara>
+Date:   Mon Dec 21 19:14:43 2015 -0500
+
+    AgregarUsuarios
+
+commit f9bc8dbb645a9c2e4c9a8bb8af3b61119ab1d8b1
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 19:06:15 2015 -0500
+
+    Ordenes de pago
+
+commit 77122811ef5292eac58a86cb239b4cfea8096774
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 19:01:20 2015 -0500
+
+    Ordenes de pago
+
+commit 25ec238cbf9fd596f8bca4dd16241b535362e2df
+Merge: 2953ab6 7b145b9
+Author: lara <lara@lara>
+Date:   Mon Dec 21 18:26:02 2015 -0500
+
+    Merge origin/master
+
+commit 2953ab6eed580f1e959592cc30371ba244e41563
+Author: lara <lara@lara>
+Date:   Mon Dec 21 18:25:41 2015 -0500
+
+    AgregarUsuarios
+
+commit 7b145b91a73ad863341ac39d9ebaa73fd2378fb4
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 18:14:58 2015 -0500
+
+    Fix campus editable al mod portero
+
+commit f4a1b72f797161d96d48ab5fdf61bef0b6e6f1d4
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 18:04:48 2015 -0500
+
+    Funcionalidad registros
+
+commit a12a7b14363877367c89125ee88a38616d64b798
+Author: lara <lara@lara>
+Date:   Mon Dec 21 17:35:52 2015 -0500
+
+    AgregarPuertas y AgregarUsuarios
+
+commit 180d63a1c374ae54c58384bac0fd69e163735971
+Merge: 863cdaa 308e315
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 16:31:50 2015 -0500
+
+    Merge origin/master
+
+commit 863cdaa793cf33517f3fde4576d83f440228fef2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 16:31:25 2015 -0500
+
+    Fix Administracion de puertas
+
+commit 308e3159addbd4c8a4b2dd04eb1d50b8327db93f
+Merge: 0a33b70 97a9fe1
+Author: lara <lara@lara>
+Date:   Mon Dec 21 16:17:26 2015 -0500
+
+    Merge origin/master
+
+commit 0a33b70ad8c0ecb4aef4f8b12b363ccaf6cd11ad
+Author: lara <lara@lara>
+Date:   Mon Dec 21 16:17:12 2015 -0500
+
+commit 07e40aff30d8233d4f8476f7927006a9f9134c07
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 16:16:23 2015 -0500
+
+    Fix llamada a admin puertas
+
+commit 97a9fe1f310fa5878afc938c1ce7666b58a9f072
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 21 15:57:25 2015 -0500
+
+    Administracion de porteros fixed
+
+commit e5488da70183d1607b5d36496ef322a38bd61849
+Author: lara <lara@lara>
+Date:   Mon Dec 21 15:17:21 2015 -0500
+
+commit 7f674509b0526c18e4a16bed7d219be932f9c150
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 20:21:20 2015 -0500
+
+    Lanzadas excepciones
+
+commit 3e9a55d26badf96aad3c7aeabb6caea46b70763f
+Merge: 1450fdd e5498ec
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 20:18:57 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/gui/AdministarPorterosGUI.java
+
+commit 1450fdd6d5bebc672d6c4ebd9ba973e597286125
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 19:43:18 2015 -0500
+
+    Portero admin
+
+commit e5498ec426df8b0c4fa1e095c1fdcefb9571f33a
+Merge: 8ae11fa 0e35ebf
+Author: lara <lara@lara>
+Date:   Sun Dec 20 19:35:14 2015 -0500
+
+    Merge origin/master
+
+commit 8ae11faf7c8d747663c446994a728d813b6cc394
+Author: lara <lara@lara>
+Date:   Sun Dec 20 19:34:57 2015 -0500
+
+    EditarUsuario
+
+commit 0e35ebfde0aebc8a6d62c8601607ff4a8f08bde6
+Merge: 4185692 4b88b22
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 19:00:33 2015 -0500
+
+    Merge origin/master
+
+commit 4185692415967c7dabbd01f8b4d8beae728abf8f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 19:00:00 2015 -0500
+
+    Mostrar usuario
+
+commit 4b88b225b0aa07494fb79bf21cbf824757bff77e
+Merge: 04578db 020c725
+Author: lara <lara@lara>
+Date:   Sun Dec 20 18:45:30 2015 -0500
+
+    Merge origin/master
+
+commit 04578db7232cf5a31260dea533686d1abc1b74e4
+Author: lara <lara@lara>
+Date:   Sun Dec 20 18:45:15 2015 -0500
+
+    Administrar
+
+commit 1947013fa949b43332a420b51b0cf40be56f872c
+Author: lara <lara@lara>
+Date:   Sun Dec 20 18:42:18 2015 -0500
+
+    Administrar
+
+commit 020c7255da0bac4577e48d11871029ec93867525
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 18:41:48 2015 -0500
+
+    Mostrar usuario
+
+commit 2daf2aaee5c7b30f1b04cef373742bffe7976268
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 18:24:45 2015 -0500
+
+    Look and feel
+
+commit b862bd3e34a6e65495a1c6d14c6bc734650a5427
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 17:59:39 2015 -0500
+
+    Reorganizadas clases
+
+commit b6b1e9ce3efb1c3c86245703d247043a24855a07
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 17:56:05 2015 -0500
+
+    Validado que el numero de lugares de parqueo sea 105% del numero de usuarios
+
+commit ef63ed2afd991689554cd4a76a6378ba133f4a98
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 17:37:33 2015 -0500
+
+    Eliminar parqueaderos implementado
+
+commit 88ba934f2b1eb505ba28e45857c430566d47d60a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 17:09:08 2015 -0500
+
+    Editar parqueaderos implementado
+
+commit 600cc4d445624376c6484a6ef1dcd209615dd3dc
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 15:36:12 2015 -0500
+
+    Administrar usuarios
+
+commit 2f6f00f7a84aa6ac6da0216476f67b101f8c4791
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 15:22:33 2015 -0500
+
+    Administrar usuarios
+
+commit 4d06424ad52af10f33e9765a8c86d70fb5672f16
+Merge: 87549c7 7e1f91e
+Author: lara <lara@lara>
+Date:   Sun Dec 20 14:44:34 2015 -0500
+
+    Merge origin/master
+
+commit 87549c74dcb45d97afe95d14bcfbad046046d11a
+Author: lara <lara@lara>
+Date:   Sun Dec 20 14:43:58 2015 -0500
+
+    JDialog completa
+
+commit 7e1f91ed0bcf6fe6ea4b8d1307356d88976f9165
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 14:43:43 2015 -0500
+
+    Crear parqueadero
+
+commit d566fbc35dc689fd499349249e2c8dbf6a0feb6e
+Merge: d9ad995 83b96eb
+Author: lara <lara@lara>
+Date:   Sun Dec 20 14:34:30 2015 -0500
+
+    Merge origin/master
+
+commit 83b96ebd765a5516837e1967bb8b4ba2faa94292
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 14:33:58 2015 -0500
+
+    Implementado eliminar usuario
+
+commit d9ad9959b7884a172255a2115996d054bcba9acb
+Author: lara <lara@lara>
+Date:   Sun Dec 20 14:33:31 2015 -0500
+
+    JDialog completa
+
+commit c93bf16b82afb162dc2edc6b3514e4a5700c23e7
+Merge: 6fe0efc a6e6215
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 13:50:14 2015 -0500
+
+    Merge origin/master
+
+commit 6fe0efc0c68b0a3753fb0cd31885820f550bd820
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 13:49:44 2015 -0500
+
+    Implementado eliminar usuario
+
+commit b970e3ffd4396cd6fb8ebab05fc5e1f42ecc3627
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 13:49:22 2015 -0500
+
+    Implementado eliminar usuario
+
+commit a6e621515a44b0fb7d040bdad4145be88d2a7368
+Author: lara <lara@lara>
+Date:   Sun Dec 20 13:43:59 2015 -0500
+
+    jdialog
+
+commit d9982e5256627b7b3174534520475cac778c7267
+Merge: b69664d b0c83cc
+Author: lara <lara@lara>
+Date:   Sun Dec 20 13:28:21 2015 -0500
+
+    Aministrar
+
+commit b69664d6e1f9ca2b167c8d140390fb1711f1bcce
+Author: lara <lara@lara>
+Date:   Sun Dec 20 13:22:22 2015 -0500
+
+    Administrar
+
+commit b0c83ccde6c39c9508f6371f1df0aa238417cc58
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 13:19:23 2015 -0500
+
+    Implementado eliminar usuario
+
+commit 5e7f48c890cf4c54714a72d4a9fbe51eef109597
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 12:43:17 2015 -0500
+
+    Listar usuarios bug solucionado
+
+commit 6c39b00089359495206cffaaee306e4ee9a70090
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 12:33:12 2015 -0500
+
+    Listar usuarios
+
+commit bec2f8cba531a73bbea9963a5378cf3bddc1bc4b
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 12:14:55 2015 -0500
+
+    Eliminar Campus
+
+commit ef04c388eac0e80c1f9d326fc9a3d6a1fe2825d0
+Merge: 04b2646 41d036e
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 11:58:03 2015 -0500
+
+    Merge origin/master
+
+commit 04b26462d46a4536d518216fbd60e2389b38f3d6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 11:57:24 2015 -0500
+
+    Listar campus en combo box
+
+commit 41d036e85780d69a66a6da10ef780599db56f353
+Merge: 6193f00 f2c8e17
+Author: lara <lara@lara>
+Date:   Sun Dec 20 11:32:44 2015 -0500
+
+    Merge origin/master
+
+commit 6193f00b729fb875bfb9cc45f3e4e986d38aea86
+Merge: e14567d 6015752
+Author: lara <lara@lara>
+Date:   Sun Dec 20 11:32:32 2015 -0500
+
+    Merge origin/master
+
+commit f2c8e17a9fd86b02c58c15beb179bdc72f3284e3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 11:32:19 2015 -0500
+
+    Listar campus en combo box
+
+commit e14567dd1ae283ac09ec998c56abc0f6c6a34ecf
+Author: lara <lara@lara>
+Date:   Sun Dec 20 11:32:10 2015 -0500
+
+    editarPuerta
+
+commit 6015752b5cefd78f54cee52be00f3788c46a327a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 11:25:40 2015 -0500
+
+    Refactor getCampuss -> getCampus
+
+commit aa0146ae6aab8df0f6df2aded551f03165a237ea
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 11:23:49 2015 -0500
+
+    Refactor getCampuss -> getCampus
+
+commit 1dcaa87c518a87d415729cab02b05eeb98f663f0
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 11:16:31 2015 -0500
+
+    Editar usuario implementado.
+
+commit 61fb11b41604a5d52983bf816ad9f6269e52b9f8
+Author: lara <lara@lara>
+Date:   Sun Dec 20 11:12:25 2015 -0500
+
+    editar campus
+
+commit e060d7dbd93e7475fe28bd156e19e5504c24d7d2
+Merge: 8fabc04 c0a1275
+Author: lara <lara@lara>
+Date:   Sun Dec 20 10:47:54 2015 -0500
+
+    Merge origin/master
+
+commit 8fabc04e8000cd020e42707cb4bcf9a72e0a16f0
+Author: lara <lara@lara>
+Date:   Sun Dec 20 10:47:40 2015 -0500
+
+    editar campus
+
+commit c0a1275254711db876bc37f491baaf5f42836ec4
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 10:37:28 2015 -0500
+
+    Editar usuario implementado.
+
+commit 372b173545d761e09847954b9aa6d6a9898ab7f3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sun Dec 20 09:36:58 2015 -0500
+
+    GUI
+
+commit 478ab8d4c8545407c7076ea1d4516eb1256ffd4f
+Author: lara <lara@lara>
+Date:   Sat Dec 19 22:42:35 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/gui/PrincipalGUI.java
+
+commit fc444b1512c3bbc093cce78c8a86d98580bf2d12
+Merge: a7817c1 4ef5e35
+Author: lara <lara@lara>
+Date:   Sat Dec 19 22:31:03 2015 -0500
+
+    Merge origin/master
+
+commit a7817c1afb51ac604005ab042a05e9aa2ac7ea1b
+Author: lara <lara@lara>
+Date:   Sat Dec 19 22:30:41 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/gui/PrincipalGUI.java
+
+commit 4ef5e35fe405d498dbb2c0351818c0afc63c13b6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 22:29:07 2015 -0500
+
+    Listar parqueaderos
+
+commit df73f30490bdf60161f64e5beace03b529021bce
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 22:28:27 2015 -0500
+
+    Listar parqueaderos
+
+commit 56d5c7c8a4242383d2508975ef7acf656b4e7f03
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 22:06:13 2015 -0500
+
+    Listar usuarios
+
+commit 3526f8c7840c6e5f55e8a4accd100f187343d19c
+Merge: 11f8829 3e0062d
+Author: lara <lara@lara>
+Date:   Sat Dec 19 21:22:19 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/gui/PrincipalGUI.java
+
+commit 11f8829eec85d4c265a07d53e18c8f7bddbea86f
+Author: lara <lara@lara>
+Date:   Sat Dec 19 21:20:02 2015 -0500
+
+commit 3e0062d57b0208b5cbdba56286a883ed8b96995f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 21:18:42 2015 -0500
+
+    Icono de la aplicacion
+
+commit 1ec5010f37570707b8454f3c94cc12b62e1afa6b
+Merge: a6354ac bea8e3c
+Author: lara <lara@lara>
+Date:   Sat Dec 19 21:10:31 2015 -0500
+
+    Merge origin/master
+
+commit a6354acea4e581ae84daa64aa63bc8e56b2c8218
+Author: lara <lara@lara>
+Date:   Sat Dec 19 21:10:13 2015 -0500
+
+    Crear y editar usuario,Crearcampus,crearParqueaderos,ccrearPortero
+
+commit bea8e3cb5a7eb88bca190d855541a801702dfcf2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 21:06:40 2015 -0500
+
+    Directorio de imagenes
+
+commit ff531a5a975b411816a4a6c147c08a6d8310af1a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 20:54:04 2015 -0500
+
+    Registro GUI
+
+commit 87b7203c00ed3f637eea470581ee823f7ba693e5
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 20:53:27 2015 -0500
+
+    Registro GUI
+
+commit cdf02d56fd72eba4ceae9355462e729fce557fc6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 20:12:06 2015 -0500
+
+    Registros GUI
+
+commit ba97421eb63617feb4aa962f7d2f335d9758ee2a
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 19:55:38 2015 -0500
+
+    Registros GUI
+
+commit 4fc0658c3c44dd0b52b1333a57ba2c0560c3a8a2
+Author: lara <lara@lara>
+Date:   Sat Dec 19 19:24:16 2015 -0500
+
+    CrearUsuario
+
+commit 2a4a3ae3273300c579e5a6c7f2b23e81520b624d
+Author: lara <lara@lara>
+Date:   Sat Dec 19 19:16:56 2015 -0500
+
+    CrearUsuario
+
+commit 91f5259d00af6cdba64aed762127fb336ddbd381
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 19:12:02 2015 -0500
+
+    GUI
+
+commit 0bfd415b4ebcbe3e3870e27d1579b332f7257b18
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 19:09:57 2015 -0500
+
+    GUI
+
+commit 307d731f3d082a370c216303b70946b5ae07a622
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 18:24:41 2015 -0500
+
+    Eliminada clase innecesaria fecha
+
+commit 136230ce855fb3917a81ca2fa06f355bcff25347
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 18:22:26 2015 -0500
+
+    Eliminada clase innecesaria fecha
+
+commit c3394f4463dcdc1c9f1daee1fa9486846a3e25be
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 18:20:34 2015 -0500
+
+    Srv
+
+commit 7e16a8c97df8c1221bf2e8e7b2118b6bb1255010
+Author: lara <lara@lara>
+Date:   Sat Dec 19 18:11:04 2015 -0500
+
+    test
+
+commit c490ec9a632ffa6aa3e0526f1ac18bcd12b4a817
+Author: lara <lara@lara>
+Date:   Sat Dec 19 18:08:10 2015 -0500
+
+    test
+
+commit 7c6cf7964109f1da98f9a01b90cceb4cb69ae406
+Merge: 6b5e9f7 f17ce7b
+Author: lara <lara@lara>
+Date:   Sat Dec 19 18:06:46 2015 -0500
+
+    Merge origin/master
+
+commit 6b5e9f7b7876a0b48a87769203320856dae446c6
+Merge: 336637f c1ed3f1
+Author: lara <lara@lara>
+Date:   Sat Dec 19 18:06:24 2015 -0500
+
+    test
+
+commit f17ce7b3be7f06ea96d483175f4b7fe73360fec7
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 17:49:53 2015 -0500
+
+    Srv
+
+commit 336637fcd9767b65f4235cf1ddec9663baf4eda8
+Author: lara <lara@lara>
+Date:   Sat Dec 19 17:32:28 2015 -0500
+
+commit c1ed3f11fcdc854c4b1691d040e60c2561323f65
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 17:30:46 2015 -0500
+
+    GUI
+
+commit f979e7b010d1c404a979549398f3a2c11cc898bd
+Merge: d4ffc96 4f37f39
+Author: lara <lara@lara>
+Date:   Sat Dec 19 16:49:10 2015 -0500
+
+    Merge origin/master
+
+commit d4ffc96c1787a6b17c8eacce33c4af5b45b528a5
+Author: lara <lara@lara>
+Date:   Sat Dec 19 16:48:55 2015 -0500
+
+    ServiceServidos
+
+commit 4f37f396abc5383026c61f74a67e5e4f15521fe3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 16:48:39 2015 -0500
+
+    GUI
+
+commit 969ffff585b331eb0173095070847fdbe2dd4bc1
+Merge: 2082917 da33b17
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 16:46:49 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/srv/OrdenPagoService.java
+
+commit 20829171e094948396169ad250e1dc2683cd8b0d
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 16:45:50 2015 -0500
+
+    GUI
+
+commit da33b178a2befff97636ea1e7afd7be912c767d5
+Author: lara <lara@lara>
+Date:   Sat Dec 19 16:30:02 2015 -0500
+
+    ServiceServidos
+
+commit 3ede767ea64dcabfa67169c96a0ce9f41fd79b86
+Merge: 2ca6f2f 908f4f5
+Author: lara <lara@lara>
+Date:   Sat Dec 19 15:37:37 2015 -0500
+
+    Merge origin/master
+
+commit 2ca6f2f4b5c185afdea3e6d3ba8f7bdaf548661d
+Author: lara <lara@lara>
+Date:   Sat Dec 19 15:37:14 2015 -0500
+
+    ParqueaderoService
+
+commit 908f4f5131f60ab03213b847a9ffd13ef8b85d35
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 15:28:17 2015 -0500
+
+    GUI
+
+commit 53f94f5615bf1d0b4c4e06984f8f9f3b1f3f14d3
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 14:36:45 2015 -0500
+
+    GUI
+
+commit 79794b6146fcd951ec821aba707854d2d3088904
+Merge: da7af5a ba72ad3
+Author: lara <lara@lara>
+Date:   Sat Dec 19 13:49:36 2015 -0500
+
+    Merge origin/master
+
+commit da7af5adf1f976ee2811d5c77e3e984e84af48ff
+Author: lara <lara@lara>
+Date:   Sat Dec 19 13:49:17 2015 -0500
+
+    registroservice(terminado)
+
+commit ba72ad3708df34631ec64aab39ba559f806db09d
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 13:49:10 2015 -0500
+
+    GUI
+
+commit bb3536beacc0a41d58dbdf2d3ad66bd82f7a76a0
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 13:19:14 2015 -0500
+
+    DAO Registros
+
+commit 475a3d756b38a898d84ebbb6b2b2c24822d6ca76
+Merge: e175e24 1934d69
+Author: lara <lara@lara>
+Date:   Sat Dec 19 12:45:36 2015 -0500
+
+    Merge origin/master
+
+commit e175e24576b5152bf23d6bb5ea7c5664ec10b14b
+Author: lara <lara@lara>
+Date:   Sat Dec 19 12:44:45 2015 -0500
+
+    registroservice
+
+commit 1934d6979a3afdbbda99fc560aa2690071d28759
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 11:59:45 2015 -0500
+
+    GUI adaptable
+
+commit 741a5eb9af590614d75ecf0784f8bda16e0ecb2f
+Merge: 4945a01 4f7f83f
+Author: lara <lara@lara>
+Date:   Sat Dec 19 11:26:09 2015 -0500
+
+commit 4945a017a43275508b9861767fbc26f4b5a6a588
+Author: lara <lara@lara>
+Date:   Sat Dec 19 11:20:58 2015 -0500
+
+    GUI
+
+commit 4f7f83febe5ecc7b5cc11aa18caf2a6809e194da
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 11:12:25 2015 -0500
+
+    Cambios en opciones de gui
+
+commit ee03e980aa61fad87b6a5f261958f47254f931be
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 11:01:54 2015 -0500
+
+    Removido Portero de crear usuario
+
+commit 90853c6faca12d42397a447acff559cb7f31e674
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 10:51:44 2015 -0500
+
+    DAO Registros
+
+commit 3b6636f0233246f203517f88d5aa12f4b2ff0a7c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 10:42:58 2015 -0500
+
+    DAO
+
+commit be1088d80b787a85ba6d036d3b215dabfdcf3a07
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 10:16:23 2015 -0500
+
+    Excepciones DAO
+
+commit c7553400a2a280950cb3366521139b3b452bb171
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 19 10:12:03 2015 -0500
+
+    Implementacion de DAOs terminado
+
+commit b4d8aa096a79a3aa26c72297ece185d17943df76
+Author: lara <lara@lara>
+Date:   Fri Dec 18 19:26:00 2015 -0500
+
+    Registros
+
+commit 562dcb158ee5fcb299b6c2325ac32389b15a29f1
+Merge: 648651d 6e0b742
+Author: lara <lara@lara>
+Date:   Fri Dec 18 19:08:21 2015 -0500
+
+    Merge origin/master
+
+commit 648651deb4e370a0b123f86adc1ed25117546896
+Author: lara <lara@lara>
+Date:   Fri Dec 18 19:08:05 2015 -0500
+
+    Registros
+
+commit 6e0b742fd79a3a5e9026d00d102279e4670cab3e
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 19:05:38 2015 -0500
+
+    Dao de parqueaderos
+
+commit 5648ea632806878d54ca563235e2cd9a3a05eb8f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 19:01:32 2015 -0500
+
+    Dao de parqueaderos
+
+commit e800231c97fe82ae25fa46dd4a8ebff333f96a67
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 18:53:42 2015 -0500
+
+    Dao de parqueaderos
+
+commit 5b7265743a4550ed58beea2d2bee0025ae9ef3e2
+Merge: 7616210 52ff474
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 18:15:54 2015 -0500
+
+    Merge origin/master
+
+commit 52ff4742887fc8dd2ced0844ba974e8122bd77c9
+Author: Franklin <Franklin@172.28.146.52>
+Date:   Fri Dec 18 18:15:06 2015 -0500
+
+    PuertaService y otros
+
+commit 76162104b4ab8bf27d73b9758921e91f55984cb2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 17:30:10 2015 -0500
+
+    Agregado atributo nombreCampus a parqueadero
+
+commit e2663a79b79ba0d8b1622102b252d8c5d084fd7e
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 17:21:32 2015 -0500
+
+    Agregadas mas funciones a DAO parqueaderos
+
+commit 185d9c1dda7543d9f9d733398844f81320669c80
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 17:18:46 2015 -0500
+
+    Agregadas mas funciones a DAO parqueaderos
+
+commit eef172ea772d0c3713b6fcdb1ed5d8632b98c93f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 16:52:38 2015 -0500
+
+    Agregadas mas funciones a DAO parqueaderos
+
+commit bbeccf2c85f478fa5b3c0b0b62a0ee03db6a42f3
+Merge: e4bfef8 e887e13
+Author: Franklin <Franklin@172.28.146.52>
+Date:   Fri Dec 18 16:33:59 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/gui/CrearUsuario.form
+    	src/edu/ucue/jparking/gui/CrearUsuario.java
+
+commit e4bfef8421dc07053490e56e762d154133fa00de
+Author: Franklin <Franklin@172.28.146.52>
+Date:   Fri Dec 18 16:23:04 2015 -0500
+
+    Arreglos
+
+commit c69f19f5de19f9ed08bf906361829b0b93cf1b5e
+Author: Franklin <Franklin@172.28.146.52>
+Date:   Fri Dec 18 16:22:30 2015 -0500
+
+    Arreglos
+
+commit 5d92ed378a750da04ad696480b858229d2ce4564
+Author: Franklin <Franklin@172.28.146.52>
+Date:   Fri Dec 18 16:16:50 2015 -0500
+
+    Arreglos
+
+commit e887e1337112ddc5100441a55dc1c29f211967ec
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 16:03:55 2015 -0500
+
+    Agregadas mas funciones a DAO parqueaderos
+
+commit 926e94ed465b0511a8c9489974f436f3e13972f6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 18 15:57:04 2015 -0500
+
+    Interface DAO parqueaderos
+
+commit 311b9c64b5cbbef35b6b19f5de4cde891a15bed6
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 18:43:47 2015 -0500
+
+    Implementados DAO
+
+commit b93cb7e0dbb12c91a1581d2d3d2940c6abe430e5
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 17:45:28 2015 -0500
+
+    Implementado Dao de porteros
+
+commit 838c821c3367a76ec3cc85e24c375466b44546a8
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 17:34:08 2015 -0500
+
+    Interfaces mod
+
+commit 7a3e7b0c6de82c3e2f4b0be7dc4e9e6f70b57868
+Merge: 6eaa2e5 a00d90f
+Author: Franklin <Franklin@172.28.149.134>
+Date:   Thu Dec 17 12:43:18 2015 -0500
+
+    Merge origin/master
+
+commit 6eaa2e53861d790c114ba1d1559927e02a58ac83
+Author: Franklin <Franklin@172.28.149.134>
+Date:   Thu Dec 17 12:42:55 2015 -0500
+
+    Principal ui
+
+commit a00d90f5a5cc329c787daea1b5abf6f62d98095c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 12:39:33 2015 -0500
+
+    DAO's interfaces y documentado
+
+commit 417609b6e7e8434c27345d135f62cd31ac98ab7b
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 12:38:32 2015 -0500
+
+    DAO's interfaces y documentado
+
+commit fa6b8220e370e5603376d13f45a79197b9172148
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 09:58:51 2015 -0500
+
+    DAO's
+
+commit 5c601b66b95bb7791503537e3662d3ea11f3927f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 09:53:54 2015 -0500
+
+    GUI mod
+
+commit 45715b25623f686596b850721e0f1f3d340edec2
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 09:18:41 2015 -0500
+
+    Retrocediendo en el tiempo...
+
+commit 18329630d2438ef8796706eddd40e725de2c9b5d
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Thu Dec 17 09:01:53 2015 -0500
+
+    Reestructurado relacion de multiplicidad entre objetos
+
+commit 2a493c513d0ca364185982254c328b56558bdf63
+Author: Franklin <Franklin@172.28.149.209>
+Date:   Tue Dec 15 13:33:04 2015 -0500
+
+    CrearPuerta Ui
+
+commit 6b221d735f2b787bf30e1d3a9f7262105f5c64a0
+Author: Franklin <Franklin@172.28.149.209>
+Date:   Tue Dec 15 12:58:49 2015 -0500
+
+    CrearUsuario ui
+
+commit c9cae085494c79d8d14cb4728f9817bafd561f34
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 15 12:56:28 2015 -0500
+
+    UI crear campus
+
+commit ad78bf4aec9b2d0a2b81a6d3c8489dbc3e6de622
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 15 12:09:48 2015 -0500
+
+    UI autenticar user
+
+commit f5e616e884d18a554114d5f591af75097032c6eb
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Dec 14 18:22:02 2015 -0500
+
+    Solucionado DAO de puertas
+
+commit 6556ddc5598e9ad6ea97ac0b37cf80fbaa942d6f
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 19:41:16 2015 -0500
+
+    Interfaces
+
+commit bc493b733c34b78e8b69291eadf633a88d7e9c05
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 19:34:49 2015 -0500
+
+    Interfaces
+
+commit ea836d508095cf5f9bf93ead2bb34343062962fc
+Merge: 589ea64 8aad94f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 19:21:06 2015 -0500
+
+    Merge origin/master
+
+commit 589ea64dec8d91fb0558dae62b1986fe1e59f81e
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 19:20:54 2015 -0500
+
+    Interfacec Porteros y Registros
+
+commit 8aad94f17d3ec50f0b6e294dace1a5f294e2f916
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 19:20:06 2015 -0500
+
+    Organizacion de paquetes
+
+commit 78867cb2503bfedec44cde3c322a0bd8da047899
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 19:04:46 2015 -0500
+
+    Organizacion de paquetes
+
+commit 4eaf9804f4d75d030f98f390571b0082e5fe78bf
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 18:53:04 2015 -0500
+
+    Organizacion de paquetes
+
+commit c075b3a6345a95a088d40938e1fa0ec2121e4399
+Merge: 80cc797 8125e11
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 18:41:04 2015 -0500
+
+    Merge origin/master
+
+commit 80cc797b6776eef83613a72cc6526d78df24e9e3
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 18:40:26 2015 -0500
+
+    Estudiante service Docente service Empleado service
+
+commit 8125e11b3f5736c9fb92ca93288d3a6936997f32
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 18:38:32 2015 -0500
+
+    Independencias de usuarios y parqueaderos
+
+commit bf90f58d271c3c819aa1225260114af5ac72796f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 18:36:59 2015 -0500
+
+    Implementado DAO Usuario
+
+commit 1cca3908b41b35eb19d82e7577974c81c2dfbcab
+Merge: c7f717c 19932ee
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 18:19:19 2015 -0500
+
+    Merge origin/master
+
+commit c7f717ce808c9ac1a5177a8c94e4a601b5924236
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 18:19:05 2015 -0500
+
+    DAOs que contienen dobles maps
+
+commit 19932ee2e0fc1a1de0665c2926fb284f3790ecd6
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.153>
+Date:   Fri Dec 11 18:17:34 2015 -0500
+
+    Estudiante service
+
+commit ce777880d0ad47400255b3c2dee870af3a6df7ff
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 17:35:21 2015 -0500
+
+    Registros DAO
+
+commit fed3550b31580fe57a0847e19bb7add9244b9826
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 17:12:48 2015 -0500
+
+    Tipos de Registros
+
+commit 26e24de51840ceb118a657014eee7db95b76a05c
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 16:56:33 2015 -0500
+
+    Tipos de usuarios definidos
+
+commit ad67268936881e335478143e101b0c1791031a41
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 13:52:22 2015 -0500
+
+    CampusService
+
+commit 492d652cee73ef348ea7870cecb0c500d5fcf7ea
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:56:49 2015 -0500
+
+    Registro DAO
+
+commit 4d7f85ef054656f3a5d1522b761cfadf0af6ffc7
+Merge: 9e8e63a 322005f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:51:55 2015 -0500
+
+    Merge origin/master
+    
+    Conflicts:
+    	src/edu/ucue/jparking/srv/Campus.java
+
+commit 9e8e63a60f0edd6a0b3062ac273f270714b9c789
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:48:35 2015 -0500
+
+    Registros creados
+
+commit 322005f773c7ddf086e482b64e2f69c1879d6794
+Merge: 6d688e1 950cdea
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 12:44:56 2015 -0500
+
+    CampusDAO
+
+commit 6d688e113d70edf6f1321971e2f43d5d8d679754
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 12:43:32 2015 -0500
+
+    CampusDAO
+
+commit 9dd737ef427ff0592ee4a14883aa1f4862f7d251
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 12:36:18 2015 -0500
+
+    CampusDAO
+
+commit 4f25dc84aa2fbfb149dc8eb80b219a2d00cb84bf
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:31:40 2015 -0500
+
+    Agregados DAOs
+
+commit 950cdea9445493d3ae258d37728dfa3b49eefddc
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:26:11 2015 -0500
+
+    Campos que sirven de claves en el DAO son final
+
+commit a2e3680d7f3fcd0fd4fb7c0d482b3ae9f3d27ffb
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:20:09 2015 -0500
+
+    DAO Campus
+
+commit 1a40b80cf566a6f9d3a5909171e70ce69647949b
+Merge: 9b1a265 dd6b55e
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:17:41 2015 -0500
+
+    Merge origin/master
+
+commit 9b1a2651318d9dea4dfcb2b168f9c869059cf6b4
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 12:17:06 2015 -0500
+
+    Cambios en listas de Clases para implementar DAO
+
+commit dd6b55ea8593f2f3d3b0b104a2ef10002fcafabf
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 12:15:26 2015 -0500
+
+commit 2e6fa51369504c68205a656b7272525f5530e12c
+Merge: a62a7c9 6a22784
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 12:14:47 2015 -0500
+
+commit a62a7c90e051531a7492f32ba830a99f50863ad5
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 12:11:05 2015 -0500
+
+    Creada la CampusDAO
+
+commit daf25dc4fa8ba3d9950e1f4881c42d02893e44d4
+Author: ESTUDIANTE <ESTUDIANTE@172.16.147.37>
+Date:   Fri Dec 11 11:55:47 2015 -0500
+
+    Creada la CampusDAO
+
+commit 6a2278488cf3016ea3486bba9055c81a6312adba
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 11:55:33 2015 -0500
+
+    Implementado HashMap
+
+commit e5659ab97e2a5bef7796babc791dae68394a5694
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 11:46:12 2015 -0500
+
+    Encapsulado campo cedula de Usuario
+
+commit 30d40d2cb399b12870e2ae57e474863c1ac8b401
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Fri Dec 11 11:42:17 2015 -0500
+
+    Usuarios DAO
+
+commit ad3c94407090d04b6fcc8a889d86c25c78657a2a
+Author: Franklin <Franklin@172.16.147.206>
+Date:   Wed Dec 9 14:58:19 2015 -0500
+
+    clases orden de pago modificada
+
+commit 9206e2a9a08c66a636d82925eb445cd5f8f9d056
+Author: Franklin <Franklin@172.16.147.206>
+Date:   Wed Dec 9 14:53:34 2015 -0500
+
+    Clases parqueadero... proceso de la parte extructural
+
+commit 860c7ab43680c5c17a2a5c3ee968805f71a8e208
+Author: Franklin <Franklin@172.16.147.206>
+Date:   Wed Dec 9 14:50:36 2015 -0500
+
+    Clases parqueadero... proceso de la parte extructural
+
+commit 8672cf4f5a082db7fa8380ed248a40ced1431712
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 8 16:06:00 2015 -0500
+
+    Agregado Campus en Puerta
+
+commit ba9fe544c2ca0f62d7f6672afcdcace45099b8fb
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 8 15:55:47 2015 -0500
+
+    Modifcados usuarios
+
+commit 4f550f485425f41a7f1055345c5debd0fce9d6df
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 8 15:32:38 2015 -0500
+
+    Agregados enums
+
+commit 2bcb97ac8f82d2215882e0126b299ee578f82837
+Merge: 6ecdff9 789db37
+Author: Franklin <Franklin@172.28.150.204>
+Date:   Tue Dec 8 12:50:41 2015 -0500
+
+    Merge origin/master
+
+commit 6ecdff9d79f8e075bf061607d8a86bcdc75574a5
+Author: Franklin <Franklin@172.28.150.204>
+Date:   Tue Dec 8 12:50:03 2015 -0500
+
+    Clases puerta y campus modificadas
+
+commit 789db375f24cadfe75cc9c091f28929e09fec741
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 8 12:47:17 2015 -0500
+
+    Usuarios
+
+commit 3e367c3a96691d8818a13c71dc5605c7f5de2a5f
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Tue Dec 8 11:23:12 2015 -0500
+
+    Agregadas clases principales
+
+commit f0c42d849abc9fccd14a049d866bac970b19a296
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 5 23:53:56 2015 -0500
+
+    Update Usuario.java
+
+commit 9ad0f22a1036628a2e72185f3e6b704f46defb21
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 5 23:53:13 2015 -0500
+
+    Update Parqueadero.java
+
+commit 137d3a2fc42843522cd227a77fb885ab6ecccafc
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 5 23:50:56 2015 -0500
+
+    Agregadas clases principales
+
+commit 4df7690aaf799c59386bacaac94e540f382d6590
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Sat Dec 5 23:01:36 2015 -0500
+
+    Agregada docuementacion del proyecto
+
+commit 69c357441594803cf7e5636df21271483d3e1512
+Author: LaraFranklin <larafranklin95@gmail.com>
+Date:   Mon Nov 30 22:49:44 2015 -0500
+
+    Correo
+
+commit 3e94845ef3219fe61743b3741942d26a30796198
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Nov 30 17:28:08 2015 -0500
+
+    Create README.md
+
+commit cb755df58f7f52d221f10e14261ed5f735b05673
+Author: Santos Gallegos <santos_g@outlook.com>
+Date:   Mon Nov 30 17:21:38 2015 -0500
+
+    Primer commit
+    
+    Establecido descripcion general del proyecto y autores del mismo.

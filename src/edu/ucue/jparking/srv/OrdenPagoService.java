@@ -14,7 +14,6 @@ import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
-import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
 
 /**
