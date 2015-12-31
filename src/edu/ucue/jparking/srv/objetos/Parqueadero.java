@@ -15,6 +15,7 @@ public class Parqueadero implements Comparable<Parqueadero> {
     private Set<String> usuarios; //Cedula de usuarios
     private Set<String> puertasEntrada; //Id de puertas
     private Set<String> puertasSalida; //Id de puertas
+
     private boolean activo;
     private final String id;
     private String ubicacion;
