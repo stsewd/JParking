@@ -259,13 +259,12 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         PorterosService porterosService = new PorterosService();
         Portero portero = porterosService.getPortero(cedula);
         CedulaTF1.setText(cedula);
-        CampusTF.setText(portero.getCampus());
         NombresTF.setText(portero.getNombres());
         ApellidosTF.setText(portero.getApellidos());
         DireccionTF2.setText(portero.getDireccion());
         TelefonoTF.setText(portero.getTelefono());
         EstadoCK.setSelected(portero.isActivo());
-        CampusTF.setText(portero.getCampus());
+        CampusTF.setText(portero.getCampus().getNombre());
     }
     
     public void CargarCampus(String campus){

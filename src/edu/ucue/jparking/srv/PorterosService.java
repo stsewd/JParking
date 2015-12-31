@@ -14,6 +14,7 @@ import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.util.Set;
 
@@ -25,9 +26,10 @@ public class PorterosService {
     Validaciones validar = new Validaciones();
     PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
     RegistroService registroService = new RegistroService();
+    CampusService campusService = new CampusService();
     /**
      * 
-     * @param campus
+     * @param nombreCampus
      * @param cedula
      * @param nombre
      * @param apellido
@@ -35,12 +37,13 @@ public class PorterosService {
      * @param telefono
      * @throws CedulaNoValidaException 
      */
-    public void addPortero(String campus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException
+    public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException
     {
         validar.validarCedula(cedula);
-        validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
+        validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
+        Campus campus = campusService.getCampus(nombreCampus);
         Portero portero = new Portero(campus, cedula, nombre, apellido, direccion, telefono);
-        porterosDAO.addPortero(campus, portero);
+        porterosDAO.addPortero(nombreCampus, portero);
         //Registro
         registroService.add(getPortero(cedula).getRegistro(TipoModificacion.CREACION));
     }

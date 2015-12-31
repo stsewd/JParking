@@ -105,7 +105,7 @@ public class UsuarioService {
         Portero portero = porterosService.getPortero(cedula);
         if(portero != null){
             //Permitir acceso
-            if(portero.getCampus().compareToIgnoreCase(nombreCampus) != 0)
+            if(portero.getCampus().getNombre().compareToIgnoreCase(nombreCampus) != 0)
                 throw new AccesoNoAutorizadoException(cedula, portero.getTipoUsuarioString(), nombreCampus, idPuerta);
             //Registro
             registroService.add(portero.getRegistro(TipoAcceso.ACCESO));
