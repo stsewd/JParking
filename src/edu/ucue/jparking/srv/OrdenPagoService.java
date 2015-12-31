@@ -8,6 +8,7 @@ package edu.ucue.jparking.srv;
 import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
+import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
@@ -21,6 +22,8 @@ import java.util.Calendar;
  * @author lara
  */
 public class OrdenPagoService {
+    
+    private final static RegistroService registroService = new RegistroService();
     
     /**
      * 
@@ -37,7 +40,11 @@ public class OrdenPagoService {
      */
     public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException{
         validaciones.validarCedula(cedula);
-        return usuariosDAO.getUsuario(cedula).generarOrdenPago();
+        OrdenPago ordenPago = usuariosDAO.getUsuario(cedula).generarOrdenPago();
+        //Registro
+        registroService.add(usuariosDAO.getUsuario(cedula).getRegistro(TipoTramite.EMISION));
+        //Fin registro
+        return ordenPago;
     }
     
     /**
@@ -50,5 +57,7 @@ public class OrdenPagoService {
     public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException{
         validaciones.validarCedula(cedula);
         usuariosDAO.getUsuario(cedula).cancelarPago();
+        //Registro
+        registroService.add(usuariosDAO.getUsuario(cedula).getRegistro(TipoTramite.COBRO));
     }
 }
