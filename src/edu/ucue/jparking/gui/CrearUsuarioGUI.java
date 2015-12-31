@@ -59,20 +59,6 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
         setTitle("Crear Usuario");
         setResizable(false);
 
-        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTFActionPerformed(evt);
-            }
-        });
-        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CedulaTFKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CedulaTFKeyPressed(evt);
-            }
-        });
-
         NombresTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NombresTFKeyTyped(evt);
@@ -200,15 +186,6 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaTFActionPerformed
-
-    private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_CedulaTFKeyPressed
-
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombresTF.getText();
@@ -243,13 +220,6 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
-
-    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
-        if(CedulaTF.getText().length()==10){
-            evt.consume();
-        }
-    }//GEN-LAST:event_CedulaTFKeyTyped
 
     private void NombresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombresTFKeyTyped
         // TODO add your handling code here:
