@@ -19,6 +19,7 @@ public class AcercaDeGUI extends javax.swing.JDialog {
     public AcercaDeGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.getRootPane().setDefaultButton(AceptarBtn);
     }
     
     public void cargarImagen(){
