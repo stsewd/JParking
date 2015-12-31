@@ -7,7 +7,6 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.RegistroService;
-import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,6 +23,8 @@ public class RegistroGUI extends javax.swing.JDialog {
     public RegistroGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.getRootPane().setDefaultButton(CerrarBtn);
     }
 
     /**

@@ -26,6 +26,8 @@ public class EditarCampusGUI extends javax.swing.JDialog {
         NombreTextField.setEditable(false);
         DireccionTextField.setEditable(false);
         EstadoCK.setEnabled(false);
+        
+        this.getRootPane().setDefaultButton(EditarBtn);
     }
 
     /**

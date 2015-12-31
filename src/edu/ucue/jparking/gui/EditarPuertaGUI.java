@@ -11,8 +11,6 @@ import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +25,8 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
     public EditarPuertaGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.getRootPane().setDefaultButton(EditarBtn);
     }
 
     /**

@@ -37,6 +37,8 @@ public class OrdenPagoService {
      * @return
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException 
+     * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException 
      */
     public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException{
         validaciones.validarCedula(cedula);

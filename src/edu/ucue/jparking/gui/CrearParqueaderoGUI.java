@@ -10,8 +10,6 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +25,8 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
+        
+        this.getRootPane().setDefaultButton(CrearBtn);
     }
 
     public PrincipalGUI getPadre() {

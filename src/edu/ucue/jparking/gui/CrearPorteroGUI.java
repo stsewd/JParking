@@ -11,8 +11,6 @@ import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +25,8 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
     public CrearPorteroGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.getRootPane().setDefaultButton(CrearBtn);
     }
 
     /**

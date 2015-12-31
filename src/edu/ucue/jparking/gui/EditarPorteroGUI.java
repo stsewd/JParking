@@ -12,8 +12,6 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +26,8 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     public EditarPorteroGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.getRootPane().setDefaultButton(EditarBtn);
     }
     
     public EditarPorteroGUI(java.awt.Frame parent, boolean modal, AdministarPorterosGUI padre) {
@@ -53,7 +53,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         NombresTF = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         CedulaTF1 = new javax.swing.JTextField();
-        CrearBtn = new javax.swing.JButton();
+        EditarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         CancelarBtn = new javax.swing.JButton();
@@ -101,10 +101,10 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
             }
         });
 
-        CrearBtn.setText("Editar");
-        CrearBtn.addActionListener(new java.awt.event.ActionListener() {
+        EditarBtn.setText("Editar");
+        EditarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearBtnActionPerformed(evt);
+                EditarBtnActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(CrearBtn)
+                                    .addComponent(EditarBtn)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(CancelarBtn))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -207,7 +207,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CancelarBtn)
-                    .addComponent(CrearBtn))
+                    .addComponent(EditarBtn))
                 .addGap(15, 15, 15))
         );
 
@@ -263,7 +263,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTF1ActionPerformed
 
-    private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
+    private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
         // TODO add your handling code here:
         String nombre = NombresTF.getText();
         String apellido = ApellidosTF.getText();
@@ -287,7 +287,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
-    }//GEN-LAST:event_CrearBtnActionPerformed
+    }//GEN-LAST:event_EditarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
         // TODO add your handling code here:
@@ -360,8 +360,8 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     private javax.swing.JTextField CampusTF;
     private javax.swing.JButton CancelarBtn;
     private javax.swing.JTextField CedulaTF1;
-    private javax.swing.JButton CrearBtn;
     private javax.swing.JTextField DireccionTF2;
+    private javax.swing.JButton EditarBtn;
     private javax.swing.JCheckBox EstadoCK;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;
