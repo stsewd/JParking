@@ -51,17 +51,6 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
         setTitle("Eliminar Usuario");
         setResizable(false);
 
-        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTFActionPerformed(evt);
-            }
-        });
-        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CedulaTFKeyTyped(evt);
-            }
-        });
-
         jLabel1.setText("Cédula:");
 
         CancelarBtn.setText("Cancelar");
@@ -119,10 +108,6 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CedulaTFActionPerformed
-
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
         // TODO add your handling code here:
         UsuarioService usuarioService = new UsuarioService();
@@ -142,13 +127,6 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
-
-    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
-        if(CedulaTF.getText().length()==10){
-            evt.consume();
-        }
-    }//GEN-LAST:event_CedulaTFKeyTyped
 
     /**
      * @param args the command line arguments
