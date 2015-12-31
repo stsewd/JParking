@@ -117,7 +117,7 @@ public class UsuarioService {
         boolean encontrado = false;
         
         for(Parqueadero p : getParqueaderos(cedula)){
-            if(p.getNombreCampus().compareToIgnoreCase(nombreCampus) != 0)
+            if(p.getCampus().getNombre().compareToIgnoreCase(nombreCampus) != 0)
                 continue;
             
             for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){

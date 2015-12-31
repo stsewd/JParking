@@ -24,7 +24,6 @@ import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
-import java.util.Set;
 
 /**
  *
@@ -70,7 +69,7 @@ public class Validaciones {
         PuertaService service = new PuertaService();
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
-        Puerta puerta = service.getPuerta(parqueadero.getNombreCampus(), idPuerta);
+        Puerta puerta = service.getPuerta(parqueadero.getCampus().getNombre(), idPuerta);
         if(puerta==null)
             throw new PuertaNoExistenteException(idPuerta);
         if(puerta.estaActiva()==false)

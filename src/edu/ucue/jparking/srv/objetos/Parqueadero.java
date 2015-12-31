@@ -5,7 +5,6 @@ package edu.ucue.jparking.srv.objetos;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  *
@@ -13,21 +12,22 @@ import java.util.TreeMap;
  */
 public class Parqueadero implements Comparable<Parqueadero> {
     
-    private Map<String, Usuario> usuarios; //Cedula de usuarios
-    private Map<String, Puerta> puertasEntrada; //Id de puertas
-    private Map<String, Puerta> puertasSalida; //Id de puertas
+    private Map<String, Usuario> usuarios; //Cedula de usuario
+    private Map<String, Puerta> puertasEntrada; //Id de puerta
+    private Map<String, Puerta> puertasSalida; //Id de puerta
 
     private boolean activo;
     private final String id;
     private String ubicacion;
     private int numeroLugares;
-    private String nombreCampus;
+    
+    private Campus campus;
 
-    public Parqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) {
+    public Parqueadero(String ubicacion, int numeroLugares, String id, Campus nombreCampus) {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
         this.id = id;
-        this.nombreCampus = nombreCampus;
+        this.campus = nombreCampus;
         this.puertasEntrada = new HashMap<>();
         this.puertasSalida = new HashMap<>();
         this.usuarios = new HashMap<>();
@@ -106,17 +106,17 @@ public class Parqueadero implements Comparable<Parqueadero> {
     }
 
     /**
-     * @return the nombreCampus
+     * @return the campus
      */
-    public String getNombreCampus() {
-        return nombreCampus;
+    public Campus getCampus() {
+        return campus;
     }
 
     /**
-     * @param nombreCampus the nombreCampus to set
+     * @param nombreCampus the campus to set
      */
-    public void setNombreCampus(String nombreCampus) {
-        this.nombreCampus = nombreCampus;
+    public void setCampus(Campus nombreCampus) {
+        this.campus = nombreCampus;
     }
 
     /**

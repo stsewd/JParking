@@ -10,9 +10,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.ParqueaderoService;
-import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -327,7 +325,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         
         CodigoTF.setText(parqueaderoId);
         UbicacionTF.setText(parqueadero.getUbicacion());
-        CampusTF.setText(parqueadero.getNombreCampus());
+        CampusTF.setText(parqueadero.getCampus().getNombre());
         NumeroLugaresTF.setText(Integer.toString(parqueadero.getNumeroLugares()));
         EstadoCK.setSelected(parqueadero.isActivo());
         habilitarCampos();
