@@ -137,7 +137,7 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
             parqueaderoService.delParqueadero(campuslbl.getText(), CodigoTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "Parqueadero eliminado satisfactoriamente.","Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Parqueadero eliminado exitosamente.","Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
         } catch (IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {

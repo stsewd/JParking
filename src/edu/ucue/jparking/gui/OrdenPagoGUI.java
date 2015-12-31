@@ -303,7 +303,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         OrdenPagoService ops = new OrdenPagoService();
         try {
             ops.pagarOrdenPago(CedulaTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){

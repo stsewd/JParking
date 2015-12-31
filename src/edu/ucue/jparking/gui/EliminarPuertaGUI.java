@@ -149,7 +149,7 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         PuertaService puertaService = new PuertaService();
         try {
             puertaService.delpuerta(CampusTF.getText(), CodigoTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "La puerta se ha borrado satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "La puerta eliminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             
             this.setVisible(false);
         } catch (IllegalArgumentException | CodigoNoValidoException | PuertaNoExistenteException | CampusNoExistenteException | ParqueaderoNoExistenteException ex) {

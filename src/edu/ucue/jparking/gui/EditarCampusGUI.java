@@ -175,7 +175,7 @@ public class EditarCampusGUI extends javax.swing.JDialog {
         boolean estado = EstadoCK.isSelected();
         try {
             campusService.modCampus(nombre, direccion, estado);
-            JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito!!", "Campus", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito.", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
             
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {

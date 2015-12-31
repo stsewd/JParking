@@ -300,7 +300,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         PorterosService porterosService = new PorterosService();
         try {
             porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
-            JOptionPane.showMessageDialog(rootPane, "Protero modificado existosamente!!", "Portero", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Protero modificado con exito.", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
             try {
                 getPadre().listarPorteros();

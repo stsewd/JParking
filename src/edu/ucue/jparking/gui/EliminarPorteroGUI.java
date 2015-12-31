@@ -126,7 +126,7 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         PorterosService porterosService = new PorterosService();
         try {
             porterosService.delPortero(CedulaTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "El portero se a elminado con exito!!", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "El portero elminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CedulaNoValidaException | PorteroNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

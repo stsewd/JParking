@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class FueraDelDiaDePagoException extends Exception {
 
     public FueraDelDiaDePagoException(int diasContrato) {
-        super("Aún no puede cancelar su pago, puede hacerlo luego de " + (diasContrato - 5) + " dias de la fecha de contrato");
+        super("Aún no puede cancelar su pago, puede hacerlo luego de " + (diasContrato - 5) + " días de la fecha de contrato");
     }
     
 }

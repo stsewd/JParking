@@ -128,7 +128,7 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
         UsuarioService usuarioService = new UsuarioService();
         try {
             usuarioService.del(CedulaTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "Usuario eliminado satisfactoriamente.", "Aviso", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Usuario eliminado exitosamente.", "Aviso", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarUsuarios();
         } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException | CampusNoExistenteException ex) {

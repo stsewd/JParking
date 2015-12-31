@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class AccesoNoAutorizadoException extends Exception {
 
     public AccesoNoAutorizadoException(String cedula, String tipoUsuarioString, String campus, String idPuerta) {
-        super("El " + tipoUsuarioString + " de cedula " + cedula + " no tiene permitido el acceso a la puerta " + idPuerta + " del campus " + campus);
+        super("El " + tipoUsuarioString + " de cédula " + cedula + " no tiene permitido el acceso a la puerta " + idPuerta + " del campus " + campus);
     }
     
 }

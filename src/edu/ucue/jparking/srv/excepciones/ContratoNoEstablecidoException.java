@@ -12,6 +12,6 @@ package edu.ucue.jparking.srv.excepciones;
 public class ContratoNoEstablecidoException extends Exception {
 
     public ContratoNoEstablecidoException(String cedula) {
-        super("El usuario de cedula: " + cedula + " no tiene un contrato valido.");
+        super("El usuario de cédula: " + cedula + " no tiene un contrato valido.");
     }
 }

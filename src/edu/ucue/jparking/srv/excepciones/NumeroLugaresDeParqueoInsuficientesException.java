@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class NumeroLugaresDeParqueoInsuficientesException extends Exception {
 
     public NumeroLugaresDeParqueoInsuficientesException(int numUsuarios) {
-        super("Numero de lugares de parqueo insufiente para " + numUsuarios + "usuarios registrados.");
+        super("Número de lugares de parqueo insufiente para " + numUsuarios + "usuarios registrados.");
     }
     
 }
