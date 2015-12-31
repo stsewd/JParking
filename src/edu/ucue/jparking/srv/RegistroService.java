@@ -39,7 +39,7 @@ public class RegistroService {
      * @throws UsuarioNoExistenteException 
      */
     public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
-        if(tipoRegistro==TipoRegistro.USUARIO){
+        if(tipoRegistro==TipoRegistro.PERSONA){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             registroUsuarioService.addRegistroUsuario(cedula);
         }else if(tipoRegistro==TipoRegistro.ACCESO_PARQUEADERO){
@@ -66,7 +66,7 @@ public class RegistroService {
         
         Validaciones.validarFecha(fechaInicio, fechaFinal);
         
-        if(tipoRegistro==TipoRegistro.USUARIO){
+        if(tipoRegistro==TipoRegistro.PERSONA){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             return registroUsuarioService.getRegistroUsuarios(fechaInicio, fechaFinal);
         }else if(tipoRegistro==TipoRegistro.ACCESO_PARQUEADERO){
@@ -86,7 +86,7 @@ public class RegistroService {
      * @return 
      */
     public Set<Registro> get(TipoRegistro tipoRegistro){
-        if(tipoRegistro==TipoRegistro.USUARIO){
+        if(tipoRegistro==TipoRegistro.PERSONA){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             return registroUsuarioService.getRegistroUsuarios();
         }else if(tipoRegistro==TipoRegistro.ACCESO_PARQUEADERO){

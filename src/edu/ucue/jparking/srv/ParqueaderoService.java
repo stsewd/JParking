@@ -152,14 +152,7 @@ public class ParqueaderoService {
         int numLugaresOcupados = parqueaderoDAO.getParqueadero(nombreCampus, idParqueadero).getNumeroLugaresOcupados();
         if(numLugares < numLugaresOcupados)
             throw new LugaresDeParqueoOCupadosException(numLugaresOcupados);
-        
-        int numUsuarios = parqueaderoDAO.getParqueadero(nombreCampus, idParqueadero).getUsuarios().size();
-        if(numLugares < numUsuarios * 1.05)
-            throw new NumeroLugaresDeParqueoInsuficientesException(numUsuarios);
-        
-        //Validar que el numero de lugares nuevo sea mayor o igual al 105%
-        //del numero de usuarios registrados en ese parqueadero
-        
+                
         parqueaderoDAO.modParqueadero(nombreCampus, idParqueadero, ubicacion, numLugares, estado);
     }
     
