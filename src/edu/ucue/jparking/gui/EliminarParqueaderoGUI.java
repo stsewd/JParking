@@ -26,6 +26,8 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
+        
+        this.getRootPane().setDefaultButton(EliminarBtn);
     }
 
     public PrincipalGUI getPadre() {

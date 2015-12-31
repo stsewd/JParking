@@ -11,6 +11,7 @@ import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
+import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Portero;
@@ -23,8 +24,10 @@ import java.util.Set;
 public class PorterosService {
     Validaciones validar = new Validaciones();
     PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
+    RegistroService registroService = new RegistroService();
     /**
      * 
+     * @param campus
      * @param cedula
      * @param nombre
      * @param apellido
@@ -38,6 +41,8 @@ public class PorterosService {
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         Portero portero = new Portero(campus, cedula, nombre, apellido, direccion, telefono);
         porterosDAO.addPortero(campus, portero);
+        //Registro
+        registroService.add(getPortero(cedula).getRegistro(TipoModificacion.CREACION));
     }
     /**
      * 
@@ -54,8 +59,10 @@ public class PorterosService {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         porterosDAO.modPortero(cedula, nombre, apellido,direccion,telefono, estado);
-        
+        //Registro
+        registroService.add(getPortero(cedula).getRegistro(TipoModificacion.MODIFICACION));
     }
+    
     /**
      * 
      * @param cedula
@@ -65,8 +72,13 @@ public class PorterosService {
      */
     public void delPortero(String cedula) throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException{
         validar.validarCedula(cedula);
+        //Registro
+        registroService.add(getPortero(cedula).getRegistro(TipoModificacion.ELIMINACION));
+        //Fin registro
+        
         porterosDAO.delPortero(cedula);
     }
+    
     /**
      * 
      * @param cedula
@@ -77,6 +89,7 @@ public class PorterosService {
         validar.validarCedula(cedula);
         return porterosDAO.getPortero(cedula);
     }
+    
     /**
      * 
      * @return 
@@ -84,6 +97,7 @@ public class PorterosService {
     public Set<Portero> getPorteros(){
         return porterosDAO.getPorteros();
     }
+    
     /**
      * 
      * @param nombreCampus

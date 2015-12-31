@@ -26,7 +26,7 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        
+        this.getRootPane().setDefaultButton(EliminarBtn);
     }
 
     private AdministrarPuertasGUI getPadre(){

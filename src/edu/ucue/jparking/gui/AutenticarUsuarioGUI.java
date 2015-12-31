@@ -12,8 +12,6 @@ import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +26,7 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
     public AutenticarUsuarioGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.getRootPane().setDefaultButton(AccederBtn);
     }
     
     public void cargarDatos(String nombreCampus, String codigo) {
@@ -49,8 +48,8 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         CampusTF = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CancelarBtn = new javax.swing.JButton();
+        AccederBtn = new javax.swing.JButton();
         PuertaIdTF = new javax.swing.JTextField();
         CedulaTF = new javax.swing.JTextField();
 
@@ -66,17 +65,17 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
 
         CampusTF.setEditable(false);
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CancelarBtn.setText("Cancelar");
+        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CancelarBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Acceder");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AccederBtn.setText("Acceder");
+        AccederBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AccederBtnActionPerformed(evt);
             }
         });
 
@@ -90,9 +89,9 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(AccederBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(CancelarBtn))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jSeparator1)
                         .addGroup(layout.createSequentialGroup()
@@ -126,20 +125,20 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(CancelarBtn)
+                    .addComponent(AccederBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CancelarBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AccederBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccederBtnActionPerformed
         // TODO add your handling code here:
         UsuarioService us = new UsuarioService();
         try {
@@ -150,7 +149,7 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AccederBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,11 +195,11 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AccederBtn;
     private javax.swing.JTextField CampusTF;
+    private javax.swing.JButton CancelarBtn;
     private javax.swing.JTextField CedulaTF;
     private javax.swing.JTextField PuertaIdTF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -16,14 +16,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class RegistrosGUI extends javax.swing.JDialog {
 
@@ -33,6 +31,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
     public RegistrosGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        listarRegistros();
     }
     
     public void listarRegistros(){        
@@ -66,7 +65,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
             model.removeRow(i);
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");        
-        int n = 1;
+        int n = 0;
         for(Registro r : registros)
             model.addRow(new Object[]{n++, df.format(r.getFecha().getTime()),
                 r.getCedulaPersona(), r.getTipoRegistroString(), r.getTipoAccionString()});
@@ -104,7 +103,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
             model.removeRow(i);
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");        
-        int n = 1;
+        int n = 0;
         for(Registro r : registros)
             model.addRow(new Object[]{n++, df.format(r.getFecha().getTime()),
                 r.getCedulaPersona(), r.getTipoRegistroString(), r.getTipoAccionString()});
@@ -315,7 +314,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un registro.", "Error", JOptionPane.OK_OPTION);
             return;
         }
-        String idRegistro = (String) RegistrosTabla.getValueAt(row, 0);
+        String idRegistro = Integer.toString((Integer) RegistrosTabla.getValueAt(row, 0));
         
         RegistroGUI registroGUI = new RegistroGUI(null, true);
         

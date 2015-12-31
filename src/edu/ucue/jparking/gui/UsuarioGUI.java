@@ -11,11 +11,10 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class UsuarioGUI extends javax.swing.JDialog {
 
@@ -25,6 +24,8 @@ public class UsuarioGUI extends javax.swing.JDialog {
     public UsuarioGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.getRootPane().setDefaultButton(CerrarBtn);
     }
 
     /**
@@ -41,7 +42,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
         CedulaTF = new javax.swing.JTextField();
         NombresTF = new javax.swing.JTextField();
         ApellidosTF = new javax.swing.JTextField();
-        CancelarBtn = new javax.swing.JButton();
+        CerrarBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -79,10 +80,10 @@ public class UsuarioGUI extends javax.swing.JDialog {
 
         ApellidosTF.setEditable(false);
 
-        CancelarBtn.setText("Cerrar");
-        CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+        CerrarBtn.setText("Cerrar");
+        CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarBtnActionPerformed(evt);
+                CerrarBtnActionPerformed(evt);
             }
         });
 
@@ -124,7 +125,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(349, 349, 349)
-                        .addComponent(CancelarBtn))
+                        .addComponent(CerrarBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -187,7 +188,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CancelarBtn)
+                .addComponent(CerrarBtn)
                 .addContainerGap())
         );
 
@@ -202,10 +203,10 @@ public class UsuarioGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CedulaTFKeyPressed
 
-    private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
+    private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_CancelarBtnActionPerformed
+    }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
@@ -255,8 +256,8 @@ public class UsuarioGUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ApellidosTF;
-    private javax.swing.JButton CancelarBtn;
     private javax.swing.JTextField CedulaTF;
+    private javax.swing.JButton CerrarBtn;
     private javax.swing.JTextField DireccionTF;
     private javax.swing.JTextField NombresTF;
     private javax.swing.JTextField TelefonoTF;

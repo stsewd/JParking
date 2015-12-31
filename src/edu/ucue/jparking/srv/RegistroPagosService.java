@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class RegistroPagosService {
     /**
@@ -38,9 +38,9 @@ public class RegistroPagosService {
         registrosDAO.addRegistro(registro);
         
     }
+    
     /**
      * 
-     * @param tipoRegistro
      * @param fechaInicial
      * @param fechaFinal
      * @return 

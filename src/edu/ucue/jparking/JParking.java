@@ -4,7 +4,7 @@
  * @author Santos Gallegos <santos_g@outlook.com>
  * @author  Franklin Lara <larafranklin@outlook.com> 
  *  
- * @version 0.0.8-alfa
+ * @version 0.0.9-beta
  *
  * Descripcion del programa:
  * Permite al adminstrador crear campus, parqueaderos dentro de estos.
@@ -80,6 +80,8 @@ public class JParking {
         }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
             System.out.println(ex.getMessage());
         }catch (PersonaYaRegistradoComoPorteroException ex) {
+            System.out.println(ex.getMessage());
+        } catch (UsuarioNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
         

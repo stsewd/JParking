@@ -10,8 +10,7 @@ import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -25,7 +24,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     private static Map<Integer, Registro> registros;
     
     private RegistrosDAO(){
-        registros = new HashMap<>();
+        registros = new LinkedHashMap<>();
     }
 
     public static RegistrosDAO getInstance() {
@@ -54,7 +53,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     
     @Override
     public Set<Registro> getRegistros(){
-        return new HashSet<>(this.registros.values());
+        return new LinkedHashSet<>(this.registros.values());
     }
 
     @Override

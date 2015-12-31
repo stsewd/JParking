@@ -16,8 +16,6 @@ import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +35,8 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
         initComponents();
         this.padre = (PrincipalGUI) parent;
         campuslbl.setVisible(false);
+        
+        this.getRootPane().setDefaultButton(AgregarBtn);
     }
 
     /**

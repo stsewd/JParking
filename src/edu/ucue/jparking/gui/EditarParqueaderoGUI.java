@@ -33,6 +33,8 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
+        
+        this.getRootPane().setDefaultButton(EditarBtn);
     }
 
     /**

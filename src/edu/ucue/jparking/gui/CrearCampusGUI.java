@@ -7,13 +7,11 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.srv.CampusService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class CrearCampusGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
@@ -24,6 +22,8 @@ public class CrearCampusGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.padre = (PrincipalGUI) parent;
+        
+        this.getRootPane().setDefaultButton(CrearBtn);
     }
 
     public PrincipalGUI getPadre() {
