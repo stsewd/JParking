@@ -3,7 +3,15 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.enums.TipoAcceso;
+import edu.ucue.jparking.srv.enums.TipoModificacion;
+import edu.ucue.jparking.srv.enums.TipoRegistro;
+import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import edu.ucue.jparking.srv.objetos.registros.Registro;
+import edu.ucue.jparking.srv.objetos.registros.RegistroAccesoParqueadero;
+import edu.ucue.jparking.srv.objetos.registros.RegistroPagos;
+import edu.ucue.jparking.srv.objetos.registros.RegistroUsuario;
 
 /**
  *
@@ -126,6 +134,18 @@ public abstract class Persona implements Comparable<Persona>{
     
     public String getTipoUsuarioString(){
         return tipoUsuario.toString();
+    }
+    
+    public Registro getRegistro(TipoAcceso tipoAcceso){
+        Registro registro = null;
+        registro = new RegistroAccesoParqueadero(this, null);
+        return registro;
+    }
+    
+    public Registro getRegistro(TipoModificacion tipoModificacion){
+        Registro registro = null;
+        registro = new RegistroUsuario(this, tipoModificacion);
+        return registro;
     }
 
     @Override

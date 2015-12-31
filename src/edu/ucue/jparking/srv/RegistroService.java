@@ -32,7 +32,7 @@ public class RegistroService {
      * @param tipoTramite
      * @throws UsuarioNoExistenteException 
      */
-    public void add(String cedula,TipoRegistro tipoRegistro,TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
         if(tipoRegistro==TipoRegistro.USUARIO){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             registroUsuarioService.addRegistroUsuario(cedula);

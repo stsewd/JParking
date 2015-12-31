@@ -3,10 +3,13 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
+import edu.ucue.jparking.srv.objetos.registros.Registro;
+import edu.ucue.jparking.srv.objetos.registros.RegistroPagos;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -105,5 +108,11 @@ public abstract class Usuario extends Persona{
      */
     public void setParqueaderos(Set<Parqueadero> parqueaderos) {
         this.parqueaderos = parqueaderos;
-    }    
+    }
+    
+    public Registro getRegistro(TipoTramite tipoTramite){
+        Registro registro = null;
+        registro = new RegistroPagos(this, tipoTramite);
+        return registro;
+    }
 }

@@ -19,9 +19,12 @@ public abstract class Registro {
     
     private final Calendar fecha;
     private int numeroRegistro;
+    private final String tipoPersona;
     private final String cedulaPersona;
     private final String nombresPersona;
     private final String apellidosPersona;
+    private final String direccionPersona;
+    private final String telefonoPersona;
     private final boolean activoPersona;
 
     public Registro(Persona persona, TipoRegistro tipoRegistro) {
@@ -30,6 +33,9 @@ public abstract class Registro {
         this.nombresPersona = persona.getNombres();
         this.apellidosPersona = persona.getApellidos();
         this.activoPersona = persona.isActivo();
+        this.tipoPersona = persona.getTipoUsuarioString();
+        this.telefonoPersona = persona.getTelefono();
+        this.direccionPersona = persona.getDireccion();
         this.tipoRegistro = tipoRegistro;
     }
 
@@ -91,4 +97,25 @@ public abstract class Registro {
     }
 
     public abstract String getTipoAccionString();
+
+    /**
+     * @return the tipoPersona
+     */
+    public String getTipoPersona() {
+        return tipoPersona;
+    }
+
+    /**
+     * @return the direccionPersona
+     */
+    public String getDireccionPersona() {
+        return direccionPersona;
+    }
+
+    /**
+     * @return the telefonoPersona
+     */
+    public String getTelefonoPersona() {
+        return telefonoPersona;
+    }
 }
