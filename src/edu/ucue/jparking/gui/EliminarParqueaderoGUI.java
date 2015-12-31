@@ -56,17 +56,6 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
 
         jLabel1.setText("Código:");
 
-        CodigoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodigoTFActionPerformed(evt);
-            }
-        });
-        CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CodigoTFKeyTyped(evt);
-            }
-        });
-
         EliminarBtn.setText("Eliminar");
         EliminarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +112,6 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodigoTFActionPerformed
-
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -146,13 +131,6 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed
-
-    private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
-        // TODO add your handling code here:
-        if(CodigoTF.getText().length()==3){
-            evt.consume();
-        }
-    }//GEN-LAST:event_CodigoTFKeyTyped
 
     /**
      * @param args the command line arguments
