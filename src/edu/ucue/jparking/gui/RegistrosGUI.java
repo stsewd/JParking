@@ -301,14 +301,10 @@ public class RegistrosGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         try{
             listarRegistros(FechaInicialDate.getCalendar(), FechaFinalDate.getCalendar());
-        }catch(IllegalArgumentException ex){
+        }catch(IllegalArgumentException | FechaInicialMayorAFechaFinalException | FechaFinalMenorAFechaInicialException | FechaInicialIgualAFechaFinalException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (FechaInicialMayorAFechaFinalException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (FechaFinalMenorAFechaInicialException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (FechaInicialIgualAFechaFinalException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_FiltrarBtnActionPerformed
 
@@ -329,6 +325,8 @@ public class RegistrosGUI extends javax.swing.JDialog {
             registroGUI.setVisible(true);
         } catch (RegistroNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_VerRegistroBtnActionPerformed
 

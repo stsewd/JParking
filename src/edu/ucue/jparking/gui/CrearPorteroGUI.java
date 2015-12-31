@@ -199,18 +199,10 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
             porterosService.addPortero(campus, cedula, nombre, apellido, direccion, telefono);
             JOptionPane.showMessageDialog(rootPane, "Portero creado con exito.", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (CedulaNoValidaException ex) {
+        } catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | IllegalArgumentException | TelefonoNoValidoException | PersonaYaRegistradaComoUsuarioException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PorteroYaExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (TelefonoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PersonaYaRegistradaComoUsuarioException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
             
        

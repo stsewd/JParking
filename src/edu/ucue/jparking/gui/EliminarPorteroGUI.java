@@ -125,6 +125,8 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
             this.setVisible(false);
         } catch (CedulaNoValidaException | PorteroNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }  catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed
 

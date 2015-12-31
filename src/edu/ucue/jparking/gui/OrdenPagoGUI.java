@@ -301,12 +301,10 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         try {
             ops.pagarOrdenPago(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
-        } catch (CedulaNoValidaException ex) {
+        } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PagoYaRealizadoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_PagarBtnActionPerformed
 
@@ -316,12 +314,10 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             try {
                 cargarDatos(CedulaTF.getText());
                 //habilitarCampos();
-            } catch (CedulaNoValidaException | UsuarioNoExistenteException ex) {
+            } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            } catch (ContratoNoEstablecidoException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            } catch (FueraDelDiaDePagoException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }  catch(Exception ex){
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CedulaTFKeyPressed

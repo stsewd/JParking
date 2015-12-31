@@ -282,14 +282,10 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
             
-        } catch (CedulaNoValidaException ex) {
+        } catch (CedulaNoValidaException | PorteroNoExistenteException | IllegalArgumentException | TelefonoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PorteroNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (TelefonoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CrearBtnActionPerformed
 
@@ -307,10 +303,10 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 CargarDatos(CedulaTF1.getText());
-            }catch (IllegalArgumentException ex){
+            }catch (IllegalArgumentException | CedulaNoValidaException ex){
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            } catch (CedulaNoValidaException ex) {
-                Logger.getLogger(EditarPorteroGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
             }
 
         }

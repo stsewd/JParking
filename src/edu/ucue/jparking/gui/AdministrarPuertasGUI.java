@@ -39,8 +39,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         try {
             //cargando las puertas
             listarPuertas();
-        } catch (CampusNoExistenteException ex) {
-        } catch (CodigoNoValidoException ex) {
+        } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
         }
         
         //Centrar ventana
@@ -270,8 +269,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed
         try {
             listarPuertas();
-        } catch (CampusNoExistenteException ex) {
-        } catch (CodigoNoValidoException ex) {
+        } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
         }
     }//GEN-LAST:event_CampusCBActionPerformed
 
@@ -313,10 +311,10 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         eliminarPuertaGUI.setVisible(true);
         try {
             listarPuertas();
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarPuertabtnActionPerformed
 
@@ -340,14 +338,10 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             editarPuertaGUI.CargarDatos(nombreCampus, codigo);
             editarPuertaGUI.HabilitarCampos();
             editarPuertaGUI.setVisible(true);
-        } catch (CodigoNoValidoException ex) {
+        } catch (CodigoNoValidoException | PuertaNoExistenteException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PuertaNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
         try {
             listarPuertas();

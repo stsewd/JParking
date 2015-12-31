@@ -148,14 +148,10 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "La puerta se ha borrado satisfactoriamente", "Mensaje", JOptionPane.OK_OPTION);
             
             this.setVisible(false);
-        } catch (CodigoNoValidoException ex) {
+        } catch (IllegalArgumentException | CodigoNoValidoException | PuertaNoExistenteException | CampusNoExistenteException | ParqueaderoNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PuertaNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed
 

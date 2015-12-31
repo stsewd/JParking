@@ -251,7 +251,9 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
     private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed
         try {
             listarPorteros();
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        } catch (Exception ex){
+                       
         }
     }//GEN-LAST:event_CampusCBActionPerformed
 
@@ -268,7 +270,9 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         crearPorteroGUI.setVisible(true);
         try {
             listarPorteros();
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        } catch (Exception ex){
+                       
         }
     }//GEN-LAST:event_CrearPorteroBtnActionPerformed
 
@@ -297,13 +301,17 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             editarPorteroGUI.HabilitarCampos();
             editarPorteroGUI.setVisible(true);
             
-        } catch (CedulaNoValidaException ex) {
+        } catch (CedulaNoValidaException | IllegalArgumentException ex) {
             Logger.getLogger(AdministarPorterosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
 
         try {
             listarPorteros();
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModificarPorteroBtnActionPerformed
 
@@ -322,7 +330,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         
         try {
             listarPorteros();
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
         }
     }//GEN-LAST:event_EliminarPorterobtnActionPerformed
 

@@ -155,6 +155,8 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         }catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(rootPane, "El numero de lugares debe ser un numero.", "Error", JOptionPane.OK_OPTION);
             return;
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
@@ -164,6 +166,8 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
             getPadre().listarParqueaderos();
         }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CrearBtnActionPerformed
 

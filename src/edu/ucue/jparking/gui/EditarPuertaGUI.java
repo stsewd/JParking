@@ -188,14 +188,10 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
             try {
                 CargarDatos(CampusTF.getText(), CodigoTF.getText());
                 HabilitarCampos();
-            } catch (CodigoNoValidoException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
-            } catch (PuertaNoExistenteException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
-            }catch(IllegalArgumentException ex){
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.NO_OPTION);
-            } catch (CampusNoExistenteException ex) {
+            } catch (CodigoNoValidoException | PuertaNoExistenteException | IllegalArgumentException | CampusNoExistenteException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CodigoTFKeyPressed
@@ -216,14 +212,10 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
             puertaService.modPuerta(campus, codigo, ubicacion, estado);
             JOptionPane.showMessageDialog(rootPane, "Puerta modificada con exito.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (CodigoNoValidoException ex) {
+        } catch (CodigoNoValidoException | PuertaNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PuertaNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 

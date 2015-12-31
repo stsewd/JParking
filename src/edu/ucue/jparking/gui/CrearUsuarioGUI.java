@@ -198,10 +198,10 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             getPadre().listarUsuarios();
             this.setVisible(false);
-        } catch (UsuarioYaExistenteException | CedulaNoValidaException |TelefonoNoValidoException | IllegalArgumentException ex ) {
+        } catch (UsuarioYaExistenteException | CedulaNoValidaException |TelefonoNoValidoException | IllegalArgumentException | PersonaYaRegistradoComoPorteroException ex ) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PersonaYaRegistradoComoPorteroException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
 
     }//GEN-LAST:event_CrearBtnActionPerformed

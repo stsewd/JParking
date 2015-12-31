@@ -716,16 +716,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        Validaciones validaciones = new Validaciones();
-        try {
-            validaciones.ComprobarCampus(campus);
-            CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
-            crearParqueaderoGUI.setLocationRelativeTo(this);
-            crearParqueaderoGUI.CargarDatos(campus);
-            crearParqueaderoGUI.setVisible(true);
-        } catch (CampusNoExistenteException | CampusInactivoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
+        CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
+        crearParqueaderoGUI.setLocationRelativeTo(this);
+        crearParqueaderoGUI.CargarDatos(campus);
+        crearParqueaderoGUI.setVisible(true);
         
     }//GEN-LAST:event_CrearParqueaderoMenuItemActionPerformed
 
@@ -770,8 +764,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             eliminarParqueaderoGUI.cargarDatos(idParqueadero, campus);
             eliminarParqueaderoGUI.setLocationRelativeTo(this);
             eliminarParqueaderoGUI.setVisible(true);
-        } catch (CampusNoExistenteException | CampusInactivoException ex) {
+        } catch (IllegalArgumentException | CampusNoExistenteException | CampusInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }  catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
 
@@ -782,16 +778,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        Validaciones validaciones = new Validaciones();
-        try {
-            validaciones.ComprobarCampus(campus);
-            CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
-            crearParqueaderoGUI.setLocationRelativeTo(this);
-            crearParqueaderoGUI.CargarDatos(campus);
-            crearParqueaderoGUI.setVisible(true);
-        } catch (CampusNoExistenteException | CampusInactivoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
+        CrearParqueaderoGUI crearParqueaderoGUI = new CrearParqueaderoGUI(this, true);
+        crearParqueaderoGUI.setLocationRelativeTo(this);
+        crearParqueaderoGUI.CargarDatos(campus);
+        crearParqueaderoGUI.setVisible(true);
         
     }//GEN-LAST:event_CrearParqueaderoBtnActionPerformed
 
@@ -830,8 +820,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             editarUsuarioGUI.cargarDatos(cedula);
             editarUsuarioGUI.habilitarCampos();
             editarUsuarioGUI.setVisible(true);
-        } catch (UsuarioNoExistenteException | CedulaNoValidaException ex) {
+        } catch (IllegalArgumentException | UsuarioNoExistenteException | CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
 
@@ -881,13 +873,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         CampusService campusService = new CampusService();
         try {
             campusService.delCampus((String) CampusCB.getSelectedItem());
-        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoAgregadoException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
@@ -908,6 +894,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             editarCampusGUI.setVisible(true);
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModicarCampusMenuItemActionPerformed
 
@@ -945,16 +933,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        Validaciones validaciones = new Validaciones();
         try {
-            validaciones.ComprobarCampus(campus);
             EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
             editarParqueaderoGUI.setLocationRelativeTo(this);
             editarParqueaderoGUI.cargarDatos(idParqueadero, campus);
             editarParqueaderoGUI.habilitarCampos();
             editarParqueaderoGUI.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | CampusInactivoException ex) {
+        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }  catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
         
     }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
@@ -968,15 +956,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
         String nombreCampus = (String) CampusCB.getSelectedItem();
-        Validaciones validaciones = new Validaciones();
         try {
-            validaciones.ComprobarCampus(nombreCampus);
             EditarParqueaderoGUI editarParqueaderoGUI = new EditarParqueaderoGUI(this, true);
             editarParqueaderoGUI.setLocationRelativeTo(this);
             editarParqueaderoGUI.cargarDatos(idParqueadero, nombreCampus);
             editarParqueaderoGUI.setVisible(true);
-        } catch (CampusInactivoException | ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
+        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
         
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
@@ -997,6 +985,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             usuarioGUI.setVisible(true);
         } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
         
         
@@ -1008,7 +998,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_PuertasAccesoItemActionPerformed
 
     public void puertasAccesoParqueadero(){
-        Validaciones validaciones = new Validaciones();
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -1023,12 +1012,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         AdministrarPuertaAccesoGUI puertaAcceso = new AdministrarPuertaAccesoGUI(this, rootPaneCheckingEnabled);
         puertaAcceso.setLocationRelativeTo(this);
         try {
-            validaciones.ComprobarCampus(nombreCampus);
-            validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
             puertaAcceso.CargarDatos(nombreCampus, idParqueadero);
             puertaAcceso.setVisible(true);
-        } catch (ParqueaderoNoExistenteException | CampusInactivoException | ParquaderoInactivoException | CodigoNoValidoException | IllegalArgumentException | CampusNoExistenteException ex) {
+        } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     
@@ -1038,7 +1027,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_UsuariosParqueaderoItemActionPerformed
 
     public void usuariosParqueadero(){
-        Validaciones validaciones = new Validaciones();
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -1053,12 +1041,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         AdministrarUsuariosParqueaderoGUI usuariosParqueadero = new AdministrarUsuariosParqueaderoGUI(this, rootPaneCheckingEnabled);
         usuariosParqueadero.setLocationRelativeTo(this);
         try {
-            validaciones.ComprobarCampus(nombreCampus);
-            validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
             usuariosParqueadero.CargarDatos(nombreCampus, idParqueadero);
             usuariosParqueadero.setVisible(true);
         } catch (CampusInactivoException | ParquaderoInactivoException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     
@@ -1105,7 +1093,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Usuario agregado a paqueadero.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } 
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
     /**

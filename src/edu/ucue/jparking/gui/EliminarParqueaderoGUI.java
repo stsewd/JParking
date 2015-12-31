@@ -133,12 +133,10 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Parqueadero eliminado satisfactoriamente.","Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
-        } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException ex) {
+        } catch (IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoAgregadoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }  catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed
 

@@ -235,12 +235,10 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
             service.delUsuario(campus, idParaqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario se ha borrado exisosamente", "Mensaje", JOptionPane.OK_OPTION);
             getPadre().listarUsuarios();
-        } catch (CedulaNoValidaException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
+        } catch (CedulaNoValidaException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException | CampusInactivoException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusInactivoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (ParquaderoInactivoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         } 
         
         try {
@@ -271,6 +269,8 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         try {
             listarUsuarios();
         } catch (UsuarioNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     

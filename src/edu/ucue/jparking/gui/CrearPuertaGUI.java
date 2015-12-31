@@ -155,14 +155,10 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
             puertaService.addpuerta(Ubicacion, codigo, campus);
             JOptionPane.showMessageDialog(rootPane, "Puerta creada con exito.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (CodigoNoValidoException ex) {
+        } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (PuertaYaExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
             
         

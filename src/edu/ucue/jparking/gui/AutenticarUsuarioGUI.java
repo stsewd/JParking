@@ -145,18 +145,10 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
         try {
             us.autenticarUsuario(CampusTF.getText(), PuertaIdTF.getText(), CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Usuario autenticado correctamente.", "Mensaje", JOptionPane.OK_OPTION);
-        } catch (CedulaNoValidaException ex) {
+        } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (ParqueaderoNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (AccesoNoAutorizadoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

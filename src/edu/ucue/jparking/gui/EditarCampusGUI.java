@@ -167,10 +167,10 @@ public class EditarCampusGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito!!", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
             
-        } catch (CampusNoExistenteException ex) {
+        } catch (CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 
@@ -212,11 +212,11 @@ public class EditarCampusGUI extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 CargarDatos(NombreTextField.getText());
-            }catch (CampusNoExistenteException ex) {
+            }catch (CampusNoExistenteException | IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }catch (IllegalArgumentException ex){
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }
+            }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        }
 
         }
     }//GEN-LAST:event_NombreTextFieldKeyPressed

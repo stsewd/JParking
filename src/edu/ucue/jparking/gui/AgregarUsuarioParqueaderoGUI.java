@@ -150,6 +150,8 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
             usuarioGUI.setVisible(true);
         } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_VerBtnActionPerformed
 
@@ -170,7 +172,9 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
             this.setVisible(false);
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } 
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed

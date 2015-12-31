@@ -205,6 +205,8 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | CampusInactivoException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
             }
         }else{
             try {
@@ -213,6 +215,8 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | CampusInactivoException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed

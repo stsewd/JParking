@@ -183,6 +183,8 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(rootPane, "El número de lugares debe ser un número.", "Error", JOptionPane.OK_OPTION);
             return;
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
         
         ParqueaderoService parqueaderoService = new ParqueaderoService();
@@ -191,12 +193,10 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado satisfactoriamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
-        }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException ex) {
+        }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException | NumeroLugaresDeParqueoInsuficientesException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (NumeroLugaresDeParqueoInsuficientesException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 
@@ -216,6 +216,8 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
                 getPadre().listarParqueaderos();
             } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CodigoTFKeyPressed
