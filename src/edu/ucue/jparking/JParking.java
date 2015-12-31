@@ -113,6 +113,7 @@ public class JParking {
         
         try {
             Test.cargarUsuariosParqueaderos();
+            pgui.listarParqueaderos();
         } catch (CedulaNoValidaException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | ParquaderoInactivoException | NumeroParqueaderosNoDisponiblesException | UsuarioInactivoException | CampusNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
