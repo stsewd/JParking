@@ -12,8 +12,8 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  * @author Santos Gallegos
  */
 public class Estudiante extends Usuario{
-    private static final float VALOR_PARQUEADERO = 30f;
-    private static final int diasContrato = 30;
+    private static final float VALOR_PARQUEADERO = 75f;
+    private static final int diasContrato = 1800;
     
     public Estudiante(String cedula, String nombres, String apellidos, String direccion, String telefono) {
         super(cedula, nombres, apellidos,direccion, telefono, TipoUsuario.ESTUDIANTE);

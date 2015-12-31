@@ -12,7 +12,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  * @author Santos Gallegos
  */
 public class Docente extends Usuario {
-    private static final float VALOR_PARQUEADERO = 50f;
+    private static final float VALOR_PARQUEADERO = 35f;
     private static final int diasContrato = 30;
     /**
      * @return the VALOR_PARQUEADERO
