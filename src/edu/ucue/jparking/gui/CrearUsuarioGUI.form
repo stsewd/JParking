@@ -115,12 +115,19 @@
     <Component class="javax.swing.JTextField" name="CedulaTF">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTFActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaTFKeyTyped"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaTFKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombresTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombresTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ApellidosTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ApellidosTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="TipoUsuarioCB">
       <Properties>
@@ -172,6 +179,7 @@
     <Component class="javax.swing.JTextField" name="DireccionTF">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DireccionTFActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DireccionTFKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -180,6 +188,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TelefonoTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TelefonoTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>

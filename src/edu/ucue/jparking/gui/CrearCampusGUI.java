@@ -58,8 +58,19 @@ public class CrearCampusGUI extends javax.swing.JDialog {
                 NombreTextFieldActionPerformed(evt);
             }
         });
+        NombreTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreTextFieldKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Dirección:");
+
+        DireccionTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DireccionTextFieldKeyTyped(evt);
+            }
+        });
 
         CancelarBtn.setText("Cancelar");
         CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +162,20 @@ public class CrearCampusGUI extends javax.swing.JDialog {
         
 
     }//GEN-LAST:event_CrearBtnActionPerformed
+
+    private void NombreTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyTyped
+        // TODO add your handling code here:
+        if(NombreTextField.getText().length()==50){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NombreTextFieldKeyTyped
+
+    private void DireccionTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTextFieldKeyTyped
+        // TODO add your handling code here:
+        if(DireccionTextField.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_DireccionTextFieldKeyTyped
 
     /**
      * @param args the command line arguments

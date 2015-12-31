@@ -166,6 +166,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombresTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombresTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
@@ -173,6 +176,7 @@
       <Events>
         <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="CedulaTF1InputMethodTextChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CedulaTF1ActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaTF1KeyTyped"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaTF1KeyPressed"/>
       </Events>
     </Component>
@@ -210,11 +214,18 @@
     <Component class="javax.swing.JTextField" name="DireccionTF2">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DireccionTF2ActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DireccionTF2KeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ApellidosTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ApellidosTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TelefonoTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TelefonoTFKeyTyped"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

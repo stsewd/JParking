@@ -61,6 +61,11 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
                 CodigoTFActionPerformed(evt);
             }
         });
+        CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CodigoTFKeyTyped(evt);
+            }
+        });
 
         EliminarBtn.setText("Eliminar");
         EliminarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +99,6 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(EliminarBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelarBtn))
@@ -163,6 +167,13 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
     private void CampusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampusTFActionPerformed
+
+    private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
+        // TODO add your handling code here:
+        if(CodigoTF.getText().length()==3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CodigoTFKeyTyped
 
     /**
      * @param args the command line arguments

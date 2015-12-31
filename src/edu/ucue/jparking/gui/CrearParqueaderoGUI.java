@@ -66,7 +66,25 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
 
         jLabel4.setText("Número de lugares:");
 
+        CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CodigoTFKeyTyped(evt);
+            }
+        });
+
+        NumeroLugaresTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumeroLugaresTFKeyTyped(evt);
+            }
+        });
+
         CampusTF.setEditable(false);
+
+        UbicacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                UbicacionTFKeyTyped(evt);
+            }
+        });
 
         CerrarBtn.setText("Cerrar");
         CerrarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +193,27 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
+
+    private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
+        // TODO add your handling code here:
+        if(CodigoTF.getText().length()==3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CodigoTFKeyTyped
+
+    private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
+        // TODO add your handling code here:
+        if(UbicacionTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_UbicacionTFKeyTyped
+
+    private void NumeroLugaresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroLugaresTFKeyTyped
+        // TODO add your handling code here:
+        if(NumeroLugaresTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NumeroLugaresTFKeyTyped
 
     /**
      * @param args the command line arguments

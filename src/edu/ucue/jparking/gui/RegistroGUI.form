@@ -203,16 +203,25 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombreTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombreTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ApellidoTF">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ApellidoTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="ActivoCheckBox">
       <Properties>

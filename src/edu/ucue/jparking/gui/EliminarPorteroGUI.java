@@ -51,6 +51,11 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
                 CedulaTFActionPerformed(evt);
             }
         });
+        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CedulaTFKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Cédula:");
 
@@ -134,6 +139,13 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
+
+    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
+        // TODO add your handling code here:
+        if(CedulaTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CedulaTFKeyTyped
 
     /**
      * @param args the command line arguments

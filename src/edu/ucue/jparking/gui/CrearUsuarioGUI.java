@@ -63,8 +63,23 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
             }
         });
         CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CedulaTFKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CedulaTFKeyPressed(evt);
+            }
+        });
+
+        NombresTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombresTFKeyTyped(evt);
+            }
+        });
+
+        ApellidosTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidosTFKeyTyped(evt);
             }
         });
 
@@ -97,8 +112,19 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
                 DireccionTFActionPerformed(evt);
             }
         });
+        DireccionTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DireccionTFKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Apellidos:");
+
+        TelefonoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TelefonoTFKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Tipo Usuario:");
 
@@ -218,6 +244,41 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
+
+    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
+        // TODO add your handling code here:
+        if(CedulaTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CedulaTFKeyTyped
+
+    private void NombresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombresTFKeyTyped
+        // TODO add your handling code here:
+        if(NombresTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NombresTFKeyTyped
+
+    private void ApellidosTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidosTFKeyTyped
+        // TODO add your handling code here:
+        if(ApellidosTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ApellidosTFKeyTyped
+
+    private void DireccionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTFKeyTyped
+        // TODO add your handling code here:
+        if(DireccionTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_DireccionTFKeyTyped
+
+    private void TelefonoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoTFKeyTyped
+        // TODO add your handling code here:
+        if(TelefonoTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TelefonoTFKeyTyped
 
     /**
      * @param args the command line arguments

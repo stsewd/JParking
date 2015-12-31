@@ -92,6 +92,9 @@ public class EditarCampusGUI extends javax.swing.JDialog {
             }
         });
         NombreTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreTextFieldKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NombreTextFieldKeyPressed(evt);
             }
@@ -100,6 +103,12 @@ public class EditarCampusGUI extends javax.swing.JDialog {
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Dirección:");
+
+        DireccionTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DireccionTextFieldKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,6 +229,20 @@ public class EditarCampusGUI extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_NombreTextFieldKeyPressed
+
+    private void NombreTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyTyped
+        // TODO add your handling code here:
+        if(NombreTextField.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NombreTextFieldKeyTyped
+
+    private void DireccionTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTextFieldKeyTyped
+        // TODO add your handling code here:
+        if(DireccionTextField.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_DireccionTextFieldKeyTyped
 
     /**
      * @param args the command line arguments

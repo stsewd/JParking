@@ -85,10 +85,25 @@ public class RegistroGUI extends javax.swing.JDialog {
         HoraTF.setEditable(false);
 
         CedulaTF.setEditable(false);
+        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CedulaTFKeyTyped(evt);
+            }
+        });
 
         NombreTF.setEditable(false);
+        NombreTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreTFKeyTyped(evt);
+            }
+        });
 
         ApellidoTF.setEditable(false);
+        ApellidoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidoTFKeyTyped(evt);
+            }
+        });
 
         ActivoCheckBox.setText("Activo");
         ActivoCheckBox.setEnabled(false);
@@ -195,6 +210,27 @@ public class RegistroGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
+
+    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
+        // TODO add your handling code here:
+        if(CedulaTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CedulaTFKeyTyped
+
+    private void NombreTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTFKeyTyped
+        // TODO add your handling code here:
+        if(NombreTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NombreTFKeyTyped
+
+    private void ApellidoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoTFKeyTyped
+        // TODO add your handling code here:
+        if(ApellidoTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ApellidoTFKeyTyped
 
     /**
      * @param args the command line arguments

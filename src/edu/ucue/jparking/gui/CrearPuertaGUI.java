@@ -63,6 +63,17 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
                 CodigoTFActionPerformed(evt);
             }
         });
+        CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CodigoTFKeyTyped(evt);
+            }
+        });
+
+        UbicacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                UbicacionTFKeyTyped(evt);
+            }
+        });
 
         CancelarBtn.setText("Cancelar");
         CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +174,20 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
             
         
     }//GEN-LAST:event_CrearBtnActionPerformed
+
+    private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
+        // TODO add your handling code here:
+        if(CodigoTF.getText().length()==3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CodigoTFKeyTyped
+
+    private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
+        // TODO add your handling code here:
+        if(UbicacionTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_UbicacionTFKeyTyped
 
     /**
      * @param args the command line arguments

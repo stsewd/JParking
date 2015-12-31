@@ -66,6 +66,11 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         CampusTF.setEnabled(false);
 
         UbicacionTF.setEnabled(false);
+        UbicacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                UbicacionTFKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Ubicación:");
 
@@ -89,6 +94,9 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         jLabel1.setText("Código:");
 
         CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CodigoTFKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CodigoTFKeyPressed(evt);
             }
@@ -97,6 +105,11 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         jLabel4.setText("Num lugares:");
 
         NumeroLugaresTF.setEnabled(false);
+        NumeroLugaresTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumeroLugaresTFKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Estado:");
 
@@ -221,6 +234,27 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_CodigoTFKeyPressed
+
+    private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
+        // TODO add your handling code here:
+        if(CodigoTF.getText().length()==3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CodigoTFKeyTyped
+
+    private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
+        // TODO add your handling code here:
+        if(UbicacionTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_UbicacionTFKeyTyped
+
+    private void NumeroLugaresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroLugaresTFKeyTyped
+        // TODO add your handling code here:
+        if(NumeroLugaresTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NumeroLugaresTFKeyTyped
 
     /**
      * @param args the command line arguments

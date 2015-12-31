@@ -132,6 +132,9 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             }
         });
         CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CedulaTFKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CedulaTFKeyPressed(evt);
             }
@@ -333,6 +336,13 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private void fechaContratoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaContratoTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaContratoTFActionPerformed
+
+    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
+        // TODO add your handling code here:
+        if(CedulaTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CedulaTFKeyTyped
 
     /**
      * @param args the command line arguments

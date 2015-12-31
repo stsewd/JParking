@@ -83,6 +83,12 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
             }
         });
 
+        NombresTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombresTFKeyTyped(evt);
+            }
+        });
+
         CedulaTF1.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 CedulaTF1InputMethodTextChanged(evt);
@@ -96,6 +102,9 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
             }
         });
         CedulaTF1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CedulaTF1KeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CedulaTF1KeyPressed(evt);
             }
@@ -124,6 +133,23 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         DireccionTF2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DireccionTF2ActionPerformed(evt);
+            }
+        });
+        DireccionTF2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DireccionTF2KeyTyped(evt);
+            }
+        });
+
+        ApellidosTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ApellidosTFKeyTyped(evt);
+            }
+        });
+
+        TelefonoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TelefonoTFKeyTyped(evt);
             }
         });
 
@@ -311,6 +337,41 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_CedulaTF1KeyPressed
+
+    private void CedulaTF1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTF1KeyTyped
+        // TODO add your handling code here:
+        if(CedulaTF1.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CedulaTF1KeyTyped
+
+    private void NombresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombresTFKeyTyped
+        // TODO add your handling code here:
+        if(NombresTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_NombresTFKeyTyped
+
+    private void ApellidosTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidosTFKeyTyped
+        // TODO add your handling code here:
+        if(ApellidosTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ApellidosTFKeyTyped
+
+    private void DireccionTF2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTF2KeyTyped
+        // TODO add your handling code here:
+        if(DireccionTF2.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_DireccionTF2KeyTyped
+
+    private void TelefonoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoTFKeyTyped
+        // TODO add your handling code here:
+        if(TelefonoTF.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TelefonoTFKeyTyped
 
     /**
      * @param args the command line arguments

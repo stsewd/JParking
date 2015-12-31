@@ -103,10 +103,14 @@
       <Events>
         <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="CodigoTFInputMethodTextChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CodigoTFActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CodigoTFKeyTyped"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CodigoTFKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="UbicacionTF">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="UbicacionTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="CancelarBtn">
       <Properties>
@@ -140,6 +144,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CampusTFKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="EditarBtn">
       <Properties>

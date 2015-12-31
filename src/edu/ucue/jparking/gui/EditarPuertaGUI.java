@@ -69,8 +69,17 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
             }
         });
         CodigoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CodigoTFKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CodigoTFKeyPressed(evt);
+            }
+        });
+
+        UbicacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                UbicacionTFKeyTyped(evt);
             }
         });
 
@@ -90,6 +99,11 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         jLabel4.setText("Campus:");
 
         CampusTF.setEditable(false);
+        CampusTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CampusTFKeyTyped(evt);
+            }
+        });
 
         EditarBtn.setText("Editar");
         EditarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +232,28 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
+
+    private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
+
+        // TODO add your handling code here:
+        if(CodigoTF.getText().length()==3){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CodigoTFKeyTyped
+
+    private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
+        // TODO add your handling code here:
+        if(UbicacionTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_UbicacionTFKeyTyped
+
+    private void CampusTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CampusTFKeyTyped
+        // TODO add your handling code here:
+        if(CampusTF.getText().length()==70){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CampusTFKeyTyped
 
     /**
      * @param args the command line arguments
