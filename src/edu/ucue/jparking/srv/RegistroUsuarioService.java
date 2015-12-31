@@ -11,8 +11,6 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
-import edu.ucue.jparking.srv.enums.TipoTramite;
-import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.objetos.registros.Registro;

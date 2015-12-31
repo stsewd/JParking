@@ -13,16 +13,12 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Estudiante;
-import edu.ucue.jparking.srv.Validaciones;
-import edu.ucue.jparking.srv.enums.TipoModificacion;
-import edu.ucue.jparking.srv.enums.TipoRegistro;
-import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import java.util.Set;
 
 /**
  *
- * @author ESTUDIANTE
+ * @author Franklin Lara
  */
 public class EstudianteService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();

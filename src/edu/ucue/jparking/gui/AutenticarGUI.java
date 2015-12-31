@@ -265,23 +265,23 @@ public class AutenticarGUI extends javax.swing.JDialog {
 
 
     public void cargarCampusCB(){
-            //Cargar parqueaderos en combo box
-            CampusCB.removeAllItems();
-            CampusService campusService = new CampusService();
-            for(Campus c : campusService.getCampus()){
-                CampusCB.addItem(c.getNombre());
-            }
+        //Cargar parqueaderos en combo box
+        CampusCB.removeAllItems();
+        CampusService campusService = new CampusService();
+        for(Campus c : campusService.getCampus()){
+            CampusCB.addItem(c.getNombre());
+        }
     }
 
     public void cargarPuertasCB() throws CampusNoExistenteException{
-            //Cargar parqueaderos en combo box
-            PuertasCB.removeAllItems();
-            idPuertaCB.removeAllItems();
-            String campus = (String) CampusCB.getSelectedItem();
-            PuertaService puertaService = new PuertaService();
-            for(Puerta c : puertaService.getPuertas(campus)){
-                PuertasCB.addItem("(" + c.getId() + ") " + c.getUbicacion());
-                idPuertaCB.addItem(c.getId());
-            }
+        //Cargar parqueaderos en combo box
+        PuertasCB.removeAllItems();
+        idPuertaCB.removeAllItems();
+        String campus = (String) CampusCB.getSelectedItem();
+        PuertaService puertaService = new PuertaService();
+        for(Puerta c : puertaService.getPuertas(campus)){
+            PuertasCB.addItem("(" + c.getId() + ") " + c.getUbicacion());
+            idPuertaCB.addItem(c.getId());
+        }
     }
 }
