@@ -219,6 +219,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         GenerarOrdenPagoItem = new javax.swing.JMenuItem();
         RegistrosMenu = new javax.swing.JMenu();
         ListarRegistrosMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        AutenticacionItem = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
         AcercaDeMenuItem = new javax.swing.JMenuItem();
 
@@ -670,6 +672,18 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(RegistrosMenu);
 
+        jMenu1.setText("Autenticar");
+
+        AutenticacionItem.setText("Autenticación");
+        AutenticacionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AutenticacionItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(AutenticacionItem);
+
+        jMenuBar1.add(jMenu1);
+
         AyudaMenu.setMnemonic('a');
         AyudaMenu.setText("Ayuda");
 
@@ -1101,6 +1115,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
+    private void AutenticacionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutenticacionItemActionPerformed
+        // TODO add your handling code here:
+        AutenticarGUI autenticarGUI = new AutenticarGUI(this, true);
+        autenticarGUI.setLocationRelativeTo(this);
+        autenticarGUI.setVisible(true);
+    }//GEN-LAST:event_AutenticacionItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1141,6 +1162,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem AdministarPorterosMenuItem;
     private javax.swing.JMenuItem AdministarPuertasMenuItem;
     private javax.swing.JButton AgregarBtn;
+    private javax.swing.JMenuItem AutenticacionItem;
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JMenu CampusMenu;
@@ -1176,6 +1198,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JButton VerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

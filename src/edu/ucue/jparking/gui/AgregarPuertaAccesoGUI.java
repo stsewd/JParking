@@ -159,6 +159,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
     private void cargarPuertasCB() throws CampusNoExistenteException {
         //Cargar parqueaderos en combo box
         UbicacionCB.removeAllItems();
+        idPuertaCB.removeAllItems();
         PuertaService service = new PuertaService();
         for(Puerta p : service.getPuertas(idCampuslbl.getText())){
         UbicacionCB.addItem("(" + p.getId() + ") " + p.getUbicacion());
@@ -192,7 +193,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         int n = (int) UbicacionCB.getSelectedIndex();
         String idPuerta = (String) idPuertaCB.getItemAt(n);
         if(idPuerta == null || idPuerta.trim().length() == 0){
-            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
         ParqueaderoService service = new ParqueaderoService();
