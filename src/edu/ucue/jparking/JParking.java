@@ -81,6 +81,8 @@ public class JParking {
             System.out.println(ex.getMessage());
         }catch (PersonaYaRegistradoComoPorteroException ex) {
             System.out.println(ex.getMessage());
+        } catch (UsuarioNoExistenteException ex) {
+            System.out.println(ex.getMessage());
         }
         
         try {

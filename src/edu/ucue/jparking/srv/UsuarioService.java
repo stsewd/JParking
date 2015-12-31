@@ -14,6 +14,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
+import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
@@ -30,11 +31,12 @@ import java.util.Set;
 public class UsuarioService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
+    private static final RegistroService registroService = new RegistroService();
     
-    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException{
+    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException{
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
-            estudianteService.add(cedula, nombre, apellido,direccion,telefono);
+            estudianteService.add(cedula, nombre, apellido, direccion, telefono);
         }else if(tipoUsuario.equalsIgnoreCase("DOCENTE")){
             DocenteService docenteService = new DocenteService();
             docenteService.add(cedula, nombre, apellido,direccion,telefono);
@@ -44,6 +46,8 @@ public class UsuarioService {
         }else{
             throw new IllegalArgumentException("El argumento tipo usuario no puede estar vacio");
         }
+        //Registro
+        registroService.add(get(cedula).getRegistro(TipoModificacion.CREACION));
     }
     
     public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException{

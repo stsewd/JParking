@@ -11,6 +11,7 @@ import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.dao.RegistrosDAO;
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -25,6 +26,13 @@ import java.util.Set;
  * @author lara
  */
 public class RegistroService {
+    
+    private static final RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
+    
+    public void add(Registro registro){
+        registrosDAO.addRegistro(registro);
+    }
+    
     /**
      * 
      * @param cedula
@@ -55,7 +63,7 @@ public class RegistroService {
      * @throws edu.ucue.jparking.srv.FechaInicialMayorAFechaFinalException 
      * @throws edu.ucue.jparking.srv.FechaFinalMenorAFechaInicialException 
      */
-    public Set<Registro> get(TipoRegistro tipoRegistro,Calendar fechaInicio,Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
+    public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
         
         Validaciones.validarFecha(fechaInicio, fechaFinal);
         

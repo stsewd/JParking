@@ -14,6 +14,9 @@ import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Estudiante;
 import edu.ucue.jparking.srv.Validaciones;
+import edu.ucue.jparking.srv.enums.TipoModificacion;
+import edu.ucue.jparking.srv.enums.TipoRegistro;
+import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import java.util.Set;
 
@@ -24,6 +27,7 @@ import java.util.Set;
 public class EstudianteService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Validaciones validar = new Validaciones();
+    RegistroService registroService = new RegistroService();
     /**
      * 
      * @param cedula
@@ -40,8 +44,8 @@ public class EstudianteService {
         validar.validarCedula(cedula);
         Estudiante estudiante = new Estudiante(cedula, nombre, apellido, direccion, telefono);
         usuariosDAO.addUsuario(estudiante);
-           
     }
+    
     /**
      * 
      * @param cedula
