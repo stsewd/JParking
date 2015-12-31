@@ -143,6 +143,8 @@ public class UsuarioService {
         
         if(!encontrado)
             throw new AccesoNoAutorizadoException(cedula, u.getTipoUsuarioString(), nombreCampus, idPuerta);
+        
+        
         //Registro
         registroService.add(u.getRegistro(TipoAcceso.ACCESO));
         
