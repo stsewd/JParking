@@ -65,7 +65,7 @@ public class PuertasDAO implements PuertasDAOInterface {
             }catch (PuertaNoAgregadaException ex){}
         }
         
-        CampusDAO.getInstancia().getCampus(puerta.getIdCampus()).getPuertas().remove(idPuerta);
+        puerta.getCampus().getPuertas().remove(idPuerta);
     }
 
     @Override

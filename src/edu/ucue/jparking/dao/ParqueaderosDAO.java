@@ -97,11 +97,12 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
+        Puerta puerta = PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta);
+        if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(parqueadero.getPuertasEntrada().contains(idPuerta))
+        if(parqueadero.getPuertasEntrada().get(idPuerta) != null)
             throw new PuertaYaAgregadaException(idPuerta);
-        parqueadero.getPuertasEntrada().add(idPuerta);
+        parqueadero.getPuertasEntrada().put(idPuerta, puerta);
     }
 
     @Override
@@ -109,11 +110,12 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
+        Puerta puerta = PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta);
+        if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(parqueadero.getPuertasSalida().contains(idPuerta))
+        if(parqueadero.getPuertasSalida().get(idPuerta) != null)
             throw new PuertaYaAgregadaException(idPuerta);
-        parqueadero.getPuertasSalida().add(idPuerta);
+        parqueadero.getPuertasSalida().put(idPuerta, puerta);
     }
 
     @Override
@@ -125,7 +127,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             throw new ParqueaderoNoExistenteException(idParqueadero);
         if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(!parqueadero.getPuertasEntrada().contains(idPuerta))
+        if(parqueadero.getPuertasEntrada().get(idPuerta) == null)
             throw new PuertaNoAgregadaException(idPuerta);
         parqueadero.getPuertasEntrada().remove(idPuerta);
     }
@@ -137,7 +139,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             throw new ParqueaderoNoExistenteException(idParqueadero);
         if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(!parqueadero.getPuertasSalida().contains(idPuerta))
+        if(parqueadero.getPuertasSalida().get(idPuerta) == null)
             throw new PuertaNoAgregadaException(idPuerta);
         parqueadero.getPuertasSalida().remove(idPuerta);
     }
@@ -148,12 +150,12 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         
-        UsuariosDAO.getInstance().getUsuario(cedula);
+        Usuario usuario = UsuariosDAO.getInstance().getUsuario(cedula);
         
-        if(parqueadero.getUsuarios().contains(cedula))
+        if(parqueadero.getUsuarios().get(cedula) != null)
             throw new UsuarioYaAgregadoException(cedula);
         
-        parqueadero.getUsuarios().add(cedula);
+        parqueadero.getUsuarios().put(cedula, usuario);
         UsuariosDAO.getInstance().addPaqueadero(cedula, nombreCampus, idParqueadero);
     }
 
@@ -161,7 +163,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     public void delUsuario(String nombreCampus, String idParqueadero, String cedula) throws UsuarioNoExistenteException, UsuarioNoAgregadoException, CampusNoExistenteException {
         UsuariosDAO.getInstance().getUsuario(cedula);
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
-        if(!parqueadero.getUsuarios().contains(cedula))
+        if(parqueadero.getUsuarios().get(cedula) == null)
             throw new UsuarioNoAgregadoException(cedula);
         
         parqueadero.getUsuarios().remove(cedula);
@@ -171,34 +173,25 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException {
-        Set<Puerta> puertas = new TreeSet<>();
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        for(String idPuerta : parqueadero.getPuertasEntrada())
-            puertas.add(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta));
-        return puertas;
+        return new TreeSet<>(parqueadero.getPuertasEntrada().values());
     }
 
     @Override
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException {
-        Set<Puerta> puertas = new TreeSet<>();
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        for(String idPuerta : parqueadero.getPuertasSalida())
-            puertas.add(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta));
-        return puertas;
+        return new TreeSet<>(parqueadero.getPuertasSalida().values());
     }
 
     @Override
     public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException {
-        Set<Usuario> usuarios = new TreeSet<>();
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        for(String idUsuario : parqueadero.getUsuarios())
-            usuarios.add(UsuariosDAO.getInstance().getUsuario(idUsuario));
-        return usuarios;
+        return new TreeSet<>(parqueadero.getUsuarios().values());
     }
 }

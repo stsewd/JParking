@@ -11,6 +11,6 @@ package edu.ucue.jparking.srv.enums;
  */
 public enum TipoRegistro {
     ACCESO_PARQUEADERO,
-    USUARIO,
+    PERSONA,
     PAGOS;
 }

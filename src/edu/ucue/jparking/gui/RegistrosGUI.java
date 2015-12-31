@@ -52,8 +52,8 @@ public class RegistrosGUI extends javax.swing.JDialog {
                 registros = registroService.get(TipoRegistro.PAGOS);
                 break;
             }
-            case "Usuario": {
-                registros = registroService.get(TipoRegistro.USUARIO);
+            case "Persona": {
+                registros = registroService.get(TipoRegistro.PERSONA);
                 break;
             }
         }
@@ -91,7 +91,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
                 break;
             }
             case "Usuario": {
-                registros = registroService.get(TipoRegistro.USUARIO, fechaInicial, fechaFinal);
+                registros = registroService.get(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
                 break;
             }
         }
@@ -157,6 +157,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        RegistrosTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         RegistrosTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(RegistrosTabla);
         if (RegistrosTabla.getColumnModel().getColumnCount() > 0) {
@@ -165,7 +166,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
 
         jLabel1.setText("Tipo registro:");
 
-        TipoRegistroCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Acceso a parqueadero", "Pagos", "Usuario" }));
+        TipoRegistroCB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Acceso a parqueadero", "Pagos", "Persona" }));
         TipoRegistroCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TipoRegistroCBActionPerformed(evt);

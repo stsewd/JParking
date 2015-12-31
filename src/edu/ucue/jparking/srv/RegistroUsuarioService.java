@@ -43,14 +43,14 @@ public class RegistroUsuarioService {
      * @return 
      */
     public Set<Registro> getRegistroUsuarios(Calendar fechaInicial,Calendar fechaFinal){
-        return registrosDAO.getRegistros(TipoRegistro.USUARIO, fechaInicial, fechaFinal);
+        return registrosDAO.getRegistros(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
     }
     /**
      * 
      * @return 
      */
     public Set<Registro> getRegistroUsuarios(){
-        return registrosDAO.getRegistros(TipoRegistro.USUARIO);
+        return registrosDAO.getRegistros(TipoRegistro.PERSONA);
     }
     
 }

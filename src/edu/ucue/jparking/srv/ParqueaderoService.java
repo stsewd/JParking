@@ -27,6 +27,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -43,6 +44,7 @@ public class ParqueaderoService {
      */
     Validaciones validaciones = new Validaciones();
     ParqueaderosDAOInterface parqueaderoDAO = ParqueaderosDAO.getInstance();
+    CampusService campusService = new CampusService();
     /**
      * 
      * @param ubicacion
@@ -58,7 +60,8 @@ public class ParqueaderoService {
         validaciones.ValidarParqueadero(ubicacion, numeroLugares, id, nombreCampus);
         validaciones.validarCodigo(id);
         validaciones.ComprobarCampus(nombreCampus);
-        Parqueadero parqueadero = new Parqueadero(ubicacion, numeroLugares, id, nombreCampus);
+        Campus campus = campusService.getCampus(nombreCampus);
+        Parqueadero parqueadero = new Parqueadero(ubicacion, numeroLugares, id, campus);
         parqueaderoDAO.addParqueadero(nombreCampus, parqueadero);
     }
     
@@ -69,6 +72,8 @@ public class ParqueaderoService {
      * @throws ParqueaderoNoExistenteException
      * @throws CampusNoExistenteException 
      * @throws edu.ucue.jparking.srv.excepciones.CodigoNoValidoException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
      */
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
@@ -147,14 +152,7 @@ public class ParqueaderoService {
         int numLugaresOcupados = parqueaderoDAO.getParqueadero(nombreCampus, idParqueadero).getNumeroLugaresOcupados();
         if(numLugares < numLugaresOcupados)
             throw new LugaresDeParqueoOCupadosException(numLugaresOcupados);
-        
-        int numUsuarios = parqueaderoDAO.getParqueadero(nombreCampus, idParqueadero).getUsuarios().size();
-        if(numLugares < numUsuarios * 1.05)
-            throw new NumeroLugaresDeParqueoInsuficientesException(numUsuarios);
-        
-        //Validar que el numero de lugares nuevo sea mayor o igual al 105%
-        //del numero de usuarios registrados en ese parqueadero
-        
+                
         parqueaderoDAO.modParqueadero(nombreCampus, idParqueadero, ubicacion, numLugares, estado);
     }
     
@@ -252,8 +250,7 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
-            UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
+        UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
     }
     
     private void agregarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
@@ -262,7 +259,6 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
     }
     
     private void eliminarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
@@ -271,7 +267,6 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
         UsuariosDAO.getInstance().fechaContrato(cedula, null);
     }
     
@@ -281,7 +276,6 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
     }
     
     

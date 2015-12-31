@@ -22,7 +22,6 @@ public class OrdenPago {
         this.costo = costo;
         this.fechaEmision = Calendar.getInstance();
     }
-
     
     public void setCadulaUsuario(String cadulaUsuario) {
         this.cedulaUsuario = cadulaUsuario;

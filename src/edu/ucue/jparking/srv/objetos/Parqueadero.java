@@ -3,8 +3,8 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -12,25 +12,25 @@ import java.util.Set;
  */
 public class Parqueadero implements Comparable<Parqueadero> {
     
-    private Set<String> usuarios; //Cedula de usuarios
-    private Set<String> puertasEntrada; //Id de puertas
-    private Set<String> puertasSalida; //Id de puertas
+    private Map<String, Usuario> usuarios; //Cedula de usuario
+    private Map<String, Puerta> puertasEntrada; //Id de puerta
+    private Map<String, Puerta> puertasSalida; //Id de puerta
+
     private boolean activo;
     private final String id;
     private String ubicacion;
     private int numeroLugares;
-    private int numeroLugaresOcupados;
-    private String nombreCampus;
+    
+    private Campus campus;
 
-    public Parqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) {
+    public Parqueadero(String ubicacion, int numeroLugares, String id, Campus nombreCampus) {
         this.ubicacion=ubicacion;
         this.numeroLugares=numeroLugares;
         this.id = id;
-        this.nombreCampus = nombreCampus;
-        this.numeroLugaresOcupados = 0;
-        this.puertasEntrada = new HashSet<>();
-        this.puertasSalida = new HashSet<>();
-        this.usuarios = new HashSet<>();
+        this.campus = nombreCampus;
+        this.puertasEntrada = new HashMap<>();
+        this.puertasSalida = new HashMap<>();
+        this.usuarios = new HashMap<>();
         this.activo = true;
     }
 
@@ -61,63 +61,40 @@ public class Parqueadero implements Comparable<Parqueadero> {
      */
     public void setNumeroLugares(int numeroLugares) {
         this.numeroLugares = numeroLugares;
-        if(getNumeroLugaresOcupados() > this.numeroLugares)
-            this.numeroLugaresOcupados = this.numeroLugares;
     }
 
     /**
      * @return the numeroLugaresOcupados
      */
     public int getNumeroLugaresOcupados() {
-        return numeroLugaresOcupados;
-    }
-
-    /**
-     * @param numeroLugaresOcupados the numeroLugaresOcupados to set
-     */
-    public void setNumeroLugaresOcupados(int numeroLugaresOcupados) {
-        this.numeroLugaresOcupados = numeroLugaresOcupados;
+        return usuarios.size();
     }
 
     /**
      * @return the usuarios
      */
-    public Set<String> getUsuarios() {
+    public Map<String, Usuario> getUsuarios() {
         return usuarios;
     }
 
     /**
      * @param usuarios the usuarios to set
      */
-    public void setUsuarios(Set<String> usuarios) {
+    public void setUsuarios(Map<String, Usuario> usuarios) {
         this.usuarios = usuarios;
-    }
-
-    /**
-     * @return the puertasEntrada
-     */
-    public Set<String> getPuertasEntrada() {
-        return puertasEntrada;
     }
 
     /**
      * @param puertasEntrada the puertasEntrada to set
      */
-    public void setPuertasEntrada(Set<String> puertasEntrada) {
+    public void setPuertasEntrada(Map<String, Puerta> puertasEntrada) {
         this.puertasEntrada = puertasEntrada;
-    }
-
-    /**
-     * @return the puertasSalida
-     */
-    public Set<String> getPuertasSalida() {
-        return puertasSalida;
     }
 
     /**
      * @param puertasSalida the puertasSalida to set
      */
-    public void setPuertasSalida(Set<String> puertasSalida) {
+    public void setPuertasSalida(Map<String, Puerta> puertasSalida) {
         this.puertasSalida = puertasSalida;
     }
 
@@ -129,17 +106,17 @@ public class Parqueadero implements Comparable<Parqueadero> {
     }
 
     /**
-     * @return the nombreCampus
+     * @return the campus
      */
-    public String getNombreCampus() {
-        return nombreCampus;
+    public Campus getCampus() {
+        return campus;
     }
 
     /**
-     * @param nombreCampus the nombreCampus to set
+     * @param nombreCampus the campus to set
      */
-    public void setNombreCampus(String nombreCampus) {
-        this.nombreCampus = nombreCampus;
+    public void setCampus(Campus nombreCampus) {
+        this.campus = nombreCampus;
     }
 
     /**
@@ -159,6 +136,20 @@ public class Parqueadero implements Comparable<Parqueadero> {
     @Override
     public int compareTo(Parqueadero o) {
         return getId().compareToIgnoreCase(o.getId());
+    }
+
+    /**
+     * @return the puertasEntrada
+     */
+    public Map<String, Puerta> getPuertasEntrada() {
+        return puertasEntrada;
+    }
+
+    /**
+     * @return the puertasSalida
+     */
+    public Map<String, Puerta> getPuertasSalida() {
+        return puertasSalida;
     }
     
 }

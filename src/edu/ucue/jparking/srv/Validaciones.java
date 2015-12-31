@@ -24,7 +24,6 @@ import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
-import java.util.Set;
 
 /**
  *
@@ -57,107 +56,102 @@ public class Validaciones {
             throw new FechaFinalMenorAFechaInicialException(fechaInicio, fechaFinal);
     }
 
-public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException{
-    ParqueaderoService parqueaderoService = new ParqueaderoService();
-    Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
-    if(parqueadero==null)
-        throw new ParqueaderoNoExistenteException(idParqueadero);
-    if(parqueadero.isActivo()==false)
-        throw new ParquaderoInactivoException(parqueadero.getUbicacion());
-}
-
-public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException, ParquaderoInactivoException{
-    PuertaService service = new PuertaService();
-    ParqueaderoService parqueaderoService = new ParqueaderoService();
-    Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
-    Puerta puerta = service.getPuerta(parqueadero.getNombreCampus(), idPuerta);
-    if(puerta==null)
-        throw new PuertaNoExistenteException(idPuerta);
-    if(puerta.estaActiva()==false)
-        throw new PuertaInactivaException(idPuerta);
-}
-
-public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException{
-    UsuarioService service = new UsuarioService();
-    Usuario usuario = service.get(cedula);
-    if(usuario==null)
-        throw new UsuarioNoExistenteException(cedula);
-    if(usuario.isActivo()==false)
-        throw new UsuarioInactivoException();
-}
-
-public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, CampusInactivoException{
-    CampusService campusService = new CampusService();
-    Campus campus = campusService.getCampus(idCampus);
-    if(campus==null)
-        throw new CampusNoExistenteException(idCampus);
-    if(campus.isActivo()==false)
-        throw new  CampusInactivoException(idCampus);
-}
-
-public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException{
-    ParqueaderoService parqueaderoService = new ParqueaderoService();
-    UsuarioService usuarioService = new UsuarioService();
-    Usuario usuario = usuarioService.get(cedula);
-    Set<Parqueadero> parqueaderos = parqueaderoService.getParqueaderos();
-    for(Parqueadero p : parqueaderos) {
-        if(p.getUsuarios().contains(cedula))
-            return true;
+    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException{
+        ParqueaderoService parqueaderoService = new ParqueaderoService();
+        Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero==null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        if(parqueadero.isActivo()==false)
+            throw new ParquaderoInactivoException(parqueadero.getUbicacion());
     }
-    return false;
-}
 
-public boolean validarCedula(String cedula) throws CedulaNoValidaException {
-    boolean cedulaCorrecta = false;
-    try {
-        if (cedula.length() == 10)
-        {
-            int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
-            if (tercerDigito < 6) {
-                // Coeficientes de validación cédula
-                // El decimo digito se lo considera dígito verificador
-                int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
-                int verificador = Integer.parseInt(cedula.substring(9,10));
-                int suma = 0;
-                int digito = 0;
-                for (int i = 0; i < (cedula.length() - 1); i++) {
-                 digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
-                 suma += ((digito % 10) + (digito / 10));
-                }
-                if ((suma % 10 == 0) && (suma % 10 == verificador)) {
-                    cedulaCorrecta = true;
-                }
-                else if ((10 - (suma % 10)) == verificador) {
-                    cedulaCorrecta = true;
+    public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException, ParquaderoInactivoException{
+        PuertaService service = new PuertaService();
+        ParqueaderoService parqueaderoService = new ParqueaderoService();
+        Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
+        Puerta puerta = service.getPuerta(parqueadero.getCampus().getNombre(), idPuerta);
+        if(puerta==null)
+            throw new PuertaNoExistenteException(idPuerta);
+        if(puerta.estaActiva()==false)
+            throw new PuertaInactivaException(idPuerta);
+    }
+
+    public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException{
+        UsuarioService service = new UsuarioService();
+        Usuario usuario = service.get(cedula);
+        if(usuario==null)
+            throw new UsuarioNoExistenteException(cedula);
+        if(usuario.isActivo()==false)
+            throw new UsuarioInactivoException();
+    }
+
+    public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, CampusInactivoException{
+        CampusService campusService = new CampusService();
+        Campus campus = campusService.getCampus(idCampus);
+        if(campus==null)
+            throw new CampusNoExistenteException(idCampus);
+        if(campus.isActivo()==false)
+            throw new  CampusInactivoException(idCampus);
+    }
+
+    public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException{
+        UsuarioService usuarioService = new UsuarioService();
+
+        return usuarioService.getParqueaderos(cedula).size() > 0;
+    }
+
+    public boolean validarCedula(String cedula) throws CedulaNoValidaException {
+        boolean cedulaCorrecta = false;
+        try {
+            if (cedula.length() == 10)
+            {
+                int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+                if (tercerDigito < 6) {
+                    // Coeficientes de validación cédula
+                    // El decimo digito se lo considera dígito verificador
+                    int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+                    int verificador = Integer.parseInt(cedula.substring(9,10));
+                    int suma = 0;
+                    int digito = 0;
+                    for (int i = 0; i < (cedula.length() - 1); i++) {
+                     digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
+                     suma += ((digito % 10) + (digito / 10));
+                    }
+                    if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+                        cedulaCorrecta = true;
+                    }
+                    else if ((10 - (suma % 10)) == verificador) {
+                        cedulaCorrecta = true;
+                    } else {
+                        cedulaCorrecta = false;
+                    }
                 } else {
                     cedulaCorrecta = false;
                 }
             } else {
                 cedulaCorrecta = false;
             }
-        } else {
+        } catch (NumberFormatException nfe) {
+            cedulaCorrecta = false;
+        } catch (Exception err) {
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
             cedulaCorrecta = false;
         }
-    } catch (NumberFormatException nfe) {
-        cedulaCorrecta = false;
-    } catch (Exception err) {
-        System.out.println("Una excepcion ocurrio en el proceso de validadcion");
-        cedulaCorrecta = false;
+        if (!cedulaCorrecta) {
+            throw new CedulaNoValidaException(cedula);
+        }
+        return cedulaCorrecta;
     }
-    if (!cedulaCorrecta) {
-        throw new CedulaNoValidaException(cedula);
-    }
-    return cedulaCorrecta;
-}
     
-public void ValidarCampus(String nombre,String direccion){
+    public void ValidarCampus(String nombre,String direccion){
         if(nombre==null || nombre.trim().length()==0)
             throw new IllegalArgumentException("El nombre del campus no puede estra vacio");
         if (direccion==null || direccion.trim().length()==0)
             throw new IllegalArgumentException("La direccion del campus no puede estar vacia");
-}
+    }
 
-public void ValidarDatos(String cedula, String nombre, String apellidos, String direccion, String telefono) throws TelefonoNoValidoException
+    public void ValidarDatos(String cedula, String nombre, String apellidos, String direccion, String telefono)
+            throws TelefonoNoValidoException
     {
         if(cedula==null || cedula.trim().length()==0)
             throw new IllegalArgumentException("El campo cedula no puede estar vacio");
@@ -171,23 +165,24 @@ public void ValidarDatos(String cedula, String nombre, String apellidos, String 
             throw new IllegalArgumentException("El argumento telefono no puede estar vacio");
         ValidarTelefono(telefono);
     }
-private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
-    if(telefono.trim().length()!=10)
-        throw new TelefonoNoValidoException();
-    telefono = telefono.trim();
-    for(int i = 0; i < telefono.length(); i++){
-        if(!Character.isDigit(telefono.charAt(i)))
+    private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
+        if(telefono.trim().length()!=10)
             throw new TelefonoNoValidoException();
+        telefono = telefono.trim();
+        for(int i = 0; i < telefono.length(); i++){
+            if(!Character.isDigit(telefono.charAt(i)))
+                throw new TelefonoNoValidoException();
+        }
     }
-}
-public void ValidarPuerta(String ubicacion,String id,String idCampus){
-    if(ubicacion==null||ubicacion.trim().length()==0)
-            throw new IllegalArgumentException("El campo ubicaion no puede ser nulo");
-    if(id==null || id.trim().length()==0)
-        throw new IllegalArgumentException("El campo del id no puede estar vacio");
-    if(idCampus==null || idCampus.trim().length()==0)
-        throw new IllegalArgumentException("El campo del id del campus no puede estar vacio");
-}
+
+    public void ValidarPuerta(String ubicacion,String id,String idCampus){
+        if(ubicacion==null||ubicacion.trim().length()==0)
+                throw new IllegalArgumentException("El campo ubicaion no puede ser nulo");
+        if(id==null || id.trim().length()==0)
+            throw new IllegalArgumentException("El campo del id no puede estar vacio");
+        if(idCampus==null || idCampus.trim().length()==0)
+            throw new IllegalArgumentException("El campo del id del campus no puede estar vacio");
+    }
 
     public  void validarCodigo(String codigo) throws CodigoNoValidoException{
         if(codigo==null || codigo.trim().length()==0)
@@ -204,14 +199,14 @@ public void ValidarPuerta(String ubicacion,String id,String idCampus){
             throw new CodigoNoValidoException(codigo);        
     }  
     
-public void ValidarParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus){
-    if(id==null || id.trim().length()==0)
-        throw new IllegalArgumentException("EL argumento id no puede estar vacio");
-    if(ubicacion==null || ubicacion.trim().length()==0)
-        throw new IllegalArgumentException("El argumento ubicacion no puede estar vacio");
-    if(numeroLugares<=0)
-        throw new IllegalArgumentException("Los numero de lugare no pueden ser negativos");
-    if(nombreCampus==null || nombreCampus.trim().length()==0)
-        throw new IllegalArgumentException("El argumento nombre no puede estra vacio");
-}
+    public void ValidarParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus){
+        if(id==null || id.trim().length()==0)
+            throw new IllegalArgumentException("EL argumento id no puede estar vacio");
+        if(ubicacion==null || ubicacion.trim().length()==0)
+            throw new IllegalArgumentException("El argumento ubicacion no puede estar vacio");
+        if(numeroLugares<=0)
+            throw new IllegalArgumentException("Los numero de lugare no pueden ser negativos");
+        if(nombreCampus==null || nombreCampus.trim().length()==0)
+            throw new IllegalArgumentException("El argumento nombre no puede estra vacio");
+    }
 }

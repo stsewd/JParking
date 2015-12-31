@@ -217,10 +217,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
         UsuariosParqueaderoItem = new javax.swing.JMenuItem();
         PagosMenu = new javax.swing.JMenu();
         GenerarOrdenPagoItem = new javax.swing.JMenuItem();
-        RegistrosMenu = new javax.swing.JMenu();
-        ListarRegistrosMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         AutenticacionItem = new javax.swing.JMenuItem();
+        RegistrosMenu = new javax.swing.JMenu();
+        ListarRegistrosMenuItem = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
         AcercaDeMenuItem = new javax.swing.JMenuItem();
 
@@ -659,6 +659,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(PagosMenu);
 
+        jMenu1.setMnemonic('a');
+        jMenu1.setText("Autenticar");
+
+        AutenticacionItem.setText("Autenticación");
+        AutenticacionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AutenticacionItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(AutenticacionItem);
+
+        jMenuBar1.add(jMenu1);
+
         RegistrosMenu.setMnemonic('r');
         RegistrosMenu.setText("Registros");
 
@@ -672,19 +685,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(RegistrosMenu);
 
-        jMenu1.setText("Autenticar");
-
-        AutenticacionItem.setText("Autenticación");
-        AutenticacionItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AutenticacionItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(AutenticacionItem);
-
-        jMenuBar1.add(jMenu1);
-
-        AyudaMenu.setMnemonic('a');
+        AyudaMenu.setMnemonic('y');
         AyudaMenu.setText("Ayuda");
 
         AcercaDeMenuItem.setText("Acerca de");
@@ -1108,6 +1109,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         try {
             parqueaderoService.addUsuario(campus, idParqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "Usuario agregado a paqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            listarParqueaderos();
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
