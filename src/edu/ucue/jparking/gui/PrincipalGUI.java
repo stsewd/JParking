@@ -275,6 +275,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.setRollover(true);
 
         CrearParqueaderoBtn.setText("Crear");
+        CrearParqueaderoBtn.setToolTipText("Crear nuevo parqueadero");
         CrearParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CrearParqueaderoBtnActionPerformed(evt);
@@ -283,6 +284,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(CrearParqueaderoBtn);
 
         EliminarParqueaderoBtn.setText("Eliminar");
+        EliminarParqueaderoBtn.setToolTipText("Eliminar parqueadero");
         EliminarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EliminarParqueaderoBtnActionPerformed(evt);
@@ -291,6 +293,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(EliminarParqueaderoBtn);
 
         ModificarParqueaderoBtn.setText("Modificar");
+        ModificarParqueaderoBtn.setToolTipText("Modificar parqueadero");
         ModificarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarParqueaderoBtnActionPerformed(evt);
@@ -300,6 +303,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(jSeparator7);
 
         UsuariosParqBtn.setText("Usuarios");
+        UsuariosParqBtn.setToolTipText("Ver usuarios de parqueadero");
         UsuariosParqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuariosParqBtnActionPerformed(evt);
@@ -308,6 +312,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(UsuariosParqBtn);
 
         PuertasBtn.setText("Puertas");
+        PuertasBtn.setToolTipText("Ver puertas de acceso del parqueadero");
         PuertasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PuertasBtnActionPerformed(evt);

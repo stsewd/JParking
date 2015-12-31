@@ -404,6 +404,7 @@
                     <Component class="javax.swing.JButton" name="CrearParqueaderoBtn">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Crear"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Crear nuevo parqueadero"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CrearParqueaderoBtnActionPerformed"/>
@@ -412,6 +413,7 @@
                     <Component class="javax.swing.JButton" name="EliminarParqueaderoBtn">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Eliminar"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Eliminar parqueadero"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarParqueaderoBtnActionPerformed"/>
@@ -420,6 +422,7 @@
                     <Component class="javax.swing.JButton" name="ModificarParqueaderoBtn">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Modificar"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Modificar parqueadero"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarParqueaderoBtnActionPerformed"/>
@@ -430,6 +433,7 @@
                     <Component class="javax.swing.JButton" name="UsuariosParqBtn">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Usuarios"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Ver usuarios de parqueadero"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsuariosParqBtnActionPerformed"/>
@@ -438,6 +442,7 @@
                     <Component class="javax.swing.JButton" name="PuertasBtn">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Puertas"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Ver puertas de acceso del parqueadero"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PuertasBtnActionPerformed"/>
