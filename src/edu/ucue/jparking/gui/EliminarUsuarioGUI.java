@@ -116,6 +116,7 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Usuario eliminado exitosamente.", "Aviso", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarUsuarios();
+            getPadre().listarParqueaderos();
         } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }  catch(Exception ex){
