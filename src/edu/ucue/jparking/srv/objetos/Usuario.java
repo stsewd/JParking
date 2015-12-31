@@ -11,9 +11,7 @@ import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import edu.ucue.jparking.srv.objetos.registros.RegistroPagos;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -23,10 +21,9 @@ import java.util.Set;
 public abstract class Usuario extends Persona{
 
     private Calendar fechaContrato;
-    private static final int diasContrato = 30;
+    //private static final int diasContrato = 30;
     private Set<Parqueadero> parqueaderos;
     
-    //private TipoUsuario tipoUsuario;
     /**
      * 
      * @param cedula
@@ -75,9 +72,7 @@ public abstract class Usuario extends Persona{
     /**
      * @return the diasContrato
      */
-    public static int getDiasContrato() {
-        return diasContrato;
-    }
+    public abstract int getDiasContrato();
     
     /**
      *
