@@ -9,7 +9,6 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
-import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
@@ -17,8 +16,6 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,7 +33,9 @@ public class AutenticarGUI extends javax.swing.JDialog {
         PuertasCB.setEditable(false);
         CedulaTF.setEditable(false);
         cargarCampusCB();
+        idPuertaCB.setVisible(false);
         
+        this.getRootPane().setDefaultButton(AutenticarBtn);
     }
 
     /**
@@ -265,24 +264,24 @@ public class AutenticarGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 
-public void cargarCampusCB(){
-        //Cargar parqueaderos en combo box
-        CampusCB.removeAllItems();
-        CampusService campusService = new CampusService();
-        for(Campus c : campusService.getCampus()){
-            CampusCB.addItem(c.getNombre());
-        }
-}
+    public void cargarCampusCB(){
+            //Cargar parqueaderos en combo box
+            CampusCB.removeAllItems();
+            CampusService campusService = new CampusService();
+            for(Campus c : campusService.getCampus()){
+                CampusCB.addItem(c.getNombre());
+            }
+    }
 
-public void cargarPuertasCB() throws CampusNoExistenteException{
-        //Cargar parqueaderos en combo box
-        PuertasCB.removeAllItems();
-        idPuertaCB.removeAllItems();
-        String campus = (String) CampusCB.getSelectedItem();
-        PuertaService puertaService = new PuertaService();
-        for(Puerta c : puertaService.getPuertas(campus)){
-            PuertasCB.addItem(c.getUbicacion());
-            idPuertaCB.addItem(c.getId());
-        }
-}
+    public void cargarPuertasCB() throws CampusNoExistenteException{
+            //Cargar parqueaderos en combo box
+            PuertasCB.removeAllItems();
+            idPuertaCB.removeAllItems();
+            String campus = (String) CampusCB.getSelectedItem();
+            PuertaService puertaService = new PuertaService();
+            for(Puerta c : puertaService.getPuertas(campus)){
+                PuertasCB.addItem("(" + c.getId() + ") " + c.getUbicacion());
+                idPuertaCB.addItem(c.getId());
+            }
+    }
 }
