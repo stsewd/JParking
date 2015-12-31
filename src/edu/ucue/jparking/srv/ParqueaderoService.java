@@ -252,8 +252,7 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
-            UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
+        UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
     }
     
     private void agregarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
@@ -262,7 +261,6 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()+1);
     }
     
     private void eliminarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
@@ -271,7 +269,6 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
         UsuariosDAO.getInstance().fechaContrato(cedula, null);
     }
     
@@ -281,7 +278,6 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        parqueadero.setNumeroLugaresOcupados(parqueadero.getNumeroLugaresOcupados()-1);
     }
     
     

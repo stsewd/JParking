@@ -96,15 +96,9 @@ public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, 
 }
 
 public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException{
-    ParqueaderoService parqueaderoService = new ParqueaderoService();
     UsuarioService usuarioService = new UsuarioService();
-    Usuario usuario = usuarioService.get(cedula);
-    Set<Parqueadero> parqueaderos = parqueaderoService.getParqueaderos();
-    for(Parqueadero p : parqueaderos) {
-        if(p.getUsuarios().contains(cedula))
-            return true;
-    }
-    return false;
+   
+    return usuarioService.getParqueaderos(cedula).size() > 0;
 }
 
 public boolean validarCedula(String cedula) throws CedulaNoValidaException {
