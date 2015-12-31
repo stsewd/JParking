@@ -12,12 +12,13 @@ public class Puerta implements Comparable<Puerta> {
     private final String id;
     private String ubicacion;
     private boolean activa;
-    private String idCampus;
+    
+    private Campus campus;
     
 
-    public Puerta(String ubicacion, String id, String idCampus) {
+    public Puerta(String ubicacion, String id, Campus campus) {
         this.ubicacion = ubicacion;
-        this.idCampus = idCampus;
+        this.campus = campus;
         this.activa = true;
         this.id = id;
     }
@@ -46,24 +47,22 @@ public class Puerta implements Comparable<Puerta> {
     }
 
     /**
-     * @return the idCampus
+     * @return the campus
      */
-    public String getIdCampus() {
-        return idCampus;
+    public Campus getCampus() {
+        return campus;
     }
 
     /**
-     * @param idCampus the idCampus to set
+     * @param campus the campus to set
      */
-    public void setIdCampus(String idCampus) {
-        this.idCampus = idCampus;
+    public void setCampus(Campus campus) {
+        this.campus = campus;
     }
 
     @Override
     public int compareTo(Puerta o) {
         return getId().compareToIgnoreCase(o.getId());
-    }
-
-    
+    }   
     
 }

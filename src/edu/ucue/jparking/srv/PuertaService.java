@@ -12,6 +12,7 @@ import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.interfaces.PuertasDAOInterface;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ import java.util.Set;
 public class PuertaService {
     PuertasDAOInterface puertasDAO = PuertasDAO.getInstance();
     Validaciones validaciones = new Validaciones();
+    CampusService campusService = new CampusService();
     
     /**
      * 
@@ -33,7 +35,8 @@ public class PuertaService {
     public void addpuerta(String ubicacion, String id, String idCampus) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException{
         validaciones.ValidarPuerta(ubicacion, id, idCampus);
         validaciones.validarCodigo(id);
-        Puerta puerta = new Puerta(ubicacion, id, idCampus);
+        Campus campus = campusService.getCampus(idCampus);
+        Puerta puerta = new Puerta(ubicacion, id, campus);
         puertasDAO.addPuerta(idCampus, puerta);
     }
     
