@@ -192,7 +192,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             }
         });
 
-        ImprimirBtn.setText("Imprimir");
+        ImprimirBtn.setText("Exportar");
         ImprimirBtn.setEnabled(false);
         ImprimirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,6 +384,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         }catch (Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso", "Error", JOptionPane.OK_OPTION);
         }
+        
         File path = new File(FILE);
         try {
             Desktop.getDesktop().open(path);

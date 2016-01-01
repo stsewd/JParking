@@ -14,6 +14,7 @@ import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Header;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
@@ -28,19 +29,20 @@ import java.util.Calendar;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class ImpresionOrdenPagosrv {
-    
-    
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
         Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
         Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,
         Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
         Font.BOLD);
+    
+    private static Font smallBody = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+        Font.NORMAL);
 
     public void addMetaData(Document document) {
         document.addTitle("Orden de pago");
@@ -50,14 +52,13 @@ public class ImpresionOrdenPagosrv {
         document.addCreator("Lara-Santos");
     }
     
-    public void addContent(Document document,String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
+    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
     
     document.addTitle("Orden de pago del Parqueadero");
     Paragraph preface = new Paragraph();
-    // We add one empty line
-    addEmptyLine(preface, 1);
     // Lets write a big header
-    preface.add(new Paragraph("Orden de Pago", catFont));
+    preface.add(new Paragraph("UNIVERSIDAD DE CUENCA", catFont));
+    preface.add(new Paragraph("Orden de pago", subFont));
     //Anchor anchor = new Anchor("Orden  de Pago");
     //anchor.setName("First Chapter");
     OrdenPagoService ops = new OrdenPagoService();
@@ -72,26 +73,26 @@ public class ImpresionOrdenPagosrv {
     //Paragraph subPara = new Paragraph("Datos: ");
     
     //Section subCatPart = catPart.addSection(subPara);
-    addEmptyLine(preface, 2);
-    preface.add(new Paragraph("Fecha:                "+ df.format(Calendar.getInstance().getTime())));
-    preface.add(new Paragraph("Cédula:               "+ u.getCedula()));
-    preface.add(new Paragraph("Nombre:               "+ u.getNombres()+" "+u.getApellidos()));
-    preface.add(new Paragraph("Dirección:            "+ u.getDireccion()));
-    preface.add(new Paragraph("Télefono:             "+ u.getTelefono()));
-    preface.add(new Paragraph("Tipo de Usuario:      "+ u.getTipoUsuarioString()));
-    preface.add(new Paragraph("Fecha de contrato:    "+ df.format(orden.getFechaEmision().getTime())));
-    preface.add(new Paragraph("Valor a pagar:        "+ orden.getCosto()));
+    addEmptyLine(preface, 1);
+    preface.add(new Paragraph("Fecha: " + df.format(Calendar.getInstance().getTime()), smallBody));
+    preface.add(new Paragraph("Cédula: " + u.getCedula(), smallBody));
+    preface.add(new Paragraph("Nombre: " + u.getNombres()+" "+u.getApellidos(), smallBody));
+    preface.add(new Paragraph("Dirección: " + u.getDireccion(), smallBody));
+    preface.add(new Paragraph("Teléfono: " + u.getTelefono(), smallBody));
+    preface.add(new Paragraph("Tipo de Usuario: " + u.getTipoUsuarioString(), smallBody));
+    preface.add(new Paragraph("Fecha de contrato: " + df.format(orden.getFechaEmision().getTime()), smallBody));
+    preface.add(new Paragraph("Valor a pagar: " + orden.getCosto(), smallBody));
+    
     /*if(u.estaDebiendo()){
         preface.add(new Paragraph("Estado:           Debe"));
     }else{
         preface.add(new Paragraph("Estado:           Cancelado"));
     }*/
-    addEmptyLine(preface, 2);
-    preface.add(new Paragraph("Firma:      ..................................   "));
+    addEmptyLine(preface, 27);
+    preface.add(new Paragraph("Firma: .......................................", smallBody));
         addEmptyLine(preface, 1);
-    preface.add(new Paragraph("Autorizado: .................................."));    
+    preface.add(new Paragraph("Autorizado: ..................................", smallBody));    
     document.add(preface);
-
   }
 
    private static void addEmptyLine(Paragraph paragraph, int number) {

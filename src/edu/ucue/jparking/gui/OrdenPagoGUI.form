@@ -275,7 +275,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="ImprimirBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Imprimir"/>
+        <Property name="text" type="java.lang.String" value="Exportar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
