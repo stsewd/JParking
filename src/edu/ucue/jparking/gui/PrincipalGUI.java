@@ -152,7 +152,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         int n = 1;
         for(Parqueadero p : parqueaderos)
-            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresOcupados()});
+            model.addRow(new Object[]{n++, p.getId(), p.getUbicacion(), p.getNumeroLugares(), p.getNumeroLugaresOcupados(), p.isActivo()});
     }
 
     /**
@@ -246,14 +246,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Id", "Ubicación", "Espacios", "Espacios ocupados"
+                "#", "Id", "Ubicación", "Espacios", "Espacios ocupados", "Activo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -271,6 +271,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
             TablaParqueaderos.getColumnModel().getColumn(0).setMinWidth(30);
             TablaParqueaderos.getColumnModel().getColumn(0).setPreferredWidth(30);
             TablaParqueaderos.getColumnModel().getColumn(0).setMaxWidth(30);
+            TablaParqueaderos.getColumnModel().getColumn(5).setMinWidth(60);
+            TablaParqueaderos.getColumnModel().getColumn(5).setPreferredWidth(60);
+            TablaParqueaderos.getColumnModel().getColumn(5).setMaxWidth(60);
         }
 
         jToolBar3.setFloatable(false);
