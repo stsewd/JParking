@@ -5,7 +5,12 @@
  */
 package edu.ucue.jparking.gui;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.ImpresionOrdenPagosrv;
 import edu.ucue.jparking.srv.OrdenPagoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -14,10 +19,17 @@ import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -64,6 +76,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         fechaContratoTF = new javax.swing.JTextField();
+        ImprimirBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Orden de Pago");
@@ -179,6 +192,14 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             }
         });
 
+        ImprimirBtn.setText("Imprimir");
+        ImprimirBtn.setEnabled(false);
+        ImprimirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,7 +235,9 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(PagarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ImprimirBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CerrarBtn)))
                 .addGap(12, 12, 12))
         );
@@ -262,7 +285,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PagarBtn)
-                    .addComponent(CerrarBtn))
+                    .addComponent(CerrarBtn)
+                    .addComponent(ImprimirBtn))
                 .addContainerGap())
         );
 
@@ -344,6 +368,32 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_CedulaTFKeyTyped
 
+    private void ImprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBtnActionPerformed
+        // TODO add your handling code here:
+        ImpresionOrdenPagosrv impresionOrdenPagosrv = new  ImpresionOrdenPagosrv();
+        Document document = new Document();
+        String FILE = "archivos/Orden de Pago.pdf";
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            document.open();
+            impresionOrdenPagosrv.addMetaData(document);
+            impresionOrdenPagosrv.addContent(document, CedulaTF.getText());
+            document.close();
+        } catch (IllegalArgumentException | DocumentException | FileNotFoundException | UsuarioNoExistenteException | CedulaNoValidaException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso", "Error", JOptionPane.OK_OPTION);
+        }
+        File path = new File(FILE);
+        try {
+            Desktop.getDesktop().open(path);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso", "Error", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_ImprimirBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +443,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JButton CerrarBtn;
     private javax.swing.JTextField DireccionTF;
     private javax.swing.JTextField FechaTF;
+    private javax.swing.JButton ImprimirBtn;
     private javax.swing.JTextField NombreTF;
     private javax.swing.JButton PagarBtn;
     private javax.swing.JTextField TelefonoTF;
@@ -430,6 +481,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         fechaContratoTF.setEnabled(true);
         ValorTF.setEnabled(true);
         PagarBtn.setEnabled(true);
+        ImprimirBtn.setEnabled(true);
         
         NombreTF.setText(u.getNombres());
         ApellidoTF.setText(u.getApellidos());
