@@ -32,16 +32,16 @@ import java.util.Calendar;
  * @author Franklin Lara
  */
 public class ImpresionOrdenPagosrv {
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+    private static Font catFont = new Font(Font.FontFamily.HELVETICA, 14,
         Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+    private static Font redFont = new Font(Font.FontFamily.HELVETICA, 12,
         Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,
+    private static Font subFont = new Font(Font.FontFamily.HELVETICA, 14,
         Font.BOLD);
-    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+    private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 12,
         Font.BOLD);
     
-    private static Font smallBody = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+    private static Font smallBody = new Font(Font.FontFamily.HELVETICA, 11,
         Font.NORMAL);
 
     public void addMetaData(Document document) {
@@ -74,24 +74,23 @@ public class ImpresionOrdenPagosrv {
     
     //Section subCatPart = catPart.addSection(subPara);
     addEmptyLine(preface, 1);
-    preface.add(new Paragraph("Fecha: " + df.format(Calendar.getInstance().getTime()), smallBody));
-    preface.add(new Paragraph("Cédula: " + u.getCedula(), smallBody));
-    preface.add(new Paragraph("Nombre: " + u.getNombres()+" "+u.getApellidos(), smallBody));
-    preface.add(new Paragraph("Dirección: " + u.getDireccion(), smallBody));
-    preface.add(new Paragraph("Teléfono: " + u.getTelefono(), smallBody));
-    preface.add(new Paragraph("Tipo de Usuario: " + u.getTipoUsuarioString(), smallBody));
-    preface.add(new Paragraph("Fecha de contrato: " + df.format(orden.getFechaEmision().getTime()), smallBody));
-    preface.add(new Paragraph("Valor a pagar: " + orden.getCosto(), smallBody));
-    
+    preface.add(new Paragraph(String.format("%-20s%s", "Fecha:", df.format(Calendar.getInstance().getTime())), smallBody));
+    preface.add(new Paragraph(String.format("%-20s%s", "Cédula:", u.getCedula()), smallBody));
+    preface.add(new Paragraph(String.format("%-20s%s %s", "Nombre:", u.getNombres(), u.getApellidos()), smallBody));
+    preface.add(new Paragraph(String.format("%-20s%s", "Dirección:", u.getDireccion()), smallBody));
+    preface.add(new Paragraph(String.format("%-20s%s", "Teléfono:", u.getTelefono()), smallBody));
+    preface.add(new Paragraph(String.format("%-20s%s", "Tipo de Usuario:", u.getTipoUsuarioString()), smallBody));
+    preface.add(new Paragraph(String.format("%-20s%s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
+    preface.add(new Paragraph(String.format("%-20s$%.2f", "Valor a pagar:", orden.getCosto()), smallBody));
     /*if(u.estaDebiendo()){
         preface.add(new Paragraph("Estado:           Debe"));
     }else{
         preface.add(new Paragraph("Estado:           Cancelado"));
     }*/
     addEmptyLine(preface, 27);
-    preface.add(new Paragraph("Firma: .......................................", smallBody));
-        addEmptyLine(preface, 1);
-    preface.add(new Paragraph("Autorizado: ..................................", smallBody));    
+    preface.add(new Paragraph(String.format("%s _______________________________", "Firma:"), smallBody));
+    addEmptyLine(preface, 1);
+    preface.add(new Paragraph(String.format("%s __________________________", "Autorizado:"), smallBody)); 
     document.add(preface);
   }
 

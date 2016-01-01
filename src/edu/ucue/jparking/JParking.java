@@ -124,7 +124,7 @@ public class JParking {
             System.out.println(ex.getMessage());
         }
         //Fin de tests
-        
+
         pgui.setVisible(true);
     }
 }
