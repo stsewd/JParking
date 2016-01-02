@@ -12,12 +12,8 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
-import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.ParqueaderoService;
-import edu.ucue.jparking.srv.UsuarioService;
-import edu.ucue.jparking.srv.Validaciones;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -80,26 +76,24 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
     }
     
-    public void listarUsuarios(){        
-        UsuarioService usuarioService = new UsuarioService();
-        
+    public void listarUsuarios(){                
         String tipoUsuario = (String) TipoUsuarioCB.getSelectedItem();
         Set<Usuario> usuarios = null;
         switch(tipoUsuario){
             case "Todos": {
-                usuarios = usuarioService.getLista();
+                usuarios = jp.getLista();
                 break;
             }
             case "Estudiante":{
-                usuarios = usuarioService.getLista(TipoUsuario.ESTUDIANTE);
+                usuarios = jp.getLista(TipoUsuario.ESTUDIANTE);
                 break;
             }
             case "Docente": {
-                usuarios = usuarioService.getLista(TipoUsuario.DOCENTE);
+                usuarios = jp.getLista(TipoUsuario.DOCENTE);
                 break;
             }
             case "Empleado": {
-                usuarios = usuarioService.getLista(TipoUsuario.EMPLEADO);
+                usuarios = jp.getLista(TipoUsuario.EMPLEADO);
                 break;
             }
         }

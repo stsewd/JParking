@@ -11,7 +11,6 @@ import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
@@ -404,7 +403,6 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             return;
         }
         String idPuerta = (String) TablaPuertasEntrada.getValueAt(row, 1);
-        ParqueaderoService jp = new ParqueaderoService();
         try {
             jp.delPuertaEntrada(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);

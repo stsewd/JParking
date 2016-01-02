@@ -5,15 +5,10 @@
  */
 package edu.ucue.jparking.gui;
 
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.srv.ImpresionOrdenPagosrv;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.OrdenPagoService;
-import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
@@ -26,13 +21,10 @@ import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -450,10 +442,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
-        OrdenPagoService ordenPagoService = new OrdenPagoService();
-        UsuarioService usuarioService = new UsuarioService();
-        OrdenPago  ordenPago = ordenPagoService.getOrdenPago(cedula);
-        Usuario u = usuarioService.get(cedula);
+        OrdenPago  ordenPago = jp.getOrdenPago(cedula);
+        Usuario u = jp.get(cedula);
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         

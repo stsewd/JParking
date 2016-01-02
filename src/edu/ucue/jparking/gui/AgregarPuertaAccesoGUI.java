@@ -12,8 +12,6 @@ import edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.ParqueaderoService;
-import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;

@@ -5,8 +5,6 @@
  */
 package edu.ucue.jparking.gui;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author stsewd

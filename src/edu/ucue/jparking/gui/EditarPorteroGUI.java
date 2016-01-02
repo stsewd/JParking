@@ -9,7 +9,6 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Portero;
@@ -18,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class EditarPorteroGUI extends javax.swing.JDialog {
     private AdministarPorterosGUI padre;

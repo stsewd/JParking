@@ -51,6 +51,8 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
@@ -333,12 +335,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addMetaData(Document document) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public File impresion(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException, DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
+        return impresionOrdenPagosrv.impresion(cedula);
     }
-
-    @Override
-    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, UsuarioNoRegistradoEnUnParqueaderoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
 }

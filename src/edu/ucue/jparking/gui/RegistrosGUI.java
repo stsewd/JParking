@@ -11,7 +11,6 @@ import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
-import edu.ucue.jparking.srv.RegistroService;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.text.DateFormat;

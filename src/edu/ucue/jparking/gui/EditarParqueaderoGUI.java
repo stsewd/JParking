@@ -11,7 +11,6 @@ import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
-import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import java.awt.event.KeyEvent;
@@ -19,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class EditarParqueaderoGUI extends javax.swing.JDialog {
 

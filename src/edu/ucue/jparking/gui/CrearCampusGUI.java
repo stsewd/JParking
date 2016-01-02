@@ -6,7 +6,6 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
-import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import javax.swing.JOptionPane;

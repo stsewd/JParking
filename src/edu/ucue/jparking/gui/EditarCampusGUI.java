@@ -6,7 +6,6 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
-import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class EditarCampusGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
