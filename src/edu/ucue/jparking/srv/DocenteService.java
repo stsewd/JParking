@@ -18,23 +18,13 @@ import java.util.Set;
 
 /**
  *
- * @author ESTUDIANTE
+ * @author Franklin Lara
  */
 public class DocenteService {
     
     Validaciones validar = new Validaciones();
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     
-    /**
-     * 
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param direccion
-     * @param telefono
-     * @throws UsuarioYaExistenteException
-     * @throws CedulaNoValidaException 
-     */
     public void add(String cedula, String nombre, String apellido, String direccion, String telefono) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException {
         
         validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
@@ -44,53 +34,22 @@ public class DocenteService {
            
     }
 
-    /**
-     * 
-     * @param cedula
-     * @throws UsuarioNoExistenteException
-     * @throws CedulaNoValidaException 
-     */
     public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, CampusNoExistenteException {
         validar.validarCedula(cedula);
         usuariosDAO.delUsuario(cedula);
     }
-    
-    /**
-     * 
-     * @param cedula
-     * @return
-     * @throws UsuarioNoExistenteException
-     * @throws CedulaNoValidaException 
-     */
-    
+     
     public Docente get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
         validar.validarCedula(cedula);
         return (Docente) usuariosDAO.getUsuario(cedula);
     }
-    
-    /**
-     * 
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param direccion
-     * @param telefono
-     * @param estado
-     * @throws CedulaNoValidaException
-     * @throws UsuarioNoExistenteException 
-     */
+
     public void mod(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
-        usuariosDAO.modUsuario(cedula, nombre, apellido,direccion,telefono, estado);
-        
-        
+        usuariosDAO.modUsuario(cedula, nombre, apellido,direccion,telefono, estado);        
     }
 
-    /**
-     * 
-     * @return 
-     */
     public Set getLista() {
         return (Set) usuariosDAO.getUsuarios();
     }

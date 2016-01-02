@@ -3,6 +3,9 @@
  */
 package edu.ucue.jparking.srv;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -48,6 +51,7 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -322,6 +326,26 @@ public class JP implements JPInterface {
     @Override
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException {
         usuarioService.autenticarUsuario(nombreCampus, idPuerta, cedula);
+    }
+
+    @Override
+    public void addMetaData(Document document) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, UsuarioNoRegistradoEnUnParqueaderoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, CampusInactivoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
