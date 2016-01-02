@@ -61,6 +61,7 @@ public class AcercaDeGUI extends javax.swing.JDialog {
         jTextArea1.setRows(5);
         jTextArea1.setTabSize(4);
         jTextArea1.setText("Franklin Lara\nlarafranklin@outlook.com\n\nSantos Gallegos\nsantos_g@outlook.com");
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane1.setViewportView(jTextArea1);
 

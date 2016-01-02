@@ -14,11 +14,12 @@ import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import java.util.Calendar;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class OrdenPagoService {
     
@@ -30,8 +31,11 @@ public class OrdenPagoService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Calendar fechaActual= Calendar.getInstance();
     Validaciones validaciones = new Validaciones();
+
     
-    public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException{
+    
+    public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException{
+
         validaciones.validarCedula(cedula);
         OrdenPago ordenPago = usuariosDAO.getUsuario(cedula).generarOrdenPago();
         //Registro

@@ -18,6 +18,7 @@ import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -51,7 +52,7 @@ public class ImpresionOrdenPagosrv {
         document.addCreator("Lara-Santos");
     }
     
-    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
+    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, UsuarioNoRegistradoEnUnParqueaderoException {
     
         document.addTitle("Orden de pago del Parqueadero");
         Paragraph preface = new Paragraph();
@@ -70,7 +71,7 @@ public class ImpresionOrdenPagosrv {
         UsuarioService service = new UsuarioService();
         Usuario u = service.get(cedula);
         OrdenPago orden = ops.getOrdenPago(cedula);
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         preface.add(tituloUniversidad);
         addEmptyLine(preface, 1);
@@ -84,7 +85,7 @@ public class ImpresionOrdenPagosrv {
         preface.add(new Paragraph(String.format("%s %s", "Dirección:", u.getDireccion()), smallBody));
         preface.add(new Paragraph(String.format("%s %s", "Teléfono:", u.getTelefono()), smallBody));
         preface.add(new Paragraph(String.format("%s %s", "Tipo de Usuario:", u.getTipoUsuarioString()), smallBody));
-        preface.add(new Paragraph(String.format("%s %s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
+        //preface.add(new Paragraph(String.format("%s %s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
         preface.add(new Paragraph(String.format("%s $%.2f", "Valor a pagar:", orden.getCosto()), smallBody));
         /*if(u.estaDebiendo()){
             preface.add(new Paragraph("Estado:           Debe"));

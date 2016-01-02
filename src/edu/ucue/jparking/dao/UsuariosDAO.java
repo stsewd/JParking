@@ -102,7 +102,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         return usuarios;
     }
     
-    public void fechaContrato(String cedula, Calendar calendar) throws UsuarioNoExistenteException{
+    public void setFechaContrato(String cedula, Calendar calendar) throws UsuarioNoExistenteException{
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
         Usuario usuario = usuarios.get(cedula);

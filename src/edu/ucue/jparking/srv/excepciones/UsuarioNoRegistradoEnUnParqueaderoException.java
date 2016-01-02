@@ -5,16 +5,14 @@
  */
 package edu.ucue.jparking.srv.excepciones;
 
-import java.util.Calendar;
-
 /**
  *
  * @author Santos Gallegos
  */
-public class FueraDelDiaDePagoException extends Exception {
+public class UsuarioNoRegistradoEnUnParqueaderoException extends Exception {
 
-    public FueraDelDiaDePagoException(int diasContrato) {
-        super("Aún no puede cancelar su pago, puede hacerlo luego de " + (diasContrato - 5) + " días del último pago.");
+    public UsuarioNoRegistradoEnUnParqueaderoException(String cedula) {
+        super("El usuario de cedula " + cedula + " no se encuentra registrado en ningun parqueadero.");
     }
     
 }

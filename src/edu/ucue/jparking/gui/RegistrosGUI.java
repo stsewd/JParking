@@ -64,7 +64,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
         for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
         
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");     
         int n = 0;
         for(Registro r : registros)
             model.addRow(new Object[]{n++, df.format(r.getFecha().getTime()),
