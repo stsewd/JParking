@@ -52,7 +52,11 @@ public class ImpresionOrdenPagosrv {
         document.addCreator("Lara-Santos");
     }
     
-    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, UsuarioNoRegistradoEnUnParqueaderoException {
+    public void addContent(Document document, String cedula) 
+            throws DocumentException, UsuarioNoExistenteException, 
+            CedulaNoValidaException, ContratoNoEstablecidoException,
+            FueraDelDiaDePagoException, BadElementException, IOException, 
+            UsuarioNoRegistradoEnUnParqueaderoException {
     
         document.addTitle("Orden de pago del Parqueadero");
         Paragraph preface = new Paragraph();

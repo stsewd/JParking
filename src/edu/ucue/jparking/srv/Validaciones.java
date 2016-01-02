@@ -35,7 +35,9 @@ public class Validaciones {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void validarFecha(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+    public static void validarFecha(Calendar fechaInicio, Calendar fechaFinal) 
+            throws FechaInicialMayorAFechaFinalException, 
+            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
         if(fechaInicio == null)
             throw new IllegalArgumentException("Fecha inicial no valida.");
         if(fechaFinal == null)
@@ -56,7 +58,9 @@ public class Validaciones {
             throw new FechaFinalMenorAFechaInicialException(fechaInicio, fechaFinal);
     }
 
-    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException{
+    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) 
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException, 
+            ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException{
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero==null)
@@ -85,7 +89,8 @@ public class Validaciones {
             throw new UsuarioInactivoException();
     }
 
-    public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, CampusInactivoException{
+    public void ComprobarCampus(String idCampus) 
+            throws CampusNoExistenteException, CampusInactivoException{
         CampusService campusService = new CampusService();
         Campus campus = campusService.getCampus(idCampus);
         if(campus==null)

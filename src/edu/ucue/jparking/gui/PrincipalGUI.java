@@ -777,9 +777,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        Validaciones validaciones = new Validaciones();
         try {
-            validaciones.ComprobarCampus(campus);
+            jp.ComprobarCampus(campus);
             EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
             eliminarParqueaderoGUI.cargarDatos(idParqueadero, campus);
             eliminarParqueaderoGUI.setLocationRelativeTo(this);

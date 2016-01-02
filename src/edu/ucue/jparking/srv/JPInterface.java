@@ -5,6 +5,10 @@
  */
 package edu.ucue.jparking.srv;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -42,6 +46,7 @@ import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -49,6 +54,7 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -645,6 +651,51 @@ public interface JPInterface {
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
             AccesoNoAutorizadoException, CampusNoExistenteException;
+    /**
+     * agrega los datos principales del archivo pdf
+     * @param document 
+     */
+    public void addMetaData(Document document);
     
+    /**
+     * añade la orden de pago al pdf
+     * @param document
+     * @param cedula
+     * @throws DocumentException
+     * @throws UsuarioNoExistenteException
+     * @throws CedulaNoValidaException
+     * @throws ContratoNoEstablecidoException
+     * @throws FueraDelDiaDePagoException
+     * @throws BadElementException
+     * @throws IOException
+     * @throws UsuarioNoRegistradoEnUnParqueaderoException 
+     */
+    public void addContent(Document document, String cedula) 
+            throws DocumentException, UsuarioNoExistenteException, 
+            CedulaNoValidaException, ContratoNoEstablecidoException,
+            FueraDelDiaDePagoException, BadElementException, IOException, 
+            UsuarioNoRegistradoEnUnParqueaderoException;
     
+    /**
+     * Compr
+     * @param nombreCampus
+     * @param idParqueadero
+     * @throws ParqueaderoNoExistenteException
+     * @throws CodigoNoValidoException
+     * @throws ParquaderoInactivoException
+     * @throws CampusNoExistenteException
+     * @throws CampusInactivoException 
+     */
+    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) 
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException, 
+            ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException;
+    
+    /**
+     * comprueba el estado e un campus
+     * @param idCampus
+     * @throws CampusNoExistenteException
+     * @throws CampusInactivoException 
+     */
+    public void ComprobarCampus(String idCampus) 
+            throws CampusNoExistenteException, CampusInactivoException;
 }
