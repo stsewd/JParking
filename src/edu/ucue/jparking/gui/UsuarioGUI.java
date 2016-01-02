@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -55,6 +56,9 @@ public class UsuarioGUI extends javax.swing.JDialog {
         fechaContratoTF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         activoCheckB = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ParqueaderosTA = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Informacion del Usuario");
@@ -115,6 +119,16 @@ public class UsuarioGUI extends javax.swing.JDialog {
         activoCheckB.setText("Activo");
         activoCheckB.setEnabled(false);
 
+        jLabel9.setText("Parqueaderos registrados:");
+
+        ParqueaderosTA.setEditable(false);
+        ParqueaderosTA.setColumns(20);
+        ParqueaderosTA.setRows(5);
+        ParqueaderosTA.setTabSize(4);
+        ParqueaderosTA.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        ParqueaderosTA.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jScrollPane1.setViewportView(ParqueaderosTA);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,6 +136,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(349, 349, 349)
@@ -147,7 +162,8 @@ public class UsuarioGUI extends javax.swing.JDialog {
                             .addComponent(fechaContratoTF)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(activoCheckB)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel9))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -185,6 +201,10 @@ public class UsuarioGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(activoCheckB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,6 +280,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
     private javax.swing.JButton CerrarBtn;
     private javax.swing.JTextField DireccionTF;
     private javax.swing.JTextField NombresTF;
+    private javax.swing.JTextArea ParqueaderosTA;
     private javax.swing.JTextField TelefonoTF;
     private javax.swing.JTextField TipoUsuarioTF;
     private javax.swing.JCheckBox activoCheckB;
@@ -272,6 +293,8 @@ public class UsuarioGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
@@ -294,5 +317,12 @@ public class UsuarioGUI extends javax.swing.JDialog {
         }
         
         activoCheckB.setSelected(u.isActivo());
+        String parqueaderosList = "";
+        for(Parqueadero p :  usuarioService.getParqueaderos(cedula)){
+            parqueaderosList += "Campus: " + p.getCampus().getNombre() + "\n" +
+                    "Parqueadero: (" + p.getId() + ") " + p.getUbicacion() + "\n\n";
+        }
+        ParqueaderosTA.setText(parqueaderosList);
+        
     }
 }
