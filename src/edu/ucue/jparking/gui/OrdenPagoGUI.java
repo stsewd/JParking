@@ -363,7 +363,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
 
     private void ImprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBtnActionPerformed
         // TODO add your handling code here:
-        ImpresionOrdenPagosrv impresionOrdenPagosrv = new  ImpresionOrdenPagosrv();
         Document document = new Document();
         String directorioStr = "";
         try {
@@ -380,8 +379,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         try {
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
-            impresionOrdenPagosrv.addMetaData(document);
-            impresionOrdenPagosrv.addContent(document, CedulaTF.getText());
+            jp.addMetaData(document);
+            jp.addContent(document, CedulaTF.getText());
             document.close();
             Desktop.getDesktop().open(FILE);
         } catch (IllegalArgumentException | DocumentException | FileNotFoundException | UsuarioNoExistenteException | CedulaNoValidaException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
