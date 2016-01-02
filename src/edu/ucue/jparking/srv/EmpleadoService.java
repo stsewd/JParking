@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  *
- * @author ESTUDIANTE
+ * @author Franklin Lara
  */
 public class EmpleadoService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
