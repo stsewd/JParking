@@ -165,15 +165,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         TipoUsuarioCB = new javax.swing.JComboBox();
         jToolBar1 = new javax.swing.JToolBar();
-        jToolBar2 = new javax.swing.JToolBar();
         VerBtn = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
+        jSeparator8 = new javax.swing.JToolBar.Separator();
         CrearUsuarioBtn = new javax.swing.JButton();
         EliminarUsuarioBtn = new javax.swing.JButton();
         ModificarUsuarioBtn = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         CopyCedulaBtn = new javax.swing.JButton();
-        jSeparator8 = new javax.swing.JToolBar.Separator();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         AgregarBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
@@ -335,10 +334,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jToolBar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -408,9 +406,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jToolBar2.setFloatable(false);
-        jToolBar2.setRollover(true);
-
         VerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/more16.png"))); // NOI18N
         VerBtn.setToolTipText("Ver usuario");
         VerBtn.setFocusable(false);
@@ -421,8 +416,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 VerBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(VerBtn);
-        jToolBar2.add(jSeparator2);
+        jToolBar1.add(VerBtn);
+        jToolBar1.add(jSeparator8);
 
         CrearUsuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/add139.png"))); // NOI18N
         CrearUsuarioBtn.setToolTipText("Crear nuevo usuario");
@@ -434,7 +429,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 CrearUsuarioBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(CrearUsuarioBtn);
+        jToolBar1.add(CrearUsuarioBtn);
 
         EliminarUsuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/close7.png"))); // NOI18N
         EliminarUsuarioBtn.setToolTipText("Eliminar usuario");
@@ -446,7 +441,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 EliminarUsuarioBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(EliminarUsuarioBtn);
+        jToolBar1.add(EliminarUsuarioBtn);
 
         ModificarUsuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/pencil41.png"))); // NOI18N
         ModificarUsuarioBtn.setToolTipText("Modificar usuario");
@@ -458,8 +453,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 ModificarUsuarioBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(ModificarUsuarioBtn);
-        jToolBar2.add(jSeparator3);
+        jToolBar1.add(ModificarUsuarioBtn);
+        jToolBar1.add(jSeparator3);
 
         CopyCedulaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/copy12.png"))); // NOI18N
         CopyCedulaBtn.setToolTipText("Copiar cédula de usuario al portapepeles");
@@ -471,8 +466,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 CopyCedulaBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(CopyCedulaBtn);
-        jToolBar2.add(jSeparator8);
+        jToolBar1.add(CopyCedulaBtn);
+        jToolBar1.add(jSeparator2);
 
         AgregarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/keyboard53.png"))); // NOI18N
         AgregarBtn.setToolTipText("Agregar usuario a parqueadero");
@@ -484,7 +479,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 AgregarBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(AgregarBtn);
+        jToolBar1.add(AgregarBtn);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -495,14 +490,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -515,9 +507,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -828,39 +818,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         editarUsuarioGUI.setLocationRelativeTo(this);
         editarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
-
-    private void CrearUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioBtnActionPerformed
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, rootPaneCheckingEnabled);
-        crearUsuarioGUI.setLocationRelativeTo(this);
-        crearUsuarioGUI.setVisible(true);
-    }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
     
-    private void ModificarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioBtnActionPerformed
-        int row = TablaUsuarios.getSelectedRow();
-        if(row < 0){
-            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
-            return;
-        }
-        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
-        
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, rootPaneCheckingEnabled);
-        editarUsuarioGUI.setLocationRelativeTo(this);
-        
-        try {
-            editarUsuarioGUI.cargarDatos(cedula);
-            editarUsuarioGUI.habilitarCampos();
-            editarUsuarioGUI.setVisible(true);
-        } catch (IllegalArgumentException | UsuarioNoExistenteException | CedulaNoValidaException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
-        }
-    }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
-
-    private void TipoUsuarioCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioCBActionPerformed
-        listarUsuarios();
-    }//GEN-LAST:event_TipoUsuarioCBActionPerformed
-
     private void ListarRegistrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarRegistrosMenuItemActionPerformed
         RegistrosGUI registrosGUI = new RegistrosGUI(this, true);
         registrosGUI.setLocationRelativeTo(this);
@@ -874,20 +832,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CampusCBActionPerformed
-
-    private void EliminarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioBtnActionPerformed
-        // TODO add your handling code here:
-        int row = TablaUsuarios.getSelectedRow();
-        if(row < 0){
-            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
-            return;
-        }
-        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
-        EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, rootPaneCheckingEnabled);
-        eliminarUsuarioGUI.cargarDatos(cedula);
-        eliminarUsuarioGUI.setLocationRelativeTo(this);
-        eliminarUsuarioGUI.setVisible(true);
-    }//GEN-LAST:event_EliminarUsuarioBtnActionPerformed
 
     private void SalirItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirItemActionPerformed
         System.exit(0);
@@ -999,29 +943,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
 
-    private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
-        // TODO add your handling code here:
-        int row = TablaUsuarios.getSelectedRow();
-        if(row < 0){
-            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
-            return;
-        }
-        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
-        UsuarioGUI usuarioGUI = new UsuarioGUI(this, true);
-        
-        try {
-            usuarioGUI.cargarDatos(cedula);
-            usuarioGUI.setLocationRelativeTo(this);
-            usuarioGUI.setVisible(true);
-        } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
-        }
-        
-        
-    }//GEN-LAST:event_VerBtnActionPerformed
-
     private void PuertasAccesoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasAccesoItemActionPerformed
         // TODO add your handling code here:
         puertasAccesoParqueadero();
@@ -1097,6 +1018,26 @@ public class PrincipalGUI extends javax.swing.JFrame {
         usuariosParqueadero();
     }//GEN-LAST:event_UsuariosParqBtnActionPerformed
 
+    private void AutenticacionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutenticacionItemActionPerformed
+        // TODO add your handling code here:
+        AutenticarGUI autenticarGUI = new AutenticarGUI(this, true);
+        autenticarGUI.setLocationRelativeTo(this);
+        autenticarGUI.setVisible(true);
+    }//GEN-LAST:event_AutenticacionItemActionPerformed
+
+    private void CopyIDParqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyIDParqBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        StringSelection stringSelection = new StringSelection(idParqueadero);
+        Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clpbrd.setContents(stringSelection, null);
+    }//GEN-LAST:event_CopyIDParqBtnActionPerformed
+
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
         // TODO add your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
@@ -1105,19 +1046,18 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        
+
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        
+
         row = TablaUsuarios.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
-        
+
         ParqueaderoService parqueaderoService = new ParqueaderoService();
-        
-        
+
         try {
             parqueaderoService.addUsuario(campus, idParqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "Usuario " + cedula + " agregado a paqueadero " + idParqueadero + ".", "Mensaje", JOptionPane.OK_OPTION);
@@ -1128,13 +1068,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed
-
-    private void AutenticacionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutenticacionItemActionPerformed
-        // TODO add your handling code here:
-        AutenticarGUI autenticarGUI = new AutenticarGUI(this, true);
-        autenticarGUI.setLocationRelativeTo(this);
-        autenticarGUI.setVisible(true);
-    }//GEN-LAST:event_AutenticacionItemActionPerformed
 
     private void CopyCedulaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyCedulaBtnActionPerformed
         // TODO add your handling code here:
@@ -1149,18 +1082,73 @@ public class PrincipalGUI extends javax.swing.JFrame {
         clpbrd.setContents(stringSelection, null);
     }//GEN-LAST:event_CopyCedulaBtnActionPerformed
 
-    private void CopyIDParqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyIDParqBtnActionPerformed
-        // TODO add your handling code here:
-        int row = TablaParqueaderos.getSelectedRow();
+    private void ModificarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioBtnActionPerformed
+        int row = TablaUsuarios.getSelectedRow();
         if(row < 0){
-            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        StringSelection stringSelection = new StringSelection(idParqueadero);
-        Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clpbrd.setContents(stringSelection, null);
-    }//GEN-LAST:event_CopyIDParqBtnActionPerformed
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, rootPaneCheckingEnabled);
+        editarUsuarioGUI.setLocationRelativeTo(this);
+
+        try {
+            editarUsuarioGUI.cargarDatos(cedula);
+            editarUsuarioGUI.habilitarCampos();
+            editarUsuarioGUI.setVisible(true);
+        } catch (IllegalArgumentException | UsuarioNoExistenteException | CedulaNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
+
+    private void EliminarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, rootPaneCheckingEnabled);
+        eliminarUsuarioGUI.cargarDatos(cedula);
+        eliminarUsuarioGUI.setLocationRelativeTo(this);
+        eliminarUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_EliminarUsuarioBtnActionPerformed
+
+    private void CrearUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioBtnActionPerformed
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, rootPaneCheckingEnabled);
+        crearUsuarioGUI.setLocationRelativeTo(this);
+        crearUsuarioGUI.setVisible(true);
+    }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
+
+    private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        UsuarioGUI usuarioGUI = new UsuarioGUI(this, true);
+
+        try {
+            usuarioGUI.cargarDatos(cedula);
+            usuarioGUI.setLocationRelativeTo(this);
+            usuarioGUI.setVisible(true);
+        } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
+        }
+
+    }//GEN-LAST:event_VerBtnActionPerformed
+
+    private void TipoUsuarioCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioCBActionPerformed
+        listarUsuarios();
+    }//GEN-LAST:event_TipoUsuarioCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1259,7 +1247,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
     // End of variables declaration//GEN-END:variables
 }

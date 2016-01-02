@@ -312,13 +312,12 @@
                                   <Component id="CampusCB" min="-2" pref="200" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" pref="441" max="32767" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jToolBar3" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jToolBar3" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -534,17 +533,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="TipoUsuarioCB" min="-2" pref="200" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jToolBar1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="TipoUsuarioCB" min="-2" pref="200" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jToolBar2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jToolBar1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -561,10 +555,7 @@
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" pref="236" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jToolBar2" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -649,14 +640,6 @@
                   </Properties>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
-                </Container>
-                <Container class="javax.swing.JToolBar" name="jToolBar2">
-                  <Properties>
-                    <Property name="floatable" type="boolean" value="false"/>
-                    <Property name="rollover" type="boolean" value="true"/>
-                  </Properties>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="VerBtn">
                       <Properties>
@@ -672,7 +655,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VerBtnActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+                    <Component class="javax.swing.JToolBar$Separator" name="jSeparator8">
                     </Component>
                     <Component class="javax.swing.JButton" name="CrearUsuarioBtn">
                       <Properties>
@@ -732,7 +715,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CopyCedulaBtnActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToolBar$Separator" name="jSeparator8">
+                    <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
                     </Component>
                     <Component class="javax.swing.JButton" name="AgregarBtn">
                       <Properties>
