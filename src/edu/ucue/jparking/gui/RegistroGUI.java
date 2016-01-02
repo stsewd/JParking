@@ -342,7 +342,7 @@ public class RegistroGUI extends javax.swing.JDialog {
 
     public void cargarDatos(String idRegistro) throws RegistroNoExistenteException {
         RegistroService registroService = new RegistroService();
-        Registro r = registroService.get(idRegistro);
+        Registro r = registroService.getRegistro(idRegistro);
         DateFormat dfFecha = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat dfHora = new SimpleDateFormat("HH:mm:ss");
         

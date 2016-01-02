@@ -25,14 +25,9 @@ public class PuertaService {
     Validaciones validaciones = new Validaciones();
     CampusService campusService = new CampusService();
     
-    /**
-     * 
-     * @param ubicacion
-     * @param id
-     * @param idCampus
-     * @throws CodigoNoValidoException 
-     */
-    public void addpuerta(String ubicacion, String id, String idCampus) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException{
+    public void addpuerta(String ubicacion, String id, String idCampus)
+            throws CodigoNoValidoException, PuertaYaExistenteException, 
+            CampusNoExistenteException{
         validaciones.ValidarPuerta(ubicacion, id, idCampus);
         validaciones.validarCodigo(id);
         Campus campus = campusService.getCampus(idCampus);
@@ -40,15 +35,6 @@ public class PuertaService {
         puertasDAO.addPuerta(idCampus, puerta);
     }
     
-    /**
-     * 
-     * @param nombreCampus
-     * @param id
-     * @throws CodigoNoValidoException
-     * @throws PuertaNoExistenteException
-     * @throws CampusNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
-     */
     public void delpuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
             CampusNoExistenteException, ParqueaderoNoExistenteException
@@ -57,15 +43,6 @@ public class PuertaService {
         puertasDAO.delPuerta(nombreCampus, id);
     }
     
-    /**
-     * 
-     * @param nombreCampus
-     * @param id
-     * @return
-     * @throws CodigoNoValidoException
-     * @throws PuertaNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
-     */
     public Puerta getPuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
             CampusNoExistenteException
@@ -76,38 +53,19 @@ public class PuertaService {
         return puertasDAO.getPuerta(nombreCampus, id);
     }
     
-    /**
-     * 
-     * @param nombreCampus
-     * @param ubicacion
-     * @param id
-     * @param activo
-     * @throws CodigoNoValidoException
-     * @throws PuertaNoExistenteException
-     * @throws CampusNoExistenteException 
-     */
-    public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException{
+    public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo)
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException{
         validaciones.ValidarPuerta(ubicacion, id, nombreCampus);
         validaciones.validarCodigo(id);
         puertasDAO.modPuerta(nombreCampus, id, ubicacion, activo);
     }
     
-    /**
-     * 
-     * @param nombreCampus
-     * @return
-     * @throws CampusNoExistenteException 
-     */
     public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException{
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
         return puertasDAO.getPuertas(nombreCampus);
     }
     
-    /**
-     * 
-     * @return 
-     */
     public Set<Puerta> getPuertas(){
         return puertasDAO.getPuertas();
     }

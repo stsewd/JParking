@@ -23,14 +23,11 @@ import java.util.Set;
  * @author lara
  */
 public class RegistroUsuarioService {
-    /**
-     * 
-     * @param cedula
-     * @throws UsuarioNoExistenteException 
-     */
+
     RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
-    public void addRegistroUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    public void addRegistroUsuario(String cedula) 
+            throws UsuarioNoExistenteException, CedulaNoValidaException{
         validaciones.validarCedula(cedula);
         Persona persona = UsuariosDAO.getInstance().getUsuario(cedula);
         Registro registro = new RegistroUsuario(persona, TipoModificacion.CREACION);
