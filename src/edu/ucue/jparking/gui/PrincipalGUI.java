@@ -14,6 +14,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.Validaciones;
@@ -42,7 +43,7 @@ import java.awt.Toolkit;
  */
 public class PrincipalGUI extends javax.swing.JFrame {
 
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     /**
      * Creates new form PrincipalGUI
      */

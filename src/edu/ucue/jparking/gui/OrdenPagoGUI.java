@@ -11,6 +11,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.ImpresionOrdenPagosrv;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.OrdenPagoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -40,7 +41,7 @@ import javax.swing.JOptionPane;
  */
 public class OrdenPagoGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     /**
      * Creates new form OrdenPago
      */

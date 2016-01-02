@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Puerta;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author lara
  */
 public class EditarPuertaGUI extends javax.swing.JDialog {
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     /**
      * Creates new form EditarPuerta
      */

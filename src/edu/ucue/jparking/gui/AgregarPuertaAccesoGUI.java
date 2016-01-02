@@ -11,6 +11,7 @@ import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
@@ -26,7 +27,7 @@ import javax.swing.JOptionPane;
  */
 public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     /**
      * Creates new form AgregarPuertaAcceso
      */

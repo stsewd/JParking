@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RegistrosGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     /**
      * Creates new form RegistrosGUI
      */

@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import javax.swing.JOptionPane;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminarParqueaderoGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     /**
      * Creates new form EliminarParqueaderoGUI
      */

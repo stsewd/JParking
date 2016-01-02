@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.LugaresDeParqueoOCupadosException;
 import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesException;
 import edu.ucue.jparking.srv.ParqueaderoService;
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarParqueaderoGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = JP.getInstance();
     private PrincipalGUI padre;
     /**
      * Creates new form EditarParqueaderoGUI

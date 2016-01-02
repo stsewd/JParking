@@ -71,7 +71,7 @@ public class JP implements JPInterface {
     private static PuertaService puertaService = new PuertaService();
     private static RegistroService registroService = new RegistroService();
     
-    public JP(){}
+    private JP(){}
     
     public static JP getInstance(){
         if(instance == null)

@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -29,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     
-    JP jp  = new JP();
+    JPInterface jp = JP.getInstance();
             
     private PrincipalGUI padre;
     /**
