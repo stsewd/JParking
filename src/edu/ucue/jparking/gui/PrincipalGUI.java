@@ -778,12 +778,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
         try {
-            jp.ComprobarCampus(campus);
+            //jp.ComprobarCampus(campus);
             EliminarParqueaderoGUI eliminarParqueaderoGUI = new EliminarParqueaderoGUI(this, true);
             eliminarParqueaderoGUI.cargarDatos(idParqueadero, campus);
             eliminarParqueaderoGUI.setLocationRelativeTo(this);
             eliminarParqueaderoGUI.setVisible(true);
-        } catch (IllegalArgumentException | CampusNoExistenteException | CampusInactivoException ex) {
+        } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }  catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);

@@ -161,7 +161,8 @@ public interface JPInterface {
      */
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
-            CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException;
+            CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException,
+            UsuarioNoAgregadoException, CampusInactivoException;
 
     /**
      * estrae un parqueadero por el nombre del campus y su identificador
@@ -678,26 +679,4 @@ public interface JPInterface {
             FueraDelDiaDePagoException, BadElementException, IOException, 
             UsuarioNoRegistradoEnUnParqueaderoException;
     
-    /**
-     * Compr
-     * @param nombreCampus
-     * @param idParqueadero
-     * @throws ParqueaderoNoExistenteException
-     * @throws CodigoNoValidoException
-     * @throws ParquaderoInactivoException
-     * @throws CampusNoExistenteException
-     * @throws CampusInactivoException 
-     */
-    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) 
-            throws ParqueaderoNoExistenteException, CodigoNoValidoException, 
-            ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException;
-    
-    /**
-     * comprueba el estado e un campus
-     * @param idCampus
-     * @throws CampusNoExistenteException
-     * @throws CampusInactivoException 
-     */
-    public void ComprobarCampus(String idCampus) 
-            throws CampusNoExistenteException, CampusInactivoException;
 }

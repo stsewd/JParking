@@ -61,8 +61,10 @@ public class ParqueaderoService {
 
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
-            CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException
+            CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException,
+            CampusInactivoException
     {
+        validaciones.ComprobarCampus(nombreCampus);
         validaciones.validarCodigo(idParqueadero);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");

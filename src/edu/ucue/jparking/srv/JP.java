@@ -124,7 +124,11 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void delParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException, CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException {
+    public void delParqueadero(String nombreCampus, String idParqueadero)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException,
+            UsuarioNoAgregadoException, CampusInactivoException
+    {
         parqueaderoService.delParqueadero(nombreCampus, idParqueadero);
     }
 
@@ -336,16 +340,5 @@ public class JP implements JPInterface {
     @Override
     public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, UsuarioNoRegistradoEnUnParqueaderoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ComprobarParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ComprobarCampus(String idCampus) throws CampusNoExistenteException, CampusInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
 }
