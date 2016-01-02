@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = new JP();
     /**
      * Creates new form AdministrarPuertaAcceso
      */

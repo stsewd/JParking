@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminarPorteroGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = new JP();
     /**
      * Creates new form EliminarPorteroGUI
      */

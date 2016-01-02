@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarCampusGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
-    JP jp = new JP();
+    JPInterface jp = new JP();
     /**
      * Creates new form EditarCampus
      */

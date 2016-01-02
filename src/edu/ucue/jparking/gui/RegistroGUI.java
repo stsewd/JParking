@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.RegistroService;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.text.DateFormat;
@@ -18,7 +19,7 @@ import java.text.SimpleDateFormat;
  */
 public class RegistroGUI extends javax.swing.JDialog {
 
-    JP jp = new JP();
+    JPInterface jp = new JP();
     /**
      * Creates new form RegistroGUI
      */

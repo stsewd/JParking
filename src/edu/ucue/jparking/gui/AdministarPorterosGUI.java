@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
 import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministarPorterosGUI extends javax.swing.JDialog {
 
-    JP jp = new JP(); 
+    JPInterface jp = new JP(); 
     /**
      * Creates new form AdministarPorterosGUI
      */
