@@ -209,7 +209,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     }
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
         
-        AgregarUsuarioParqueaderoGUI aup = new AgregarUsuarioParqueaderoGUI(null, rootPaneCheckingEnabled);
+        AgregarUsuarioParqueaderoGUI aup = new AgregarUsuarioParqueaderoGUI(null, true);
         aup.setLocationRelativeTo(this);
         aup.CargarDatos(idParqueaderoLbl.getText(), CampusTF.getText());
         aup.setVisible(true);

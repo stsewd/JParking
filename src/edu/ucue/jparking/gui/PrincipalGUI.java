@@ -229,7 +229,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "#", "Id", "Ubicación", "Espacios", "Espacios ocupados", "Activo"
+                "#", "Id", "Ubicación", "Espacios", "Num. Usuarios", "Activo"
             }
         ) {
             Class[] types = new Class [] {
@@ -304,7 +304,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(jSeparator7);
 
         UsuariosParqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/user7.png"))); // NOI18N
-        UsuariosParqBtn.setToolTipText("Ver usuarios de parqueadero");
+        UsuariosParqBtn.setToolTipText("Ver usuarios de parqueadero (ctrl + u)");
         UsuariosParqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuariosParqBtnActionPerformed(evt);
@@ -313,7 +313,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(UsuariosParqBtn);
 
         PuertasBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/barriers.png"))); // NOI18N
-        PuertasBtn.setToolTipText("Ver puertas de acceso del parqueadero");
+        PuertasBtn.setToolTipText("Ver puertas de acceso del parqueadero (ctrl + p)");
         PuertasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PuertasBtnActionPerformed(evt);
@@ -674,6 +674,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jMenu1.setMnemonic('a');
         jMenu1.setText("Autenticar");
 
+        AutenticacionItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         AutenticacionItem.setText("Autenticación");
         AutenticacionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1119,7 +1120,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         try {
             parqueaderoService.addUsuario(campus, idParqueadero, cedula);
-            JOptionPane.showMessageDialog(rootPane, "Usuario agregado a paqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Usuario " + cedula + " agregado a paqueadero " + idParqueadero + ".", "Mensaje", JOptionPane.OK_OPTION);
             listarParqueaderos();
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

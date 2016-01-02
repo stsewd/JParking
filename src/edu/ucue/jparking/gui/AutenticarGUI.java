@@ -34,7 +34,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
         CedulaTF.setEditable(false);
         cargarCampusCB();
         idPuertaCB.setVisible(false);
-        
+        CedulaTF.requestFocus();
         this.getRootPane().setDefaultButton(AutenticarBtn);
     }
 

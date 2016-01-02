@@ -41,6 +41,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     public OrdenPagoGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        CedulaTF.requestFocus();
     }
 
     /**

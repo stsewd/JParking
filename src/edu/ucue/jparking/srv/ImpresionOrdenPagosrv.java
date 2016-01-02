@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -41,6 +39,9 @@ public class ImpresionOrdenPagosrv {
     
     private static Font smallBody = new Font(Font.FontFamily.HELVETICA, 11,
         Font.NORMAL);
+    
+    private static Font footPage = new Font(Font.FontFamily.HELVETICA, 8,
+        Font.NORMAL, BaseColor.GRAY);
 
     public void addMetaData(Document document) {
         document.addTitle("Orden de pago");
@@ -52,56 +53,59 @@ public class ImpresionOrdenPagosrv {
     
     public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
     
-    document.addTitle("Orden de pago del Parqueadero");
-    Paragraph preface = new Paragraph();
-    // Lets write a big header
-    Paragraph tituloUniversidad = new Paragraph("UNIVERSIDAD DE CUENCA", catFont);
-    Paragraph subtituloOrdenPago = new Paragraph("ORDEN DE PAGO", subFont);
-    tituloUniversidad.setAlignment(Paragraph.ALIGN_CENTER);
-    subtituloOrdenPago.setAlignment(Paragraph.ALIGN_CENTER);
-    Image logoU = null;
-    
-    logoU = Image.getInstance(getClass().getResource("/edu/ucue/jparking/img/logo_u.png"));
-    logoU.scalePercent(10);
-    logoU.setAlignment(Image.ALIGN_CENTER);
-    
-    OrdenPagoService ops = new OrdenPagoService();
-    UsuarioService service = new UsuarioService();
-    Usuario u = service.get(cedula);
-    OrdenPago orden = ops.getOrdenPago(cedula);
-    DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
-        
-    preface.add(tituloUniversidad);
-    addEmptyLine(preface, 1);
-    preface.add(logoU);
-    addEmptyLine(preface, 1);
-    preface.add(subtituloOrdenPago);
-    addEmptyLine(preface, 2);
-    preface.add(new Paragraph(String.format("%s %s", "Fecha:", df.format(Calendar.getInstance().getTime())), smallBody));
-    preface.add(new Paragraph(String.format("%s %s", "Cédula:", u.getCedula()), smallBody));
-    preface.add(new Paragraph(String.format("%s %s %s", "Nombre:", u.getNombres(), u.getApellidos()), smallBody));
-    preface.add(new Paragraph(String.format("%s %s", "Dirección:", u.getDireccion()), smallBody));
-    preface.add(new Paragraph(String.format("%s %s", "Teléfono:", u.getTelefono()), smallBody));
-    preface.add(new Paragraph(String.format("%s %s", "Tipo de Usuario:", u.getTipoUsuarioString()), smallBody));
-    preface.add(new Paragraph(String.format("%s %s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
-    preface.add(new Paragraph(String.format("%s $%.2f", "Valor a pagar:", orden.getCosto()), smallBody));
-    /*if(u.estaDebiendo()){
-        preface.add(new Paragraph("Estado:           Debe"));
-    }else{
-        preface.add(new Paragraph("Estado:           Cancelado"));
-    }*/
-    addEmptyLine(preface, 2);
-    preface.add(new Paragraph(String.format("%s ..........................", "Firma:"), smallBody));
-    addEmptyLine(preface, 1);
-    preface.add(new Paragraph(String.format("%s ..........................", "Autorizado:"), smallBody)); 
-    document.add(preface);
-  }
+        document.addTitle("Orden de pago del Parqueadero");
+        Paragraph preface = new Paragraph();
+        // Lets write a big header
+        Paragraph tituloUniversidad = new Paragraph("UNIVERSIDAD DE CUENCA", catFont);
+        Paragraph subtituloOrdenPago = new Paragraph("ORDEN DE PAGO", subFont);
+        tituloUniversidad.setAlignment(Paragraph.ALIGN_CENTER);
+        subtituloOrdenPago.setAlignment(Paragraph.ALIGN_CENTER);
+        Image logoU = null;
 
-  private static void addEmptyLine(Paragraph paragraph, int number) {
-    for (int i = 0; i < number; i++) {
-      paragraph.add(new Paragraph(" "));
+        logoU = Image.getInstance(getClass().getResource("/edu/ucue/jparking/img/logo_u.png"));
+        logoU.scalePercent(10);
+        logoU.setAlignment(Image.ALIGN_CENTER);
+
+        OrdenPagoService ops = new OrdenPagoService();
+        UsuarioService service = new UsuarioService();
+        Usuario u = service.get(cedula);
+        OrdenPago orden = ops.getOrdenPago(cedula);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
+
+        preface.add(tituloUniversidad);
+        addEmptyLine(preface, 1);
+        preface.add(logoU);
+        addEmptyLine(preface, 1);
+        preface.add(subtituloOrdenPago);
+        addEmptyLine(preface, 2);
+        preface.add(new Paragraph(String.format("%s %s", "Fecha:", df.format(Calendar.getInstance().getTime())), smallBody));
+        preface.add(new Paragraph(String.format("%s %s", "Cédula:", u.getCedula()), smallBody));
+        preface.add(new Paragraph(String.format("%s %s %s", "Nombre:", u.getNombres(), u.getApellidos()), smallBody));
+        preface.add(new Paragraph(String.format("%s %s", "Dirección:", u.getDireccion()), smallBody));
+        preface.add(new Paragraph(String.format("%s %s", "Teléfono:", u.getTelefono()), smallBody));
+        preface.add(new Paragraph(String.format("%s %s", "Tipo de Usuario:", u.getTipoUsuarioString()), smallBody));
+        preface.add(new Paragraph(String.format("%s %s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
+        preface.add(new Paragraph(String.format("%s $%.2f", "Valor a pagar:", orden.getCosto()), smallBody));
+        /*if(u.estaDebiendo()){
+            preface.add(new Paragraph("Estado:           Debe"));
+        }else{
+            preface.add(new Paragraph("Estado:           Cancelado"));
+        }*/
+        addEmptyLine(preface, 2);
+        preface.add(new Paragraph(String.format("%s ...............................", "Firma:"), smallBody));
+        addEmptyLine(preface, 1);
+        preface.add(new Paragraph(String.format("%s ..........................", "Autorizado:"), smallBody));
+        addEmptyLine(preface, 2);
+        preface.add(new Paragraph("Documento generado automáticamente por la aplicación JParking.", footPage));
+        
+        document.add(preface);
     }
-  }
+
+    private static void addEmptyLine(Paragraph paragraph, int number) {
+      for (int i = 0; i < number; i++) {
+        paragraph.add(new Paragraph(" "));
+      }
+    }
   
 } 
 
