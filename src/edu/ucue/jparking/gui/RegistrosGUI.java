@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class RegistrosGUI extends javax.swing.JDialog {
 
     JPInterface jp = JP.getInstance();
+
     /**
      * Creates new form RegistrosGUI
      */

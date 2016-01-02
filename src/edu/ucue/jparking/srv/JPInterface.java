@@ -54,6 +54,8 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
@@ -654,29 +656,26 @@ public interface JPInterface {
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
             AccesoNoAutorizadoException, CampusNoExistenteException;
-    /**
-     * agrega los datos principales del archivo pdf
-     * @param document 
-     */
-    public void addMetaData(Document document);
     
     /**
-     * añade la orden de pago al pdf
-     * @param document
+     * Impresion de la orden de pago
      * @param cedula
+     * @return
+     * @throws UsuarioNoRegistradoEnUnParqueaderoException
      * @throws DocumentException
+     * @throws FileNotFoundException
      * @throws UsuarioNoExistenteException
      * @throws CedulaNoValidaException
      * @throws ContratoNoEstablecidoException
      * @throws FueraDelDiaDePagoException
      * @throws BadElementException
-     * @throws IOException
-     * @throws UsuarioNoRegistradoEnUnParqueaderoException 
+     * @throws IOException 
      */
-    public void addContent(Document document, String cedula) 
-            throws DocumentException, UsuarioNoExistenteException, 
-            CedulaNoValidaException, ContratoNoEstablecidoException,
-            FueraDelDiaDePagoException, BadElementException, IOException, 
-            UsuarioNoRegistradoEnUnParqueaderoException;
+    public File impresion(String cedula) 
+            throws UsuarioNoRegistradoEnUnParqueaderoException, 
+            DocumentException, FileNotFoundException, 
+            UsuarioNoExistenteException, CedulaNoValidaException,
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException, 
+            BadElementException, IOException;
     
 }

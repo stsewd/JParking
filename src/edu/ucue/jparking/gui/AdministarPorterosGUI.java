@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class AdministarPorterosGUI extends javax.swing.JDialog {
 
     JPInterface jp = JP.getInstance(); 
+
     /**
      * Creates new form AdministarPorterosGUI
      */

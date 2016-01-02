@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
  * @author stsewd
  */
 public class EliminarUsuarioGUI extends javax.swing.JDialog {
+
     JPInterface jp = JP.getInstance();
+
     private PrincipalGUI padre;
     /**
      * Creates new form EliminarUsuarioGUI

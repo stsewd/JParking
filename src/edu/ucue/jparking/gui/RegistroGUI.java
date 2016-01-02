@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 public class RegistroGUI extends javax.swing.JDialog {
 
     JPInterface jp = JP.getInstance();
+
     /**
      * Creates new form RegistroGUI
      */

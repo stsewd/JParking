@@ -44,6 +44,7 @@ import java.awt.Toolkit;
 public class PrincipalGUI extends javax.swing.JFrame {
 
     JPInterface jp = JP.getInstance();
+
     /**
      * Creates new form PrincipalGUI
      */

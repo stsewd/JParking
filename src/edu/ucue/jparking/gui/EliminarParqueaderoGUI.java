@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 public class EliminarParqueaderoGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
     JPInterface jp = JP.getInstance();
+
     /**
      * Creates new form EliminarParqueaderoGUI
      */

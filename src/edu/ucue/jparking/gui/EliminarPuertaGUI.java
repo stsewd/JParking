@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 public class EliminarPuertaGUI extends javax.swing.JDialog {
 
     JPInterface jp = JP.getInstance();
+
     AdministrarPuertasGUI padre;
     /**
      * Creates new form EliminarPuertaGUI

@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class CrearCampusGUI extends javax.swing.JDialog {
     JPInterface jp = JP.getInstance();
-    
     private PrincipalGUI padre;
     /**
      * Creates new form CrearCampus

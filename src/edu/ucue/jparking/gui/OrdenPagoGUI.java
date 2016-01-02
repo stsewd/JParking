@@ -363,27 +363,11 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_fechaContratoTFActionPerformed
 
     private void ImprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBtnActionPerformed
-        // TODO add your handling code here:
-        Document document = new Document();
-        String directorioStr = "";
         try {
-            directorioStr = (new File(".").getCanonicalPath()) + "/archivos";
-        } catch (IOException ex) {
-            System.out.println("REEMPLAZAR ESTO, REORGANIZAR BIEN CAPTURA DE ERROR");
-        }
-        File directorio = new File(directorioStr);
-        
-        if(!directorio.exists())
-            directorio.mkdir();
-        
-        File FILE = new File(directorio, "orden_pago_" + CedulaTF.getText() + ".pdf");
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
-            document.open();
-            jp.addMetaData(document);
-            jp.addContent(document, CedulaTF.getText());
-            document.close();
-            Desktop.getDesktop().open(FILE);
+            // TODO add your handling code here:
+            File archivo = jp.impresion(CedulaTF.getText());
+            Desktop.getDesktop().open(archivo);
+            
         } catch (IllegalArgumentException | DocumentException | FileNotFoundException | UsuarioNoExistenteException | CedulaNoValidaException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch (IOException ex){
@@ -391,6 +375,10 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         }catch (UsuarioNoRegistradoEnUnParqueaderoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }finally{}
+       
+        
+        
+        
     }//GEN-LAST:event_ImprimirBtnActionPerformed
 
     /**

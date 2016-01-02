@@ -12,6 +12,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
@@ -19,6 +20,9 @@ import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,6 +33,8 @@ import java.util.Calendar;
  * @author Franklin Lara
  */
 public class ImpresionOrdenPagosrv {
+    
+    
     private static Font catFont = new Font(Font.FontFamily.HELVETICA, 14,
         Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.HELVETICA, 12,
@@ -44,7 +50,46 @@ public class ImpresionOrdenPagosrv {
     private static Font footPage = new Font(Font.FontFamily.HELVETICA, 8,
         Font.NORMAL, BaseColor.GRAY);
 
-    public void addMetaData(Document document) {
+    /**
+     *
+     * @param cedula
+     * @return 
+     * @throws edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException
+     * @throws DocumentException
+     * @throws FileNotFoundException
+     * @throws UsuarioNoExistenteException
+     * @throws edu.ucue.jparking.srv.excepciones.CedulaNoValidaException
+     * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException
+     * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException
+     * @throws com.itextpdf.text.BadElementException
+     */
+    public File impresion(String cedula) 
+            throws UsuarioNoRegistradoEnUnParqueaderoException, 
+            DocumentException, FileNotFoundException, 
+            UsuarioNoExistenteException, CedulaNoValidaException,
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException, 
+            BadElementException, IOException{
+        
+        Document document = new Document();
+        String directorioStr = "";
+        
+        directorioStr = (new File(".").getCanonicalPath()) + "/archivos";
+        
+        File directorio = new File(directorioStr);
+        
+        if(!directorio.exists())
+            directorio.mkdir();
+        File FILE = new File(directorio, "orden_pago_" + cedula + ".pdf");
+        PdfWriter.getInstance(document, new FileOutputStream(FILE));
+        document.open();
+        addMetaData(document);
+        addContent(document, cedula);
+        document.close();
+        return FILE;
+    }
+            
+    
+    private void addMetaData(Document document) {
         document.addTitle("Orden de pago");
         document.addSubject("Using iText");
         document.addKeywords("Java, PDF, iText");
@@ -52,7 +97,8 @@ public class ImpresionOrdenPagosrv {
         document.addCreator("Lara-Santos");
     }
     
-    public void addContent(Document document, String cedula) 
+    private void addContent(Document document, String cedula)
+            
             throws DocumentException, UsuarioNoExistenteException, 
             CedulaNoValidaException, ContratoNoEstablecidoException,
             FueraDelDiaDePagoException, BadElementException, IOException, 
