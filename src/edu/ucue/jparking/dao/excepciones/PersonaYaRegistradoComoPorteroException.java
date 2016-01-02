@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class PersonaYaRegistradoComoPorteroException extends Exception {
 
     public PersonaYaRegistradoComoPorteroException(String cedula) {
-        super("El usuario de cedula " + cedula + " ya se encuentra registrado como portero.");
+        super("Usuario de cédula " + cedula + " ya se encuentra registrado como portero.");
     }
     
 }

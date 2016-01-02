@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class PuertaYaAgregadaException extends Exception {
 
     public PuertaYaAgregadaException(String id) {
-        super("La puerta de id " + id + " ya ha sido agregada.");
+        super("Puerta de id " + id + " ya ha sido agregada.");
     }
     
 }

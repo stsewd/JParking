@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class TelefonoNoValidoException extends Exception {
 
     public TelefonoNoValidoException() {
-        super("El teléfono debe contener 10 digitos numéricos sin espacios");
+        super("El teléfono debe contener 10 digitos numéricos sin espacios.");
     }
     
 }

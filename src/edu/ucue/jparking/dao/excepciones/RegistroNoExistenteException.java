@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class RegistroNoExistenteException extends Exception {
 
     public RegistroNoExistenteException(Integer numero) {
-        super("El regitro número " + numero + " no existe.");
+        super("Regitro número " + numero + " no existe.");
     }
     
 }

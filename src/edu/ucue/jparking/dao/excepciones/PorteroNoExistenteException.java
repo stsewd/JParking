@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class PorteroNoExistenteException extends Exception {
 
     public PorteroNoExistenteException(String cedula) {
-        super("El portero de cedula " + cedula + " no se encuentra registrado.");
+        super("Portero de cedula " + cedula + " no se encuentra registrado.");
     }
     
 }

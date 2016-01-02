@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class PuertaInactivaException extends Exception {
 
     public PuertaInactivaException(String idpuerta) {
-        super("No se puede agregar la puerta por que esta inactiva");
+        super("Puerta inactiva, acción no realizada.");
     }
     
 }

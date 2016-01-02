@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class CedulaNoValidaException extends Exception {
 
     public CedulaNoValidaException(String cedula) {
-        super("La cédula "+cedula+" No es valida");
+        super("La cédula " + cedula + " no es valida.");
     }
     
 }

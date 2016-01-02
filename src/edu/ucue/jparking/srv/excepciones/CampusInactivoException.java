@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class CampusInactivoException extends Exception {
 
     public CampusInactivoException(String idCampus) {
-        super("El campus "+idCampus+" esta inactivo");
+        super("Campus " + idCampus + " inactivo.");
     }
     
 }

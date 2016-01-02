@@ -5,8 +5,6 @@
  */
 package edu.ucue.jparking.srv.excepciones;
 
-import java.util.Calendar;
-
 /**
  *
  * @author Santos Gallegos

@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class PuertaNoAgregadaException extends Exception {
 
     public PuertaNoAgregadaException(String idPuerta) {
-        super("La puerta " + idPuerta + " no se encuentra registrada en el parqueadero.");
+        super("Puerta de id " + idPuerta + " no se encuentra registrada en el parqueadero.");
     }
     
 }
