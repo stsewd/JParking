@@ -1,4 +1,4 @@
-/**
+/*****************************************************************************
  * Administrador de los parqueaderos ubicados en la Universidad de Cuenca
  * 
  * @author Santos Gallegos <santos_g@outlook.com>
@@ -23,7 +23,7 @@
  *      registradas de acceso/salida correspondientes al parqueadero donde
  *      pertece cada usuario.
  * 
- */
+ *****************************************************************************/
 package edu.ucue.jparking;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;

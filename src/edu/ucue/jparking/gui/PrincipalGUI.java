@@ -30,6 +30,9 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import java.awt.datatransfer.*;
+import java.awt.Toolkit;
+
 
 /**
  *
@@ -167,6 +170,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         EliminarUsuarioBtn = new javax.swing.JButton();
         ModificarUsuarioBtn = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
+        copyCedulaBtn = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JToolBar.Separator();
         AgregarBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         CampusMenu = new javax.swing.JMenu();
@@ -329,7 +334,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
@@ -441,6 +446,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar2.add(ModificarUsuarioBtn);
         jToolBar2.add(jSeparator3);
 
+        copyCedulaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/copy12.png"))); // NOI18N
+        copyCedulaBtn.setToolTipText("Copiar cédula al portapapeles");
+        copyCedulaBtn.setFocusable(false);
+        copyCedulaBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        copyCedulaBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        copyCedulaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyCedulaBtnActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(copyCedulaBtn);
+        jToolBar2.add(jSeparator8);
+
         AgregarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/keyboard53.png"))); // NOI18N
         AgregarBtn.setToolTipText("Agregar usuario a parqueadero");
         AgregarBtn.setFocusable(false);
@@ -480,7 +498,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1102,6 +1120,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
         autenticarGUI.setVisible(true);
     }//GEN-LAST:event_AutenticacionItemActionPerformed
 
+    private void copyCedulaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyCedulaBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaUsuarios.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaUsuarios.getValueAt(row, 1);
+        StringSelection stringSelection = new StringSelection(cedula);
+        Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clpbrd.setContents(stringSelection, null);
+    }//GEN-LAST:event_copyCedulaBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1176,6 +1207,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JButton UsuariosParqBtn;
     private javax.swing.JMenuItem UsuariosParqueaderoItem;
     private javax.swing.JButton VerBtn;
+    private javax.swing.JButton copyCedulaBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -1191,6 +1223,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
+    private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;

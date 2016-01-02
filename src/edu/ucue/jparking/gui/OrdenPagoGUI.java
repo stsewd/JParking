@@ -328,7 +328,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_PagarBtnActionPerformed
 
@@ -341,7 +341,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }  catch(Exception ex){
-                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CedulaTFKeyPressed
