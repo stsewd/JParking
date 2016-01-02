@@ -459,6 +459,22 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarParqueaderoBtnActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JToolBar$Separator" name="jSeparator9">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="CopyIDParqBtn">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/edu/ucue/jparking/img/copy12.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Copiar id de parqueadero al portapepeles"/>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
+                        <Property name="verticalTextPosition" type="int" value="3"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CopyIDParqBtnActionPerformed"/>
+                      </Events>
+                    </Component>
                     <Component class="javax.swing.JToolBar$Separator" name="jSeparator7">
                     </Component>
                     <Component class="javax.swing.JButton" name="UsuariosParqBtn">
@@ -699,18 +715,18 @@
                     </Component>
                     <Component class="javax.swing.JToolBar$Separator" name="jSeparator3">
                     </Component>
-                    <Component class="javax.swing.JButton" name="copyCedulaBtn">
+                    <Component class="javax.swing.JButton" name="CopyCedulaBtn">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/edu/ucue/jparking/img/copy12.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Copiar c&#xe9;dula al portapapeles"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Copiar c&#xe9;dula de usuario al portapepeles"/>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyCedulaBtnActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CopyCedulaBtnActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JToolBar$Separator" name="jSeparator8">

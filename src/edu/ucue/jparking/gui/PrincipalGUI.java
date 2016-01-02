@@ -153,6 +153,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         CrearParqueaderoBtn = new javax.swing.JButton();
         EliminarParqueaderoBtn = new javax.swing.JButton();
         ModificarParqueaderoBtn = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JToolBar.Separator();
+        CopyIDParqBtn = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JToolBar.Separator();
         UsuariosParqBtn = new javax.swing.JButton();
         PuertasBtn = new javax.swing.JButton();
@@ -170,7 +172,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         EliminarUsuarioBtn = new javax.swing.JButton();
         ModificarUsuarioBtn = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        copyCedulaBtn = new javax.swing.JButton();
+        CopyCedulaBtn = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
         AgregarBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -286,6 +288,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         jToolBar3.add(ModificarParqueaderoBtn);
+        jToolBar3.add(jSeparator9);
+
+        CopyIDParqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/copy12.png"))); // NOI18N
+        CopyIDParqBtn.setToolTipText("Copiar id de parqueadero al portapepeles");
+        CopyIDParqBtn.setFocusable(false);
+        CopyIDParqBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CopyIDParqBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CopyIDParqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopyIDParqBtnActionPerformed(evt);
+            }
+        });
+        jToolBar3.add(CopyIDParqBtn);
         jToolBar3.add(jSeparator7);
 
         UsuariosParqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/user7.png"))); // NOI18N
@@ -446,17 +461,17 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar2.add(ModificarUsuarioBtn);
         jToolBar2.add(jSeparator3);
 
-        copyCedulaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/copy12.png"))); // NOI18N
-        copyCedulaBtn.setToolTipText("Copiar cédula al portapapeles");
-        copyCedulaBtn.setFocusable(false);
-        copyCedulaBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        copyCedulaBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        copyCedulaBtn.addActionListener(new java.awt.event.ActionListener() {
+        CopyCedulaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/copy12.png"))); // NOI18N
+        CopyCedulaBtn.setToolTipText("Copiar cédula de usuario al portapepeles");
+        CopyCedulaBtn.setFocusable(false);
+        CopyCedulaBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CopyCedulaBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CopyCedulaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copyCedulaBtnActionPerformed(evt);
+                CopyCedulaBtnActionPerformed(evt);
             }
         });
-        jToolBar2.add(copyCedulaBtn);
+        jToolBar2.add(CopyCedulaBtn);
         jToolBar2.add(jSeparator8);
 
         AgregarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/keyboard53.png"))); // NOI18N
@@ -1120,7 +1135,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         autenticarGUI.setVisible(true);
     }//GEN-LAST:event_AutenticacionItemActionPerformed
 
-    private void copyCedulaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyCedulaBtnActionPerformed
+    private void CopyCedulaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyCedulaBtnActionPerformed
         // TODO add your handling code here:
         int row = TablaUsuarios.getSelectedRow();
         if(row < 0){
@@ -1131,7 +1146,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
         StringSelection stringSelection = new StringSelection(cedula);
         Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
         clpbrd.setContents(stringSelection, null);
-    }//GEN-LAST:event_copyCedulaBtnActionPerformed
+    }//GEN-LAST:event_CopyCedulaBtnActionPerformed
+
+    private void CopyIDParqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyIDParqBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaParqueaderos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
+        StringSelection stringSelection = new StringSelection(idParqueadero);
+        Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clpbrd.setContents(stringSelection, null);
+    }//GEN-LAST:event_CopyIDParqBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1177,6 +1205,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JMenu CampusMenu;
+    private javax.swing.JButton CopyCedulaBtn;
+    private javax.swing.JButton CopyIDParqBtn;
     private javax.swing.JMenuItem CrearCampusMenuItem;
     private javax.swing.JButton CrearParqueaderoBtn;
     private javax.swing.JMenuItem CrearParqueaderoMenuItem;
@@ -1207,7 +1237,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JButton UsuariosParqBtn;
     private javax.swing.JMenuItem UsuariosParqueaderoItem;
     private javax.swing.JButton VerBtn;
-    private javax.swing.JButton copyCedulaBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -1224,6 +1253,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
+    private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
