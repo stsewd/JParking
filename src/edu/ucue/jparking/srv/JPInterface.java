@@ -42,6 +42,7 @@ import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -110,10 +111,12 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException
      * @throws ContratoNoEstablecidoException
      * @throws FueraDelDiaDePagoException 
+     * @throws edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException 
      */
     public OrdenPago getOrdenPago(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException,
-            ContratoNoEstablecidoException, FueraDelDiaDePagoException;
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException,
+            UsuarioNoRegistradoEnUnParqueaderoException;
     
     /**
      * permite el pago de una orden de pago por medio de la cedula
