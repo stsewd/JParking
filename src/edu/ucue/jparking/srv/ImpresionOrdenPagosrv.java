@@ -5,27 +5,25 @@
  */
 package edu.ucue.jparking.srv;
 
-import java.io.FileOutputStream;
-import java.util.Date;
-
-import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Header;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Section;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +34,7 @@ public class ImpresionOrdenPagosrv {
         Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.HELVETICA, 12,
         Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.HELVETICA, 14,
+    private static Font subFont = new Font(Font.FontFamily.HELVETICA, 11,
         Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 12,
         Font.BOLD);
@@ -52,49 +50,54 @@ public class ImpresionOrdenPagosrv {
         document.addCreator("Lara-Santos");
     }
     
-    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
+    public void addContent(Document document, String cedula) throws DocumentException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
     
     document.addTitle("Orden de pago del Parqueadero");
     Paragraph preface = new Paragraph();
     // Lets write a big header
-    preface.add(new Paragraph("UNIVERSIDAD DE CUENCA", catFont));
-    preface.add(new Paragraph("Orden de pago", subFont));
-    //Anchor anchor = new Anchor("Orden  de Pago");
-    //anchor.setName("First Chapter");
+    Paragraph tituloUniversidad = new Paragraph("UNIVERSIDAD DE CUENCA", catFont);
+    Paragraph subtituloOrdenPago = new Paragraph("ORDEN DE PAGO", subFont);
+    tituloUniversidad.setAlignment(Paragraph.ALIGN_CENTER);
+    subtituloOrdenPago.setAlignment(Paragraph.ALIGN_CENTER);
+    Image logoU = null;
+    
+    logoU = Image.getInstance(getClass().getResource("/edu/ucue/jparking/img/logo_u.png"));
+    logoU.scalePercent(10);
+    logoU.setAlignment(Image.ALIGN_CENTER);
+    
     OrdenPagoService ops = new OrdenPagoService();
     UsuarioService service = new UsuarioService();
     Usuario u = service.get(cedula);
     OrdenPago orden = ops.getOrdenPago(cedula);
     DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
         
-    // Second parameter is the number of the chapter
-    //Chapter catPart = new Chapter(new Paragraph(anchor), 1);
-
-    //Paragraph subPara = new Paragraph("Datos: ");
-    
-    //Section subCatPart = catPart.addSection(subPara);
+    preface.add(tituloUniversidad);
     addEmptyLine(preface, 1);
-    preface.add(new Paragraph(String.format("%-20s%s", "Fecha:", df.format(Calendar.getInstance().getTime())), smallBody));
-    preface.add(new Paragraph(String.format("%-20s%s", "Cédula:", u.getCedula()), smallBody));
-    preface.add(new Paragraph(String.format("%-20s%s %s", "Nombre:", u.getNombres(), u.getApellidos()), smallBody));
-    preface.add(new Paragraph(String.format("%-20s%s", "Dirección:", u.getDireccion()), smallBody));
-    preface.add(new Paragraph(String.format("%-20s%s", "Teléfono:", u.getTelefono()), smallBody));
-    preface.add(new Paragraph(String.format("%-20s%s", "Tipo de Usuario:", u.getTipoUsuarioString()), smallBody));
-    preface.add(new Paragraph(String.format("%-20s%s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
-    preface.add(new Paragraph(String.format("%-20s$%.2f", "Valor a pagar:", orden.getCosto()), smallBody));
+    preface.add(logoU);
+    addEmptyLine(preface, 1);
+    preface.add(subtituloOrdenPago);
+    addEmptyLine(preface, 2);
+    preface.add(new Paragraph(String.format("%s %s", "Fecha:", df.format(Calendar.getInstance().getTime())), smallBody));
+    preface.add(new Paragraph(String.format("%s %s", "Cédula:", u.getCedula()), smallBody));
+    preface.add(new Paragraph(String.format("%s %s %s", "Nombre:", u.getNombres(), u.getApellidos()), smallBody));
+    preface.add(new Paragraph(String.format("%s %s", "Dirección:", u.getDireccion()), smallBody));
+    preface.add(new Paragraph(String.format("%s %s", "Teléfono:", u.getTelefono()), smallBody));
+    preface.add(new Paragraph(String.format("%s %s", "Tipo de Usuario:", u.getTipoUsuarioString()), smallBody));
+    preface.add(new Paragraph(String.format("%s %s", "Fecha de contrato:", df.format(orden.getFechaEmision().getTime())), smallBody));
+    preface.add(new Paragraph(String.format("%s $%.2f", "Valor a pagar:", orden.getCosto()), smallBody));
     /*if(u.estaDebiendo()){
         preface.add(new Paragraph("Estado:           Debe"));
     }else{
         preface.add(new Paragraph("Estado:           Cancelado"));
     }*/
-    addEmptyLine(preface, 27);
-    preface.add(new Paragraph(String.format("%s _______________________________", "Firma:"), smallBody));
+    addEmptyLine(preface, 2);
+    preface.add(new Paragraph(String.format("%s ..........................", "Firma:"), smallBody));
     addEmptyLine(preface, 1);
-    preface.add(new Paragraph(String.format("%s __________________________", "Autorizado:"), smallBody)); 
+    preface.add(new Paragraph(String.format("%s ..........................", "Autorizado:"), smallBody)); 
     document.add(preface);
   }
 
-   private static void addEmptyLine(Paragraph paragraph, int number) {
+  private static void addEmptyLine(Paragraph paragraph, int number) {
     for (int i = 0; i < number; i++) {
       paragraph.add(new Paragraph(" "));
     }

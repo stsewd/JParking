@@ -369,26 +369,35 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         ImpresionOrdenPagosrv impresionOrdenPagosrv = new  ImpresionOrdenPagosrv();
         Document document = new Document();
-        String FILE = "archivos/Orden de Pago.pdf";
+        
+        String directorioStr = "archivos";
+        File directorio = new File(directorioStr);
+        
+        if(!directorio.exists())
+            directorio.mkdir();
+        
+        File FILE = new File(directorio, "orden_pago_" + CedulaTF.getText() + ".pdf");
         try {
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
             impresionOrdenPagosrv.addMetaData(document);
             impresionOrdenPagosrv.addContent(document, CedulaTF.getText());
-            document.close();
         } catch (IllegalArgumentException | DocumentException | FileNotFoundException | UsuarioNoExistenteException | CedulaNoValidaException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso", "Error", JOptionPane.OK_OPTION);
+        }catch (IOException ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
+        }finally{
+            document.close();
         }
         
-        File path = new File(FILE);
         try {
-            Desktop.getDesktop().open(path);
+            Desktop.getDesktop().open(FILE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso", "Error", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ImprimirBtnActionPerformed
 
