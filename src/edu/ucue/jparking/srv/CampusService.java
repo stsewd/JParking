@@ -23,25 +23,15 @@ import java.util.Set;
 public class CampusService {
     Validaciones validar = new Validaciones();
     CampusDAOInterface campusDAO = CampusDAO.getInstancia();
-    /**
-     * Aniade un campus  
-     * @param nombre nombre del campus
-     * @param direccion
-     * @return
-     * @throws CampusExistenteExeption 
-     */
+    
+    
     public Campus addCampus(String nombre, String direccion) throws CampusExistenteExeption{
         validar.ValidarCampus(nombre, direccion);
         Campus campus = new Campus(nombre, direccion);
         campusDAO.addCampus(campus);
         return campus;
     }
-    /**
-     * 
-     * @param nombre
-     * @return
-     * @throws CampusNoExistenteException 
-     */
+
     public Campus getCampus(String nombre) throws CampusNoExistenteException{
         if(nombre==null || nombre.trim().length() == 0)
             throw new IllegalArgumentException("El nombre del campus no puede estar vacio");
@@ -52,14 +42,7 @@ public class CampusService {
         campusDAO.modCampus(nombre, direccion, estado);
         
     }
-    /**
-     * borra un campus
-     * @param nombre
-     * @throws CampusNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
-     * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
-     */
+   
     public void delCampus(String nombre)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException
@@ -69,10 +52,7 @@ public class CampusService {
         campusDAO.delCampus(nombre);
     }
     
-    /**
-     * extrae la lista de campus 
-     * @return 
-     */
+    
     public Set<Campus> getCampus(){
         return campusDAO.getCampus();
     }

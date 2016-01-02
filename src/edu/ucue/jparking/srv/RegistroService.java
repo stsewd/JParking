@@ -52,17 +52,10 @@ public class RegistroService {
             throw new IllegalArgumentException("Argumento no valido");
         }
     }
-    /**
-     * 
-     * @param tipoRegistro
-     * @param fechaInicio
-     * @param fechaFinal
-     * @return 
-     * @throws edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException 
-     * @throws edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException 
-     * @throws edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException 
-     */
-    public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
+
+    public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) 
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException{
         
         Validaciones.validarFecha(fechaInicio, fechaFinal);
         
@@ -80,11 +73,6 @@ public class RegistroService {
         }
     }
     
-    /**
-     * 
-     * @param tipoRegistro
-     * @return 
-     */
     public Set<Registro> get(TipoRegistro tipoRegistro){
         if(tipoRegistro==TipoRegistro.PERSONA){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
@@ -100,28 +88,20 @@ public class RegistroService {
         }
     }
     
-    /**
-     * 
-     * @return 
-     */
     public Set<Registro> get(){
         return RegistrosDAO.getInstance().getRegistros();
     }
     
-    /**
-     * 
-     * @param fechaInicio
-     * @param fechaFinal
-     * @return 
-     */
-    public Set<Registro>  get(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
+    public Set<Registro>  get(Calendar fechaInicio, Calendar fechaFinal) 
+            throws FechaInicialMayorAFechaFinalException, 
+            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
         
         Validaciones.validarFecha(fechaInicio, fechaFinal);
         
         return RegistrosDAO.getInstance().getRegistros(fechaInicio, fechaFinal);
     }
 
-    public Registro get(String idRegistro) throws RegistroNoExistenteException {
+    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException {
         int id = 0;
         try{
             id = Integer.parseInt(idRegistro);

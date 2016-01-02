@@ -97,7 +97,7 @@ public class Validaciones {
     public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException{
         UsuarioService usuarioService = new UsuarioService();
 
-        return usuarioService.getParqueaderos(cedula).size() > 0;
+        return usuarioService.getParqueaderosUsuario(cedula).size() > 0;
     }
 
     public boolean validarCedula(String cedula) throws CedulaNoValidaException {

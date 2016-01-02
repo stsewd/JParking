@@ -318,7 +318,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
         
         activoCheckB.setSelected(u.isActivo());
         String parqueaderosList = "";
-        for(Parqueadero p :  usuarioService.getParqueaderos(cedula)){
+        for(Parqueadero p :  usuarioService.getParqueaderosUsuario(cedula)){
             parqueaderosList += "Campus: " + p.getCampus().getNombre() + "\n" +
                     "Parqueadero: (" + p.getId() + ") " + p.getUbicacion() + "\n\n";
         }

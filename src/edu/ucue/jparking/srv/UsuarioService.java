@@ -34,7 +34,10 @@ public class UsuarioService {
     Validaciones validaciones = new Validaciones();
     private static final RegistroService registroService = new RegistroService();
     
-    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException{
+    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) 
+            throws UsuarioYaExistenteException, CedulaNoValidaException,
+            TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException,
+            UsuarioNoExistenteException{
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.add(cedula, nombre, apellido, direccion, telefono);
@@ -52,7 +55,9 @@ public class UsuarioService {
         registroService.add(get(cedula).getRegistro(TipoModificacion.CREACION));
     }
     
-    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException{
+    public void del(String cedula) 
+            throws UsuarioNoExistenteException, CedulaNoValidaException, 
+            IllegalArgumentException, CampusNoExistenteException{
         if(cedula == null || cedula.trim().length() == 0)
             throw new IllegalArgumentException("El argumendo cedula no puede ser vacio.");
         validaciones.validarCedula(cedula);
@@ -64,7 +69,8 @@ public class UsuarioService {
         usuariosDAO.delUsuario(cedula);        
     }
     
-    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
+            throws CedulaNoValidaException, UsuarioNoExistenteException {
         validaciones.validarCedula(cedula);
         usuariosDAO.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
         //Registro
@@ -87,12 +93,16 @@ public class UsuarioService {
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
-    public Set<Parqueadero> getParqueaderos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException{
+    public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException{
         validaciones.validarCedula(cedula);
         return usuariosDAO.getParqueaderos(cedula);
     }
     
-    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException{
+    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException, 
+            CodigoNoValidoException, ParqueaderoNoExistenteException, 
+            AccesoNoAutorizadoException, CampusNoExistenteException{
         validaciones.validarCedula(cedula);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
@@ -116,7 +126,7 @@ public class UsuarioService {
         Usuario u = get(cedula);
         boolean encontrado = false;
         
-        for(Parqueadero p : getParqueaderos(cedula)){
+        for(Parqueadero p : getParqueaderosUsuario(cedula)){
             if(p.getCampus().getNombre().compareToIgnoreCase(nombreCampus) != 0)
                 continue;
             

@@ -31,7 +31,10 @@ public class RegistroPagosService {
      */
     RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
-    public void add(String cedula,TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    
+    
+    public void add(String cedula,TipoTramite tipoTramite)
+            throws UsuarioNoExistenteException, CedulaNoValidaException{
         validaciones.validarCedula(cedula);
         Usuario persona = UsuariosDAO.getInstance().getUsuario(cedula);
         RegistroPagos registro =new RegistroPagos(persona, tipoTramite);
@@ -39,19 +42,10 @@ public class RegistroPagosService {
         
     }
     
-    /**
-     * 
-     * @param fechaInicial
-     * @param fechaFinal
-     * @return 
-     */
     public Set<Registro> getRegistro(Calendar fechaInicial, Calendar fechaFinal){
         return registrosDAO.getRegistros(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
     }
-    /**
-     * retorna todos los 
-     * @return 
-     */
+
     public Set<Registro> getRegistro(){
         return registrosDAO.getRegistros(TipoRegistro.PAGOS);
     }

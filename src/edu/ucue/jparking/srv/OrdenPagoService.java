@@ -31,16 +31,11 @@ public class OrdenPagoService {
     UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Calendar fechaActual= Calendar.getInstance();
     Validaciones validaciones = new Validaciones();
-    /**
-     * 
-     * @param cedula
-     * @return
-     * @throws CedulaNoValidaException
-     * @throws UsuarioNoExistenteException 
-     * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException 
-     * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException 
-     */
+
+    
+    
     public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException{
+
         validaciones.validarCedula(cedula);
         OrdenPago ordenPago = usuariosDAO.getUsuario(cedula).generarOrdenPago();
         //Registro
@@ -49,13 +44,6 @@ public class OrdenPagoService {
         return ordenPago;
     }
     
-    /**
-     * 
-     * @param cedula
-     * @throws CedulaNoValidaException
-     * @throws UsuarioNoExistenteException
-     * @throws PagoYaRealizadoException 
-     */
     public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException{
         validaciones.validarCedula(cedula);
         usuariosDAO.getUsuario(cedula).cancelarPago();

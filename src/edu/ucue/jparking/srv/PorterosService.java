@@ -20,24 +20,18 @@ import java.util.Set;
 
 /**
  *
- * @author Franklin
+ * @author Franklin Lara
  */
 public class PorterosService {
     Validaciones validar = new Validaciones();
     PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
     RegistroService registroService = new RegistroService();
     CampusService campusService = new CampusService();
-    /**
-     * 
-     * @param nombreCampus
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param direccion
-     * @param telefono
-     * @throws CedulaNoValidaException 
-     */
-    public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException
+
+    public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
+            throws CedulaNoValidaException, CampusNoExistenteException, 
+            PorteroYaExistenteException, TelefonoNoValidoException,
+            PersonaYaRegistradaComoUsuarioException
     {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
@@ -47,18 +41,9 @@ public class PorterosService {
         //Registro
         registroService.add(getPortero(cedula).getRegistro(TipoModificacion.CREACION));
     }
-    /**
-     * 
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param direccion
-     * @param telefono
-     * @param estado
-     * @throws CedulaNoValidaException
-     * @throws PorteroNoExistenteException 
-     */
-    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException{
+    
+    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
+            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         porterosDAO.modPortero(cedula, nombre, apellido,direccion,telefono, estado);
@@ -66,14 +51,8 @@ public class PorterosService {
         registroService.add(getPortero(cedula).getRegistro(TipoModificacion.MODIFICACION));
     }
     
-    /**
-     * 
-     * @param cedula
-     * @throws CedulaNoValidaException
-     * @throws PorteroNoExistenteException
-     * @throws CampusNoExistenteException 
-     */
-    public void delPortero(String cedula) throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException{
+    public void delPortero(String cedula) 
+            throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException{
         validar.validarCedula(cedula);
         //Registro
         registroService.add(getPortero(cedula).getRegistro(TipoModificacion.ELIMINACION));
@@ -82,31 +61,15 @@ public class PorterosService {
         porterosDAO.delPortero(cedula);
     }
     
-    /**
-     * 
-     * @param cedula
-     * @return
-     * @throws CedulaNoValidaException 
-     */
     public Portero getPortero(String cedula) throws CedulaNoValidaException{
         validar.validarCedula(cedula);
         return porterosDAO.getPortero(cedula);
     }
     
-    /**
-     * 
-     * @return 
-     */
     public Set<Portero> getPorteros(){
         return porterosDAO.getPorteros();
     }
     
-    /**
-     * 
-     * @param nombreCampus
-     * @return
-     * @throws CampusNoExistenteException 
-     */
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException{
         return porterosDAO.getPorteros(nombreCampus);
     }
