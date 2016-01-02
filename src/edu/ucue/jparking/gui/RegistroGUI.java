@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.RegistroService;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.text.DateFormat;
@@ -17,6 +18,7 @@ import java.text.SimpleDateFormat;
  */
 public class RegistroGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form RegistroGUI
      */
@@ -341,8 +343,7 @@ public class RegistroGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatos(String idRegistro) throws RegistroNoExistenteException {
-        RegistroService registroService = new RegistroService();
-        Registro r = registroService.getRegistro(idRegistro);
+        Registro r = jp.getRegistro(idRegistro);
         DateFormat dfFecha = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat dfHora = new SimpleDateFormat("HH:mm:ss");
         

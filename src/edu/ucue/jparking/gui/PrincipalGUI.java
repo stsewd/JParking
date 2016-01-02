@@ -13,6 +13,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.srv.CampusService;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.Validaciones;
@@ -41,6 +42,7 @@ import java.awt.Toolkit;
  */
 public class PrincipalGUI extends javax.swing.JFrame {
 
+    JP jp = new JP();
     /**
      * Creates new form PrincipalGUI
      */
@@ -71,8 +73,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     public void cargarCampusCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
-        CampusService campusService = new CampusService();
-        for(Campus c : campusService.getCampus()){
+        for(Campus c : jp.getCampus()){
             CampusCB.addItem(c.getNombre());
         }
     }
@@ -113,14 +114,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }
     
     public void listarParqueaderos() throws CampusNoExistenteException{
-        ParqueaderoService parqueaderoService = new ParqueaderoService();
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
         
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             return;
         
-        Set<Parqueadero> parqueaderos = parqueaderoService.getParqueaderos(nombreCampus);
+        Set<Parqueadero> parqueaderos = jp.getParqueaderos(nombreCampus);
 
         DefaultTableModel model = (DefaultTableModel) TablaParqueaderos.getModel();
 
@@ -807,14 +807,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, rootPaneCheckingEnabled);
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, true);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
 
     private void ModificarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioMenuItemActionPerformed
         // TODO add your handling code here:
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, rootPaneCheckingEnabled);
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, true);
         editarUsuarioGUI.setLocationRelativeTo(this);
         editarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_ModificarUsuarioMenuItemActionPerformed
@@ -844,9 +844,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        CampusService campusService = new CampusService();
         try {
-            campusService.delCampus((String) CampusCB.getSelectedItem());
+            jp.delCampus((String) CampusCB.getSelectedItem());
         } catch (CampusNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
@@ -861,7 +860,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
-        EditarCampusGUI editarCampusGUI = new EditarCampusGUI(this, rootPaneCheckingEnabled);
+        EditarCampusGUI editarCampusGUI = new EditarCampusGUI(this, true);
         editarCampusGUI.setLocationRelativeTo(this);
         try {
             editarCampusGUI.CargarDatos((String) CampusCB.getSelectedItem());
@@ -875,7 +874,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CrearCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCampusMenuItemActionPerformed
         // TODO add your handling code here:
-        CrearCampusGUI crearCampusGUI = new CrearCampusGUI(this, rootPaneCheckingEnabled);
+        CrearCampusGUI crearCampusGUI = new CrearCampusGUI(this, true);
         crearCampusGUI.setLocationRelativeTo(this);
         crearCampusGUI.setVisible(true);
     }//GEN-LAST:event_CrearCampusMenuItemActionPerformed
@@ -889,7 +888,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void AdministarPorterosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdministarPorterosMenuItemActionPerformed
         // TODO add your handling code here:
-        AdministarPorterosGUI administarPorterosGUI = new AdministarPorterosGUI(this, rootPaneCheckingEnabled);
+        AdministarPorterosGUI administarPorterosGUI = new AdministarPorterosGUI(this, true);
         administarPorterosGUI.setLocationRelativeTo(this);
         administarPorterosGUI.setVisible(true);
     }//GEN-LAST:event_AdministarPorterosMenuItemActionPerformed
@@ -960,7 +959,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        AdministrarPuertaAccesoGUI puertaAcceso = new AdministrarPuertaAccesoGUI(this, rootPaneCheckingEnabled);
+        AdministrarPuertaAccesoGUI puertaAcceso = new AdministrarPuertaAccesoGUI(this, true);
         puertaAcceso.setLocationRelativeTo(this);
         try {
             puertaAcceso.CargarDatos(nombreCampus, idParqueadero);
@@ -989,7 +988,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String idParqueadero = (String) TablaParqueaderos.getValueAt(row, 1);
-        AdministrarUsuariosParqueaderoGUI usuariosParqueadero = new AdministrarUsuariosParqueaderoGUI(this, rootPaneCheckingEnabled);
+        AdministrarUsuariosParqueaderoGUI usuariosParqueadero = new AdministrarUsuariosParqueaderoGUI(this, true);
         usuariosParqueadero.setLocationRelativeTo(this);
         try {
             usuariosParqueadero.CargarDatos(nombreCampus, idParqueadero);
@@ -1056,10 +1055,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
 
-        ParqueaderoService parqueaderoService = new ParqueaderoService();
 
         try {
-            parqueaderoService.addUsuario(campus, idParqueadero, cedula);
+            jp.addUsuario(campus, idParqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "Usuario " + cedula + " agregado a paqueadero " + idParqueadero + ".", "Mensaje", JOptionPane.OK_OPTION);
             listarParqueaderos();
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
@@ -1090,7 +1088,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
 
-        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, rootPaneCheckingEnabled);
+        EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, true);
         editarUsuarioGUI.setLocationRelativeTo(this);
 
         try {
@@ -1112,14 +1110,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
             return;
         }
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
-        EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, rootPaneCheckingEnabled);
+        EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, true);
         eliminarUsuarioGUI.cargarDatos(cedula);
         eliminarUsuarioGUI.setLocationRelativeTo(this);
         eliminarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_EliminarUsuarioBtnActionPerformed
 
     private void CrearUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioBtnActionPerformed
-        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, rootPaneCheckingEnabled);
+        CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, true);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed

@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class CrearUsuarioGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     private PrincipalGUI padre;
     /**
      * Creates new form CrearUsuario
@@ -194,9 +196,8 @@ public class CrearUsuarioGUI extends javax.swing.JDialog {
         String telefono = TelefonoTF.getText();
         String cedula = CedulaTF.getText();
         String tipoUsuario =  (String) TipoUsuarioCB.getSelectedItem();
-        UsuarioService usuarioService = new UsuarioService();
         try {
-            usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
+            jp.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             getPadre().listarUsuarios();
             this.setVisible(false);

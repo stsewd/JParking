@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.objetos.Campus;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarCampusGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
+    JP jp = new JP();
     /**
      * Creates new form EditarCampus
      */
@@ -171,10 +173,9 @@ public class EditarCampusGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         String nombre = NombreTextField.getText();
         String direccion = DireccionTextField.getText();
-        CampusService campusService = new CampusService();
         boolean estado = EstadoCK.isSelected();
         try {
-            campusService.modCampus(nombre, direccion, estado);
+            jp.modCampus(nombre, direccion, estado);
             JOptionPane.showMessageDialog(rootPane, "Campus modificado con exito.", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
             
@@ -208,8 +209,7 @@ public class EditarCampusGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_NombreTextFieldActionPerformed
 
     public void CargarDatos(String nombre) throws CampusNoExistenteException{
-        CampusService campusService = new CampusService();
-        Campus campus = campusService.getCampus(nombre);
+        Campus campus = jp.getCampus(nombre);
         NombreTextField.setText(nombre);
         NombreTextField.setEditable(false);
         DireccionTextField.setEditable(true);

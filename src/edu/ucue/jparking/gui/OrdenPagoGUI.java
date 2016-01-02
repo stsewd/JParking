@@ -10,6 +10,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.ImpresionOrdenPagosrv;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.OrdenPagoService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -37,6 +38,7 @@ import javax.swing.JOptionPane;
  */
 public class OrdenPagoGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form OrdenPago
      */
@@ -321,9 +323,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
 
     private void PagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarBtnActionPerformed
         // TODO add your handling code here:
-        OrdenPagoService ops = new OrdenPagoService();
         try {
-            ops.pagarOrdenPago(CedulaTF.getText());
+            jp.pagarOrdenPago(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException ex) {

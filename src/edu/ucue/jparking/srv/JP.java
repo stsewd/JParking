@@ -60,7 +60,7 @@ public class JP implements JPInterface {
     private static JP instance;
     private static CampusService campusService = new CampusService();
     
-    private JP(){}
+    public JP(){}
     
     public static JP getInstance(){
         if(instance == null)

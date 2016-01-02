@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminarPorteroGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form EliminarPorteroGUI
      */
@@ -123,9 +125,8 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
         // TODO add your handling code here:
-        PorterosService porterosService = new PorterosService();
         try {
-            porterosService.delPortero(CedulaTF.getText());
+            jp.delPortero(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "El portero elminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CedulaNoValidaException | PorteroNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {

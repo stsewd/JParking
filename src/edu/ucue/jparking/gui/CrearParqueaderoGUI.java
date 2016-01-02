@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class CrearParqueaderoGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
+    JP jp  = new JP();
     /**
      * Creates new form CrearParqueaderoGUI
      */
@@ -176,9 +178,8 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }
-        ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
-            parqueaderoService.addParqueadero(ubicacion, numLugares, codigo, campus);
+            jp.addParqueadero(ubicacion, numLugares, codigo, campus);
             JOptionPane.showMessageDialog(rootPane,"Parqueadero creado con exito.", "Parqueadero", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();

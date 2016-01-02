@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -23,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form AdministrarPuertaAcceso
      */
@@ -289,11 +291,9 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
-        ParqueaderoService service = new ParqueaderoService();
-        Set<Puerta> puertaEntrada = service.getPuertasEntrada(CampusTF.getText(), idParqueaderolbl.getText());
-        
+       
+        Set<Puerta> puertaEntrada = jp.getPuertasEntrada(CampusTF.getText(), idParqueaderolbl.getText());
         DefaultTableModel model = (DefaultTableModel) TablaPuertasEntrada.getModel();
-        
         //Borrar elementos anteriores
         for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
@@ -305,15 +305,12 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     
     
     private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
-        ParqueaderoService service = new ParqueaderoService();
-        Set<Puerta> puertaSalida = service.getPuertasSalida(CampusTF.getText(), idParqueaderolbl.getText());
         
+        Set<Puerta> puertaSalida = jp.getPuertasSalida(CampusTF.getText(), idParqueaderolbl.getText());
         DefaultTableModel model = (DefaultTableModel) TablaPuertasSalida.getModel();
-        
         //Borrar elementos anteriores
         for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
-        
         int n = 1;
         for(Puerta p : puertaSalida)
             model.addRow(new Object[]{n++, p.getId(), p.getUbicacion()});
@@ -379,9 +376,8 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             return;
         }
         String idPuerta = (String) TablaPuertasSalida.getValueAt(row, 1);
-        ParqueaderoService service = new ParqueaderoService();
         try {
-            service.delPuertaSalida(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
+            jp.delPuertaSalida(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | PuertaNoAgregadaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
@@ -407,9 +403,9 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             return;
         }
         String idPuerta = (String) TablaPuertasEntrada.getValueAt(row, 1);
-        ParqueaderoService service = new ParqueaderoService();
+        ParqueaderoService jp = new ParqueaderoService();
         try {
-            service.delPuertaEntrada(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
+            jp.delPuertaEntrada(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | PuertaNoAgregadaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
@@ -427,8 +423,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 
     public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
-        ParqueaderoService service = new ParqueaderoService();
-        Parqueadero parqueadero =  service.getParqueadero(campus, idParqueadero);
+        Parqueadero parqueadero =  jp.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);
         idParqueaderolbl.setText(idParqueadero);

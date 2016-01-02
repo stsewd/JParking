@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.srv.CampusService;
+import edu.ucue.jparking.srv.JP;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Franklin Lara
  */
 public class CrearCampusGUI extends javax.swing.JDialog {
+    JP jp = new JP();
     private PrincipalGUI padre;
     /**
      * Creates new form CrearCampus
@@ -144,10 +146,9 @@ public class CrearCampusGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         String nombre = NombreTextField.getText();
         String ubicacion = DireccionTextField.getText();
-        CampusService campusService = new CampusService();
         
         try {
-            campusService.addCampus(nombre, ubicacion);
+            jp.addCampus(nombre, ubicacion);
             JOptionPane.showMessageDialog(rootPane, "Campus guardado con exito.", "Campus", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().cargarCampusCB();
