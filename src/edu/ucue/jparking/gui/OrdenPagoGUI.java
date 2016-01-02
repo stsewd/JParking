@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -362,8 +364,12 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         ImpresionOrdenPagosrv impresionOrdenPagosrv = new  ImpresionOrdenPagosrv();
         Document document = new Document();
-        
-        String directorioStr = "archivos";
+        String directorioStr = "";
+        try {
+            directorioStr = (new File(".").getCanonicalPath()) + "/archivos";
+        } catch (IOException ex) {
+            System.out.println("REEMPLAZAR ESTO, REORGANIZAR BIEN CAPTURA DE ERROR");
+        }
         File directorio = new File(directorioStr);
         
         if(!directorio.exists())
