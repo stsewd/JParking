@@ -27,8 +27,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -45,12 +43,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
      * Creates new form PrincipalGUI
      */
     public PrincipalGUI() {
-        initComponents();        
         
         //Establecer icono de aplicacion
-        ImageIcon imgIcon = new ImageIcon("img/transport122.png");
+        /*
+        ImageIcon imgIcon = new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/transport122.png"));
         this.setIconImage(imgIcon.getImage());
+        */
         
+        initComponents();        
+
         //Listar usuarios en tabla
         listarUsuarios();
         try {
@@ -63,31 +64,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         //Centrar ventana
         setLocationRelativeTo(null);
-        
-        //Botones
-        VerBtn.setIcon(new ImageIcon("img/more16.png"));
-        CrearUsuarioBtn.setIcon(new ImageIcon("img/add139.png"));
-        ModificarUsuarioBtn.setIcon(new ImageIcon("img/pencil41.png"));
-        EliminarUsuarioBtn.setIcon(new ImageIcon("img/close7.png"));
-        AgregarBtn.setIcon(new ImageIcon("img/keyboard53.png"));
-        
-        CrearParqueaderoBtn.setIcon(new ImageIcon("img/add139.png"));
-        EliminarParqueaderoBtn.setIcon(new ImageIcon("img/close7.png"));
-        ModificarParqueaderoBtn.setIcon(new ImageIcon("img/pencil41.png"));
-        UsuariosParqBtn.setIcon(new ImageIcon("img/user7.png"));
-        PuertasBtn.setIcon(new ImageIcon("img/barriers.png"));
-        
-        VerBtn.setText(null);
-        CrearUsuarioBtn.setText(null);
-        ModificarUsuarioBtn.setText(null);
-        EliminarUsuarioBtn.setText(null);
-        AgregarBtn.setText(null);
-        PuertasBtn.setText(null);
-        
-        CrearParqueaderoBtn.setText(null);
-        EliminarParqueaderoBtn.setText(null);
-        ModificarParqueaderoBtn.setText(null);
-        UsuariosParqBtn.setText(null);
     }
     
     public void cargarCampusCB(){
@@ -225,7 +201,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
         AcercaDeMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("JParking- Gestion de los Parqueaderos de la Universidad de Cuenca");
+        setTitle("JParking - Administrador de parqueaderos");
+        setIconImage((new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/transport122.png"))).getImage());
         setMinimumSize(new java.awt.Dimension(800, 430));
 
         jSplitPane1.setDividerLocation(350);
@@ -279,7 +256,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.setFloatable(false);
         jToolBar3.setRollover(true);
 
-        CrearParqueaderoBtn.setText("Crear");
+        CrearParqueaderoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/add139.png"))); // NOI18N
         CrearParqueaderoBtn.setToolTipText("Crear nuevo parqueadero");
         CrearParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,7 +265,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jToolBar3.add(CrearParqueaderoBtn);
 
-        EliminarParqueaderoBtn.setText("Eliminar");
+        EliminarParqueaderoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/close7.png"))); // NOI18N
         EliminarParqueaderoBtn.setToolTipText("Eliminar parqueadero");
         EliminarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,7 +274,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jToolBar3.add(EliminarParqueaderoBtn);
 
-        ModificarParqueaderoBtn.setText("Modificar");
+        ModificarParqueaderoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/pencil41.png"))); // NOI18N
         ModificarParqueaderoBtn.setToolTipText("Modificar parqueadero");
         ModificarParqueaderoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +284,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(ModificarParqueaderoBtn);
         jToolBar3.add(jSeparator7);
 
-        UsuariosParqBtn.setText("Usuarios");
+        UsuariosParqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/user7.png"))); // NOI18N
         UsuariosParqBtn.setToolTipText("Ver usuarios de parqueadero");
         UsuariosParqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,7 +293,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jToolBar3.add(UsuariosParqBtn);
 
-        PuertasBtn.setText("Puertas");
+        PuertasBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/barriers.png"))); // NOI18N
         PuertasBtn.setToolTipText("Ver puertas de acceso del parqueadero");
         PuertasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +316,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -353,7 +330,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
@@ -415,7 +392,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 
-        VerBtn.setText("Ver");
+        VerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/more16.png"))); // NOI18N
         VerBtn.setToolTipText("Ver usuario");
         VerBtn.setFocusable(false);
         VerBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -428,7 +405,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar2.add(VerBtn);
         jToolBar2.add(jSeparator2);
 
-        CrearUsuarioBtn.setText("Crear");
+        CrearUsuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/add139.png"))); // NOI18N
         CrearUsuarioBtn.setToolTipText("Crear nuevo usuario");
         CrearUsuarioBtn.setFocusable(false);
         CrearUsuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -440,7 +417,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jToolBar2.add(CrearUsuarioBtn);
 
-        EliminarUsuarioBtn.setText("Eliminar");
+        EliminarUsuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/close7.png"))); // NOI18N
         EliminarUsuarioBtn.setToolTipText("Eliminar usuario");
         EliminarUsuarioBtn.setFocusable(false);
         EliminarUsuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -452,7 +429,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jToolBar2.add(EliminarUsuarioBtn);
 
-        ModificarUsuarioBtn.setText("Modificar");
+        ModificarUsuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/pencil41.png"))); // NOI18N
         ModificarUsuarioBtn.setToolTipText("Modificar usuario");
         ModificarUsuarioBtn.setFocusable(false);
         ModificarUsuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -465,7 +442,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar2.add(ModificarUsuarioBtn);
         jToolBar2.add(jSeparator3);
 
-        AgregarBtn.setText("Agregar >>");
+        AgregarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/keyboard53.png"))); // NOI18N
         AgregarBtn.setToolTipText("Agregar usuario a parqueadero");
         AgregarBtn.setFocusable(false);
         AgregarBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -504,7 +481,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -761,7 +738,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         AcercaDeGUI ad = new AcercaDeGUI(this, true);
         ad.setLocationRelativeTo(this);
-        ad.cargarImagen();
         ad.setVisible(true);
     }//GEN-LAST:event_AcercaDeMenuItemActionPerformed
 
@@ -844,7 +820,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (IllegalArgumentException | UsuarioNoExistenteException | CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
 
@@ -916,7 +892,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModicarCampusMenuItemActionPerformed
 
@@ -963,7 +939,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }  catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
         }
         
     }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
@@ -985,7 +961,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (ParqueaderoNoExistenteException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
         }
         
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
@@ -1007,7 +983,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
         
         
@@ -1038,7 +1014,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     
@@ -1067,7 +1043,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (CampusInactivoException | ParquaderoInactivoException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     
@@ -1116,7 +1092,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
