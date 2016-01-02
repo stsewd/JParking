@@ -18,7 +18,9 @@ import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import java.awt.Desktop;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,7 +82,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         setTitle("Orden de Pago");
         setResizable(false);
 
-        jLabel4.setText("Tipo de Usuario:");
+        jLabel4.setText("Tipo de usuario:");
 
         TipoUsuarioTF.setEditable(false);
         TipoUsuarioTF.setEnabled(false);
@@ -143,15 +145,12 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             }
         });
         CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CedulaTFKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CedulaTFKeyPressed(evt);
             }
         });
 
-        jLabel5.setText("Valor a Pagar:");
+        jLabel5.setText("Valor a pagar:");
 
         ValorTF.setEditable(false);
         ValorTF.setEnabled(false);
@@ -180,7 +179,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
 
         jLabel9.setText("Fecha:");
 
-        jLabel10.setText("Fecha contrato:");
+        jLabel10.setText("Fecha ult pago:");
 
         fechaContratoTF.setEditable(false);
         fechaContratoTF.setEnabled(false);
@@ -214,7 +213,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(jLabel6)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ValorTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FechaTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,9 +325,10 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         try {
             ops.pagarOrdenPago(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
+            this.setVisible(false);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch(Exception ex){
+        } catch(HeadlessException ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_PagarBtnActionPerformed
@@ -338,11 +338,10 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 cargarDatos(CedulaTF.getText());
-                //habilitarCampos();
             } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }  catch(Exception ex){
-                JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
+            }  catch(UsuarioNoRegistradoEnUnParqueaderoException ex){
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CedulaTFKeyPressed
@@ -358,13 +357,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private void fechaContratoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaContratoTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaContratoTFActionPerformed
-
-    private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
-        if(CedulaTF.getText().length()==10){
-            evt.consume();
-        }
-    }//GEN-LAST:event_CedulaTFKeyTyped
 
     private void ImprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBtnActionPerformed
         // TODO add your handling code here:
@@ -383,23 +375,15 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             document.open();
             impresionOrdenPagosrv.addMetaData(document);
             impresionOrdenPagosrv.addContent(document, CedulaTF.getText());
+            document.close();
+            Desktop.getDesktop().open(FILE);
         } catch (IllegalArgumentException | DocumentException | FileNotFoundException | UsuarioNoExistenteException | CedulaNoValidaException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch (IOException ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
-        }catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
-        }finally{
-            document.close();
-        }
-        
-        try {
-            Desktop.getDesktop().open(FILE);
-        } catch (IOException ex) {
+        }catch (UsuarioNoRegistradoEnUnParqueaderoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
-        }
+        }finally{}
     }//GEN-LAST:event_ImprimirBtnActionPerformed
 
     /**
@@ -470,7 +454,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
+    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
         OrdenPagoService ordenPagoService = new OrdenPagoService();
         UsuarioService usuarioService = new UsuarioService();
         OrdenPago  ordenPago = ordenPagoService.getOrdenPago(cedula);
@@ -496,8 +480,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         DireccionTF.setText(u.getDireccion());
         TelefonoTF.setText(u.getTelefono());
         TipoUsuarioTF.setText(u.getTipoUsuarioString());
-        fechaContratoTF.setText(df.format(u.getFechaContrato().getTime()));
-        ValorTF.setText(Float.toString(ordenPago.getCosto()));
+        fechaContratoTF.setText(u.getFechaContrato() != null?df.format(u.getFechaContrato().getTime()):"../../../");
+        ValorTF.setText(String.format("%.2f", ordenPago.getCosto()));
         FechaTF.setText(df.format(ordenPago.getFechaEmision().getTime()));
     }
 }

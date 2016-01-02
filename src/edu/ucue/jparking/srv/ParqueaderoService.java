@@ -244,13 +244,17 @@ public class ParqueaderoService {
         parqueaderoDAO.delPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
    
-    private void agregarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula, Calendar fecha) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
+    private void agregarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula, Calendar fecha)
+            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException,
+            CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException,
+            ParquaderoInactivoException
+    {
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        UsuariosDAO.getInstance().fechaContrato(cedula, fecha);
+        UsuariosDAO.getInstance().setFechaContrato(cedula, fecha);
     }
     
     private void agregarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
@@ -267,7 +271,7 @@ public class ParqueaderoService {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        UsuariosDAO.getInstance().fechaContrato(cedula, null);
+        UsuariosDAO.getInstance().setFechaContrato(cedula, null);
     }
     
     private void eliminarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula,int aux) throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException{
@@ -293,9 +297,14 @@ public class ParqueaderoService {
      * @throws edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException 
      * @throws edu.ucue.jparking.srv.excepciones.UsuarioInactivoException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws edu.ucue.jparking.srv.excepciones.CampusInactivoException 
      */
-    public void addUsuario(String nombreCampus, String idParqueadero, String cedula) throws CedulaNoValidaException,
-            CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException, CampusInactivoException{
+    public void addUsuario(String nombreCampus, String idParqueadero, String cedula)
+            throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException,
+            UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException,
+            NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException,
+            CampusInactivoException
+    {
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");
         validaciones.validarCedula(cedula);
@@ -303,19 +312,21 @@ public class ParqueaderoService {
         validaciones.ComprobarParqueadero(nombreCampus, idParqueadero);
         validaciones.ComprobarUsuario(cedula);
         validaciones.ComprobarCampus(nombreCampus);
-        Calendar fecha = Calendar.getInstance();
+        //Calendar fecha = Calendar.getInstance();
         Parqueadero p = getParqueadero(nombreCampus, idParqueadero);
-        if(p.getNumeroLugaresOcupados() >= p.getNumeroLugares()) {
+        if(p.getNumeroLugaresOcupados() >= p.getNumeroLugares())
             throw new NumeroParqueaderosNoDisponiblesException();
-        } else {
-            if(validaciones.ComprobarUsuarioAsignadoParqueadero(cedula)){
-                parqueaderoDAO.addUsuario(nombreCampus, idParqueadero, cedula);
-                agregarEspacioParqueo(nombreCampus, idParqueadero, cedula);
-            }else{
-                parqueaderoDAO.addUsuario(nombreCampus, idParqueadero, cedula);
-                agregarEspacioParqueo(nombreCampus, idParqueadero, cedula, fecha);
-            }
+        parqueaderoDAO.addUsuario(nombreCampus, idParqueadero, cedula);
+        //agregarEspacioParqueo(nombreCampus, idParqueadero, cedula);
+        /*
+        if(validaciones.ComprobarUsuarioAsignadoParqueadero(cedula)){
+            parqueaderoDAO.addUsuario(nombreCampus, idParqueadero, cedula);
+            agregarEspacioParqueo(nombreCampus, idParqueadero, cedula);
+        }else{
+            parqueaderoDAO.addUsuario(nombreCampus, idParqueadero, cedula);
+            agregarEspacioParqueo(nombreCampus, idParqueadero, cedula, fecha);
         }
+        */
     }
     
     /**
@@ -336,7 +347,8 @@ public class ParqueaderoService {
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El campus no puede ser nulo.");
         parqueaderoDAO.delUsuario(nombreCampus, idParqueadero, cedula);
-        if(validaciones.ComprobarUsuarioAsignadoParqueadero(cedula)==false){
+        if(!validaciones.ComprobarUsuarioAsignadoParqueadero(cedula)){
+            //Eliminar contrato
             eliminarEspacioParqueo(nombreCampus, idParqueadero, cedula);
         }else{
             eliminarEspacioParqueo(nombreCampus, idParqueadero, cedula, 1);

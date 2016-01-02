@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
@@ -21,7 +22,6 @@ import java.util.Set;
 public abstract class Usuario extends Persona{
 
     private Calendar fechaContrato;
-    //private static final int diasContrato = 30;
     private Set<Parqueadero> parqueaderos;
     
     /**
@@ -59,12 +59,12 @@ public abstract class Usuario extends Persona{
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
-        fechaActual.roll(Calendar.DAY_OF_WEEK, -getDiasContrato());
+        fechaActual.add(Calendar.DAY_OF_MONTH, -getDiasContrato());
         return fechaActual.after(this.getFechaContrato());
     }
     
     public void cancelarPago() throws PagoYaRealizadoException {
-        if (!estaDebiendo())
+        if (fechaContrato != null && !estaDebiendo())
             throw new PagoYaRealizadoException(this.getCedula());
         this.setFechaContrato(Calendar.getInstance());
     }
@@ -80,14 +80,22 @@ public abstract class Usuario extends Persona{
      * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException
      * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException
      */
-    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException{
+    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException{
+        /*
         if(getFechaContrato() == null)
             throw new ContratoNoEstablecidoException(getCedula());
+        */
+        if(parqueaderos.isEmpty())
+            throw new UsuarioNoRegistradoEnUnParqueaderoException(getCedula());
+        if(fechaContrato == null)
+            return null;
         
-        Calendar fechaActual = Calendar.getInstance();
-        fechaActual.roll(Calendar.DAY_OF_MONTH, -(getDiasContrato() - 5));
-        if(fechaActual.before(this.getFechaContrato()))
-            throw new FueraDelDiaDePagoException(getDiasContrato());
+        if(!estaDebiendo()){
+            Calendar fechaActual = Calendar.getInstance();
+            fechaActual.add(Calendar.DAY_OF_MONTH, -(getDiasContrato() - 5));
+            if(fechaActual.before(this.getFechaContrato()))
+                throw new FueraDelDiaDePagoException(getDiasContrato());
+        }
         return null;
     }
 

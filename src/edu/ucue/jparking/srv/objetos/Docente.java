@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
@@ -12,7 +13,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  * @author Santos Gallegos
  */
 public class Docente extends Usuario {
-    private static final float VALOR_PARQUEADERO = 35f;
+    private static final float VALOR_PARQUEADERO = 35;
     private static final int diasContrato = 30;
     /**
      * @return the VALOR_PARQUEADERO
@@ -26,7 +27,7 @@ public class Docente extends Usuario {
     }
 
     @Override
-    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException {
+    public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
         super.generarOrdenPago();
         return new OrdenPago(getCedula(), getVALOR_PARQUEADERO());
     }
