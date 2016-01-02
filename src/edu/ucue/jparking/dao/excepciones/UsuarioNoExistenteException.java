@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class UsuarioNoExistenteException extends Exception {
 
     public UsuarioNoExistenteException(String cedula) {
-        super("El usuario de cedula: " + cedula + " no existe.");
+        super("Usuario de cedula: " + cedula + " no existe.");
     }
     
 }

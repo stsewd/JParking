@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class NumeroParqueaderosNoDisponiblesException extends Exception {
 
     public NumeroParqueaderosNoDisponiblesException() {
-        super("El parqueadero tiene todos los lugares ocupados");
+        super("Espacio insuficiente en el parqueadero.");
     }
     
 }

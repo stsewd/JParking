@@ -116,10 +116,12 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException
      * @throws ContratoNoEstablecidoException
      * @throws FueraDelDiaDePagoException 
+     * @throws edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException 
      */
     public OrdenPago getOrdenPago(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException,
-            ContratoNoEstablecidoException, FueraDelDiaDePagoException;
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException,
+            UsuarioNoRegistradoEnUnParqueaderoException;
     
     /**
      * permite el pago de una orden de pago por medio de la cedula

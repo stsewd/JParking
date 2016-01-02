@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class UsuarioInactivoException extends Exception {
 
     public UsuarioInactivoException() {
-        super("El usuario esta inactivo,\nno se puede realizar esta operación");
+        super("Usuario inactivo, acción no realizada.");
     }
     
 }

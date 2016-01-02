@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
  */
 package edu.ucue.jparking.srv;
 
@@ -42,6 +40,7 @@ import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -58,7 +57,15 @@ import java.util.Set;
  */
 public class JP implements JPInterface {
     private static JP instance;
+    
     private static CampusService campusService = new CampusService();
+    private static UsuarioService usuarioService = new UsuarioService();
+    private static ImpresionOrdenPagosrv impresionOrdenPagosrv = new ImpresionOrdenPagosrv();
+    private static OrdenPagoService ordenPagoService = new OrdenPagoService();
+    private static ParqueaderoService parqueaderoService = new ParqueaderoService();
+    private static PorterosService porterosService = new PorterosService();
+    private static PuertaService puertaService = new PuertaService();
+    private static RegistroService registroService = new RegistroService();
     
     public JP(){}
     
@@ -70,247 +77,251 @@ public class JP implements JPInterface {
 
     @Override
     public void addCampus(String nombre, String direccion) throws CampusExistenteExeption {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        campusService.addCampus(nombre, direccion);
     }
 
     @Override
     public Campus getCampus(String nombre) throws CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return campusService.getCampus(nombre);
     }
 
     @Override
     public void modCampus(String nombre, String direccion, boolean estado) throws CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        campusService.modCampus(nombre, direccion, estado);
     }
 
     @Override
     public void delCampus(String nombre) throws CampusNoExistenteException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        campusService.delCampus(nombre);
     }
 
     @Override
     public Set<Campus> getCampus() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return campusService.getCampus();
     }
 
     @Override
-    public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public OrdenPago getOrdenPago(String cedula) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException,
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException,
+            UsuarioNoRegistradoEnUnParqueaderoException
+    {
+        return ordenPagoService.getOrdenPago(cedula);
     }
 
     @Override
     public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ordenPagoService.pagarOrdenPago(cedula);
     }
 
     @Override
     public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.addParqueadero(ubicacion, numeroLugares, id, nombreCampus);
     }
 
     @Override
     public void delParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CampusNoExistenteException, CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.delParqueadero(nombreCampus, idParqueadero);
     }
 
     @Override
     public Parqueadero getParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
     }
 
     @Override
     public Set<Parqueadero> getParqueaderos() throws CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return parqueaderoService.getParqueaderos();
     }
 
     @Override
     public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return parqueaderoService.getParqueaderos(idCampus);
     }
 
     @Override
     public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares, boolean estado) throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException, NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.modParqueadero(nombreCampus, idParqueadero, ubicacion, numLugares, estado);
     }
 
     @Override
     public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.addPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
     public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.addPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
     public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.delPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
     public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.delPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
     public void addUsuario(String nombreCampus, String idParqueadero, String cedula) throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException, CampusInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.addUsuario(nombreCampus, idParqueadero, cedula);
     }
 
     @Override
     public void delUsuario(String nombreCampus, String idParqueadero, String cedula) throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException, CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        parqueaderoService.delUsuario(nombreCampus, idParqueadero, cedula);
     }
 
     @Override
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return parqueaderoService.getPuertasEntrada(nombreCampus, idParqueadero);
     }
 
     @Override
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return parqueaderoService.getPuertasSalida(nombreCampus, idParqueadero);
     }
 
     @Override
     public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return parqueaderoService.getUsuarios(nombreCampus, idParqueadero);
     }
 
     @Override
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        porterosService.addPortero(nombreCampus, cedula, nombre, apellido, direccion, telefono);
     }
 
     @Override
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
     public void delPortero(String cedula) throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        porterosService.delPortero(cedula);
     }
 
     @Override
     public Portero getPortero(String cedula) throws CedulaNoValidaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return porterosService.getPortero(cedula);
     }
 
     @Override
     public Set<Portero> getPorteros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return porterosService.getPorteros();
     }
 
     @Override
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return porterosService.getPorteros(nombreCampus);
     }
 
     @Override
     public void addpuerta(String ubicacion, String id, String idCampus) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        puertaService.addpuerta(ubicacion, id, idCampus);
     }
 
     @Override
     public void delpuerta(String nombreCampus, String id) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, ParqueaderoNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        puertaService.delpuerta(nombreCampus, id);
     }
 
     @Override
     public Puerta getPuerta(String nombreCampus, String id) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return puertaService.getPuerta(nombreCampus, id);
     }
 
     @Override
     public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        puertaService.modPuerta(nombreCampus, id, ubicacion, activo);
     }
 
     @Override
     public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return puertaService.getPuertas(nombreCampus);
     }
 
     @Override
     public Set<Puerta> getPuertas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return puertaService.getPuertas();
     }
 
     @Override
     public void add(Registro registro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        registroService.add(registro);
     }
 
     @Override
     public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        registroService.add(cedula, tipoRegistro, tipoTramite);
     }
 
     @Override
     public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return registroService.get(tipoRegistro, fechaInicio, fechaFinal);
     }
 
     @Override
     public Set<Registro> get(TipoRegistro tipoRegistro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return registroService.get(tipoRegistro);
     }
 
     @Override
     public Set<Registro> get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return registroService.get();
     }
 
     @Override
     public Set<Registro> get(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return registroService.get(fechaInicio, fechaFinal);
     }
 
     @Override
     public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return registroService.getRegistro(idRegistro);
     }
 
     @Override
     public void add(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
     }
 
     @Override
     public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        usuarioService.del(cedula);
     }
 
     @Override
     public void mod(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
     public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return usuarioService.get(cedula);
     }
 
     @Override
     public Set<Usuario> getLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return usuarioService.getLista();
     }
 
     @Override
     public Set<Usuario> getLista(TipoUsuario tipoUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return usuarioService.getLista(tipoUsuario);
     }
 
     @Override
     public Set<Parqueadero> getParqueaderosUsuario(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return usuarioService.getParqueaderosUsuario(cedula);
     }
 
     @Override
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        usuarioService.autenticarUsuario(nombreCampus, idPuerta, cedula);
     }
     
 }

@@ -12,7 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class ParquaderoInactivoException extends Exception {
 
     public ParquaderoInactivoException(String ubicacion) {
-        super("El parqueadero no puede estar inactivo "+ ubicacion);
+        super("Parqueadero inactivo, acción no realizada.");
     }
     
 }

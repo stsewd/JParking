@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class UsuarioNoAgregadoException extends Exception {
 
     public UsuarioNoAgregadoException(String cedula) {
-        super("El usuario con cedula " + cedula + " no se encuentra registrado en el parqueadero.");
+        super("Usuario con cedula " + cedula + " no se encuentra registrado en el parqueadero.");
     }
     
 }

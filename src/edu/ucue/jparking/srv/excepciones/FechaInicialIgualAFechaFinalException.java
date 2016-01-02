@@ -22,6 +22,6 @@ public class FechaInicialIgualAFechaFinalException extends Exception {
 
     @Override
     public String getMessage() {
-        return "La fecha final y la inicial no pueden ser iguales: " + df.format(fecha.getTime());
+        return "La fecha final y la inicial no pueden ser iguales: " + df.format(fecha.getTime()) + ".";
     }
 }

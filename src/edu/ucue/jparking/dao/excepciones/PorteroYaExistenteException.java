@@ -11,6 +11,6 @@ package edu.ucue.jparking.dao.excepciones;
  */
 public class PorteroYaExistenteException extends Exception {
     public PorteroYaExistenteException(String cedula) {
-        super("El portero con cedula: " + cedula + " ya existe.");
+        super("Portero de cedula: " + cedula + " ya existe.");
     }
 }

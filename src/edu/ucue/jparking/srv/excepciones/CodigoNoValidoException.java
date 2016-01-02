@@ -12,8 +12,7 @@ package edu.ucue.jparking.srv.excepciones;
 public class CodigoNoValidoException extends Exception {
 
     public CodigoNoValidoException(String codigo) {
-        super("Código ingresado no es valido.\n"
-                + "El código debe tener una letra seguida de 2 números");
+        super("Código no valido. El código debe tener una letra seguida de 2 números.");
     }
     
 }

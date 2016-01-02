@@ -12,7 +12,7 @@ package edu.ucue.jparking.dao.excepciones;
 public class UsuarioYaExistenteException extends Exception {
 
     public UsuarioYaExistenteException(String cedula) {
-        super("El usuario con cédula: " +  cedula + " ya existe.");
+        super("Usuario con cédula: " +  cedula + " ya existe.");
     }
     
 }
