@@ -112,9 +112,9 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try {
-            jp.del(CedulaTF.getText());
+            jp.delUsuario(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Usuario eliminado exitosamente.", "Aviso", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarUsuarios();
@@ -127,7 +127,7 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 

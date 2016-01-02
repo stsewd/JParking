@@ -223,7 +223,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaUsuarios.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
@@ -249,7 +249,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
         try {
             getPadre().listarParqueaderos();
@@ -276,7 +276,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     
     private void listarUsuarios() throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException{
 
-        Set<Usuario> usuarios = jp.getUsuarios(CampusTF.getText(), idParqueaderoLbl.getText());
+        Set<Usuario> usuarios = jp.getUsuariosParqueadero(CampusTF.getText(), idParqueaderoLbl.getText());
         
         DefaultTableModel model = (DefaultTableModel) TablaUsuarios.getModel();
         

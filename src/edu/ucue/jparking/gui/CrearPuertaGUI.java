@@ -149,16 +149,16 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
         CampusTF.setText(Campus);
     }
     private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CodigoTFActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String codigo = CodigoTF.getText();
         String Ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
@@ -176,14 +176,14 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CodigoTF.getText().length()==3){
             evt.consume();
         }
     }//GEN-LAST:event_CodigoTFKeyTyped
 
     private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(UbicacionTF.getText().length()==70){
             evt.consume();
         }

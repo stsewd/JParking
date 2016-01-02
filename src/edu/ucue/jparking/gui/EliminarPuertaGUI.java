@@ -144,11 +144,11 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         CampusTF.setText(campus);
     }
     private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CodigoTFActionPerformed
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try {
             jp.delpuerta(CampusTF.getText(), CodigoTF.getText());
             JOptionPane.showMessageDialog(rootPane, "La puerta eliminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
@@ -162,16 +162,16 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void CampusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CampusTFActionPerformed
 
     private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CodigoTF.getText().length()==3){
             evt.consume();
         }

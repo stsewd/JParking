@@ -262,7 +262,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CampusCBActionPerformed
 
     private void CrearPorteroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPorteroBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -281,7 +281,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CrearPorteroBtnActionPerformed
 
     private void ModificarPorteroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPorteroBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -320,7 +320,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_ModificarPorteroBtnActionPerformed
 
     private void EliminarPorterobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPorterobtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaPorteros.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado una puerta.", "Mensaje", JOptionPane.OK_OPTION);
@@ -340,14 +340,14 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         try {
-            // TODO add your handling code here:
+            // TODO addRegistro your handling code here:
             listarPorteros();
         } catch (CampusNoExistenteException ex) {
         }
     }//GEN-LAST:event_formFocusGained
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 

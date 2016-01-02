@@ -180,16 +180,16 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
     }
     
     private void CampusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CampusTFActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int n = (int) UbicacionCB.getSelectedIndex();
         String idPuerta = (String) idPuertaCB.getItemAt(n);
         if(idPuerta == null || idPuerta.trim().length() == 0){
@@ -221,7 +221,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
     private void UbicacionCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbicacionCBActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_UbicacionCBActionPerformed
 
     /**

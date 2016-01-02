@@ -120,11 +120,11 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
         CedulaTF.setText(cedula);
     }
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try {
             jp.delPortero(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "El portero elminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
@@ -137,12 +137,12 @@ public class EliminarPorteroGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CedulaTF.getText().length()==10){
             evt.consume();
         }

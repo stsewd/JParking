@@ -174,11 +174,11 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CodigoTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CodigoTFInputMethodTextChanged
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CodigoTFInputMethodTextChanged
 
     private void CodigoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CodigoTFActionPerformed
 
     public void HabilitarCampos(){
@@ -197,7 +197,7 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         
     }
     private void CodigoTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 CargarDatos(CampusTF.getText(), CodigoTF.getText());
@@ -211,12 +211,12 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CodigoTFKeyPressed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String codigo = CodigoTF.getText();
         String ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
@@ -234,21 +234,21 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
 
     private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
 
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CodigoTF.getText().length()==3){
             evt.consume();
         }
     }//GEN-LAST:event_CodigoTFKeyTyped
 
     private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(UbicacionTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_UbicacionTFKeyTyped
 
     private void CampusTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CampusTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CampusTF.getText().length()==70){
             evt.consume();
         }

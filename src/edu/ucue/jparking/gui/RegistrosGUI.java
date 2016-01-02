@@ -43,19 +43,19 @@ public class RegistrosGUI extends javax.swing.JDialog {
         Set<Registro> registros = null;
         switch(tipoRegistro){
             case "Todos": {
-                registros = jp.get();
+                registros = jp.getRegistros();
                 break;
             }
             case "Acceso a parqueadero":{
-                registros = jp.get(TipoRegistro.ACCESO_PARQUEADERO);
+                registros = jp.getRegistros(TipoRegistro.ACCESO_PARQUEADERO);
                 break;
             }
             case "Pagos": {
-                registros = jp.get(TipoRegistro.PAGOS);
+                registros = jp.getRegistros(TipoRegistro.PAGOS);
                 break;
             }
             case "Persona": {
-                registros = jp.get(TipoRegistro.PERSONA);
+                registros = jp.getRegistros(TipoRegistro.PERSONA);
                 break;
             }
         }
@@ -80,19 +80,19 @@ public class RegistrosGUI extends javax.swing.JDialog {
         Set<Registro> registros = null;
         switch(tipoRegistro){
             case "Todos": {
-                registros = jp.get(fechaInicial, fechaFinal);
+                registros = jp.getRegistros(fechaInicial, fechaFinal);
                 break;
             }
             case "Acceso a parqueadero":{
-                registros = jp.get(TipoRegistro.ACCESO_PARQUEADERO, fechaInicial, fechaFinal);
+                registros = jp.getRegistros(TipoRegistro.ACCESO_PARQUEADERO, fechaInicial, fechaFinal);
                 break;
             }
             case "Pagos": {
-                registros = jp.get(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
+                registros = jp.getRegistros(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
                 break;
             }
             case "Usuario": {
-                registros = jp.get(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
+                registros = jp.getRegistros(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
                 break;
             }
         }
@@ -289,17 +289,17 @@ public class RegistrosGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_FechaCheckBActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void TipoRegistroCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoRegistroCBActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         listarRegistros();
     }//GEN-LAST:event_TipoRegistroCBActionPerformed
 
     private void FiltrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try{
             listarRegistros(FechaInicialDate.getCalendar(), FechaFinalDate.getCalendar());
         }catch(IllegalArgumentException | FechaInicialMayorAFechaFinalException | FechaFinalMenorAFechaInicialException | FechaInicialIgualAFechaFinalException ex){
@@ -310,7 +310,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_FiltrarBtnActionPerformed
 
     private void VerRegistroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRegistroBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = RegistrosTabla.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un registro.", "Error", JOptionPane.OK_OPTION);

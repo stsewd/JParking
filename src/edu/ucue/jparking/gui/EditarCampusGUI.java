@@ -170,7 +170,7 @@ public class EditarCampusGUI extends javax.swing.JDialog {
         return padre;
     }
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombre = NombreTextField.getText();
         String direccion = DireccionTextField.getText();
         boolean estado = EstadoCK.isSelected();
@@ -187,25 +187,25 @@ public class EditarCampusGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EditarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void EstadoCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoCKActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_EstadoCKActionPerformed
 
     private void NombreTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_NombreTextFieldCaretUpdate
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
 
     }//GEN-LAST:event_NombreTextFieldCaretUpdate
 
     private void NombreTextFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_NombreTextFieldInputMethodTextChanged
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_NombreTextFieldInputMethodTextChanged
 
     private void NombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextFieldActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_NombreTextFieldActionPerformed
 
     public void CargarDatos(String nombre) throws CampusNoExistenteException{
@@ -219,7 +219,7 @@ public class EditarCampusGUI extends javax.swing.JDialog {
     }
     
     private void NombreTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 CargarDatos(NombreTextField.getText());
@@ -233,14 +233,14 @@ public class EditarCampusGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_NombreTextFieldKeyPressed
 
     private void NombreTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(NombreTextField.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_NombreTextFieldKeyTyped
 
     private void DireccionTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTextFieldKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(DireccionTextField.getText().length()==70){
             evt.consume();
         }

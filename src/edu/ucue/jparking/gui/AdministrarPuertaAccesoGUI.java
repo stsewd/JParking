@@ -316,7 +316,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             model.addRow(new Object[]{n++, p.getId(), p.getUbicacion()});
     }
     private void AgregarEntradaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarEntradaBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         AgregarPuertaAccesoGUI agregarPuertaAccesoGUI = new AgregarPuertaAccesoGUI(null, true);
         agregarPuertaAccesoGUI.cargarDatos(idParqueaderolbl.getText(), idCampuslbl.getText(), "entrada");
         agregarPuertaAccesoGUI.setLocationRelativeTo(this);
@@ -335,7 +335,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
 
     private void AgregarSalidaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarSalidaBtn1ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         AgregarPuertaAccesoGUI agregarPuertaAccesoGUI = new AgregarPuertaAccesoGUI(null, rootPaneCheckingEnabled);
         agregarPuertaAccesoGUI.setLocationRelativeTo(this);
         agregarPuertaAccesoGUI.cargarDatos(idParqueaderolbl.getText(), idCampuslbl.getText(), "salida");
@@ -358,18 +358,18 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_AgregarSalidaBtn1ActionPerformed
 
     private void CerrarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtn1ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
         ///
     }//GEN-LAST:event_CerrarBtn1ActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void EliminarSalidaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarSalidaBtn1ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaPuertasSalida.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
@@ -396,7 +396,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
 
     private void EliminarEntradaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEntradaBtnActionPerformed
 
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaPuertasEntrada.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);

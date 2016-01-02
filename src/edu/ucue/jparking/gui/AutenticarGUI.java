@@ -158,11 +158,11 @@ public class AutenticarGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CampusCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusCBActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CampusCBActionPerformed
 
     private void AutenticarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutenticarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
         if(campus == null || campus.trim().length() == 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
@@ -188,13 +188,13 @@ public class AutenticarGUI extends javax.swing.JDialog {
 
     
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void CampusCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CampusCBItemStateChanged
         try {
-            // TODO add your handling code here:
+            // TODO addRegistro your handling code here:
             cargarPuertasCB();
         } catch (IllegalArgumentException | CampusNoExistenteException ex) {
         }
@@ -202,7 +202,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CampusCBItemStateChanged
 
     private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CedulaTF.getText().length()==10){
             evt.consume();
         }

@@ -134,16 +134,16 @@ public class CrearCampusGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTextFieldActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_NombreTextFieldActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombre = NombreTextField.getText();
         String ubicacion = DireccionTextField.getText();
         
@@ -165,14 +165,14 @@ public class CrearCampusGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void NombreTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTextFieldKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(NombreTextField.getText().length()==50){
             evt.consume();
         }
     }//GEN-LAST:event_NombreTextFieldKeyTyped
 
     private void DireccionTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTextFieldKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(DireccionTextField.getText().length()==70){
             evt.consume();
         }

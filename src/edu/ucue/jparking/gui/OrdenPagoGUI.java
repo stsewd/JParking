@@ -288,36 +288,36 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TipoUsuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_TipoUsuarioTFActionPerformed
 
     private void TelefonoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonoTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_TelefonoTFActionPerformed
 
     private void NombreTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_NombreTFActionPerformed
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
 
     private void ValorTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_ValorTFActionPerformed
 
     private void PagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try {
             jp.pagarOrdenPago(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
@@ -330,7 +330,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_PagarBtnActionPerformed
 
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 cargarDatos(CedulaTF.getText());
@@ -343,21 +343,21 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CedulaTFKeyPressed
 
     private void ApellidoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_ApellidoTFActionPerformed
 
     private void FechaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_FechaTFActionPerformed
 
     private void fechaContratoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaContratoTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_fechaContratoTFActionPerformed
 
     private void ImprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBtnActionPerformed
         try {
-            // TODO add your handling code here:
-            File archivo = jp.impresion(CedulaTF.getText());
+            // TODO addRegistro your handling code here:
+            File archivo = jp.exportarOrdenPago(CedulaTF.getText());
             Desktop.getDesktop().open(archivo);
             
         } catch (IllegalArgumentException | DocumentException | FileNotFoundException | UsuarioNoExistenteException | CedulaNoValidaException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
@@ -443,7 +443,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
 
     public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
         OrdenPago  ordenPago = jp.getOrdenPago(cedula);
-        Usuario u = jp.get(cedula);
+        Usuario u = jp.getUsuario(cedula);
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         

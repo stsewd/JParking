@@ -6,9 +6,7 @@
 package edu.ucue.jparking.srv;
 
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -152,7 +150,7 @@ public interface JPInterface {
             CodigoNoValidoException, CampusInactivoException;
     
     /**
-     * borra un parqueadero por el nombre del campus y el identificador del parqueadero 
+     * borra un parqueadero por el nombre delUsuario campus y el identificador delUsuario parqueadero 
      * @param nombreCampus
      * @param idParqueadero
      * @throws ParqueaderoNoExistenteException
@@ -167,7 +165,7 @@ public interface JPInterface {
             UsuarioNoAgregadoException, CampusInactivoException;
 
     /**
-     * estrae un parqueadero por el nombre del campus y su identificador
+     * estrae un parqueadero por el nombre delUsuario campus y su identificador
      * @param nombreCampus
      * @param idParqueadero
      * @return
@@ -326,7 +324,7 @@ public interface JPInterface {
     
     
     /**
-     * extrae todas las puertas de un parquedero por el nombre del campus y su identificador
+     * extrae todas las puertas de un parquedero por el nombre delUsuario campus y su identificador
      * @param nombreCampus
      * @param idParqueadero
      * @return
@@ -361,7 +359,7 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException
      * @throws CampusNoExistenteException 
      */
-    public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero) 
+    public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero) 
             throws CodigoNoValidoException, ParqueaderoNoExistenteException, 
             UsuarioNoExistenteException, CampusNoExistenteException;
     
@@ -497,24 +495,7 @@ public interface JPInterface {
      * @return 
      */
     public Set<Puerta> getPuertas();
-    
-    /**
-     * agrega un nuevo registro
-     * @param registro 
-     */
-    public void add(Registro registro);
-    
-    /**
-     * agrega un usuario por tipo de registro
-     * @param cedula
-     * @param tipoRegistro
-     * @param tipoTramite
-     * @throws UsuarioNoExistenteException
-     * @throws CedulaNoValidaException 
-     */
-    public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) 
-            throws UsuarioNoExistenteException, CedulaNoValidaException;
-    
+          
     /**
      * Saca un registro especifico
      * @param tipoRegistro
@@ -525,7 +506,7 @@ public interface JPInterface {
      * @throws FechaFinalMenorAFechaInicialException
      * @throws FechaInicialIgualAFechaFinalException 
      */
-    public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) 
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
             FechaInicialIgualAFechaFinalException;
     /**
@@ -533,13 +514,13 @@ public interface JPInterface {
      * @param tipoRegistro
      * @return 
      */
-    public Set<Registro> get(TipoRegistro tipoRegistro);
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro);
     
     /**
      * extrae todos los registros
      * @return 
      */
-    public Set<Registro> get();
+    public Set<Registro> getRegistros();
     
     /**
      * extrae los registro por fecha
@@ -550,7 +531,7 @@ public interface JPInterface {
      * @throws FechaFinalMenorAFechaInicialException
      * @throws FechaInicialIgualAFechaFinalException 
      */
-    public Set<Registro>  get(Calendar fechaInicio, Calendar fechaFinal) 
+    public Set<Registro>  getRegistros(Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, 
             FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException;
     
@@ -576,7 +557,7 @@ public interface JPInterface {
      * @throws PersonaYaRegistradoComoPorteroException
      * @throws UsuarioNoExistenteException 
      */
-    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) 
+    public void addUsuario(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) 
             throws UsuarioYaExistenteException, CedulaNoValidaException,
             TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException,
             UsuarioNoExistenteException;
@@ -589,7 +570,7 @@ public interface JPInterface {
      * @throws IllegalArgumentException
      * @throws CampusNoExistenteException 
      */
-    public void del(String cedula) 
+    public void delUsuario(String cedula) 
             throws UsuarioNoExistenteException, CedulaNoValidaException, 
             IllegalArgumentException, CampusNoExistenteException;
     
@@ -604,7 +585,7 @@ public interface JPInterface {
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException 
      */
-    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
+    public void modUsuario(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
             throws CedulaNoValidaException, UsuarioNoExistenteException ;
 
 
@@ -615,20 +596,20 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException
      * @throws CedulaNoValidaException 
      */
-    public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException;
+    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException;
 
     /**
      * extrae todos los usuarios
      * @return 
      */
-    public Set<Usuario> getLista();
+    public Set<Usuario> getUsuarios();
 
     /**
      * extarae por el tipo de usuario
      * @param tipoUsuario
      * @return 
      */
-    public Set<Usuario> getLista(TipoUsuario tipoUsuario);
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario);
     
     /**
      * extrae todos los parqueadero de un usuario
@@ -671,7 +652,7 @@ public interface JPInterface {
      * @throws BadElementException
      * @throws IOException 
      */
-    public File impresion(String cedula) 
+    public File exportarOrdenPago(String cedula) 
             throws UsuarioNoRegistradoEnUnParqueaderoException, 
             DocumentException, FileNotFoundException, 
             UsuarioNoExistenteException, CedulaNoValidaException,

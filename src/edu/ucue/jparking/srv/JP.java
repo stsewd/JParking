@@ -195,7 +195,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException {
+    public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException {
         return parqueaderoService.getUsuarios(nombreCampus, idParqueadero);
     }
 
@@ -260,32 +260,22 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void add(Registro registro) {
-        registroService.add(registro);
-    }
-
-    @Override
-    public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException {
-        registroService.add(cedula, tipoRegistro, tipoTramite);
-    }
-
-    @Override
-    public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
         return registroService.get(tipoRegistro, fechaInicio, fechaFinal);
     }
 
     @Override
-    public Set<Registro> get(TipoRegistro tipoRegistro) {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) {
         return registroService.get(tipoRegistro);
     }
 
     @Override
-    public Set<Registro> get() {
+    public Set<Registro> getRegistros() {
         return registroService.get();
     }
 
     @Override
-    public Set<Registro> get(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+    public Set<Registro> getRegistros(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
         return registroService.get(fechaInicio, fechaFinal);
     }
 
@@ -295,32 +285,32 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void add(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException {
+    public void addUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException {
         usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
     }
 
     @Override
-    public void del(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException {
+    public void delUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException {
         usuarioService.del(cedula);
     }
 
     @Override
-    public void mod(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public void modUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
         usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
-    public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
+    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
         return usuarioService.get(cedula);
     }
 
     @Override
-    public Set<Usuario> getLista() {
+    public Set<Usuario> getUsuarios() {
         return usuarioService.getLista();
     }
 
     @Override
-    public Set<Usuario> getLista(TipoUsuario tipoUsuario) {
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
         return usuarioService.getLista(tipoUsuario);
     }
 
@@ -335,7 +325,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public File impresion(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException, DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
+    public File exportarOrdenPago(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException, DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
         return impresionOrdenPagosrv.impresion(cedula);
     }
 }

@@ -136,12 +136,12 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void AccederBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccederBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try {
             jp.autenticarUsuario(CampusTF.getText(), PuertaIdTF.getText(), CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Usuario autenticado correctamente.", "Mensaje", JOptionPane.OK_OPTION);

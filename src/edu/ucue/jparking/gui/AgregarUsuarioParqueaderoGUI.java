@@ -145,7 +145,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         UsuarioGUI usuarioGUI = new UsuarioGUI(null, true);
         usuarioGUI.setLocationRelativeTo(this);
         try {
@@ -164,7 +164,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
         campuslbl.setText(campus);
     }
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String cedula = CedulaTF.getText();
         String id = IdParqueaderolbl.getText();
         String campus = campuslbl.getText();
@@ -180,7 +180,7 @@ public class AgregarUsuarioParqueaderoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 

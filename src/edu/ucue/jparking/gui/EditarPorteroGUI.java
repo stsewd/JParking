@@ -243,7 +243,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CampusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CampusTFActionPerformed
 
     public void HabilitarCampos(){
@@ -273,7 +273,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     }
     
     private void CedulaTF1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTF1InputMethodTextChanged
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
 /*
         try {
             CargarDatos(CedulaTF1.getText());
@@ -286,11 +286,11 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CedulaTF1InputMethodTextChanged
 
     private void CedulaTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTF1ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CedulaTF1ActionPerformed
 
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombre = NombresTF.getText();
         String apellido = ApellidosTF.getText();
         String direccion = DireccionTF2.getText();
@@ -315,16 +315,16 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EditarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void DireccionTF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTF2ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_DireccionTF2ActionPerformed
 
     private void CedulaTF1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTF1KeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 CargarDatos(CedulaTF1.getText());
@@ -338,35 +338,35 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CedulaTF1KeyPressed
 
     private void CedulaTF1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTF1KeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CedulaTF1.getText().length()==10){
             evt.consume();
         }
     }//GEN-LAST:event_CedulaTF1KeyTyped
 
     private void NombresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombresTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(NombresTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_NombresTFKeyTyped
 
     private void ApellidosTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidosTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(ApellidosTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_ApellidosTFKeyTyped
 
     private void DireccionTF2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTF2KeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(DireccionTF2.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_DireccionTF2KeyTyped
 
     private void TelefonoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(TelefonoTF.getText().length()==10){
             evt.consume();
         }

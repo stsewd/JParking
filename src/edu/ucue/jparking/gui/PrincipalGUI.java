@@ -81,19 +81,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
         Set<Usuario> usuarios = null;
         switch(tipoUsuario){
             case "Todos": {
-                usuarios = jp.getLista();
+                usuarios = jp.getUsuarios();
                 break;
             }
             case "Estudiante":{
-                usuarios = jp.getLista(TipoUsuario.ESTUDIANTE);
+                usuarios = jp.getUsuarios(TipoUsuario.ESTUDIANTE);
                 break;
             }
             case "Docente": {
-                usuarios = jp.getLista(TipoUsuario.DOCENTE);
+                usuarios = jp.getUsuarios(TipoUsuario.DOCENTE);
                 break;
             }
             case "Empleado": {
-                usuarios = jp.getLista(TipoUsuario.EMPLEADO);
+                usuarios = jp.getUsuarios(TipoUsuario.EMPLEADO);
                 break;
             }
         }
@@ -720,14 +720,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EliminarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         EliminarUsuarioGUI eliminarUsuarioGUI = new EliminarUsuarioGUI(this, true);
         eliminarUsuarioGUI.setLocationRelativeTo(this);
         eliminarUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_EliminarUsuarioMenuItemActionPerformed
 
     private void CrearParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
         if(campus == null || campus.trim().length() == 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
@@ -741,7 +741,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearParqueaderoMenuItemActionPerformed
 
     private void EliminarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
         if(campus == null || campus.trim().length() == 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
@@ -754,14 +754,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarParqueaderoMenuItemActionPerformed
 
     private void AcercaDeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaDeMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         AcercaDeGUI ad = new AcercaDeGUI(this, true);
         ad.setLocationRelativeTo(this);
         ad.setVisible(true);
     }//GEN-LAST:event_AcercaDeMenuItemActionPerformed
 
     private void EliminarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarParqueaderoBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaParqueaderos.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
@@ -787,7 +787,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarParqueaderoBtnActionPerformed
 
     private void CrearParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearParqueaderoBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
         if(campus == null || campus.trim().length() == 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
@@ -801,14 +801,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearParqueaderoBtnActionPerformed
 
     private void CrearUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         CrearUsuarioGUI crearUsuarioGUI = new CrearUsuarioGUI(this, true);
         crearUsuarioGUI.setLocationRelativeTo(this);
         crearUsuarioGUI.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioMenuItemActionPerformed
 
     private void ModificarUsuarioMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarUsuarioMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         EditarUsuarioGUI editarUsuarioGUI = new EditarUsuarioGUI(this, true);
         editarUsuarioGUI.setLocationRelativeTo(this);
         editarUsuarioGUI.setVisible(true);
@@ -833,7 +833,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SalirItemActionPerformed
 
     private void EliminarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCampusMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -849,7 +849,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarCampusMenuItemActionPerformed
 
     private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -868,28 +868,28 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ModicarCampusMenuItemActionPerformed
 
     private void CrearCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCampusMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         CrearCampusGUI crearCampusGUI = new CrearCampusGUI(this, true);
         crearCampusGUI.setLocationRelativeTo(this);
         crearCampusGUI.setVisible(true);
     }//GEN-LAST:event_CrearCampusMenuItemActionPerformed
 
     private void AdministarPuertasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdministarPuertasMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         AdministrarPuertasGUI administrarPuertasGUI = new AdministrarPuertasGUI(this, true);
         administrarPuertasGUI.setLocationRelativeTo(this);
         administrarPuertasGUI.setVisible(true);
     }//GEN-LAST:event_AdministarPuertasMenuItemActionPerformed
 
     private void AdministarPorterosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdministarPorterosMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         AdministarPorterosGUI administarPorterosGUI = new AdministarPorterosGUI(this, true);
         administarPorterosGUI.setLocationRelativeTo(this);
         administarPorterosGUI.setVisible(true);
     }//GEN-LAST:event_AdministarPorterosMenuItemActionPerformed
 
     private void ModificarParqueaderoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
         if(campus == null || campus.trim().length() == 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un campus.", "Mensaje", JOptionPane.OK_OPTION);
@@ -916,7 +916,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ModificarParqueaderoBtnActionPerformed
 
     private void ModificarParqueaderoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarParqueaderoMenuItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaParqueaderos.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
@@ -938,7 +938,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ModificarParqueaderoMenuItemActionPerformed
 
     private void PuertasAccesoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasAccesoItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         puertasAccesoParqueadero();
     }//GEN-LAST:event_PuertasAccesoItemActionPerformed
 
@@ -967,7 +967,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }
     
     private void UsuariosParqueaderoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosParqueaderoItemActionPerformed
-        // TODO add your handling code here:      
+        // TODO addRegistro your handling code here:      
         usuariosParqueadero();
     }//GEN-LAST:event_UsuariosParqueaderoItemActionPerformed
 
@@ -996,31 +996,31 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }
     
     private void GenerarOrdenPagoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarOrdenPagoItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         OrdenPagoGUI opgui = new OrdenPagoGUI(this, true);
         opgui.setLocationRelativeTo(this);
         opgui.setVisible(true);
     }//GEN-LAST:event_GenerarOrdenPagoItemActionPerformed
 
     private void PuertasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         puertasAccesoParqueadero();
     }//GEN-LAST:event_PuertasBtnActionPerformed
 
     private void UsuariosParqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosParqBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         usuariosParqueadero();
     }//GEN-LAST:event_UsuariosParqBtnActionPerformed
 
     private void AutenticacionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutenticacionItemActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         AutenticarGUI autenticarGUI = new AutenticarGUI(this, true);
         autenticarGUI.setLocationRelativeTo(this);
         autenticarGUI.setVisible(true);
     }//GEN-LAST:event_AutenticacionItemActionPerformed
 
     private void CopyIDParqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyIDParqBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaParqueaderos.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un parqueadero.", "Mensaje", JOptionPane.OK_OPTION);
@@ -1033,7 +1033,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CopyIDParqBtnActionPerformed
 
     private void AgregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String campus = (String) CampusCB.getSelectedItem();
         int row = TablaParqueaderos.getSelectedRow();
         if(row < 0){
@@ -1063,7 +1063,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
     private void CopyCedulaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyCedulaBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaUsuarios.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
@@ -1098,7 +1098,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ModificarUsuarioBtnActionPerformed
 
     private void EliminarUsuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaUsuarios.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);
@@ -1118,7 +1118,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearUsuarioBtnActionPerformed
 
     private void VerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         int row = TablaUsuarios.getSelectedRow();
         if(row < 0){
             JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un usuario.", "Mensaje", JOptionPane.OK_OPTION);

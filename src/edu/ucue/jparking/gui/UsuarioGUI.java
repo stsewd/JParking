@@ -218,20 +218,20 @@ public class UsuarioGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CedulaTFActionPerformed
 
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_CedulaTFKeyPressed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
 
     /**
@@ -301,7 +301,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
-        Usuario u =  jp.get(cedula);
+        Usuario u =  jp.getUsuario(cedula);
         
         CedulaTF.setText(cedula);
         NombresTF.setText(u.getNombres());

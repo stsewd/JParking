@@ -245,33 +245,33 @@ public class RegistroGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CedulaTF.getText().length()==10){
             evt.consume();
         }
     }//GEN-LAST:event_CedulaTFKeyTyped
 
     private void NombreTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(NombreTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_NombreTFKeyTyped
 
     private void ApellidoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidoTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(ApellidoTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_ApellidoTFKeyTyped
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
 
     /**

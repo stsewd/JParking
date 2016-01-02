@@ -116,12 +116,12 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtnActionPerformed
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         try {
             jp.delParqueadero(campuslbl.getText(), CodigoTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Parqueadero eliminado exitosamente.","Mensaje", JOptionPane.OK_OPTION);

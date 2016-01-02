@@ -254,12 +254,12 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CancelarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtn1ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CancelarBtn1ActionPerformed
 
     private void EditarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombre = NombresTF.getText();
         String apellido = ApellidosTF.getText();
         String direccion = DireccionTF.getText();
@@ -267,7 +267,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
         String cedula = CedulaTF.getText();
         boolean estado = EstadoCK.isSelected();
         try {
-            jp.mod(cedula, nombre, apellido, direccion, telefono, estado);
+            jp.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
             JOptionPane.showMessageDialog(rootPane, "Usuario modificado con exito.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
 
@@ -281,28 +281,28 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EditarBtnActionPerformed
 
     private void EstadoCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadoCKActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_EstadoCKActionPerformed
 
     private void TipoUsuarioTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_TipoUsuarioTFInputMethodTextChanged
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_TipoUsuarioTFInputMethodTextChanged
 
     private void TipoUsuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_TipoUsuarioTFActionPerformed
 
     private void TipoUsuarioTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TipoUsuarioTFKeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_TipoUsuarioTFKeyPressed
 
     private void CedulaTFInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CedulaTFInputMethodTextChanged
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
 
     }//GEN-LAST:event_CedulaTFInputMethodTextChanged
 
     private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
 
     }//GEN-LAST:event_CedulaTFActionPerformed
 
@@ -311,7 +311,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     }
     
     public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
-        Usuario usuario = jp.get(cedula);
+        Usuario usuario = jp.getUsuario(cedula);
         
         CedulaTF.setText(cedula);
         TipoUsuarioTF.setText(usuario.getTipoUsuarioString());
@@ -335,7 +335,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     }
     
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
                 cargarDatos(CedulaTF.getText());
@@ -349,39 +349,39 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CedulaTFKeyPressed
 
     private void DireccionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DireccionTFActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_DireccionTFActionPerformed
 
     private void CedulaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CedulaTF.getText().length()==10){
             evt.consume();
         }
     }//GEN-LAST:event_CedulaTFKeyTyped
 
     private void NombresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombresTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(NombresTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_NombresTFKeyTyped
 
     private void ApellidosTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ApellidosTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(ApellidosTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_ApellidosTFKeyTyped
 
     private void DireccionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DireccionTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(DireccionTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_DireccionTFKeyTyped
 
     private void TelefonoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TelefonoTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
     }//GEN-LAST:event_TelefonoTFKeyTyped
 
     /**

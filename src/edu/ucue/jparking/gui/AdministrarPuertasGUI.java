@@ -270,7 +270,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CampusCBActionPerformed
 
     private void CrearPuertaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPuertaBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         
         String campus = (String)CampusCB.getSelectedItem();
         if(campus==null || campus.trim().length()==0){
@@ -289,7 +289,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CrearPuertaBtnActionPerformed
 
     private void EliminarPuertabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPuertabtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -315,7 +315,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_EliminarPuertabtnActionPerformed
 
     private void ModificarPuertaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPuertaBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
@@ -348,7 +348,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         try {
-            // TODO add your handling code here:
+            // TODO addRegistro your handling code here:
             listarPuertas();
         } catch (CampusNoExistenteException ex) {
         } catch (CodigoNoValidoException ex) {
@@ -356,7 +356,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_formFocusGained
 
     private void IngresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
             JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
@@ -376,7 +376,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_IngresarBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

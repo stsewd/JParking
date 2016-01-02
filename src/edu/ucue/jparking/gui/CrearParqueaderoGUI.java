@@ -163,7 +163,7 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CrearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         String codigo = CodigoTF.getText();
         String ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
@@ -191,26 +191,26 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CrearBtnActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void CodigoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(CodigoTF.getText().length()==3){
             evt.consume();
         }
     }//GEN-LAST:event_CodigoTFKeyTyped
 
     private void UbicacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UbicacionTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(UbicacionTF.getText().length()==70){
             evt.consume();
         }
     }//GEN-LAST:event_UbicacionTFKeyTyped
 
     private void NumeroLugaresTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroLugaresTFKeyTyped
-        // TODO add your handling code here:
+        // TODO addRegistro your handling code here:
         if(NumeroLugaresTF.getText().length()==10){
             evt.consume();
         }
