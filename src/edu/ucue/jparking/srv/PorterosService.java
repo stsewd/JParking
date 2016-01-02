@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author Franklin
+ * @author Franklin Lara
  */
 public class PorterosService {
     Validaciones validar = new Validaciones();
