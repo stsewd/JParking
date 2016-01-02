@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
  */
 public class UsuarioGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form UsuarioGUI
      */
@@ -299,9 +301,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
-        UsuarioService usuarioService = new UsuarioService();
-        Usuario u =  usuarioService.get(cedula);
-        
+        Usuario u =  jp.get(cedula);
         
         CedulaTF.setText(cedula);
         NombresTF.setText(u.getNombres());
@@ -318,7 +318,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
         
         activoCheckB.setSelected(u.isActivo());
         String parqueaderosList = "";
-        for(Parqueadero p :  usuarioService.getParqueaderosUsuario(cedula)){
+        for(Parqueadero p :  jp.getParqueaderosUsuario(cedula)){
             parqueaderosList += "Campus: " + p.getCampus().getNombre() + "\n" +
                     "Parqueadero: (" + p.getId() + ") " + p.getUbicacion() + "\n\n";
         }

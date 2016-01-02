@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -26,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministarPorterosGUI extends javax.swing.JDialog {
 
+    JP jp = new JP(); 
     /**
      * Creates new form AdministarPorterosGUI
      */
@@ -235,29 +237,21 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
     private void cargarCampusCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
-        CampusService campusService = new CampusService();
-        for(Campus c : campusService.getCampus()){
+        for(Campus c : jp.getCampus()){
             CampusCB.addItem(c.getNombre());
         }
     }
     
     public void listarPorteros() throws CampusNoExistenteException{
         
-        PorterosService porterosService = new PorterosService();
-
         String nombreCampus = (String) CampusCB.getSelectedItem();
-        
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             return;
-        
-        Set<Portero> porteros = porterosService.getPorteros(nombreCampus);
-
+        Set<Portero> porteros = jp.getPorteros(nombreCampus);
         DefaultTableModel model = (DefaultTableModel) TablaPorteros.getModel();
-
         //Borrar elementos anteriores
         for(int i = model.getRowCount() - 1; i >= 0 ; i--)
             model.removeRow(i);
-
         int n = 1;
         for(Portero p : porteros)
             model.addRow(new Object[]{n++, p.getCedula(), p.getApellidos()+ " " + p.getNombres()});
@@ -317,7 +311,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             editarPorteroGUI.setVisible(true);
             
         } catch (CedulaNoValidaException | IllegalArgumentException ex) {
-            Logger.getLogger(AdministarPorterosGUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
         }

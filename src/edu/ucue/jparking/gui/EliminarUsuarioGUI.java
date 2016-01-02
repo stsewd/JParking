@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author stsewd
  */
 public class EliminarUsuarioGUI extends javax.swing.JDialog {
-    
+    JP jp = new JP();
     private PrincipalGUI padre;
     /**
      * Creates new form EliminarUsuarioGUI
@@ -110,9 +111,8 @@ public class EliminarUsuarioGUI extends javax.swing.JDialog {
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
         // TODO add your handling code here:
-        UsuarioService usuarioService = new UsuarioService();
         try {
-            usuarioService.del(CedulaTF.getText());
+            jp.del(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Usuario eliminado exitosamente.", "Aviso", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarUsuarios();

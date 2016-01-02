@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class CrearPuertaGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form CrearPuerta
      */
@@ -160,10 +162,8 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
         String codigo = CodigoTF.getText();
         String Ubicacion = UbicacionTF.getText();
         String campus = CampusTF.getText();
-        PuertaService puertaService = new PuertaService();
-        
         try {
-            puertaService.addpuerta(Ubicacion, codigo, campus);
+            jp.addpuerta(Ubicacion, codigo, campus);
             JOptionPane.showMessageDialog(rootPane, "Puerta creada con exito.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {

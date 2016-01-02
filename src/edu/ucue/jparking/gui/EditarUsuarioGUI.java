@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Usuario;
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class EditarUsuarioGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
+    
+    JP jp = new JP();
     /**
      * Creates new form EditarUsuario
      */
@@ -263,9 +266,8 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
         String telefono = TelefonoTF.getText();
         String cedula = CedulaTF.getText();
         boolean estado = EstadoCK.isSelected();
-        UsuarioService usuarioService = new UsuarioService();
         try {
-            usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
+            jp.mod(cedula, nombre, apellido, direccion, telefono, estado);
             JOptionPane.showMessageDialog(rootPane, "Usuario modificado con exito.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
 
@@ -309,8 +311,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
     }
     
     public void cargarDatos(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
-        UsuarioService usuarioService = new UsuarioService();
-        Usuario usuario = usuarioService.get(cedula);
+        Usuario usuario = jp.get(cedula);
         
         CedulaTF.setText(cedula);
         TipoUsuarioTF.setText(usuario.getTipoUsuarioString());
@@ -337,7 +338,6 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
-                UsuarioService usuarioService = new UsuarioService();
                 cargarDatos(CedulaTF.getText());
                 habilitarCampos();
             } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {

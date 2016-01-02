@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.Validaciones;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
@@ -22,7 +23,8 @@ import javax.swing.table.DefaultTableModel;
  * @author lara
  */
 public class AdministrarPuertasGUI extends javax.swing.JDialog {
-
+    
+    JP jp  = new JP();
     /**
      * Creates new form AdministrarPuertasGUI
      */
@@ -235,22 +237,20 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     private void cargarCampusCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
-        CampusService campusService = new CampusService();
-        for(Campus c : campusService.getCampus()){
+        for(Campus c : jp.getCampus()){
             CampusCB.addItem(c.getNombre());
         }
     }
     
     public void listarPuertas() throws CampusNoExistenteException, CodigoNoValidoException{
         
-        PuertaService puertaService = new PuertaService();
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
         
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             return;
         
-        Set<Puerta> puertas = puertaService.getPuertas(nombreCampus);
+        Set<Puerta> puertas = jp.getPuertas(nombreCampus);
 
         DefaultTableModel model = (DefaultTableModel) TablaPuertas.getModel();
 
@@ -308,9 +308,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         eliminarPuertaGUI.setVisible(true);
         try {
             listarPuertas();
-        } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(IllegalArgumentException ex){
+        } catch (CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);

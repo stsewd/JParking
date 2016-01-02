@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class AutenticarUsuarioGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form AutenticarUsuarioGUI_
      */
@@ -140,9 +142,8 @@ public class AutenticarUsuarioGUI extends javax.swing.JDialog {
 
     private void AccederBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccederBtnActionPerformed
         // TODO add your handling code here:
-        UsuarioService us = new UsuarioService();
         try {
-            us.autenticarUsuario(CampusTF.getText(), PuertaIdTF.getText(), CedulaTF.getText());
+            jp.autenticarUsuario(CampusTF.getText(), PuertaIdTF.getText(), CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Usuario autenticado correctamente.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

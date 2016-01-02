@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -27,6 +28,9 @@ import javax.swing.table.DefaultTableModel;
  * @author lara
  */
 public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
+    
+    JP jp  = new JP();
+            
     private PrincipalGUI padre;
     /**
      * Creates new form AdministrarUsuariosParqueadero
@@ -230,9 +234,8 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         String idParaqueadero = idParqueaderoLbl.getText();
         String cedula = (String) TablaUsuarios.getValueAt(row, 1);
         String campus = CampusTF.getText();
-        ParqueaderoService service = new ParqueaderoService();
         try {
-            service.delUsuario(campus, idParaqueadero, cedula);
+            jp.delUsuario(campus, idParaqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "El usuario se ha borrado exisosamente", "Mensaje", JOptionPane.OK_OPTION);
             getPadre().listarUsuarios();
         } catch (CedulaNoValidaException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException | CampusInactivoException | ParquaderoInactivoException ex) {
@@ -259,8 +262,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException{
-        ParqueaderoService service = new ParqueaderoService();
-        Parqueadero parqueadero =  service.getParqueadero(campus, idParqueadero);
+        Parqueadero parqueadero =  jp.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);
         idParqueaderoLbl.setText(idParqueadero);
@@ -275,8 +277,8 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
     }
     
     private void listarUsuarios() throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException{
-        ParqueaderoService service = new ParqueaderoService();
-        Set<Usuario> usuarios = service.getUsuarios(CampusTF.getText(), idParqueaderoLbl.getText());
+
+        Set<Usuario> usuarios = jp.getUsuarios(CampusTF.getText(), idParqueaderoLbl.getText());
         
         DefaultTableModel model = (DefaultTableModel) TablaUsuarios.getModel();
         

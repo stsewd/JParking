@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
@@ -25,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RegistrosGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form RegistrosGUI
      */
@@ -35,25 +37,24 @@ public class RegistrosGUI extends javax.swing.JDialog {
     }
     
     public void listarRegistros(){        
-        RegistroService registroService = new RegistroService();
         
         String tipoRegistro = (String) TipoRegistroCB.getSelectedItem();
         Set<Registro> registros = null;
         switch(tipoRegistro){
             case "Todos": {
-                registros = registroService.get();
+                registros = jp.get();
                 break;
             }
             case "Acceso a parqueadero":{
-                registros = registroService.get(TipoRegistro.ACCESO_PARQUEADERO);
+                registros = jp.get(TipoRegistro.ACCESO_PARQUEADERO);
                 break;
             }
             case "Pagos": {
-                registros = registroService.get(TipoRegistro.PAGOS);
+                registros = jp.get(TipoRegistro.PAGOS);
                 break;
             }
             case "Persona": {
-                registros = registroService.get(TipoRegistro.PERSONA);
+                registros = jp.get(TipoRegistro.PERSONA);
                 break;
             }
         }
@@ -73,25 +74,24 @@ public class RegistrosGUI extends javax.swing.JDialog {
     
     
     public void listarRegistros(Calendar fechaInicial, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{        
-        RegistroService registroService = new RegistroService();
         
         String tipoRegistro = (String) TipoRegistroCB.getSelectedItem();
         Set<Registro> registros = null;
         switch(tipoRegistro){
             case "Todos": {
-                registros = registroService.get(fechaInicial, fechaFinal);
+                registros = jp.get(fechaInicial, fechaFinal);
                 break;
             }
             case "Acceso a parqueadero":{
-                registros = registroService.get(TipoRegistro.ACCESO_PARQUEADERO, fechaInicial, fechaFinal);
+                registros = jp.get(TipoRegistro.ACCESO_PARQUEADERO, fechaInicial, fechaFinal);
                 break;
             }
             case "Pagos": {
-                registros = registroService.get(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
+                registros = jp.get(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
                 break;
             }
             case "Usuario": {
-                registros = registroService.get(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
+                registros = jp.get(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
                 break;
             }
         }

@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class CrearPorteroGUI extends javax.swing.JDialog {
     private AdministarPorterosGUI padre;
+    JP jp = new JP();
     /**
      * Creates new form CrearPortero
      */
@@ -221,10 +223,9 @@ public class CrearPorteroGUI extends javax.swing.JDialog {
         String cedula = CedulaTF.getText();
         String direccion = DireccionTF.getText();
         String telefono = TelefonoTF.getText();
-        PorterosService porterosService = new PorterosService();
         
         try {
-            porterosService.addPortero(campus, cedula, nombre, apellido, direccion, telefono);
+            jp.addPortero(campus, cedula, nombre, apellido, direccion, telefono);
             JOptionPane.showMessageDialog(rootPane, "Portero creado con exito.", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | IllegalArgumentException | TelefonoNoValidoException | PersonaYaRegistradaComoUsuarioException ex) {

@@ -8,6 +8,7 @@ package edu.ucue.jparking.gui;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminarPuertaGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     AdministrarPuertasGUI padre;
     /**
      * Creates new form EliminarPuertaGUI
@@ -146,9 +148,8 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
         // TODO add your handling code here:
-        PuertaService puertaService = new PuertaService();
         try {
-            puertaService.delpuerta(CampusTF.getText(), CodigoTF.getText());
+            jp.delpuerta(CampusTF.getText(), CodigoTF.getText());
             JOptionPane.showMessageDialog(rootPane, "La puerta eliminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             
             this.setVisible(false);

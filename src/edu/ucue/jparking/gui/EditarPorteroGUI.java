@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarPorteroGUI extends javax.swing.JDialog {
     private AdministarPorterosGUI padre;
+    JP jp = new JP();
     /**
      * Creates new form EditarPortero
      */
@@ -256,8 +258,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
     }
     
     public void CargarDatos(String cedula) throws CedulaNoValidaException{
-        PorterosService porterosService = new PorterosService();
-        Portero portero = porterosService.getPortero(cedula);
+        Portero portero = jp.getPortero(cedula);
         CedulaTF1.setText(cedula);
         NombresTF.setText(portero.getNombres());
         ApellidosTF.setText(portero.getApellidos());
@@ -296,9 +297,8 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         String telefono = TelefonoTF.getText();
         String cedula = CedulaTF1.getText();
         boolean estado = EstadoCK.isSelected();
-        PorterosService porterosService = new PorterosService();
         try {
-            porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
+            jp.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
             JOptionPane.showMessageDialog(rootPane, "Protero modificado con exito.", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
             try {

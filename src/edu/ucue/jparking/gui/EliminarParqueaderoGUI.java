@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminarParqueaderoGUI extends javax.swing.JDialog {
     private PrincipalGUI padre;
+    JP jp = new JP();
     /**
      * Creates new form EliminarParqueaderoGUI
      */
@@ -119,9 +121,8 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
 
     private void EliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBtnActionPerformed
         // TODO add your handling code here:
-        ParqueaderoService parqueaderoService = new ParqueaderoService();
         try {
-            parqueaderoService.delParqueadero(campuslbl.getText(), CodigoTF.getText());
+            jp.delParqueadero(campuslbl.getText(), CodigoTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Parqueadero eliminado exitosamente.","Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();

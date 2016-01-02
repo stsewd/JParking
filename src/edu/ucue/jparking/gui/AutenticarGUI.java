@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.CampusService;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
@@ -24,6 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class AutenticarGUI extends javax.swing.JDialog {
 
+    JP jp = new JP();
     /**
      * Creates new form AutenticarGUI
      */
@@ -175,9 +177,8 @@ public class AutenticarGUI extends javax.swing.JDialog {
             return;
         }
         
-        UsuarioService usuarioService = new UsuarioService();
         try {
-            usuarioService.autenticarUsuario(campus, idPuerta, CedulaTF.getText());
+            jp.autenticarUsuario(campus, idPuerta, CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Se autenticado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
@@ -268,8 +269,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
     public void cargarCampusCB(){
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
-        CampusService campusService = new CampusService();
-        for(Campus c : campusService.getCampus()){
+        for(Campus c : jp.getCampus()){
             CampusCB.addItem(c.getNombre());
         }
     }
@@ -279,8 +279,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
         PuertasCB.removeAllItems();
         idPuertaCB.removeAllItems();
         String campus = (String) CampusCB.getSelectedItem();
-        PuertaService puertaService = new PuertaService();
-        for(Puerta c : puertaService.getPuertas(campus)){
+        for(Puerta c : jp.getPuertas(campus)){
             PuertasCB.addItem("(" + c.getId() + ") " + c.getUbicacion());
             idPuertaCB.addItem(c.getId());
         }
