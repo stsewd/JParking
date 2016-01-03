@@ -189,7 +189,7 @@ public class Validaciones {
             throw new IllegalArgumentException("El campo del id del campus no puede estar vacio");
     }
 
-    public  void validarCodigo(String codigo) throws CodigoNoValidoException{
+    public  void validarCodigo(String codigo) throws CodigoNoValidoException {
         if(codigo==null || codigo.trim().length()==0)
             throw new IllegalArgumentException("El codigo no puede estar vacio");
         codigo = codigo.trim();
@@ -200,8 +200,8 @@ public class Validaciones {
         }catch(Exception e){
             throw new CodigoNoValidoException(codigo);
         }
-        if(!Character.isAlphabetic(codigo.charAt(0)))
-            throw new CodigoNoValidoException(codigo);        
+        if(!Character.isAlphabetic(codigo.charAt(0)) || Character.isLowerCase(codigo.charAt(0)))
+            throw new CodigoNoValidoException(codigo);
     }  
     
     public void ValidarParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus){
