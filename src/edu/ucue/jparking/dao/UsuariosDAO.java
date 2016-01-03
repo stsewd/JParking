@@ -14,7 +14,6 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -111,12 +110,6 @@ public class UsuariosDAO implements UsuariosDAOInterface {
 
     @Override
     public Set<Parqueadero> getParqueaderos(String cedula) throws UsuarioNoExistenteException {
-        
-        /****************************************************
-         * No te olvides de manejar varibles de instancia dentro
-         * de la lista de parqueaderos de un usuario
-         * en lugar de sólo el id.
-        *******************************************************/
         return getUsuario(cedula).getParqueaderos();
     }
 
