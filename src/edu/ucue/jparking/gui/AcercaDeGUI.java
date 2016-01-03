@@ -49,7 +49,7 @@ public class AcercaDeGUI extends javax.swing.JDialog {
         jLabel3.setText("Administrador de parqueaderos.");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
-        jLabel4.setText("Version: 0.1.0-estable");
+        jLabel4.setText("Version: 0.1.3");
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jLabel5.setText("Desarrolladores:");

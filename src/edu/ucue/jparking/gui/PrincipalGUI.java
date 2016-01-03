@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.datatransfer.*;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 
 /**
