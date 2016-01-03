@@ -62,7 +62,7 @@ public class Puerta implements Comparable<Puerta> {
 
     @Override
     public int compareTo(Puerta o) {
-        return getId().compareToIgnoreCase(o.getId());
+        return getId().compareTo(o.getId());
     }
     
 }

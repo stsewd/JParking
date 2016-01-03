@@ -25,31 +25,31 @@ public class CampusService {
     CampusDAOInterface campusDAO = CampusDAO.getInstancia();
     
     
-    public Campus addCampus(String nombre, String direccion) throws CampusExistenteExeption{
-        validar.ValidarCampus(nombre, direccion);
-        Campus campus = new Campus(nombre, direccion);
+    public Campus addCampus(String nombreCampus, String direccion) throws CampusExistenteExeption{
+        validar.ValidarCampus(nombreCampus, direccion);
+        Campus campus = new Campus(nombreCampus, direccion);
         campusDAO.addCampus(campus);
         return campus;
     }
 
-    public Campus getCampus(String nombre) throws CampusNoExistenteException{
-        if(nombre==null || nombre.trim().length() == 0)
+    public Campus getCampus(String nombreCampus) throws CampusNoExistenteException{
+        if(nombreCampus==null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El nombre del campus no puede estar vacio");
-        return campusDAO.getCampus(nombre);
+        return campusDAO.getCampus(nombreCampus);
     }
-    public void modCampus(String nombre,String direccion,boolean estado) throws CampusNoExistenteException{
-        validar.ValidarCampus(nombre, direccion);
-        campusDAO.modCampus(nombre, direccion, estado);
-        
+    
+    public void modCampus(String nombreCampus, String direccion, boolean estado) throws CampusNoExistenteException{
+        validar.ValidarCampus(nombreCampus, direccion);
+        campusDAO.modCampus(nombreCampus, direccion, estado);
     }
    
-    public void delCampus(String nombre)
+    public void delCampus(String nombreCampus)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException
     {
-        if(nombre==null || nombre.trim().length()==0)
+        if(nombreCampus==null || nombreCampus.trim().length()==0)
             throw new IllegalArgumentException("El nombre del campus no puede estar vacio");
-        campusDAO.delCampus(nombre);
+        campusDAO.delCampus(nombreCampus);
     }
     
     

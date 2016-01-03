@@ -135,7 +135,7 @@ public class Parqueadero implements Comparable<Parqueadero> {
 
     @Override
     public int compareTo(Parqueadero o) {
-        return getId().compareToIgnoreCase(o.getId());
+        return getId().compareTo(o.getId());
     }
 
     /**

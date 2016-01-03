@@ -102,6 +102,6 @@ public class Campus implements Comparable<Campus> {
 
     @Override
     public int compareTo(Campus o) {
-        return getNombre().compareToIgnoreCase(o.getNombre());
+        return getNombre().compareTo(o.getNombre());
     }
 }
