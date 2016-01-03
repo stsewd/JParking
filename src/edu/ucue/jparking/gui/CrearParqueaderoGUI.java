@@ -176,7 +176,7 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "El numero de lugares debe ser un numero.", "Error", JOptionPane.OK_OPTION);
             return;
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
         try {
             jp.addParqueadero(ubicacion, numLugares, codigo, campus);
@@ -186,7 +186,7 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CrearBtnActionPerformed
 

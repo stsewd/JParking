@@ -32,16 +32,11 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         
         //carga el CampusCB
         cargarCampusCB();
-        
-        
-        /////
+
         try {
             //Lista porteros
             listarPorteros();
-        } catch (CampusNoExistenteException ex) {
-        }
-        
-        
+        } catch (CampusNoExistenteException ex) {}       
     }
 
     /**
@@ -265,7 +260,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
-            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
         CrearPorteroGUI crearPorteroGUI = new CrearPorteroGUI(null, rootPaneCheckingEnabled);
@@ -284,7 +279,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         // TODO addRegistro your handling code here:
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus==null){
-            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "No se a selecionado ningun campus.", "Mensaje", JOptionPane.OK_OPTION);
             return;
         }
         
@@ -308,14 +303,14 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         } catch (CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
         }
 
         try {
             listarPorteros();
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModificarPorteroBtnActionPerformed
 

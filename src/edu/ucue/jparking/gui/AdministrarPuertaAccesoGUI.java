@@ -14,6 +14,7 @@ import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.awt.HeadlessException;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -323,13 +324,13 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         agregarPuertaAccesoGUI.setVisible(true);
         try {
             listarPuertasEntradas();
-        } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
+        }catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasSalida();
-        } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
+        }catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
@@ -344,16 +345,16 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AgregarSalidaBtn1ActionPerformed
 
@@ -381,16 +382,18 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | PuertaNoAgregadaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        }catch(HeadlessException ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarSalidaBtn1ActionPerformed
 
@@ -408,16 +411,18 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | PuertaNoAgregadaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        }catch(HeadlessException ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 

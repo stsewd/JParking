@@ -199,7 +199,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "El número de lugares debe ser un número.", "Error", JOptionPane.OK_OPTION);
             return;
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
         
         try {
@@ -210,7 +210,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException | NumeroLugaresDeParqueoInsuficientesException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EditarBtnActionPerformed
 
@@ -231,7 +231,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
             } catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             }catch(Exception ex){
-                JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_CodigoTFKeyPressed

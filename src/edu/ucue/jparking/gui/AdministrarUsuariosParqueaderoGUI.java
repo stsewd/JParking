@@ -239,7 +239,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         } catch (CedulaNoValidaException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException | CampusInactivoException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         } 
         
         try {
@@ -270,7 +270,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
             listarUsuarios();
         } catch (UsuarioNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     

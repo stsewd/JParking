@@ -336,9 +336,10 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             editarPuertaGUI.setVisible(true);
         } catch (CodigoNoValidoException | PuertaNoExistenteException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso...", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
+        
         try {
             listarPuertas();
         } catch (CampusNoExistenteException ex) {
