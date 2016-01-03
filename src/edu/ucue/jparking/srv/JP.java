@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
@@ -318,7 +319,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException {
+    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException {
         usuarioService.autenticarUsuario(nombreCampus, idPuerta, cedula);
     }
 

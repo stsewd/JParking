@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
@@ -102,7 +103,7 @@ public class UsuarioService {
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
-            AccesoNoAutorizadoException, CampusNoExistenteException{
+            AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException {
         validaciones.validarCedula(cedula);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
@@ -153,7 +154,8 @@ public class UsuarioService {
         
         if(!encontrado)
             throw new AccesoNoAutorizadoException(cedula, u.getTipoUsuarioString(), nombreCampus, idPuerta);
-        
+        if(u.estaDebiendo() || u.getFechaContrato() == null)
+            throw new PagoNoCanceladoException(cedula);
         
         //Registro
         registroService.add(u.getRegistro(TipoAcceso.ACCESO));

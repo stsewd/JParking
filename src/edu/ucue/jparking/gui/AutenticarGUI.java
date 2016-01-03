@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
+import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
@@ -181,7 +182,9 @@ public class AutenticarGUI extends javax.swing.JDialog {
             this.setVisible(false);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (Exception ex){
+        }catch (PagoNoCanceladoException ex) { 
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch (Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_AutenticarBtnActionPerformed

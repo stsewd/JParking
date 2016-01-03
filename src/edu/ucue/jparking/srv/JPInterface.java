@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
@@ -25,7 +26,6 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
-import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
@@ -158,6 +158,7 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws UsuarioNoExistenteException
      * @throws UsuarioNoAgregadoException 
+     * @throws edu.ucue.jparking.srv.excepciones.CampusInactivoException 
      */
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
@@ -632,11 +633,13 @@ public interface JPInterface {
      * @throws ParqueaderoNoExistenteException
      * @throws AccesoNoAutorizadoException
      * @throws CampusNoExistenteException 
+     * @throws edu.ucue.jparking.srv.PagoNoCanceladoException 
      */
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
-            AccesoNoAutorizadoException, CampusNoExistenteException;
+            AccesoNoAutorizadoException, CampusNoExistenteException,
+            PagoNoCanceladoException;
     
     /**
      * Impresion de la orden de pago

@@ -645,6 +645,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         PagosMenu.setMnemonic('g');
         PagosMenu.setText("Pagos");
 
+        GenerarOrdenPagoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         GenerarOrdenPagoItem.setText("Generar Orden de Pago");
         GenerarOrdenPagoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
