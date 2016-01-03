@@ -209,7 +209,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(350);
         jSplitPane1.setDividerSize(15);
         jSplitPane1.setAutoscrolls(true);
-        jSplitPane1.setOneTouchExpandable(true);
 
         jLabel1.setText("Campus:");
 

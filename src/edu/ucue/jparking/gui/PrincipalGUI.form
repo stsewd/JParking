@@ -277,7 +277,6 @@
         <Property name="dividerLocation" type="int" value="350"/>
         <Property name="dividerSize" type="int" value="15"/>
         <Property name="autoscrolls" type="boolean" value="true"/>
-        <Property name="oneTouchExpandable" type="boolean" value="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
