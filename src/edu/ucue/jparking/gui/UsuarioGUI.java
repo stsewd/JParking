@@ -71,16 +71,6 @@ public class UsuarioGUI extends javax.swing.JDialog {
         TelefonoTF.setEditable(false);
 
         CedulaTF.setEditable(false);
-        CedulaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CedulaTFActionPerformed(evt);
-            }
-        });
-        CedulaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CedulaTFKeyPressed(evt);
-            }
-        });
 
         NombresTF.setEditable(false);
 
@@ -216,14 +206,6 @@ public class UsuarioGUI extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void CedulaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CedulaTFActionPerformed
-        // TODO addRegistro your handling code here:
-    }//GEN-LAST:event_CedulaTFActionPerformed
-
-    private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
-        // TODO addRegistro your handling code here:
-    }//GEN-LAST:event_CedulaTFKeyPressed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
         // TODO addRegistro your handling code here:
