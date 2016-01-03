@@ -56,13 +56,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         //Listar usuarios en tabla
         listarUsuarios();
+        
+        //Cargar campus en combobox
+        cargarCampusCB();
         try {
             listarParqueaderos();
         } catch (CampusNoExistenteException | IllegalArgumentException  ex) {
         }
-        
-        //Cargar campus en combobox
-        cargarCampusCB();
         
         //Centrar ventana
         setLocationRelativeTo(null);
@@ -112,17 +112,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
     public void listarParqueaderos() throws CampusNoExistenteException{
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
+        DefaultTableModel model = (DefaultTableModel) TablaParqueaderos.getModel();
+        
+        //Borrar elementos anteriores
+        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
+            model.removeRow(i);
         
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             return;
         
         Set<Parqueadero> parqueaderos = jp.getParqueaderos(nombreCampus);
-
-        DefaultTableModel model = (DefaultTableModel) TablaParqueaderos.getModel();
-
-        //Borrar elementos anteriores
-        for(int i = model.getRowCount() - 1; i >= 0 ; i--)
-            model.removeRow(i);
 
         int n = 1;
         for(Parqueadero p : parqueaderos)
