@@ -147,6 +147,6 @@ public abstract class Persona implements Comparable<Persona>{
 
     @Override
     public int compareTo(Persona o) {
-        return (getApellidos() + getNombres()).compareTo(o.getApellidos() + o.getNombres());
+        return (getApellidos() + getNombres()).compareToIgnoreCase(o.getApellidos() + o.getNombres());
     }
 }

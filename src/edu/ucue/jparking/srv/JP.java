@@ -4,7 +4,6 @@
 package edu.ucue.jparking.srv;
 
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
@@ -24,7 +23,6 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
-import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
