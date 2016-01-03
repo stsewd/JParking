@@ -7,6 +7,7 @@ package edu.ucue.jparking.srv.objetos.registros;
 
 import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
+import edu.ucue.jparking.srv.enums.TipoUsuario;
 import java.util.Calendar;
 
 /**
@@ -19,7 +20,7 @@ public abstract class Registro {
     
     private final Calendar fecha;
     private int numeroRegistro;
-    private final String tipoPersona;
+    private final TipoUsuario tipoPersona;
     private final String cedulaPersona;
     private final String nombresPersona;
     private final String apellidosPersona;
@@ -33,7 +34,7 @@ public abstract class Registro {
         this.nombresPersona = persona.getNombres();
         this.apellidosPersona = persona.getApellidos();
         this.activoPersona = persona.isActivo();
-        this.tipoPersona = persona.getTipoUsuarioString();
+        this.tipoPersona = persona.getTipoUsuario();
         this.telefonoPersona = persona.getTelefono();
         this.direccionPersona = persona.getDireccion();
         this.tipoRegistro = tipoRegistro;
@@ -101,7 +102,7 @@ public abstract class Registro {
     /**
      * @return the tipoPersona
      */
-    public String getTipoPersona() {
+    public TipoUsuario getTipoPersona() {
         return tipoPersona;
     }
 

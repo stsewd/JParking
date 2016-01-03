@@ -41,6 +41,7 @@ import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesExce
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import edu.ucue.jparking.srv.excepciones.PorteroInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
@@ -633,13 +634,16 @@ public interface JPInterface {
      * @throws ParqueaderoNoExistenteException
      * @throws AccesoNoAutorizadoException
      * @throws CampusNoExistenteException 
-     * @throws edu.ucue.jparking.srv.PagoNoCanceladoException 
+     * @throws edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException 
+     * @throws edu.ucue.jparking.srv.excepciones.PorteroInactivoException 
+     * @throws edu.ucue.jparking.srv.excepciones.UsuarioInactivoException 
      */
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
             AccesoNoAutorizadoException, CampusNoExistenteException,
-            PagoNoCanceladoException;
+            PagoNoCanceladoException, PorteroInactivoException,
+            UsuarioInactivoException;
     
     /**
      * Impresion de la orden de pago

@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.PorteroInactivoException;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -20,6 +21,7 @@ import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Portero;
 import edu.ucue.jparking.srv.objetos.Puerta;
@@ -103,7 +105,8 @@ public class UsuarioService {
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
-            AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException {
+            AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException 
+    {
         validaciones.validarCedula(cedula);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
@@ -118,6 +121,8 @@ public class UsuarioService {
             //Permitir acceso
             if(portero.getCampus().getNombre().compareToIgnoreCase(nombreCampus) != 0)
                 throw new AccesoNoAutorizadoException(cedula, portero.getTipoUsuarioString(), nombreCampus, idPuerta);
+            if(!portero.isActivo())
+                throw new PorteroInactivoException(portero.getCedula());
             //Registro
             registroService.add(portero.getRegistro(TipoAcceso.ACCESO));
             //Fin registro
@@ -154,9 +159,10 @@ public class UsuarioService {
         
         if(!encontrado)
             throw new AccesoNoAutorizadoException(cedula, u.getTipoUsuarioString(), nombreCampus, idPuerta);
+        if(!u.isActivo())
+            throw new UsuarioInactivoException();
         if(u.estaDebiendo() || u.getFechaContrato() == null)
             throw new PagoNoCanceladoException(cedula);
-        
         //Registro
         registroService.add(u.getRegistro(TipoAcceso.ACCESO));
         

@@ -39,6 +39,7 @@ import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesExce
 import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
+import edu.ucue.jparking.srv.excepciones.PorteroInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
@@ -319,7 +320,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException {
+    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException {
         usuarioService.autenticarUsuario(nombreCampus, idPuerta, cedula);
     }
 

@@ -63,6 +63,8 @@ public class RegistroGUI extends javax.swing.JDialog {
         DireccionTF = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         TelefonoTF = new javax.swing.JTextField();
+        TipoUsuarioTF = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro");
@@ -136,6 +138,10 @@ public class RegistroGUI extends javax.swing.JDialog {
 
         TelefonoTF.setEditable(false);
 
+        TipoUsuarioTF.setEditable(false);
+
+        jLabel11.setText("Tipo usuario:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,7 +194,11 @@ public class RegistroGUI extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -230,6 +240,10 @@ public class RegistroGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TelefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ActivoCheckBox)
@@ -328,8 +342,10 @@ public class RegistroGUI extends javax.swing.JDialog {
     private javax.swing.JTextField NombreTF;
     private javax.swing.JTextField TelefonoTF;
     private javax.swing.JTextField TipoRegistroTF;
+    private javax.swing.JTextField TipoUsuarioTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -358,6 +374,7 @@ public class RegistroGUI extends javax.swing.JDialog {
         ActivoCheckBox.setSelected(r.isActivoPersona());
         DireccionTF.setText(r.getDireccionPersona());
         TelefonoTF.setText(r.getTelefonoPersona());
+        TipoUsuarioTF.setText(r.getTipoPersona().toString());
         
     }
 }

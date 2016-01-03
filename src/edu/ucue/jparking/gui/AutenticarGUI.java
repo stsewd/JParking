@@ -14,6 +14,8 @@ import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
+import edu.ucue.jparking.srv.excepciones.PorteroInactivoException;
+import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import javax.swing.JOptionPane;
@@ -183,6 +185,10 @@ public class AutenticarGUI extends javax.swing.JDialog {
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch (PagoNoCanceladoException ex) { 
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(PorteroInactivoException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(UsuarioInactivoException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }catch (Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
