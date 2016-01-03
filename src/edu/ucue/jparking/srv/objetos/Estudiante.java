@@ -34,7 +34,7 @@ public class Estudiante extends Usuario{
     }
 
     @Override
-    public int getDiasContrato() {
+    public int getDIAS_CONTRATO() {
         return this.diasContrato;
     }
     

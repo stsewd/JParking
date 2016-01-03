@@ -16,6 +16,7 @@ public class Campus implements Comparable<Campus> {
     private static final HoraDia horaApertura = new HoraDia(6, 30);
     private static final HoraDia horaCierre = new HoraDia(21, 30);
     private boolean activo;
+    
     private Map<String, Puerta> puertas;
     private Map<String, Portero> porteros;
     private Map<String, Parqueadero> parqueaderos;

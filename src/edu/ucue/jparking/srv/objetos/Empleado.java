@@ -14,7 +14,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  */
 public class Empleado extends Usuario {
     private static final float VALOR_PARQUEADERO = 30;
-    private static final int diasContrato = 30;
+    private static final int DIAS_CONTRATO = 30;
 
     public Empleado(String cedula, String nombres, String apellidos, String direccion, String telefono) {
         super(cedula, nombres, apellidos, direccion, telefono, TipoUsuario.EMPLEADO);
@@ -34,7 +34,7 @@ public class Empleado extends Usuario {
     }
 
     @Override
-    public int getDiasContrato() {
-        return this.diasContrato;
+    public int getDIAS_CONTRATO() {
+        return Empleado.DIAS_CONTRATO;
     }
 }

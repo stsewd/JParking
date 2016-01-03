@@ -17,9 +17,9 @@ import java.util.Calendar;
 public abstract class Registro {
     
     private final TipoRegistro tipoRegistro;
-    
     private final Calendar fecha;
     private int numeroRegistro;
+    
     private final TipoUsuario tipoPersona;
     private final String cedulaPersona;
     private final String nombresPersona;

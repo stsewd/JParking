@@ -35,7 +35,7 @@ public abstract class Persona implements Comparable<Persona>{
      * @param telefono telefono de la persona
      * @param tipoUsuario
      */
-    public Persona(String cedula, String nombres, String apellidos, String direccion, String telefono,TipoUsuario tipoUsuario) {
+    public Persona(String cedula, String nombres, String apellidos, String direccion, String telefono, TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -140,7 +140,7 @@ public abstract class Persona implements Comparable<Persona>{
     }
     
     public Registro getRegistro(TipoModificacion tipoModificacion){
-        Registro registro = null;
+        Registro registro;
         registro = new RegistroUsuario(this, tipoModificacion);
         return registro;
     }

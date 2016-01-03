@@ -59,7 +59,7 @@ public abstract class Usuario extends Persona{
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
-        fechaActual.add(Calendar.DAY_OF_MONTH, -getDiasContrato());
+        fechaActual.add(Calendar.DAY_OF_MONTH, -getDIAS_CONTRATO());
         return fechaActual.after(this.getFechaContrato());
     }
     
@@ -72,7 +72,7 @@ public abstract class Usuario extends Persona{
     /**
      * @return the diasContrato
      */
-    public abstract int getDiasContrato();
+    public abstract int getDIAS_CONTRATO();
     
     /**
      *
@@ -92,9 +92,9 @@ public abstract class Usuario extends Persona{
         
         if(!estaDebiendo()){
             Calendar fechaActual = Calendar.getInstance();
-            fechaActual.add(Calendar.DAY_OF_MONTH, -(getDiasContrato() - 5));
+            fechaActual.add(Calendar.DAY_OF_MONTH, -(getDIAS_CONTRATO() - 5));
             if(fechaActual.before(this.getFechaContrato()))
-                throw new FueraDelDiaDePagoException(getDiasContrato());
+                throw new FueraDelDiaDePagoException(getDIAS_CONTRATO());
         }
         return null;
     }
@@ -114,7 +114,7 @@ public abstract class Usuario extends Persona{
     }
     
     public Registro getRegistro(TipoTramite tipoTramite){
-        Registro registro = null;
+        Registro registro;
         registro = new RegistroPagos(this, tipoTramite);
         return registro;
     }

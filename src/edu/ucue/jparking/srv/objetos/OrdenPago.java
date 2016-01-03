@@ -17,8 +17,8 @@ public class OrdenPago {
     private double costo;
     private Calendar fechaEmision;
 
-    public OrdenPago(String cadulaUsuario, double costo) {
-        this.cedulaUsuario = cadulaUsuario;
+    public OrdenPago(String cedulaUsuario, double costo) {
+        this.cedulaUsuario = cedulaUsuario;
         this.costo = costo;
         this.fechaEmision = Calendar.getInstance();
     }
