@@ -53,7 +53,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     
     @Override
     public Set<Registro> getRegistros(){
-        return new LinkedHashSet<>(this.registros.values());
+        return new LinkedHashSet<>(registros.values());
     }
 
     @Override

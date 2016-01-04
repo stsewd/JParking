@@ -9,7 +9,9 @@ import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.OrdenesPagoDAOInterface;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -17,11 +19,11 @@ import java.util.Set;
  * @author Santos Gallegos
  */
 public class OrdenesPagoDAO implements OrdenesPagoDAOInterface {
-    private static Set<OrdenPago> ordenesPago;
+    private static Map<Integer, OrdenPago> ordenesPago;
     
     private static OrdenesPagoDAO instance;
     private OrdenesPagoDAO() {
-        ordenesPago = new LinkedHashSet<>();
+        ordenesPago = new LinkedHashMap<>();
     }
 
     public static OrdenesPagoDAO getInstance() {
@@ -32,32 +34,48 @@ public class OrdenesPagoDAO implements OrdenesPagoDAOInterface {
 
     @Override
     public void addOrdenPago(OrdenPago ordenPago) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ordenPago.setNumeroOrdenPago(ordenesPago.size());
+        ordenesPago.put(ordenPago.getNumeroOrdenPago(), ordenPago);
     }
 
     @Override
     public OrdenPago getOrdenPago(int numeroOrdenPago) throws OrdenPagoNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        OrdenPago ordenPago = ordenesPago.get(numeroOrdenPago);
+        if(ordenPago == null)
+            throw new OrdenPagoNoExistenteException(numeroOrdenPago);
+        return ordenPago;
     }
 
     @Override
     public Set<OrdenPago> getOrdenesPago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new LinkedHashSet<>(ordenesPago.values());
     }
 
     @Override
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Set<OrdenPago> ordenesPago = new LinkedHashSet<>();
+        for(OrdenPago o : getOrdenesPago()){
+            if(o.getFechaEmision().before(fechaInicial) && o.getFechaEmision().after(fechaFinal))
+                ordenesPago.add(o);
+            if(o.getFechaEmision().after(fechaInicial))
+                break;
+        }
+        return ordenesPago;
     }
 
     @Override
     public double getFondos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double fondos = 0;
+        for(OrdenPago o : ordenesPago.values())
+            fondos += o.getCosto();
+        return fondos;
     }
 
     @Override
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double fondos = 0;
+        for(OrdenPago o : getOrdenesPago(fechaInicial, fechaFinal))
+            fondos += o.getCosto();
+        return fondos;
     }
-    
 }
