@@ -30,11 +30,6 @@ import java.util.Calendar;
  * @author Franklin Lara
  */
 public class Validaciones {
-
-    static void validarFecha(Calendar fechaInicio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public static void validarFecha(Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, 
             FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {

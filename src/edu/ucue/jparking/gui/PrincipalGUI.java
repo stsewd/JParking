@@ -1154,6 +1154,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        OrdenesPagoGUI opgui = new OrdenesPagoGUI(this, true);
+        opgui.setLocationRelativeTo(this);
+        opgui.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

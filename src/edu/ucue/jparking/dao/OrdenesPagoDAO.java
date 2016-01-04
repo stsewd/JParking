@@ -55,9 +55,9 @@ public class OrdenesPagoDAO implements OrdenesPagoDAOInterface {
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) {
         Set<OrdenPago> ordenesPago = new LinkedHashSet<>();
         for(OrdenPago o : getOrdenesPago()){
-            if(o.getFechaEmision().before(fechaInicial) && o.getFechaEmision().after(fechaFinal))
+            if(o.getFechaEmision().after(fechaInicial) && o.getFechaEmision().before(fechaFinal))
                 ordenesPago.add(o);
-            if(o.getFechaEmision().after(fechaInicial))
+            if(o.getFechaEmision().after(fechaFinal))
                 break;
         }
         return ordenesPago;
