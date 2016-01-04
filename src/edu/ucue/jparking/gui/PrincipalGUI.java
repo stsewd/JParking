@@ -298,7 +298,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(jSeparator7);
 
         UsuariosParqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/user7.png"))); // NOI18N
-        UsuariosParqBtn.setToolTipText("Ver usuarios de parqueadero (ctrl + u)");
+        UsuariosParqBtn.setToolTipText("Agregar/Eliminar usuarios a parqueadero (ctrl + u)");
         UsuariosParqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuariosParqBtnActionPerformed(evt);
@@ -307,7 +307,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jToolBar3.add(UsuariosParqBtn);
 
         PuertasBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/barriers.png"))); // NOI18N
-        PuertasBtn.setToolTipText("Ver puertas de acceso del parqueadero (ctrl + p)");
+        PuertasBtn.setToolTipText("Agregar/Eliminar puertas de acceso a parqueadero (ctrl + p)");
         PuertasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PuertasBtnActionPerformed(evt);

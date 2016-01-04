@@ -13,6 +13,7 @@ import java.util.Calendar;
  */
 public class OrdenPago {
     
+    private int numeroOrdenPago;
     private String cedulaUsuario;
     private double costo;
     private Calendar fechaEmision;
@@ -54,5 +55,19 @@ public class OrdenPago {
      */
     public Calendar getFechaEmision() {
         return fechaEmision;
+    }
+
+    /**
+     * @return the numeroOrdenPago
+     */
+    public int getNumeroOrdenPago() {
+        return numeroOrdenPago;
+    }
+
+    /**
+     * @param numeroOrdenPago the numeroOrdenPago to set
+     */
+    public void setNumeroOrdenPago(int numeroOrdenPago) {
+        this.numeroOrdenPago = numeroOrdenPago;
     }
 }
