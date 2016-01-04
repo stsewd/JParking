@@ -117,7 +117,9 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException {
+    public void pagarOrdenPago(String cedula) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException, 
+            PagoYaRealizadoException {
         ordenPagoService.pagarOrdenPago(cedula);
     }
 
@@ -332,26 +334,26 @@ public class JP implements JPInterface {
 
     @Override
     public OrdenPago getOrdenPago(int numeroOrdenPago) throws OrdenPagoNoExistenteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ordenPagoService.getOrdenPago(numeroOrdenPago);
     }
 
     @Override
     public Set<OrdenPago> getOrdenesPago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ordenPagoService.getOrdenPago();
     }
 
     @Override
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ordenPagoService.getOrdenPago(fechaInicial, fechaFinal);
     }
 
     @Override
     public double getFondos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ordenPagoService.getFondos();
     }
 
     @Override
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ordenPagoService.getFondos(fechaInicial, fechaFinal);
     }
 }
