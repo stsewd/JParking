@@ -26,28 +26,11 @@
  *****************************************************************************/
 package edu.ucue.jparking;
 
-import edu.ucue.jparking.gui.PrincipalGUI;
 import javax.swing.UIManager;
 
-import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
-import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
-import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
-import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
-import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
-import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
-import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
-import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
-import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
-import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
-import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
-import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
-import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
-import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+
+import edu.ucue.jparking.gui.LoginGUI;
+
 
 /**
  *
@@ -70,8 +53,10 @@ public class JParking {
                 //Carga interfaz por defecto
             }
         }
-        PrincipalGUI pgui = new PrincipalGUI();
-        /**/
+        LoginGUI loginGUI = new LoginGUI();
+        loginGUI.setVisible(true);
+        /*PrincipalGUI pgui = new PrincipalGUI();
+        /*
         //Inicio de tests
         try {
             Test.cargarUsuarios();
@@ -96,7 +81,7 @@ public class JParking {
             pgui.listarParqueaderos();
         }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException ex) {
             System.out.println(ex.getMessage());
-        } 
+        }
         
         try {
             Test.cargarPorteros();
@@ -125,7 +110,7 @@ public class JParking {
             System.out.println(ex.getMessage());
         }
         //Fin de tests
-        /**/
-        pgui.setVisible(true);
+        /*
+        pgui.setVisible(true);*/
     }
 }
