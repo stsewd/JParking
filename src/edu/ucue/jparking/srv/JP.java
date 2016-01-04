@@ -23,6 +23,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
@@ -327,5 +328,30 @@ public class JP implements JPInterface {
     @Override
     public File exportarOrdenPago(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException, DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
         return impresionOrdenPagosrv.impresion(cedula);
+    }
+
+    @Override
+    public OrdenPago getOrdenPago(int numeroOrdenPago) throws OrdenPagoNoExistenteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<OrdenPago> getOrdenesPago() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getFondos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getFondos(Calendar fechaInicial, Calendar fechaFinal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -25,6 +25,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
@@ -666,4 +667,44 @@ public interface JPInterface {
             ContratoNoEstablecidoException, FueraDelDiaDePagoException, 
             BadElementException, IOException;
     
+    /**
+     * Retorna una orden de pago específica,
+     * dado su número.
+     * @param numeroOrdenPago
+     * @return 
+     * @throws OrdenPagoNoExistenteException 
+     */
+    public OrdenPago getOrdenPago(int numeroOrdenPago)
+            throws OrdenPagoNoExistenteException;
+    
+    /**
+     * Retorna todas las ordenes de pago almacenadas en el 
+     * sistema.
+     * @return 
+     */
+    public Set<OrdenPago> getOrdenesPago();
+    
+    /**
+     * Retorna todas las ordenes de pago generadas entre
+     * fechaInicial y fechaFinal.
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return 
+     */
+    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal);
+    
+    /**
+     * Obtiene el valor del dinero recaudado entre todos los fondos.
+     * @return 
+     */
+    public double getFondos();
+    
+    /**
+     * Obtiene el valor del dinero recaudado entre fechaInicial
+     * y fechaFinal.
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return 
+     */
+    public double getFondos(Calendar fechaInicial, Calendar fechaFinal);
 }
