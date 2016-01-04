@@ -14,10 +14,14 @@ import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
+import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
+import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
+import edu.ucue.jparking.srv.objetos.Usuario;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -49,9 +53,15 @@ public class OrdenPagoService {
         return ordenPago;
     }
     
-    public void pagarOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, PagoYaRealizadoException{
+    public void pagarOrdenPago(String cedula)
+            throws CedulaNoValidaException, UsuarioNoExistenteException,
+            PagoYaRealizadoException, ContratoNoEstablecidoException,
+            FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException
+    {
         validaciones.validarCedula(cedula);
-        usuariosDAO.getUsuario(cedula).cancelarPago();
+        Usuario u = usuariosDAO.getUsuario(cedula);
+        addOrdenPago(cedula, u.getValorParqueadero());
+        u.cancelarPago();
         //Registro
         registroService.add(usuariosDAO.getUsuario(cedula).getRegistro(TipoTramite.COBRO));
     }
@@ -65,8 +75,8 @@ public class OrdenPagoService {
     }
     
     public OrdenPago getOrdenPago(int numOrden) throws OrdenPagoNoExistenteException{
-        if(numOrden <=0)
-            throw new IllegalArgumentException("El numero d eorden no puede ser nulo");
+        if(numOrden < 0)
+            throw new IllegalArgumentException("El numero de orden no puede ser nulo");
         return ordenesPagoDAO.getOrdenPago(numOrden);
     }
     
@@ -74,7 +84,11 @@ public class OrdenPagoService {
         return ordenesPagoDAO.getOrdenesPago();
     }
     
-    public Set<OrdenPago> getOrdenPago(Calendar fechaInicial, Calendar fechaFinal){
+    public Set<OrdenPago> getOrdenPago(Calendar fechaInicial, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, 
+            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException
+    {
+        Validaciones.validarFecha(fechaInicial, fechaFinal);
         return ordenesPagoDAO.getOrdenesPago(fechaInicial, fechaFinal);
     }
     
@@ -82,7 +96,11 @@ public class OrdenPagoService {
         return ordenesPagoDAO.getFondos();
     }
     
-    public double getFondos(Calendar fechaInicial, Calendar fechaFinal){
+    public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException
+    {
+        Validaciones.validarFecha(fechaInicial, fechaFinal);
         return ordenesPagoDAO.getFondos(fechaInicial, fechaFinal);
     }
 }

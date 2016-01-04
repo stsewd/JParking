@@ -24,7 +24,7 @@ public class FechaFinalMenorAFechaInicialException extends Exception {
     
     @Override
     public String getMessage() {
-        return "La fecha final " + df.format(fechaFinal.getTime()) + " es menor a la inicial: " + df.format(fechaInicio.getTime() + ".");
+        return "La fecha final " + df.format(fechaFinal.getTime()) + " es menor a la inicial: " + df.format(fechaInicio.getTime()) + ".";
     }
     
 }

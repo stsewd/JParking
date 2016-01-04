@@ -131,10 +131,15 @@ public interface JPInterface {
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException
      * @throws PagoYaRealizadoException 
+     * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException 
+     * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException 
+     * @throws edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException 
      */
     public void pagarOrdenPago(String cedula) 
             throws CedulaNoValidaException,
-            UsuarioNoExistenteException, PagoYaRealizadoException;
+            UsuarioNoExistenteException, PagoYaRealizadoException,
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException,
+            UsuarioNoRegistradoEnUnParqueaderoException;
 
     /**
      * crea un parqueadero
@@ -690,8 +695,13 @@ public interface JPInterface {
      * @param fechaInicial
      * @param fechaFinal
      * @return 
+     * @throws edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException 
+     * @throws edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException 
+     * @throws edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException 
      */
-    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal);
+    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException;
     
     /**
      * Obtiene el valor del dinero recaudado entre todos los fondos.
@@ -705,6 +715,11 @@ public interface JPInterface {
      * @param fechaInicial
      * @param fechaFinal
      * @return 
+     * @throws edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException 
+     * @throws edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException 
+     * @throws edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException 
      */
-    public double getFondos(Calendar fechaInicial, Calendar fechaFinal);
+    public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException;
 }

@@ -117,9 +117,11 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void pagarOrdenPago(String cedula) 
+    public void pagarOrdenPago(String cedula)
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
-            PagoYaRealizadoException {
+            PagoYaRealizadoException, ContratoNoEstablecidoException,
+            FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException
+    {
         ordenPagoService.pagarOrdenPago(cedula);
     }
 
@@ -343,7 +345,8 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) {
+    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
         return ordenPagoService.getOrdenPago(fechaInicial, fechaFinal);
     }
 
@@ -353,7 +356,11 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public double getFondos(Calendar fechaInicial, Calendar fechaFinal) {
+    public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException
+    {
+        
         return ordenPagoService.getFondos(fechaInicial, fechaFinal);
     }
 }

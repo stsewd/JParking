@@ -13,14 +13,8 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  * @author Santos Gallegos
  */
 public class Docente extends Usuario {
-    private static final float VALOR_PARQUEADERO = 35;
-    private static final int diasContrato = 30;
-    /**
-     * @return the VALOR_PARQUEADERO
-     */
-    public static float getVALOR_PARQUEADERO() {
-        return VALOR_PARQUEADERO;
-    }
+    private static final double VALOR_PARQUEADERO = 35;
+    private static final int DIAS_CONTRATO = 30;
 
     public Docente(String cedula, String nombres, String apellidos,String direccion,String telefono) {
         super(cedula, nombres, apellidos, direccion, telefono, TipoUsuario.DOCENTE);
@@ -29,12 +23,17 @@ public class Docente extends Usuario {
     @Override
     public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
         super.generarOrdenPago();
-        return new OrdenPago(getCedula(), getVALOR_PARQUEADERO());
+        return new OrdenPago(getCedula(), getValorParqueadero());
     }
 
     @Override
-    public int getDIAS_CONTRATO() {
-        return this.diasContrato;
+    public int getDiasContrato() {
+        return Docente.DIAS_CONTRATO;
+    }
+
+    @Override
+    public double getValorParqueadero() {
+        return Docente.VALOR_PARQUEADERO;
     }
     
 }

@@ -14,7 +14,7 @@ import edu.ucue.jparking.srv.enums.TipoUsuario;
  */
 public class Estudiante extends Usuario{
     private static final double VALOR_PARQUEADERO = 75;
-    private static final int diasContrato = 180;
+    private static final int DIAS_CONTRATO = 180;
     
     public Estudiante(String cedula, String nombres, String apellidos, String direccion, String telefono) {
         super(cedula, nombres, apellidos,direccion, telefono, TipoUsuario.ESTUDIANTE);
@@ -23,19 +23,17 @@ public class Estudiante extends Usuario{
     @Override
     public OrdenPago generarOrdenPago() throws ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
         super.generarOrdenPago();
-        return new OrdenPago(getCedula(), getVALOR_PARQUEADERO());
+        return new OrdenPago(getCedula(), getValorParqueadero());
     }
     
-    /**
-     * @return the VALOR_PARQUEADERO
-     */
-    public static double getVALOR_PARQUEADERO() {
-        return VALOR_PARQUEADERO;
+    @Override
+    public int getDiasContrato() {
+        return DIAS_CONTRATO;
     }
 
     @Override
-    public int getDIAS_CONTRATO() {
-        return this.diasContrato;
+    public double getValorParqueadero() {
+        return VALOR_PARQUEADERO;
     }
     
 }

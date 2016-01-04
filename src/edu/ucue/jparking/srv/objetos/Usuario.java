@@ -59,7 +59,7 @@ public abstract class Usuario extends Persona{
      */
     public boolean estaDebiendo() {
         Calendar fechaActual = Calendar.getInstance();
-        fechaActual.add(Calendar.DAY_OF_MONTH, -getDIAS_CONTRATO());
+        fechaActual.add(Calendar.DAY_OF_MONTH, -getDiasContrato());
         return fechaActual.after(this.getFechaContrato());
     }
     
@@ -72,7 +72,7 @@ public abstract class Usuario extends Persona{
     /**
      * @return the diasContrato
      */
-    public abstract int getDIAS_CONTRATO();
+    public abstract int getDiasContrato();
     
     /**
      *
@@ -92,9 +92,9 @@ public abstract class Usuario extends Persona{
         
         if(!estaDebiendo()){
             Calendar fechaActual = Calendar.getInstance();
-            fechaActual.add(Calendar.DAY_OF_MONTH, -(getDIAS_CONTRATO() - 5));
+            fechaActual.add(Calendar.DAY_OF_MONTH, -(getDiasContrato() - 5));
             if(fechaActual.before(this.getFechaContrato()))
-                throw new FueraDelDiaDePagoException(getDIAS_CONTRATO());
+                throw new FueraDelDiaDePagoException(getDiasContrato());
         }
         return null;
     }
@@ -118,4 +118,6 @@ public abstract class Usuario extends Persona{
         registro = new RegistroPagos(this, tipoTramite);
         return registro;
     }
+    
+    public abstract double getValorParqueadero();
 }
