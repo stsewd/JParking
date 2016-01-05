@@ -97,7 +97,7 @@ public class OrdenesPagoGUI extends javax.swing.JDialog {
         TotalTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Registros");
+        setTitle("Registros de Cobros Realizados");
 
         OrdenesPagoTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,7 +126,9 @@ public class OrdenesPagoGUI extends javax.swing.JDialog {
         OrdenesPagoTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(OrdenesPagoTabla);
         if (OrdenesPagoTabla.getColumnModel().getColumnCount() > 0) {
-            OrdenesPagoTabla.getColumnModel().getColumn(0).setPreferredWidth(20);
+            OrdenesPagoTabla.getColumnModel().getColumn(0).setMinWidth(30);
+            OrdenesPagoTabla.getColumnModel().getColumn(0).setPreferredWidth(30);
+            OrdenesPagoTabla.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
         FechaCheckB.setText("Fecha");
