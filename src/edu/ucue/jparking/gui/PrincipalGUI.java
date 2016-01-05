@@ -850,6 +850,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
         try {
             jp.delCampus((String) CampusCB.getSelectedItem());
+            JOptionPane.showMessageDialog(rootPane, "Campus eliminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (CampusNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }

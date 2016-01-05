@@ -237,10 +237,9 @@ public class LoginGUI extends javax.swing.JFrame {
         // Inicio de sesion sin password
         inicia();
         this.setVisible(false);
-        if(true)
-            return;
+        return;
         //Fin inicio de sesion sin password
-        
+        /*
         char[] password = ContraseTF.getPassword();
         if(UsuarioTF.getText().equals("Admin")){
             
@@ -253,7 +252,7 @@ public class LoginGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(rootPane, "Usuario no valido", "Error", JOptionPane.OK_OPTION);
         }
-        
+        */
     }//GEN-LAST:event_IniciarBtnActionPerformed
 
     /**
