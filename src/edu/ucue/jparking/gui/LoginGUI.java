@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class LoginGUI extends javax.swing.JFrame {
 
@@ -42,6 +42,8 @@ public class LoginGUI extends javax.swing.JFrame {
         
         //centra la ventana
         setLocationRelativeTo(null);
+        
+        this.getRootPane().setDefaultButton(IniciarBtn);
     }
 
     /**
@@ -174,6 +176,7 @@ public class LoginGUI extends javax.swing.JFrame {
         Arrays.fill(pass,'0');
         return esPass;
     }
+    
     private void inicia(){
         PrincipalGUI pgui = new PrincipalGUI();
         /**/
