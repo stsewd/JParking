@@ -184,11 +184,7 @@ public class LoginGUI extends javax.swing.JFrame {
         try {
             Test.cargarUsuarios();
             pgui.listarUsuarios();
-        }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
-            System.out.println(ex.getMessage());
-        }catch (PersonaYaRegistradoComoPorteroException ex) {
-            System.out.println(ex.getMessage());
-        } catch (UsuarioNoExistenteException ex) {
+        }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException | PersonaYaRegistradoComoPorteroException | UsuarioNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
         
