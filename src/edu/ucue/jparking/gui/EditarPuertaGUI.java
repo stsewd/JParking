@@ -223,7 +223,7 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         boolean estado = EstadoCK.isSelected();
         try {
             jp.modPuerta(campus, codigo, ubicacion, estado);
-            JOptionPane.showMessageDialog(rootPane, "Puerta modificada con exito.", "Puerta", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Puerta modificada exitosamente.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CodigoNoValidoException | PuertaNoExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

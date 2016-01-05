@@ -180,7 +180,7 @@ public class CrearParqueaderoGUI extends javax.swing.JDialog {
         }
         try {
             jp.addParqueadero(ubicacion, numLugares, codigo, campus);
-            JOptionPane.showMessageDialog(rootPane,"Parqueadero creado con exito.", "Parqueadero", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane,"Parqueadero creado exitosamente.", "Parqueadero", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
         }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {

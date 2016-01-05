@@ -268,7 +268,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
         boolean estado = EstadoCK.isSelected();
         try {
             jp.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
-            JOptionPane.showMessageDialog(rootPane, "Usuario modificado con exito.", "Usuario", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Usuario modificado exitosamente.", "Usuario", JOptionPane.OK_OPTION);
             this.setVisible(false);
 
             getPadre().listarUsuarios();

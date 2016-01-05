@@ -180,7 +180,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
         
         try {
             jp.autenticarUsuario(campus, idPuerta, CedulaTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "Se autenticado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Se ha autenticado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | CodigoNoValidoException | ParqueaderoNoExistenteException | AccesoNoAutorizadoException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

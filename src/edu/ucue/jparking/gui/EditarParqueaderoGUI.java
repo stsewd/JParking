@@ -204,7 +204,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         
         try {
             jp.modParqueadero(campus, codigo, ubicacion, numLugares, estado);
-            JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado con exito.", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Parqueadero modificado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
             getPadre().listarParqueaderos();
         }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException | NumeroLugaresDeParqueoInsuficientesException | IllegalArgumentException ex) {

@@ -164,7 +164,7 @@ public class CrearPuertaGUI extends javax.swing.JDialog {
         String campus = CampusTF.getText();
         try {
             jp.addpuerta(Ubicacion, codigo, campus);
-            JOptionPane.showMessageDialog(rootPane, "Puerta creada con exito.", "Puerta", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Puerta creada exitosamente.", "Puerta", JOptionPane.OK_OPTION);
             this.setVisible(false);
         } catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

@@ -151,7 +151,7 @@ public class EliminarPuertaGUI extends javax.swing.JDialog {
         // TODO addRegistro your handling code here:
         try {
             jp.delpuerta(CampusTF.getText(), CodigoTF.getText());
-            JOptionPane.showMessageDialog(rootPane, "La puerta eliminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Puerta eliminada exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             
             this.setVisible(false);
         } catch (IllegalArgumentException | CodigoNoValidoException | PuertaNoExistenteException | CampusNoExistenteException | ParqueaderoNoExistenteException ex) {

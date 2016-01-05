@@ -200,7 +200,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         if("entrada".equals(TipoAccesolbl.getText())){
             try {
                 jp.addPuertaEntrada(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
-                JOptionPane.showMessageDialog(rootPane, "La puerta a sido añadida con exito", "Mensaje", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(rootPane, "Puerta de entrada agregada exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | CampusInactivoException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
@@ -210,7 +210,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         }else{
             try {
                 jp.addPuertaSalida(CampusTF.getText(), idParqueaderolbl.getText(), idPuerta);
-                JOptionPane.showMessageDialog(rootPane, "La puerta a sido añadida con exito", "Mensaje", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(rootPane, "Puerta de salida agregada exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | CampusInactivoException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

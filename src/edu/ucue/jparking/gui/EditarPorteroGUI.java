@@ -299,7 +299,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         boolean estado = EstadoCK.isSelected();
         try {
             jp.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
-            JOptionPane.showMessageDialog(rootPane, "Protero modificado con exito.", "Portero", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Portero modificado exitosamente.", "Portero", JOptionPane.OK_OPTION);
             this.setVisible(false);
             try {
                 getPadre().listarPorteros();
