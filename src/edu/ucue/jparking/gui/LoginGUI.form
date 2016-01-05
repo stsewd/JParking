@@ -129,7 +129,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="IniciarBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Iniciar Sesi&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Ingresar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IniciarBtnActionPerformed"/>
@@ -137,7 +137,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="CancelarBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarBtnActionPerformed"/>
