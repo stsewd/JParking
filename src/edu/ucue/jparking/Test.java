@@ -34,8 +34,6 @@ import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

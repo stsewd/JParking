@@ -105,7 +105,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(IniciarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelarBtn))
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
@@ -237,7 +237,13 @@ public class LoginGUI extends javax.swing.JFrame {
         pgui.setVisible(true);
     }
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed
-        // TODO add your handling code here:
+        // Inicio de sesion sin password
+        inicia();
+        this.setVisible(false);
+        if(true)
+            return;
+        //Fin inicio de sesion sin password
+        
         char[] password = ContraseTF.getPassword();
         if(UsuarioTF.getText().equals("Admin")){
             
