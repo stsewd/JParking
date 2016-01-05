@@ -67,6 +67,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de Sesión");
+        setIconImage((new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/transport122.png"))).getImage());
         setMaximumSize(new java.awt.Dimension(378, 206));
         setMinimumSize(new java.awt.Dimension(378, 206));
         setResizable(false);
