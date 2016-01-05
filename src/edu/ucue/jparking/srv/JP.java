@@ -67,7 +67,7 @@ public class JP implements JPInterface {
     
     private static CampusService campusService = new CampusService();
     private static UsuarioService usuarioService = new UsuarioService();
-    private static ImpresionOrdenPagosrv impresionOrdenPagosrv = new ImpresionOrdenPagosrv();
+    private static ExportOrdenPagoService impresionOrdenPagosrv = new ExportOrdenPagoService();
     private static OrdenPagoService ordenPagoService = new OrdenPagoService();
     private static ParqueaderoService parqueaderoService = new ParqueaderoService();
     private static PorterosService porterosService = new PorterosService();
