@@ -24,14 +24,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author lara
+ * @author Franklin Lara
  */
 public class OrdenPagoGUI extends javax.swing.JDialog {
 
@@ -71,8 +68,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         ValorTF = new javax.swing.JTextField();
         ApellidoTF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        FechaTF = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         fechaContratoTF = new javax.swing.JTextField();
         ImprimirBtn = new javax.swing.JButton();
@@ -169,15 +164,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
 
         jLabel8.setText("Apellido:");
 
-        FechaTF.setEditable(false);
-        FechaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaTFActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setText("Fecha:");
-
         jLabel10.setText("Fecha ult pago:");
 
         fechaContratoTF.setEditable(false);
@@ -203,7 +189,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7)
@@ -215,7 +200,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ValorTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FechaTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CedulaTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ApellidoTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TipoUsuarioTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,10 +225,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(FechaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(CedulaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -354,10 +334,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         // TODO addRegistro your handling code here:
     }//GEN-LAST:event_ApellidoTFActionPerformed
 
-    private void FechaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaTFActionPerformed
-        // TODO addRegistro your handling code here:
-    }//GEN-LAST:event_FechaTFActionPerformed
-
     private void fechaContratoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaContratoTFActionPerformed
         // TODO addRegistro your handling code here:
     }//GEN-LAST:event_fechaContratoTFActionPerformed
@@ -429,7 +405,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JTextField CedulaTF;
     private javax.swing.JButton CerrarBtn;
     private javax.swing.JTextField DireccionTF;
-    private javax.swing.JTextField FechaTF;
     private javax.swing.JButton ImprimirBtn;
     private javax.swing.JTextField NombreTF;
     private javax.swing.JButton PagarBtn;
@@ -445,7 +420,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
@@ -455,7 +429,6 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         
-        FechaTF.setText(df.format(Calendar.getInstance().getTime()));
         CedulaTF.setEditable(false);
         
         NombreTF.setEnabled(true);
@@ -475,6 +448,5 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
         TipoUsuarioTF.setText(u.getTipoUsuarioString());
         fechaContratoTF.setText(u.getFechaContrato() != null?df.format(u.getFechaContrato().getTime()):"../../../");
         ValorTF.setText(String.format("%.2f", ordenPago.getCosto()));
-        FechaTF.setText(df.format(ordenPago.getFechaEmision().getTime()));
     }
 }

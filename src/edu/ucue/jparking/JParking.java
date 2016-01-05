@@ -10,10 +10,9 @@
  * Permite al adminstrador crear campus, parqueaderos dentro de estos.
  * Dentro de un campus se dentrá puertas de ingreso y/o salida hacia los
  * paqrqueaderos.
+ * Cada campus cuenta con porteros.
  * Un paqueadero puede tener varias puertas de acceso y de salida.
  * Dentro de cada parqueadero se contará con puestos de parqueo.
- * El número de usuarios de un parqueadero puede ser como máximo el 
- * 150% de los puestos de parqueo disponibles en el parqueadero.
  * El administrador podrá administrar los campus, parqueaderos, usuarios,
  * puertas, puestos de parqueo, porteros.
  * Los tipos de usuario existentes en el sistema son:
@@ -27,10 +26,7 @@
 package edu.ucue.jparking;
 
 import javax.swing.UIManager;
-
-
 import edu.ucue.jparking.gui.LoginGUI;
-
 
 /**
  *
@@ -43,14 +39,17 @@ public class JParking {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         try {
+            //Look and feel para sistemas linux con gtk
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); 
         } 
         catch(Exception e){
             try {
+                //Look and feel para sistemas windows
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             } catch (Exception ex) {
-                //Carga interfaz por defecto
+                //Carga interfaz por defecto de java swing
             }
         }
         LoginGUI loginGUI = new LoginGUI();
