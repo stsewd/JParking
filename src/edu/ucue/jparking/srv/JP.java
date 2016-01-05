@@ -300,7 +300,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void modUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public void modUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException {
         usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
     }
 

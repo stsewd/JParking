@@ -594,7 +594,7 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException 
      */
     public void modUsuario(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
-            throws CedulaNoValidaException, UsuarioNoExistenteException ;
+            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException;
 
 
     /**

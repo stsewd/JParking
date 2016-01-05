@@ -37,7 +37,7 @@ public class UsuarioService {
     Validaciones validaciones = new Validaciones();
     private static final RegistroService registroService = new RegistroService();
     
-    public void add(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) 
+    public void add(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) 
             throws UsuarioYaExistenteException, CedulaNoValidaException,
             TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException,
             UsuarioNoExistenteException{
@@ -72,9 +72,12 @@ public class UsuarioService {
         usuariosDAO.delUsuario(cedula);        
     }
     
-    public void mod(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
-            throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public void mod(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado)
+            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException {
         validaciones.validarCedula(cedula);
+        validaciones.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
+        
+        
         usuariosDAO.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
         //Registro
         registroService.add(get(cedula).getRegistro(TipoModificacion.MODIFICACION));

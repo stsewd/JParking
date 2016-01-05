@@ -9,6 +9,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
+import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -273,7 +274,7 @@ public class EditarUsuarioGUI extends javax.swing.JDialog {
 
             getPadre().listarUsuarios();
 
-        }catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException ex){
+        }catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | TelefonoNoValidoException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);

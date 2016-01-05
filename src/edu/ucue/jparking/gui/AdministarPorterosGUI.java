@@ -11,6 +11,9 @@ import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -56,6 +59,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         CrearPorteroBtn = new javax.swing.JButton();
         ModificarPorteroBtn = new javax.swing.JButton();
         EliminarPorterobtn = new javax.swing.JButton();
+        CopyCedulaBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPorteros = new javax.swing.JTable();
         CerrarBtn = new javax.swing.JButton();
@@ -101,6 +105,13 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             }
         });
 
+        CopyCedulaBtn.setText("Copiar");
+        CopyCedulaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopyCedulaBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -111,7 +122,9 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
                 .addComponent(ModificarPorteroBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EliminarPorterobtn)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CopyCedulaBtn)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +133,8 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CrearPorteroBtn)
                     .addComponent(ModificarPorteroBtn)
-                    .addComponent(EliminarPorterobtn)))
+                    .addComponent(EliminarPorterobtn)
+                    .addComponent(CopyCedulaBtn)))
         );
 
         TablaPorteros.setModel(new javax.swing.table.DefaultTableModel(
@@ -346,6 +360,19 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
+    private void CopyCedulaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyCedulaBtnActionPerformed
+        // TODO add your handling code here:
+        int row = TablaPorteros.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado un portero.", "Mensaje", JOptionPane.OK_OPTION);
+            return;
+        }
+        String cedula = (String) TablaPorteros.getValueAt(row, 1);
+        StringSelection stringSelection = new StringSelection(cedula);
+        Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clpbrd.setContents(stringSelection, null);
+    }//GEN-LAST:event_CopyCedulaBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,6 +418,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JButton CerrarBtn;
+    private javax.swing.JButton CopyCedulaBtn;
     private javax.swing.JButton CrearPorteroBtn;
     private javax.swing.JButton EliminarPorterobtn;
     private javax.swing.JButton ModificarPorteroBtn;

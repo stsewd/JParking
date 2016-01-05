@@ -165,7 +165,7 @@ public class Validaciones {
             throw new IllegalArgumentException("El argumento telefono no puede estar vacio");
         ValidarTelefono(telefono);
     }
-    private void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
+    public void ValidarTelefono(String telefono) throws TelefonoNoValidoException{
         if(telefono.trim().length()!=10)
             throw new TelefonoNoValidoException();
         telefono = telefono.trim();
