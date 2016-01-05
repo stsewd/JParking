@@ -19,6 +19,7 @@ import java.util.TreeSet;
 /**
  *
  * @author Franklin Lara
+ * @author Santos Gallegos
  */
 public class CampusDAO implements CampusDAOInterface {
     private static CampusDAO instancia;

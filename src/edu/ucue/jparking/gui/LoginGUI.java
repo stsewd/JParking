@@ -81,14 +81,14 @@ public class LoginGUI extends javax.swing.JFrame {
 
         jLabel4.setText("Contraseña: ");
 
-        IniciarBtn.setText("Iniciar Sesión");
+        IniciarBtn.setText("Ingresar");
         IniciarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IniciarBtnActionPerformed(evt);
             }
         });
 
-        CancelarBtn.setText("Cancelar");
+        CancelarBtn.setText("Salir");
         CancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarBtnActionPerformed(evt);
