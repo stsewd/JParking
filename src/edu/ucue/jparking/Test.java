@@ -37,7 +37,8 @@ import edu.ucue.jparking.srv.objetos.Puerta;
 
 /**
  *
- * @author Santos 
+ * @author Santos Gallegos
+ * @author Franklin Lara
  */
 public class Test {
     
