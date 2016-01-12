@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,42 @@ public class Campus implements Comparable<Campus> {
         puertas = new HashMap<>();
         porteros = new HashMap<>();
         parqueaderos = new HashMap<>();
+    }
+    
+    public void addPuerta(String idPuerta, Puerta puerta){
+        puertas.put(idPuerta, puerta);
+    }
+    
+    public void delPuerta(String idPuerta){
+        puertas.remove(idPuerta);
+    }
+    
+    public Puerta getPuerta(String idPuerta){
+        return puertas.get(idPuerta);
+    }
+    
+    public void addPortero(String cedula, Portero portero){
+        porteros.put(cedula, portero);
+    }
+    
+    public void delPortero(String cedula){
+        porteros.remove(cedula);
+    }
+    
+    public Portero getPortero(String cedula){
+        return porteros.get(cedula);
+    }
+    
+    public void addParqueadero(String idParqueadero, Parqueadero parqueadero){
+        parqueaderos.put(idParqueadero, parqueadero);
+    }
+    
+    public void delParqueadero(String idParqueadero){
+        parqueaderos.remove(idParqueadero);
+    }
+    
+    public Parqueadero getParqueadero(String idParqueadero){
+        return parqueaderos.get(idParqueadero);
     }
     
     /**
@@ -64,32 +101,20 @@ public class Campus implements Comparable<Campus> {
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }    
-
-    /**
-     * @return the puertas
-     */
-    public Map<String, Puerta> getPuertas() {
-        return puertas;
+    }
+    
+    public Collection<Parqueadero> getParqueaderos(){
+        return parqueaderos.values();
+    }
+    
+    public Collection<Puerta> getPuertas() {
+        return puertas.values();
     }
 
-    /**
-     * @return the porteros
-     */
-    public Map<String, Portero> getPorteros() {
-        return porteros;
+    public Collection<Portero> getPorteros() {
+        return porteros.values();
     }
 
-    /**
-     * @return the parqueaderos
-     */
-    public Map<String, Parqueadero> getParqueaderos() {
-        return parqueaderos;
-    }
-
-    /**
-     * @return the activo
-     */
     public boolean isActivo() {
         return activo;
     }

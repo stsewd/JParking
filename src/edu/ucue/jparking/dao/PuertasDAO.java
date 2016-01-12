@@ -14,7 +14,6 @@ import edu.ucue.jparking.dao.interfaces.PuertasDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
-import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,9 +37,9 @@ public class PuertasDAO implements PuertasDAOInterface {
     @Override
     public void addPuerta(String nombreCampus, Puerta puerta) throws PuertaYaExistenteException, CampusNoExistenteException {
         Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
-        if(campus.getPuertas().get(puerta.getId()) != null)
+        if(campus.getPuerta(puerta.getId()) != null)
             throw new PuertaYaExistenteException(puerta.getId());
-        campus.getPuertas().put(puerta.getId(), puerta);
+        campus.addPuerta(puerta.getId(), puerta);
     }
 
     @Override
@@ -65,21 +64,21 @@ public class PuertasDAO implements PuertasDAOInterface {
             }catch (PuertaNoAgregadaException ex){}
         }
         
-        puerta.getCampus().getPuertas().remove(idPuerta);
+        puerta.getCampus().delPuerta(idPuerta);
     }
 
     @Override
     public Set<Puerta> getPuertas() {
         Set<Puerta> puertas = new TreeSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
-            puertas.addAll((Collection<? extends Puerta>) c.getPuertas());
+            puertas.addAll(c.getPuertas());
         }
         return puertas;
     }
 
     @Override
     public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException {
-        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas().values());
+        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas());
     }
 
     @Override
@@ -94,7 +93,7 @@ public class PuertasDAO implements PuertasDAOInterface {
     @Override
     public Puerta getPuerta(String nombreCampus, String id) throws CampusNoExistenteException {
         Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
-        Puerta puerta = campus.getPuertas().get(id);
+        Puerta puerta = campus.getPuerta(id);
         return puerta;
     }
 }

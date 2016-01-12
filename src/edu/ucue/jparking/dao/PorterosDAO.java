@@ -13,7 +13,6 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
-import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -42,7 +41,7 @@ public class PorterosDAO implements PorterosDAOInterface {
             UsuariosDAO.getInstance().getUsuario(portero.getCedula());
             throw new PersonaYaRegistradaComoUsuarioException(portero.getCedula());
         }catch (UsuarioNoExistenteException ex){
-            CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().put(portero.getCedula(), portero);
+            CampusDAO.getInstancia().getCampus(nombreCampus).addPortero(portero.getCedula(), portero);
         }
     }
 
@@ -53,7 +52,7 @@ public class PorterosDAO implements PorterosDAOInterface {
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
-        portero.getCampus().getPorteros().remove(cedula);
+        portero.getCampus().delPortero(cedula);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class PorterosDAO implements PorterosDAOInterface {
     public Portero getPortero(String cedula){
         Portero portero;
         for(Campus c : CampusDAO.getInstancia().getCampus()){
-            portero = c.getPorteros().get(cedula);
+            portero = c.getPortero(cedula);
             if(portero != null)
                 return portero;
         }
@@ -83,12 +82,12 @@ public class PorterosDAO implements PorterosDAOInterface {
     public Set<Portero> getPorteros() {
         Set<Portero> porteros = new TreeSet<>(); 
         for(Campus c : CampusDAO.getInstancia().getCampus())
-            porteros.addAll((Collection<? extends Portero>) c.getPorteros());
+            porteros.addAll(c.getPorteros());
         return porteros;
     }
 
     @Override
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
-        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros().values());
+        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros());
     }
 }

@@ -144,6 +144,16 @@ public abstract class Persona implements Comparable<Persona>{
         registro = new RegistroUsuario(this, tipoModificacion);
         return registro;
     }
+    
+    public String getState(){
+        return getTipoUsuarioString() + "," +
+                getCedula() + "," +
+                getNombres() + "," +
+                getApellidos() + "," +
+                getDireccion() + "," +
+                getTelefono() + "," +
+                isActivo();
+    }
 
     @Override
     public int compareTo(Persona o) {

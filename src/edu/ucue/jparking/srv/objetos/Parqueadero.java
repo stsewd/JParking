@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,8 +34,43 @@ public class Parqueadero implements Comparable<Parqueadero> {
         this.usuarios = new HashMap<>();
         this.activo = true;
     }
-
-
+    
+    public void addUsuario(String cedula, Usuario usuario){
+        usuarios.put(cedula, usuario);
+    }
+    
+    public void delUsuario(String cedula){
+        usuarios.remove(cedula);
+    }
+    
+    public Usuario getUsuario(String cedula){
+        return usuarios.get(cedula);
+    }
+    
+    public void addPuertaEntrada(String idPuerta, Puerta puerta){
+        puertasEntrada.put(idPuerta, puerta);
+    }
+    
+    public void delPuertaEntrada(String idPuerta){
+        puertasEntrada.remove(idPuerta);
+    }
+    
+    public Puerta getPuertaEntrada(String idPuerta){
+        return puertasEntrada.get(idPuerta);
+    }
+    
+    public void addPuertaSalida(String idPuerta, Puerta puerta){
+        puertasSalida.put(idPuerta, puerta);
+    }
+    
+    public void delPuertaSalida(String idPuerta){
+        puertasSalida.remove(idPuerta);
+    }
+    
+    public Puerta getPuertaSalida(String idPuerta){
+        return puertasSalida.get(idPuerta);
+    }
+    
     /**
      * @return the ubicacion
      */
@@ -73,29 +109,22 @@ public class Parqueadero implements Comparable<Parqueadero> {
     /**
      * @return the usuarios
      */
-    public Map<String, Usuario> getUsuarios() {
-        return usuarios;
+    public Collection<Usuario> getUsuarios() {
+        return usuarios.values();
+    }
+    
+    /**
+     * @return the puertasEntrada
+     */
+    public Collection<Puerta> getPuertasEntrada() {
+        return puertasEntrada.values();
     }
 
     /**
-     * @param usuarios the usuarios to set
+     * @return the puertasSalida
      */
-    public void setUsuarios(Map<String, Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    /**
-     * @param puertasEntrada the puertasEntrada to set
-     */
-    public void setPuertasEntrada(Map<String, Puerta> puertasEntrada) {
-        this.puertasEntrada = puertasEntrada;
-    }
-
-    /**
-     * @param puertasSalida the puertasSalida to set
-     */
-    public void setPuertasSalida(Map<String, Puerta> puertasSalida) {
-        this.puertasSalida = puertasSalida;
+    public Collection<Puerta> getPuertasSalida() {
+        return puertasSalida.values();
     }
 
     /**
@@ -110,13 +139,6 @@ public class Parqueadero implements Comparable<Parqueadero> {
      */
     public Campus getCampus() {
         return campus;
-    }
-
-    /**
-     * @param nombreCampus the campus to set
-     */
-    public void setCampus(Campus nombreCampus) {
-        this.campus = nombreCampus;
     }
 
     /**
@@ -137,19 +159,4 @@ public class Parqueadero implements Comparable<Parqueadero> {
     public int compareTo(Parqueadero o) {
         return getId().compareTo(o.getId());
     }
-
-    /**
-     * @return the puertasEntrada
-     */
-    public Map<String, Puerta> getPuertasEntrada() {
-        return puertasEntrada;
-    }
-
-    /**
-     * @return the puertasSalida
-     */
-    public Map<String, Puerta> getPuertasSalida() {
-        return puertasSalida;
-    }
-    
 }

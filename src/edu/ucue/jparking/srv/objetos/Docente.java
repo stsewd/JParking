@@ -35,5 +35,22 @@ public class Docente extends Usuario {
     public double getValorParqueadero() {
         return Docente.VALOR_PARQUEADERO;
     }
+
+    @Override
+    public String getState() {
+        /*
+        protected final TipoUsuario tipoUsuario;
+        private final String cedula;
+        private String nombres;
+        private String apellidos;
+        private String direccion;
+        private String telefono;
+        private boolean activo;
+                
+        private Calendar fechaContrato;
+        private Set<Parqueadero> parqueaderos;
+        */
+        return "";
+    }
     
 }

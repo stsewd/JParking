@@ -41,7 +41,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     public void addParqueadero(String nombreCampus, Parqueadero parqueadero) throws ParqueaderoYaExistenteException, CampusNoExistenteException {
         if(getParqueadero(nombreCampus, parqueadero.getId()) != null)
             throw new ParqueaderoYaExistenteException(parqueadero.getId());
-        CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().put(parqueadero.getId(), parqueadero);
+        CampusDAO.getInstancia().getCampus(nombreCampus).addParqueadero(parqueadero.getId(), parqueadero);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             ParqueaderosDAO.getInstance().delUsuario(nombreCampus, idParqueadero, usuario.getCedula());
         }
         
-        CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().remove(idParqueadero);
+        CampusDAO.getInstancia().getCampus(nombreCampus).delParqueadero(idParqueadero);
     }
 
     @Override
@@ -65,21 +65,21 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
         if(campus == null)
             throw new CampusNoExistenteException(nombreCampus);
-        return campus.getParqueaderos().get(idParqueadero);
+        return campus.getParqueadero(idParqueadero);
     }
 
     @Override
     public Set<Parqueadero> getParqueaderos() {
         Set<Parqueadero> parqueaderos = new TreeSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
-            parqueaderos.addAll(c.getParqueaderos().values());
+            parqueaderos.addAll(c.getParqueaderos());
         }
         return parqueaderos;
     }
 
     @Override
     public Set<Parqueadero> getParqueaderos(String nombreCampus) throws CampusNoExistenteException {
-        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos().values());
+        return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos());
     }
 
     @Override
@@ -100,9 +100,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Puerta puerta = PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta);
         if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(parqueadero.getPuertasEntrada().get(idPuerta) != null)
+        if(parqueadero.getPuertaEntrada(idPuerta) != null)
             throw new PuertaYaAgregadaException(idPuerta);
-        parqueadero.getPuertasEntrada().put(idPuerta, puerta);
+        parqueadero.addPuertaEntrada(idPuerta, puerta);
     }
 
     @Override
@@ -113,9 +113,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Puerta puerta = PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta);
         if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(parqueadero.getPuertasSalida().get(idPuerta) != null)
+        if(parqueadero.getPuertaSalida(idPuerta) != null)
             throw new PuertaYaAgregadaException(idPuerta);
-        parqueadero.getPuertasSalida().put(idPuerta, puerta);
+        parqueadero.addPuertaSalida(idPuerta, puerta);
     }
 
     @Override
@@ -127,9 +127,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             throw new ParqueaderoNoExistenteException(idParqueadero);
         if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(parqueadero.getPuertasEntrada().get(idPuerta) == null)
+        if(parqueadero.getPuertaEntrada(idPuerta) == null)
             throw new PuertaNoAgregadaException(idPuerta);
-        parqueadero.getPuertasEntrada().remove(idPuerta);
+        parqueadero.delPuertaEntrada(idPuerta);
     }
 
     @Override
@@ -139,9 +139,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             throw new ParqueaderoNoExistenteException(idParqueadero);
         if(PuertasDAO.getInstance().getPuerta(nombreCampus, idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
-        if(parqueadero.getPuertasSalida().get(idPuerta) == null)
+        if(parqueadero.getPuertaSalida(idPuerta) == null)
             throw new PuertaNoAgregadaException(idPuerta);
-        parqueadero.getPuertasSalida().remove(idPuerta);
+        parqueadero.delPuertaSalida(idPuerta);
     }
 
     @Override
@@ -152,10 +152,10 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         
         Usuario usuario = UsuariosDAO.getInstance().getUsuario(cedula);
         
-        if(parqueadero.getUsuarios().get(cedula) != null)
+        if(parqueadero.getUsuario(cedula) != null)
             throw new UsuarioYaAgregadoException(cedula);
         
-        parqueadero.getUsuarios().put(cedula, usuario);
+        parqueadero.addUsuario(cedula, usuario);
         UsuariosDAO.getInstance().addPaqueadero(cedula, nombreCampus, idParqueadero);
     }
 
@@ -163,10 +163,10 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     public void delUsuario(String nombreCampus, String idParqueadero, String cedula) throws UsuarioNoExistenteException, UsuarioNoAgregadoException, CampusNoExistenteException {
         UsuariosDAO.getInstance().getUsuario(cedula);
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
-        if(parqueadero.getUsuarios().get(cedula) == null)
+        if(parqueadero.getUsuario(cedula) == null)
             throw new UsuarioNoAgregadoException(cedula);
         
-        parqueadero.getUsuarios().remove(cedula);
+        parqueadero.delUsuario(cedula);
         
         UsuariosDAO.getInstance().delParqueadero(cedula, nombreCampus, idParqueadero);
     }
@@ -176,7 +176,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        return new TreeSet<>(parqueadero.getPuertasEntrada().values());
+        return new TreeSet<>(parqueadero.getPuertasEntrada());
     }
 
     @Override
@@ -184,7 +184,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        return new TreeSet<>(parqueadero.getPuertasSalida().values());
+        return new TreeSet<>(parqueadero.getPuertasSalida());
     }
 
     @Override
@@ -192,6 +192,6 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        return new TreeSet<>(parqueadero.getUsuarios().values());
+        return new TreeSet<>(parqueadero.getUsuarios());
     }
 }
