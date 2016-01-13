@@ -3,20 +3,23 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.Utilidades;
 import edu.ucue.jparking.srv.enums.TipoAcceso;
 import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import edu.ucue.jparking.srv.objetos.registros.RegistroAccesoParqueadero;
 import edu.ucue.jparking.srv.objetos.registros.RegistroUsuario;
+import java.io.Serializable;
 
 /**
  *
  * @author Santos Gallegos
  */
-public abstract class Persona implements Comparable<Persona>{
+public abstract class Persona implements Comparable<Persona>, Serializable {
     
     protected final TipoUsuario tipoUsuario;
+    private static final int MAXLEN = 30;
     
     private final String cedula;
     private String nombres;
@@ -38,15 +41,13 @@ public abstract class Persona implements Comparable<Persona>{
     public Persona(String cedula, String nombres, String apellidos, String direccion, String telefono, TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
         this.cedula = cedula;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.direccion = direccion;
+        this.nombres = nombres + Utilidades.fill(MAXLEN - nombres.length());
+        this.apellidos = apellidos + Utilidades.fill(MAXLEN - apellidos.length());
+        this.direccion = direccion + Utilidades.fill(MAXLEN - direccion.length());
         this.telefono = telefono;
         this.activo = true;
     }
     
-    //public abstract void ingresar(Puerta puerta);
-
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
@@ -62,28 +63,28 @@ public abstract class Persona implements Comparable<Persona>{
      * @return the nombres
      */
     public String getNombres() {
-        return nombres;
+        return nombres.trim();
     }
 
     /**
      * @param nombres the nombres to set
      */
     public void setNombres(String nombres) {
-        this.nombres = nombres;
+        this.nombres = nombres + Utilidades.fill(MAXLEN - nombres.length());
     }
 
     /**
      * @return the apellidos
      */
     public String getApellidos() {
-        return apellidos;
+        return apellidos.trim();
     }
 
     /**
      * @param apellidos the apellidos to set
      */
     public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+        this.apellidos = apellidos + Utilidades.fill(MAXLEN - apellidos.length());
     }
 
     /**
@@ -105,14 +106,14 @@ public abstract class Persona implements Comparable<Persona>{
      * @return the direccion
      */
     public String getDireccion() {
-        return direccion;
+        return direccion.trim();
     }
 
     /**
      * @param direccion the direccion to set
      */
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.direccion = direccion + Utilidades.fill(MAXLEN - direccion.length());
     }
 
     /**
@@ -145,16 +146,6 @@ public abstract class Persona implements Comparable<Persona>{
         return registro;
     }
     
-    public String getState(){
-        return getTipoUsuarioString() + "," +
-                getCedula() + "," +
-                getNombres() + "," +
-                getApellidos() + "," +
-                getDireccion() + "," +
-                getTelefono() + "," +
-                isActivo();
-    }
-
     @Override
     public int compareTo(Persona o) {
         return (getApellidos() + getNombres() + getCedula()).compareToIgnoreCase(o.getApellidos() + o.getNombres() + o.getCedula());
