@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.datatransfer.*;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 
 /**
@@ -200,7 +201,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         RegistrosMenu = new javax.swing.JMenu();
         ListarRegistrosMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        CopiaSeguridadItem = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
         AcercaDeMenuItem = new javax.swing.JMenuItem();
@@ -699,8 +700,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jMenu2.setMnemonic('h');
         jMenu2.setText("Herramientas");
 
-        jMenuItem2.setText("Crear copia de seguridad");
-        jMenu2.add(jMenuItem2);
+        CopiaSeguridadItem.setText("Crear copia de seguridad");
+        CopiaSeguridadItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopiaSeguridadItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(CopiaSeguridadItem);
 
         jMenuItem3.setText("Restaurar copia de seguridad");
         jMenu2.add(jMenuItem3);
@@ -1174,6 +1180,27 @@ public class PrincipalGUI extends javax.swing.JFrame {
         opgui.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
+        // TODO add your handling code here:
+      
+        String fileName = "data";
+         
+      //Use the makeZip method to create a Zip archive.
+        File file = new File(fileName);
+        if(file.exists()){
+            try {
+            jp.generarZip(fileName);
+            JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
+            }
+            //Simply print out any errors we encounter.
+            catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ud no tiene la carpeta de datos", "Mensaje", JOptionPane.OK_OPTION);
+        }
+    }//GEN-LAST:event_CopiaSeguridadItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1218,6 +1245,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JComboBox CampusCB;
     private javax.swing.JMenu CampusMenu;
+    private javax.swing.JMenuItem CopiaSeguridadItem;
     private javax.swing.JButton CopyCedulaBtn;
     private javax.swing.JButton CopyIDParqBtn;
     private javax.swing.JMenuItem CrearCampusMenuItem;
@@ -1256,7 +1284,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

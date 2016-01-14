@@ -73,7 +73,7 @@ public class JP implements JPInterface {
     private static PorterosService porterosService = new PorterosService();
     private static PuertaService puertaService = new PuertaService();
     private static RegistroService registroService = new RegistroService();
-    
+    private static BackupService backupService = new BackupService();
     private JP(){}
     
     public static JP getInstance(){
@@ -362,5 +362,10 @@ public class JP implements JPInterface {
     {
         
         return ordenPagoService.getFondos(fechaInicial, fechaFinal);
+    }
+
+    @Override
+    public void generarZip(String fileName) throws IOException, FileNotFoundException {
+        backupService.generarZip(fileName);
     }
 }
