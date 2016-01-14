@@ -5,13 +5,14 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author Santos Gallegos
  */
-public class OrdenPago {
+public class OrdenPago implements Serializable {
     
     private int numeroOrdenPago;
     private String cedulaUsuario;

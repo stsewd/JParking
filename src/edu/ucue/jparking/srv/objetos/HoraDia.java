@@ -5,11 +5,13 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import java.io.Serializable;
+
 /**
  *
- * @author Franklin
+ * @author Franklin Lara
  */
-public class HoraDia {
+public class HoraDia implements Serializable {
     private int hora;
     private int minuto;
 

@@ -217,12 +217,14 @@ public class LoginGUI extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
         
+        /*
         try {
             Test.cargarUsuariosParqueaderos();
             pgui.listarParqueaderos();
         } catch (CedulaNoValidaException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | ParquaderoInactivoException | NumeroParqueaderosNoDisponiblesException | UsuarioInactivoException | CampusNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
+        */
         
         try {
             Test.cargarPuertasParqueaderos();

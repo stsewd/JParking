@@ -3,11 +3,15 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.Utilidades;
+import java.io.Serializable;
+
 /**
  *
  * @author Santos Gallegos
  */
-public class Puerta implements Comparable<Puerta> {
+public class Puerta implements Comparable<Puerta>, Serializable {
+    private static final int MAXLEN = 30;
     
     private final String id;
     private String ubicacion;
@@ -17,14 +21,14 @@ public class Puerta implements Comparable<Puerta> {
     
 
     public Puerta(String ubicacion, String id, Campus campus) {
-        this.ubicacion = ubicacion;
+        this.ubicacion = ubicacion + Utilidades.fill(MAXLEN - ubicacion.length());
         this.campus = campus;
         this.activa = true;
         this.id = id;
     }
 
     public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+        this.ubicacion = ubicacion + Utilidades.fill(MAXLEN - ubicacion.length());
     }
 
     public void setActiva(boolean activa) {
@@ -32,7 +36,7 @@ public class Puerta implements Comparable<Puerta> {
     }
 
     public String getUbicacion() {
-        return ubicacion;
+        return ubicacion.trim();
     }
 
     /**
@@ -64,5 +68,4 @@ public class Puerta implements Comparable<Puerta> {
     public int compareTo(Puerta o) {
         return getId().compareTo(o.getId());
     }
-    
 }
