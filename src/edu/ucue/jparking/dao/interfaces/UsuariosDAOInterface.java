@@ -12,6 +12,8 @@ import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -25,27 +27,37 @@ public interface UsuariosDAOInterface {
      * @param usuario Usuarion a ser agregado
      * @throws UsuarioYaExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
     public abstract void addUsuario(Usuario usuario)
-            throws UsuarioYaExistenteException, PersonaYaRegistradoComoPorteroException;
+            throws UsuarioYaExistenteException, PersonaYaRegistradoComoPorteroException,
+            IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Eliminar un usuario dado su numero de cedula.
      * @param cedula
      * @throws UsuarioNoExistenteException
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
      */
     public abstract void delUsuario(String cedula)
-            throws UsuarioNoExistenteException, CampusNoExistenteException;
+            throws UsuarioNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Obtiene un usuario dado su numero de cedula
      * @param cedula
      * @return
      * @throws UsuarioNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
      */
     public Usuario getUsuario(String cedula)
-            throws UsuarioNoExistenteException;
+            throws UsuarioNoExistenteException, IOException, ClassNotFoundException;
     
     /**
      * Modifica los campos nombres, apellidos, y estado
@@ -57,29 +69,41 @@ public interface UsuariosDAOInterface {
      * @param telefono
      * @param activo
      * @throws UsuarioNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
     public void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws UsuarioNoExistenteException;
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Retorna todos los usuarios registrados
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public Set<Usuario> getUsuarios();
+    public Set<Usuario> getUsuarios()
+            throws IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Retorna una lista del tipo de usuario especificado
      * @param tipoUsuario
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario);
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException,
+            ClassNotFoundException;
     
     /**
      * Retorna todos los parqueaderos asociado a un usuario
      * @param cedula
      * @return 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
      */
     public Set<Parqueadero> getParqueaderos(String cedula)
-            throws UsuarioNoExistenteException;
+            throws UsuarioNoExistenteException, IOException, ClassNotFoundException;
 }

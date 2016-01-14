@@ -43,7 +43,7 @@ public class ClaveDAO implements ClaveDAOInterface{
         SecretKey key;
         
         try {
-            FileInputStream flujoentrada = new FileInputStream("data/usuarios.dat");
+            FileInputStream flujoentrada = new FileInputStream("data/usuarios_.dat");
             ObjectInputStream objetoentrada = new ObjectInputStream(flujoentrada);
             
             FileInputStream flujoentradaClave = new FileInputStream("data/clave.dat");

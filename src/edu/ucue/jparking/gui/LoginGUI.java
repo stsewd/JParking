@@ -180,15 +180,15 @@ public class LoginGUI extends javax.swing.JFrame {
     
     private void inicia(){
         PrincipalGUI pgui = new PrincipalGUI();
-        /**/
         //Inicio de tests
+        /*
         try {
             Test.cargarUsuarios();
             pgui.listarUsuarios();
         }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException | PersonaYaRegistradoComoPorteroException | UsuarioNoExistenteException ex) {
             System.out.println(ex.getMessage());
         }
-        
+        */
         try {
             Test.cargarCampus();
             pgui.cargarCampusCB();
@@ -225,7 +225,6 @@ public class LoginGUI extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
         */
-        
         try {
             Test.cargarPuertasParqueaderos();
         } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
