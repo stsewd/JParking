@@ -722,4 +722,15 @@ public interface JPInterface {
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
             FechaInicialIgualAFechaFinalException;
+    
+    /**
+     * genera el archivo .Zip
+     * @param fileName
+     * @throws IOException
+     * @throws FileNotFoundException 
+     */
+    public void generarZip(String fileName) throws IOException, FileNotFoundException;
+    
+    
+    
 }

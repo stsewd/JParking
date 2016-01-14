@@ -45,10 +45,10 @@ public class ClaveDAO implements ClaveDAOInterface{
         SecretKey key;
         
         try {
-            FileInputStream flujoentrada = new FileInputStream("src/edu/ucuen/jparking/dao/usuarios.dat");
+            FileInputStream flujoentrada = new FileInputStream("data/usuarios.dat");
             ObjectInputStream objetoentrada = new ObjectInputStream(flujoentrada);
             
-            FileInputStream flujoentradaClave = new FileInputStream("src/edu/ucuen/jparking/dao/claves.dat");
+            FileInputStream flujoentradaClave = new FileInputStream("data/clave.dat");
             ObjectInputStream  objetoentradaClave = new ObjectInputStream(flujoentradaClave);
             
             tabla = (HashMap)objetoentrada.readObject();
