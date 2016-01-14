@@ -45,8 +45,11 @@ public class BPTreeMap<K, V> implements Serializable {
         BPTreeMap tree = null;
         
         File path = new File(treePath);
-        if(!path.exists())
-            return new BPTreeMap(keysNumber, comparator, dataPath, objSize);
+        if(!path.exists()){
+            tree = new BPTreeMap(keysNumber, comparator, dataPath, objSize);
+            tree.save(treePath);
+            return tree;
+        }
         
         try {
             FileInputStream fis = new FileInputStream(path);

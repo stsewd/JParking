@@ -30,7 +30,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     private static BPTreeMap<String, Usuario> usuarios;
     private static final String dataPath = "data/usuarios.dat";
     private static final String treePath = "data/usuariosTree.dat";
-    private static final int objSize = 999999; // 673-4 usuario sin parqueaderos. Tamaño actual demasiado GRANDE!!
+    private static final int objSize = 9999; // 673-4 usuario sin parqueaderos. Tamaño actual demasiado GRANDE!!
     
     private static UsuariosDAO instance;
 
@@ -52,6 +52,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         if(PorterosDAO.getInstance().getPortero(usuario.getCedula()) != null)
             throw new PersonaYaRegistradoComoPorteroException(usuario.getCedula());
         usuarios.put(usuario.getCedula(), usuario);
+        usuarios.save(treePath);
     }
     
     @Override
@@ -72,6 +73,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         }
         
         usuarios.remove(cedula);
+        usuarios.save(treePath);
     }
     
     @Override
@@ -130,6 +132,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         u.addParqueadero(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
         
         usuarios.update(cedula, u);
+        usuarios.save(treePath);
     }
     
     public void delParqueadero(String cedula, String nombreCampus, String idParqueadero) throws UsuarioNoExistenteException, CampusNoExistenteException{
@@ -137,5 +140,6 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         u.delParqueadero(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
         
         usuarios.update(cedula, u);
+        usuarios.save(treePath);
     }
 }
