@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.srv.Utilidades;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +13,9 @@ import java.util.Map;
  *
  * @author Santos Gallegos
  */
-public class Campus implements Comparable<Campus> {
+public class Campus implements Comparable<Campus>, Serializable {
+    private static final int MAXLEN = 30;
+    
     private final String nombre;
     private String direccion;
     private static final HoraDia horaApertura = new HoraDia(6, 30);
@@ -23,9 +27,9 @@ public class Campus implements Comparable<Campus> {
     private Map<String, Parqueadero> parqueaderos;
     
     public Campus(String nombre, String direccion) {
-        this.nombre=nombre;
-        this.direccion=direccion;
-        this.activo=true;
+        this.nombre = nombre + Utilidades.fill(MAXLEN - nombre.length());
+        this.direccion = direccion;
+        this.activo = true;
         
         puertas = new HashMap<>();
         porteros = new HashMap<>();
@@ -93,14 +97,14 @@ public class Campus implements Comparable<Campus> {
      * @return the direccion
      */
     public String getDireccion() {
-        return direccion;
+        return direccion.trim();
     }
 
     /**
      * @param direccion the direccion to set
      */
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.direccion = direccion + Utilidades.fill(MAXLEN - direccion.length());
     }
     
     public Collection<Parqueadero> getParqueaderos(){

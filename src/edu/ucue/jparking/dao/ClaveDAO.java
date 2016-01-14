@@ -13,8 +13,6 @@ import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
 
@@ -61,7 +59,7 @@ public class ClaveDAO implements ClaveDAOInterface{
             while(it.hasNext()){
                 Map.Entry e = (Map.Entry)it.next();
                 if(usuario.equals(e.getKey()) && encriptado.equals(e.getValue())){
-                return true;
+                    return true;
                 }
             }
         } catch (FileNotFoundException ex) {

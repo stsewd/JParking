@@ -19,7 +19,7 @@ import java.util.Set;
  *
  * @author Santos Gallegos
  */
-public abstract class Usuario extends Persona{
+public abstract class Usuario extends Persona {
 
     private Calendar fechaContrato;
     private Set<Parqueadero> parqueaderos;
@@ -98,21 +98,22 @@ public abstract class Usuario extends Persona{
         }
         return null;
     }
-
+    
+    public void addParqueadero(Parqueadero parqueadero){
+        parqueaderos.add(parqueadero);
+    }
+    
+    public void delParqueadero(Parqueadero parqueadero){
+        parqueaderos.remove(parqueadero);
+    }
+    
     /**
      * @return the parqueaderos
      */
     public Set<Parqueadero> getParqueaderos() {
         return parqueaderos;
     }
-
-    /**
-     * @param parqueaderos the parqueaderos to set
-     */
-    public void setParqueaderos(Set<Parqueadero> parqueaderos) {
-        this.parqueaderos = parqueaderos;
-    }
-    
+   
     public Registro getRegistro(TipoTramite tipoTramite){
         Registro registro;
         registro = new RegistroPagos(this, tipoTramite);

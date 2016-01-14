@@ -23,6 +23,7 @@ import edu.ucue.jparking.srv.ParqueaderoService;
 import edu.ucue.jparking.srv.PorterosService;
 import edu.ucue.jparking.srv.PuertaService;
 import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.Utilidades;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -34,6 +35,10 @@ import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -132,16 +137,27 @@ public class Test {
     
     //Campus
     private static final String[][] campus = {
-        {"Paraiso", "Direccion y"},
-        {"Central", "Direccion y"},
-        {"Balzay", "Direccion y"},
-        {"Centro Historico", "Direccion y"},
-        {"Yanuncay", "Direccion y"},
+        {"Paraiso" + Utilidades.fill(30 - "Paraiso".length()), "Direccion y"},
+        {"Central" + Utilidades.fill(30 - "Central".length()), "Direccion y"},
+        {"Balzay" + Utilidades.fill(30 - "Balzay".length()), "Direccion y"},
+        {"Centro Historico" + Utilidades.fill(30 - "Centro Historico".length()), "Direccion y"},
+        {"Yanuncay" + Utilidades.fill(30 - "Yanuncay".length()), "Direccion y"},
     };
     
     
     public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException{
         UsuarioService us = new UsuarioService();
+        /*
+        us.add("0706455136", "Santos", "Gallegos", "Calle", "1234567890", "ESTUDIANTE");
+        Usuario u = us.get("0706455136");
+        
+        try {
+            byte[] b;
+            b = serialize(u);
+            System.out.println(b.length);
+        } catch (IOException ex) {
+        } 
+        /*/
         for(int i = 0; i<usuarios.length; i++)
             us.add(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
     }
@@ -213,5 +229,12 @@ public class Test {
             }
             
         }
+    }
+    
+    public static byte[] serialize(Object obj) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ObjectOutputStream os = new ObjectOutputStream(out);
+        os.writeObject(obj);
+        return out.toByteArray();
     }
 }

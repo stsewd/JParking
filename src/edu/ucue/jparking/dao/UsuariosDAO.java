@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.bptree.BPTreeMap;
+import edu.ucue.jparking.dao.bptree.ComparatorString;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
@@ -24,11 +26,17 @@ import java.util.TreeSet;
  * @author Santos Gallegos
  */
 public class UsuariosDAO implements UsuariosDAOInterface {
-    private static Map<String, Usuario> usuarios; //Mapa<Cedula, Usuario>>
+    // private static Map<String, Usuario> usuarios; //Mapa<Cedula, Usuario>>
+    private static BPTreeMap<String, Usuario> usuarios;
+    private static final String dataPath = "data/usuarios.dat";
+    private static final String treePath = "data/usuariosTree.dat";
+    private static final int objSize = 999999; // 673-4 usuario sin parqueaderos. Tamaño actual demasiado GRANDE!!
+    
     private static UsuariosDAO instance;
 
     private UsuariosDAO() {
-        usuarios = new TreeMap<>();
+        // usuarios = new TreeMap<>();
+        usuarios = BPTreeMap.getBPTree(3, new ComparatorString(), dataPath, treePath, objSize);
     }
     
     public static UsuariosDAO getInstance(){
@@ -83,6 +91,8 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         usuario.setDireccion(direccion);
         usuario.setTelefono(telefono);
         usuario.setActivo(activo);
+        
+        usuarios.update(cedula, usuario);
     }
         
     @Override
@@ -106,6 +116,8 @@ public class UsuariosDAO implements UsuariosDAOInterface {
             throw new UsuarioNoExistenteException(cedula);
         Usuario usuario = usuarios.get(cedula);
         usuario.setFechaContrato(calendar);
+        
+        usuarios.update(cedula, usuario);
     }
 
     @Override
@@ -114,10 +126,16 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     }
 
     public void addPaqueadero(String cedula, String nombreCampus, String idParqueadero) throws UsuarioNoExistenteException, CampusNoExistenteException {
-        getUsuario(cedula).getParqueaderos().add(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
+        Usuario u = getUsuario(cedula);
+        u.addParqueadero(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
+        
+        usuarios.update(cedula, u);
     }
     
     public void delParqueadero(String cedula, String nombreCampus, String idParqueadero) throws UsuarioNoExistenteException, CampusNoExistenteException{
-        getUsuario(cedula).getParqueaderos().remove(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
+        Usuario u = getUsuario(cedula);
+        u.delParqueadero(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
+        
+        usuarios.update(cedula, u);
     }
 }

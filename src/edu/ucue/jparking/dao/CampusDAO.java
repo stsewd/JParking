@@ -24,7 +24,7 @@ import java.util.TreeSet;
 public class CampusDAO implements CampusDAOInterface {
     private static CampusDAO instancia;
     
-    //Mapa <Nombre de campus, campus>
+    // Mapa <Nombre de campus, campus>
     private static Map<String, Campus> mapCampus;
     
     private CampusDAO() {
