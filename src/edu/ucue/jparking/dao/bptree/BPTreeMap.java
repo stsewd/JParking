@@ -20,14 +20,49 @@ import java.util.Comparator;
  * @author Santos Gallegos
  */
 public class BPTreeMap<K, V> implements Serializable {
-    private final File PATH;
-    private final int OBJ_SIZE;
-    private BPTree<K, Long> tree;
+    private final File PATH; // Ruta donde se almacenará la tabla de valores.
+    private final int OBJ_SIZE; // Tamaño max reservado para cada objeto.
+    private final int EXTRA_BYTES = 4; // Bytes extras que contienen el tamaño del objeto.
+    private BPTree<K, Long> tree; // Árbol B+, tabla de índices.
     
     private BPTreeMap(int keysNumber, Comparator comparator, String path, int objSize) {
         tree = new BPTree(keysNumber, comparator);
         PATH = new File(path);
         OBJ_SIZE = objSize;
+    }
+    
+    /**
+     * Recupera un árbol existente de la ruta dada, si no existe
+     * se retorna un nuevo árbol con los parámetros establecidos.
+     * @param keysNumber
+     * @param comparator
+     * @param dataPath
+     * @param treePath
+     * @param objSize
+     * @return 
+     */
+    public static BPTreeMap getBPTree(int keysNumber, Comparator comparator, String dataPath, String treePath, int objSize){
+        BPTreeMap tree = null;
+        
+        File path = new File(treePath);
+        if(!path.exists())
+            return new BPTreeMap(keysNumber, comparator, dataPath, objSize);
+        
+        try {
+            FileInputStream fis = new FileInputStream(path);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            tree = (BPTreeMap) ois.readObject();
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo no existente.");
+        } catch (IOException ex) {
+            System.out.println("Error al leer el archivo.");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error al recuperar objeto.");
+        }
+        
+        return tree;
     }
     
     /**
@@ -73,13 +108,17 @@ public class BPTreeMap<K, V> implements Serializable {
             ram = new RandomAccessFile(PATH, "rw");
             
             obj = serialize(value);
+            
+            if(obj.length > OBJ_SIZE)
+                return; // Reemplazar por lanzar excepcion
+            
             pos = ram.length();
             ram.seek(pos);
             ram.writeInt(obj.length);
             ram.write(obj);
             
             // Llenar de bytes
-            rest = new byte[OBJ_SIZE - obj.length - 4];
+            rest = new byte[OBJ_SIZE - obj.length + EXTRA_BYTES];
             ram.write(rest);
             
         } catch (FileNotFoundException ex) {
@@ -99,7 +138,8 @@ public class BPTreeMap<K, V> implements Serializable {
     
     /**
      * Agrega clave y posicion en tabla de indices,
-     * la tabla de valores no se ve modificada.
+     * la tabla de valores no se ve modificada,
+     * usar con cuidado.
      * @param key 
      * @param pos 
      */
@@ -214,40 +254,6 @@ public class BPTreeMap<K, V> implements Serializable {
     }
     
     /**
-     * Recupera un árbol existente de la ruta dada, si no existe
-     * se retorna un nuevo árbol con los parámetros establecidos.
-     * @param keysNumber
-     * @param comparator
-     * @param dataPath
-     * @param treePath
-     * @param objSize
-     * @return 
-     */
-    public static BPTreeMap getBPTree(int keysNumber, Comparator comparator, String dataPath, String treePath, int objSize){
-        BPTreeMap tree = null;
-        
-        File path = new File(treePath);
-        if(!path.exists())
-            return new BPTreeMap(keysNumber, comparator, dataPath, objSize);
-        
-        try {
-            FileInputStream fis = new FileInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            
-            tree = (BPTreeMap) ois.readObject();
-            
-        } catch (FileNotFoundException ex) {
-            System.out.println("Archivo no existente.");
-        } catch (IOException ex) {
-            System.out.println("Error al leer el archivo.");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Error al recuperar objeto.");
-        }
-        
-        return tree;
-    }
-    
-    /**
      * Guarda el árbol en la ruta dada.
      * @param treePath 
      */
@@ -276,13 +282,17 @@ public class BPTreeMap<K, V> implements Serializable {
             ram = new RandomAccessFile(PATH, "rw");
             
             obj = serialize(newValue);
+            
+            if(obj.length > OBJ_SIZE)
+                return; // Reemplazar por lanzar excepcion
+            
             pos = getPos(key);
             ram.seek(pos);
             ram.writeInt(obj.length);
             ram.write(obj);
             
             // Llenar de bytes
-            rest = new byte[OBJ_SIZE - obj.length - 4];
+            rest = new byte[OBJ_SIZE - obj.length + EXTRA_BYTES];
             ram.write(rest);
             
         } catch (FileNotFoundException ex) {
