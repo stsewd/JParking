@@ -66,6 +66,7 @@ public class BPTreeMap<K, V> implements Serializable {
     public void put(K key, V value) {
         RandomAccessFile ram = null;
         byte[] obj;
+        byte[] rest;
         long pos = 0;
         
         try {
@@ -74,8 +75,12 @@ public class BPTreeMap<K, V> implements Serializable {
             obj = serialize(value);
             pos = ram.length();
             ram.seek(pos);
-            
+            ram.writeInt(obj.length);
             ram.write(obj);
+            
+            // Llenar de bytes
+            rest = new byte[OBJ_SIZE - obj.length - 4];
+            ram.write(rest);
             
         } catch (FileNotFoundException ex) {
             System.out.println("Archivo de datos no encontrado.");
@@ -155,13 +160,13 @@ public class BPTreeMap<K, V> implements Serializable {
      */
     private V getObject(long pos) {
         RandomAccessFile ram = null;
-        byte[] objByte = new byte[OBJ_SIZE];
+        byte[] objByte;
         V obj = null;
         try {
             ram = new RandomAccessFile(PATH, "rw");
             
             ram.seek(pos);
-            
+            objByte = new byte[ram.readInt()];
             ram.read(objByte);
             
             obj = (V) deserialize(objByte);
@@ -264,6 +269,7 @@ public class BPTreeMap<K, V> implements Serializable {
     public void update(K key, V newValue){
         RandomAccessFile ram = null;
         byte[] obj;
+        byte[] rest;
         long pos = 0;
         
         try {
@@ -272,8 +278,12 @@ public class BPTreeMap<K, V> implements Serializable {
             obj = serialize(newValue);
             pos = getPos(key);
             ram.seek(pos);
-            
+            ram.writeInt(obj.length);
             ram.write(obj);
+            
+            // Llenar de bytes
+            rest = new byte[OBJ_SIZE - obj.length - 4];
+            ram.write(rest);
             
         } catch (FileNotFoundException ex) {
             System.out.println("Archivo de datos no encontrado.");

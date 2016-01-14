@@ -30,7 +30,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     private static BPTreeMap<String, Usuario> usuarios;
     private static final String dataPath = "data/usuarios.dat";
     private static final String treePath = "data/usuariosTree.dat";
-    private static final int objSize = 674; // 673-4 usuario sin parqueaderos.
+    private static final int objSize = 999999; // 673-4 usuario sin parqueaderos. Tamaño actual demasiado GRANDE!!
     
     private static UsuariosDAO instance;
 
