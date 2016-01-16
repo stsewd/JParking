@@ -51,7 +51,12 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public void delCampus(String nombreCampus) throws CampusNoExistenteException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+    public void delCampus(String nombreCampus)
+            throws CampusNoExistenteException, ParqueaderoNoExistenteException,
+            UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        
         if (mapCampus.get(nombreCampus) == null) {
             throw new CampusNoExistenteException(nombreCampus);
         }

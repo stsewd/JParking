@@ -3,7 +3,6 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
-import edu.ucue.jparking.srv.Utilidades;
 import edu.ucue.jparking.srv.enums.TipoAcceso;
 import edu.ucue.jparking.srv.enums.TipoModificacion;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
@@ -19,7 +18,6 @@ import java.io.Serializable;
 public abstract class Persona implements Comparable<Persona>, Serializable {
     
     protected final TipoUsuario tipoUsuario;
-    private static final int MAXLEN = 30;
     
     private final String cedula;
     private String nombres;
@@ -28,7 +26,6 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
     private String telefono;
     private boolean activo;
 
-    
     /**
      * 
      * @param cedula Cédula de la persona
@@ -41,9 +38,9 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
     public Persona(String cedula, String nombres, String apellidos, String direccion, String telefono, TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
         this.cedula = cedula;
-        this.nombres = nombres + Utilidades.fill(MAXLEN - nombres.length());
-        this.apellidos = apellidos + Utilidades.fill(MAXLEN - apellidos.length());
-        this.direccion = direccion + Utilidades.fill(MAXLEN - direccion.length());
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
         this.telefono = telefono;
         this.activo = true;
     }
@@ -63,28 +60,28 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
      * @return the nombres
      */
     public String getNombres() {
-        return nombres.trim();
+        return nombres;
     }
 
     /**
      * @param nombres the nombres to set
      */
     public void setNombres(String nombres) {
-        this.nombres = nombres + Utilidades.fill(MAXLEN - nombres.length());
+        this.nombres = nombres;
     }
 
     /**
      * @return the apellidos
      */
     public String getApellidos() {
-        return apellidos.trim();
+        return apellidos;
     }
 
     /**
      * @param apellidos the apellidos to set
      */
     public void setApellidos(String apellidos) {
-        this.apellidos = apellidos + Utilidades.fill(MAXLEN - apellidos.length());
+        this.apellidos = apellidos;
     }
 
     /**
@@ -106,14 +103,14 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
      * @return the direccion
      */
     public String getDireccion() {
-        return direccion.trim();
+        return direccion;
     }
 
     /**
      * @param direccion the direccion to set
      */
     public void setDireccion(String direccion) {
-        this.direccion = direccion + Utilidades.fill(MAXLEN - direccion.length());
+        this.direccion = direccion;
     }
 
     /**

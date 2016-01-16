@@ -14,7 +14,6 @@ import java.util.Map;
  * @author Santos Gallegos
  */
 public class Parqueadero implements Comparable<Parqueadero>, Serializable {
-    private static final int MAXLEN = 30;
     
     private Map<String, Usuario> usuarios; //Cedula de usuario
     private Map<String, Puerta> puertasEntrada; //Id de puerta
@@ -28,7 +27,7 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
     private Campus campus;
 
     public Parqueadero(String ubicacion, int numeroLugares, String id, Campus nombreCampus) {
-        this.ubicacion = ubicacion + Utilidades.fill(MAXLEN - ubicacion.length());
+        this.ubicacion = ubicacion;
         this.numeroLugares = numeroLugares;
         this.id = id;
         this.campus = nombreCampus;
@@ -78,14 +77,14 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
      * @return the ubicacion
      */
     public String getUbicacion() {
-        return ubicacion.trim();
+        return ubicacion;
     }
 
     /**
      * @param ubicacion the ubicacion to set
      */
     public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion + Utilidades.fill(MAXLEN - ubicacion.length());
+        this.ubicacion = ubicacion;
     }
 
     /**

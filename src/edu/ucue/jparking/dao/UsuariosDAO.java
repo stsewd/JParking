@@ -71,7 +71,6 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         /******************************
          * Eliminar dependencias:
          * Eliminar usuario de todos los parqueaderos.
-         * 
          ******************************/
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             for(Parqueadero p : ParqueaderosDAO.getInstance().getParqueaderos(c.getNombre())){

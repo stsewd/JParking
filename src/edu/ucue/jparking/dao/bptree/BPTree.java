@@ -317,54 +317,70 @@ public class BPTree<K> implements Serializable {
         }
     }
     
-    public void del(K key){
-        // del(key, root);
+    public void del(K key) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        del(key, root);
     }
     
-    /*
-    private void del(K key, Long node){
+    private void del(K key, Long node) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         // Comprobar si la clave existe
         if(search(key) == null)
             return;
-        // Buscar en qué hoja pertenece la clave a eliminar
-        Node leaf = node;
+        
+        // Buscar la hoja donde pertenece la clave a eliminar
+        Node leaf = getNode(node);
         int i = 0;
         while(!leaf.isLeaf()){
             i = leaf.getNodeSize() - 1;
             while(i >= 0 && comparator.compare(key, (K) leaf.getKey(i)) < 0)
                 i--;
-            leaf = leaf.getChild(i + 1);
+            leaf = getNode(leaf.getChild(i + 1));
         }
         
-        Node parent = leaf.getParent();
+        Node parent = getNode(leaf.getParent());
         
+        // Eliminar clave.
         leaf.remove(key);
-        parent.setKey(i, leaf.getKey(0));
+        updateNode(leaf);
         
-        if(leaf.getNodeSize() >= keysNum/2)
+        // Actualizar clave del padre
+        parent.setKey(i, leaf.getKey(0));
+        updateNode(parent);
+        
+        if(leaf.getNodeSize() >= minKeysNum)
             return;
         
         // Pedir prestado de hermano izquierdo
-        Node leftLeaf = leaf.prev();
-        if(leftLeaf.getParent() == leaf.getParent() && leftLeaf.getNodeSize() > keysNum/2){
+        Node leftLeaf = getNode(leaf.prev());
+        if(leftLeaf.getParent() == leaf.getParent() && leftLeaf.getNodeSize() > minKeysNum){
             int last = leftLeaf.getNodeSize() - 1;
             leaf.insertValue(leftLeaf.getKey(last), leftLeaf.getValue(last));
+            updateNode(leaf);
+            
             leftLeaf.setNodeSize(leftLeaf.getNodeSize() - 1);
+            updateNode(leftLeaf);
             
             parent.setKey(i, leaf.getKey(0));
+            updateNode(parent);
             
             return;
         }
         
         // Pedir prestado de hermano derecho
-        Node rightLeaf = leaf.next();
-        if(rightLeaf.getParent() == leaf.getParent() && rightLeaf.getNodeSize() > keysNum/2){
+        Node rightLeaf = getNode(leaf.next());
+        if(rightLeaf.getParent() == leaf.getParent() && rightLeaf.getNodeSize() > minKeysNum){
             int first = 0;
             leaf.insertValue(rightLeaf.getKey(first), rightLeaf.getValue(first));
+            updateNode(leaf);
+            
             rightLeaf.remove(rightLeaf.getKey(first));
+            updateNode(rightLeaf);
+            
+            parent.setKey(i, rightLeaf.getKey(first));
+            updateNode(parent);
             
             // Probablemente no necesario
             // (probablemente a excepcion de un arbol de orden 2).
+            /*
             if(leaf.getNodeSize() == 1){
                 parent.remove(key);
                 parent.remove(leaf.getKey(first));
@@ -373,11 +389,12 @@ public class BPTree<K> implements Serializable {
             }else {
                 parent.setKey(i, rightLeaf.getKey(first));
             }
-            
+            */
             return;
         }
         
         // Merge con vecino izq
+        /*
         for(int j = 0; j < leaf.getNodeSize(); j++)
             leftLeaf.insertValue(leaf.getKey(j), leaf.getValue(j));
         parent.remove(leaf.getKey(0));
@@ -388,6 +405,7 @@ public class BPTree<K> implements Serializable {
         
         if(parent.getNodeSize() < minKeysNum){}
             //merge()
+        */
     }
     
     /*
