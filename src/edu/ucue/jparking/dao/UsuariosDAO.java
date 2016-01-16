@@ -38,7 +38,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
 
     private UsuariosDAO() throws IOException, FileNotFoundException, ClassNotFoundException {
         // usuarios = new TreeMap<>();
-        usuarios = BPTreeMap.getBPTree(3, new ComparatorString(), dataPath, treePath, objSize);
+        usuarios = BPTreeMap.getTree(3, new ComparatorString(), dataPath, treePath, objSize);
     }
     
     public static UsuariosDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException{
