@@ -5,6 +5,7 @@ package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.bptree.BPTreeMap;
 import edu.ucue.jparking.dao.bptree.ComparatorString;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
@@ -36,12 +37,12 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     
     private static UsuariosDAO instance;
 
-    private UsuariosDAO() throws IOException, FileNotFoundException, ClassNotFoundException {
+    private UsuariosDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         // usuarios = new TreeMap<>();
         usuarios = BPTreeMap.getTree(3, new ComparatorString(), dataPath, treePath, objSize);
     }
     
-    public static UsuariosDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException{
+    public static UsuariosDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         if (instance == null)
             instance = new UsuariosDAO();
         return instance;
@@ -50,7 +51,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     @Override
     public void addUsuario(Usuario usuario) 
             throws UsuarioYaExistenteException, PersonaYaRegistradoComoPorteroException,
-            IOException, FileNotFoundException, ClassNotFoundException
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         if(usuarios.get(usuario.getCedula()) != null)
             throw new UsuarioYaExistenteException(usuario.getCedula());
@@ -63,7 +64,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     @Override
     public void delUsuario(String cedula)
             throws UsuarioNoExistenteException, CampusNoExistenteException,
-            IOException, FileNotFoundException, ClassNotFoundException
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
@@ -95,7 +96,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     
     @Override
     public void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
@@ -125,7 +126,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         return usuarios;
     }
     
-    public void setFechaContrato(String cedula, Calendar calendar) throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException{
+    public void setFechaContrato(String cedula, Calendar calendar) throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
         Usuario usuario = usuarios.get(cedula);
@@ -139,9 +140,10 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         return getUsuario(cedula).getParqueaderos();
     }
 
+    @Override
     public void addPaqueadero(String cedula, String nombreCampus, String idParqueadero)
             throws UsuarioNoExistenteException, CampusNoExistenteException, IOException,
-            FileNotFoundException, ClassNotFoundException
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         Usuario u = getUsuario(cedula);
         u.addParqueadero(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
@@ -150,9 +152,10 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         usuarios.save(treePath);
     }
     
+    @Override
     public void delParqueadero(String cedula, String nombreCampus, String idParqueadero)
             throws UsuarioNoExistenteException, CampusNoExistenteException, IOException,
-            FileNotFoundException, ClassNotFoundException
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         Usuario u = getUsuario(cedula);
         u.delParqueadero(ParqueaderosDAO.getInstance().getParqueadero(nombreCampus, idParqueadero));
@@ -160,4 +163,5 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         usuarios.update(cedula, u);
         usuarios.save(treePath);
     }
+    
 }

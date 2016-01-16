@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
@@ -17,7 +18,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
-import java.util.Calendar;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -43,11 +44,14 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
-     * @throws edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
-            UsuarioNoExistenteException, UsuarioNoAgregadoException;
+            UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException,
+            ClassNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene un parqueadero dado su id
@@ -180,10 +184,14 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException
      */
     public void addUsuario(String nombreCampus, String idParqueadero, String cedula)
             throws ParqueaderoNoExistenteException, UsuarioYaAgregadoException,
-            UsuarioNoExistenteException, CampusNoExistenteException;
+            UsuarioNoExistenteException, CampusNoExistenteException, IOException,
+            ClassNotFoundException, ObjectSizeException;
     
     /**
      * Eliminar un usuario de un parqueadero dado su id.
@@ -194,10 +202,14 @@ public interface ParqueaderosDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delUsuario(String nombreCampus, String idParqueadero, String cedula)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException,
-            UsuarioNoAgregadoException, CampusNoExistenteException;
+            UsuarioNoAgregadoException, CampusNoExistenteException, IOException,
+            ClassNotFoundException, ObjectSizeException;
     
     /**
      * Retorna un set con todos los usuarios pertenecientes a un

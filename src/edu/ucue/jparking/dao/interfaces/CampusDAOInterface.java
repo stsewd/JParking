@@ -5,12 +5,14 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Campus;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -37,10 +39,14 @@ public interface CampusDAOInterface {
      * @throws edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public abstract void delCampus(String nombre)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
-            UsuarioNoExistenteException, UsuarioNoAgregadoException;
+            UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException,
+            ClassNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene el campus buscado dado su nombre

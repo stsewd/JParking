@@ -5,10 +5,12 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.*;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -24,10 +26,14 @@ public interface PorterosDAOInterface {
      * @throws CampusNoExistenteException
      * @throws PorteroYaExistenteException 
      * @throws edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void addPortero(String nombreCampus, Portero portero)
             throws CampusNoExistenteException, PorteroYaExistenteException,
-            PersonaYaRegistradaComoUsuarioException;
+            PersonaYaRegistradaComoUsuarioException, IOException, ClassNotFoundException,
+            ObjectSizeException;
     
     /**
      * Elimina un portero dado su cedula

@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
@@ -30,10 +31,11 @@ public interface UsuariosDAOInterface {
      * @throws java.io.IOException 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public abstract void addUsuario(Usuario usuario)
             throws UsuarioYaExistenteException, PersonaYaRegistradoComoPorteroException,
-            IOException, FileNotFoundException, ClassNotFoundException;
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Eliminar un usuario dado su numero de cedula.
@@ -43,10 +45,11 @@ public interface UsuariosDAOInterface {
      * @throws java.io.IOException
      * @throws java.io.FileNotFoundException
      * @throws java.lang.ClassNotFoundException
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException
      */
     public abstract void delUsuario(String cedula)
             throws UsuarioNoExistenteException, CampusNoExistenteException,
-            IOException, FileNotFoundException, ClassNotFoundException;
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene un usuario dado su numero de cedula
@@ -72,9 +75,11 @@ public interface UsuariosDAOInterface {
      * @throws java.io.IOException 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void modUsuario(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException;
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException;
     
     /**
      * Retorna todos los usuarios registrados
@@ -106,4 +111,37 @@ public interface UsuariosDAOInterface {
      */
     public Set<Parqueadero> getParqueaderos(String cedula)
             throws UsuarioNoExistenteException, IOException, ClassNotFoundException;
+    
+    /**
+     * 
+     * @param cedula
+     * @param nombreCampus
+     * @param idParqueadero
+     * @throws UsuarioNoExistenteException
+     * @throws CampusNoExistenteException
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws ObjectSizeException 
+     */
+    public void addPaqueadero(String cedula, String nombreCampus, String idParqueadero)
+        throws UsuarioNoExistenteException, CampusNoExistenteException, IOException,
+        FileNotFoundException, ClassNotFoundException, ObjectSizeException;
+
+    /**
+     * 
+     * @param cedula
+     * @param nombreCampus
+     * @param idParqueadero
+     * @throws UsuarioNoExistenteException
+     * @throws CampusNoExistenteException
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws ObjectSizeException 
+     */
+    public void delParqueadero(String cedula, String nombreCampus, String idParqueadero)
+            throws UsuarioNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException;
+    
 }

@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -11,6 +12,8 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -48,7 +51,7 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public void delCampus(String nombreCampus) throws CampusNoExistenteException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException {
+    public void delCampus(String nombreCampus) throws CampusNoExistenteException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         if (mapCampus.get(nombreCampus) == null) {
             throw new CampusNoExistenteException(nombreCampus);
         }

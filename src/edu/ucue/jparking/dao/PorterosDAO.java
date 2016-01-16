@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
 import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
@@ -13,6 +14,8 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.PorterosDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -34,7 +37,7 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public void addPortero(String nombreCampus, Portero portero)
-            throws CampusNoExistenteException, PorteroYaExistenteException,PersonaYaRegistradaComoUsuarioException {
+            throws CampusNoExistenteException, PorteroYaExistenteException,PersonaYaRegistradaComoUsuarioException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         if(getPortero(portero.getCedula()) != null)
             throw new PorteroYaExistenteException(portero.getCedula());
         try{
