@@ -24,8 +24,8 @@ import java.util.Objects;
  */
 public class BPTree<K> implements Serializable {
     private Long root; // Nodo raíz
-    private final int keysNum; // Máximo de claves u órden de árbol
-    private final int minKeysNum; // Mínimo de claves que puede tener un nodo (excepto root)
+    private final int maxKeys; // Máximo de claves
+    private final int minKeys; // Mínimo de claves que puede tener un nodo (excepto root)
     private final Comparator<K> comparator; // Comparador de claves
     private final File PATH; // Ruta donde se almacenara la tabla de indices
     private final int OBJ_SIZE; // Tamaño max reservado para cada nodo.
@@ -33,20 +33,20 @@ public class BPTree<K> implements Serializable {
     
     /**
      * Crea un nuevo árbol vacío.
-     * @param keysNumber Número máximo de claves.
+     * @param order Número máximo de claves.
      * @param comparator Objeto necesario para comparar las claves.
      * @param path
      * @param objSize
      * @throws java.io.FileNotFoundException
      * @throws java.io.IOException
      */
-    private BPTree(int keysNumber, Comparator<K> comparator, String path, int objSize, Long root)
+    private BPTree(int order, Comparator<K> comparator, String path, int objSize, Long root)
             throws FileNotFoundException, IOException
     {
         
-        this.keysNum = keysNumber;
+        this.maxKeys = order - 1;
         this.comparator = comparator;
-        this.minKeysNum = (int) Math.ceil(keysNum/2.0);
+        this.minKeys = (int) Math.ceil(order/2.0) - 1;
         this.OBJ_SIZE = objSize;
         this.PATH = new File(path);
         
@@ -163,23 +163,23 @@ public class BPTree<K> implements Serializable {
         
         updateNode(leaf);
         
-        if(leaf.getNodeSize() <= keysNum)
+        if(leaf.getNodeSize() <= maxKeys)
             return;
        
-        Node newLeaf = new Node(true, keysNum, comparator);
+        Node newLeaf = new Node(true, maxKeys, comparator);
         saveNode(newLeaf);
         
         // Dividir claves/valores del nodo hoja
         int k = 0;
         int j = 0;
-        for(j = minKeysNum; j < keysNum + 1; j++){
+        for(j = minKeys; j < maxKeys + 1; j++){
             newLeaf.setKey(k, leaf.getKey(j));
             newLeaf.setValue(k, leaf.getValue(j));
             k++;
         }
 
-        leaf.setNodeSize(minKeysNum);
-        newLeaf.setNodeSize(keysNum + 1 - minKeysNum);
+        leaf.setNodeSize(minKeys);
+        newLeaf.setNodeSize(maxKeys + 1 - minKeys);
         
         updateNode(leaf);
         updateNode(newLeaf);
@@ -187,7 +187,7 @@ public class BPTree<K> implements Serializable {
         // Si el padre del nodo es nulo, la hoja es root
         if(leaf.getParent() == null){
             
-            Node newRoot = new Node(false, keysNum, comparator);
+            Node newRoot = new Node(false, maxKeys, comparator);
             
             newRoot.setKey(0, (K) newLeaf.getKey(0));
             newRoot.setNodeSize(1);
@@ -236,7 +236,7 @@ public class BPTree<K> implements Serializable {
 
             updateNode(parent);
             
-            if(parent.getNodeSize() > keysNum)
+            if(parent.getNodeSize() > maxKeys)
                 split(parent.getPos());
         }
     }
@@ -249,13 +249,13 @@ public class BPTree<K> implements Serializable {
     private void split(Long nodePos) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         Node node = getNode(nodePos);
         
-        Node newNode = new Node(false, keysNum, comparator);
+        Node newNode = new Node(false, maxKeys, comparator);
         saveNode(newNode);
         
         // Dividir claves/valores del nodo interno
         int k = 0;
         int j = 0;
-        for(j = minKeysNum + 1; j < keysNum + 1; j++){
+        for(j = minKeys + 1; j < maxKeys + 1; j++){
             
             Node child = getNode(node.getChild(j));
             child.setParent(newNode.getPos());
@@ -274,8 +274,8 @@ public class BPTree<K> implements Serializable {
         newNode.setChild(k, child.getPos());
         updateNode(newNode);
         
-        node.setNodeSize(minKeysNum);
-        newNode.setNodeSize(keysNum - minKeysNum);
+        node.setNodeSize(minKeys);
+        newNode.setNodeSize(maxKeys - minKeys);
         
         newNode.setNext(node.next());
         if(node.next() != null){
@@ -291,9 +291,9 @@ public class BPTree<K> implements Serializable {
         
         // Si el nodo es raiz
         if(node.getParent() == null){
-            Node newRoot = new Node(false, keysNum, comparator);
+            Node newRoot = new Node(false, maxKeys, comparator);
             
-            newRoot.setKey(0, (K) node.getKey(minKeysNum));
+            newRoot.setKey(0, (K) node.getKey(minKeys));
             newRoot.setNodeSize(1);
             
             saveNode(newRoot);
@@ -318,11 +318,11 @@ public class BPTree<K> implements Serializable {
             
             updateNode(newNode);
             
-            parent.insertChild(node.getKey(minKeysNum), newNode.getPos());
+            parent.insertChild(node.getKey(minKeys), newNode.getPos());
             
             updateNode(parent);
             
-            if(parent.getNodeSize() > keysNum)
+            if(parent.getNodeSize() > maxKeys)
                 split(parent.getPos());
         }
     }
@@ -334,20 +334,15 @@ public class BPTree<K> implements Serializable {
     private void delLeaf(K key, Long nodePos)
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {        
-        Node leaf = getNode(nodePos);
-        
-        int i = 0;
         // Comprobar si la clave existe
         if(search(key) == null)
             return;
 
         // Buscar la hoja donde pertenece la clave a eliminar
-        while(!leaf.isLeaf()){
-            i = leaf.getNodeSize() - 1;
-            while(i >= 0 && comparator.compare(key, (K) leaf.getKey(i)) < 0)
-                i--;
-            leaf = getNode(leaf.getChild(i + 1));
-        }
+        Node leaf = getNode(searchLeaf(key)); //getNode(nodePos);
+        
+        // Buscar a que nodo del padre pertenece
+        int i = searchInParent(leaf); // 0;
         
         Node parent = getNode(leaf.getParent());
         
@@ -355,16 +350,18 @@ public class BPTree<K> implements Serializable {
         leaf.remove(key);
         updateNode(leaf);
         
-        parent.setKey(i, leaf.getKey(0));
-        updateNode(parent);
+        if(i > 0){
+            parent.setKey(i - 1, leaf.getKey(0));
+            updateNode(parent);
+        }
         
         // Si es raiz o cumple con el minimo de valores. Salir.
-        if(leaf.getNodeSize() >= minKeysNum || (Objects.equals(leaf.getPos(), root)))
+        if(leaf.getNodeSize() >= minKeys || (Objects.equals(leaf.getPos(), root)))
             return;
         
         // Pedir prestado de hermano izquierdo
         Node leftNode = getNode(leaf.prev());
-        if(leftNode != null && Objects.equals(leftNode.getParent(), leaf.getParent()) && leftNode.getNodeSize() > minKeysNum){
+        if(leftNode != null && Objects.equals(leftNode.getParent(), leaf.getParent()) && leftNode.getNodeSize() > minKeys){
             int last = leftNode.getNodeSize() - 1;
             leaf.insertValue(leftNode.getKey(last), leftNode.getValue(last));
             updateNode(leaf);
@@ -372,14 +369,14 @@ public class BPTree<K> implements Serializable {
             leftNode.setNodeSize(leftNode.getNodeSize() - 1);
             updateNode(leftNode);
 
-            parent.setKey(i, leaf.getKey(0));
+            parent.setKey(i - 1, leaf.getKey(0));
             updateNode(parent);
             return;
         }
         
         // Pedir prestado de hermano derecho
         Node rightNode = getNode(leaf.next());
-        if(rightNode != null && Objects.equals(rightNode.getParent(), leaf.getParent()) && rightNode.getNodeSize() > minKeysNum){
+        if(rightNode != null && Objects.equals(rightNode.getParent(), leaf.getParent()) && rightNode.getNodeSize() > minKeys){
             int first = 0;
             leaf.insertValue(rightNode.getKey(first), rightNode.getValue(first));
             updateNode(leaf);
@@ -387,14 +384,14 @@ public class BPTree<K> implements Serializable {
             rightNode.remove(rightNode.getKey(first));
             updateNode(rightNode);
 
-            parent.setKey(i, rightNode.getKey(first));
+            parent.setKey(i, rightNode.getKey(first)); // Ver bien esto
             updateNode(parent);
 
             return;
         }
         
         // Merge con vecino izq
-        if(leftNode != null && leftNode.getNodeSize() == minKeysNum){
+        if(leftNode != null && leftNode.getNodeSize() == minKeys){
             for(int j = 0; j < leaf.getNodeSize(); j++)
                 leftNode.insertValue(leaf.getKey(j), leaf.getValue(j));
             updateNode(leftNode);
@@ -412,14 +409,14 @@ public class BPTree<K> implements Serializable {
                 updateNode(leftNode);
             }
 
-            delNode((K) parent.getKey(i), parent.getPos());
+            delNode((K) parent.getKey(i - 1), parent.getPos());
 
             return;
         }
         
         // Merge con vecino derecho
-        if(rightNode != null && rightNode.getNodeSize() == minKeysNum){
-            for(int j = 0; j < leaf.getNodeSize(); j++)
+        if(rightNode != null && rightNode.getNodeSize() == minKeys){
+            for(int j = 0; j < rightNode.getNodeSize(); j++)
                 leaf.insertValue(rightNode.getKey(j), rightNode.getValue(j));
             updateNode(leaf);
             
@@ -446,14 +443,8 @@ public class BPTree<K> implements Serializable {
         Node node = getNode(nodePos);
         Node parent = getNode(node.getParent());
 
-        int i = 0;
-        
         // Buscar posicion de hijo en padre.
-        i = 0;
-        for(i = 1; i < parent.getNodeSize() + 1; i++){
-            if(Objects.equals(parent.getChild(i), node.getPos()))
-                break;
-        }
+        int i = searchInParent(node);
         
         // Eliminar clave.
         node.remove(key);
@@ -461,7 +452,7 @@ public class BPTree<K> implements Serializable {
         updateNode(node);
         
         // Nueva raiz.
-        if(node.getNodeSize() == 0){
+        if(node.getNodeSize() == 0 && parent == null){
             Node child = getNode(node.getChild(0));
             child.setParent(null);
             updateNode(child);
@@ -471,12 +462,12 @@ public class BPTree<K> implements Serializable {
         }
         
         // Si es raiz o cumple con el minimo de valores. Salir.
-        if(node.getNodeSize() >= minKeysNum || (Objects.equals(node.getPos(), root)))
+        if(node.getNodeSize() >= minKeys || (Objects.equals(node.getPos(), root)))
             return;
 
         // Pedir prestado de hermano izquierdo
         Node leftNode = getNode(node.prev());
-        if(leftNode != null && Objects.equals(leftNode.getParent(), node.getParent()) && leftNode.getNodeSize() > minKeysNum){
+        if(leftNode != null && Objects.equals(leftNode.getParent(), node.getParent()) && leftNode.getNodeSize() > minKeys){
             int last = leftNode.getNodeSize() - 1;
                 
             // Correr 1 posicion las claves/valores
@@ -508,7 +499,7 @@ public class BPTree<K> implements Serializable {
         
         // Pedir prestado de hermano derecho
         Node rightNode = getNode(node.next());
-        if(rightNode != null && Objects.equals(rightNode.getParent(), node.getParent()) && rightNode.getNodeSize() > minKeysNum){
+        if(rightNode != null && Objects.equals(rightNode.getParent(), node.getParent()) && rightNode.getNodeSize() > minKeys){
             int first = 0;
             /*
             - Buscar nodo "generador" desde el padre del nodo.
@@ -571,7 +562,7 @@ public class BPTree<K> implements Serializable {
         }
         
         // Merge con vecino izq
-        if(leftNode != null && Objects.equals(leftNode.getParent(), node.getParent()) && leftNode.getNodeSize() == minKeysNum){
+        if(leftNode != null && Objects.equals(leftNode.getParent(), node.getParent()) && leftNode.getNodeSize() == minKeys){
             /*
             - Buscar posicion de hijo en padre
             - Insertar i-ésima key de padre en vecino izq.
@@ -590,7 +581,7 @@ public class BPTree<K> implements Serializable {
                 leftNode.setChild(k + 1, node.getChild(j + 1));
                 k++;
             }
-            leftNode.setNodeSize(keysNum);
+            leftNode.setNodeSize(maxKeys);
             
             updateNode(leftNode);
             
@@ -608,7 +599,7 @@ public class BPTree<K> implements Serializable {
         }
         
         // Merge con vecino derecho
-        if(rightNode != null && Objects.equals(rightNode.getParent(), node.getParent()) && rightNode.getNodeSize() == minKeysNum){
+        if(rightNode != null && Objects.equals(rightNode.getParent(), node.getParent()) && rightNode.getNodeSize() == minKeys){
 
             node.setKey(node.getNodeSize(), parent.getKey(i + 1));
             node.setChild(node.getNodeSize() + 1, rightNode.getChild(0));
@@ -619,7 +610,7 @@ public class BPTree<K> implements Serializable {
                 node.setChild(k + 1, rightNode.getChild(j + 1));
                 k++;
             }
-            node.setNodeSize(keysNum);
+            node.setNodeSize(maxKeys);
             
             updateNode(node);
             
@@ -634,6 +625,18 @@ public class BPTree<K> implements Serializable {
             delNode((K) parent.getKey(i + 1), parent.getPos());
         }
         
+    }
+    
+    private int searchInParent(Node node) throws IOException, FileNotFoundException, ClassNotFoundException{
+        Node parent = getNode(node.getParent());
+        int i = 0;
+        if(parent != null){
+            for(i = 0; i < parent.getNodeSize() + 1; i++){
+                if(Objects.equals(parent.getChild(i), node.getPos()))
+                    break;
+            }
+        }
+        return i;
     }
     
     /**
