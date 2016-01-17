@@ -36,7 +36,6 @@ import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
-import edu.ucue.jparking.srv.objetos.Usuario;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -149,18 +148,7 @@ public class Test {
     
     public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         UsuarioService us = new UsuarioService();
-        /*
-        us.add("0706455136", "Santos", "Gallegos", "Calle", "1234567890", "ESTUDIANTE");
-        Usuario u = us.get("0706455136");
-        
-        try {
-            byte[] b;
-            b = serialize(u);
-            System.out.println(b.length);
-        } catch (IOException ex) {
-        } 
-        /*/
-        for(int i = 0; i<usuarios.length; i++)
+        for(int i = 0; i< usuarios.length; i++)
             us.add(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
     }
     

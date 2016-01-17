@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.Test;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -25,7 +26,10 @@ import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -181,14 +185,19 @@ public class LoginGUI extends javax.swing.JFrame {
     private void inicia(){
         PrincipalGUI pgui = new PrincipalGUI();
         //Inicio de tests
-        /*
         try {
             Test.cargarUsuarios();
             pgui.listarUsuarios();
         }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException | PersonaYaRegistradoComoPorteroException | UsuarioNoExistenteException ex) {
             System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ObjectSizeException ex) {
+            System.out.println(ex.getMessage());
         }
-        */
+        
         try {
             Test.cargarCampus();
             pgui.cargarCampusCB();
@@ -208,6 +217,12 @@ public class LoginGUI extends javax.swing.JFrame {
         }catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
             System.out.println(ex.getMessage());
         }catch (PersonaYaRegistradaComoUsuarioException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ObjectSizeException ex) {
             System.out.println(ex.getMessage());
         }
         
