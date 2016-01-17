@@ -7,6 +7,7 @@ package edu.ucue.jparking.gui;
 
 //import static javafx.application.Platform.exit;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
@@ -32,6 +33,10 @@ import java.awt.datatransfer.*;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -56,8 +61,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         initComponents();        
 
-        //Listar usuarios en tabla
-        listarUsuarios();
+        try {
+            //Listar usuarios en tabla
+            listarUsuarios();
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+        }
         
         //Cargar campus en combobox
         cargarCampusCB();
@@ -78,7 +86,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
     }
     
-    public void listarUsuarios(){                
+    public void listarUsuarios() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{                
         String tipoUsuario = (String) TipoUsuarioCB.getSelectedItem();
         Set<Usuario> usuarios = null;
         switch(tipoUsuario){
@@ -873,6 +881,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Campus eliminado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (CampusNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso.", "Mensaje", JOptionPane.OK_OPTION);
         }
         
         cargarCampusCB();
@@ -1085,6 +1097,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             jp.addUsuario(campus, idParqueadero, cedula);
             JOptionPane.showMessageDialog(rootPane, "Usuario " + cedula + " agregado a paqueadero " + idParqueadero + ".", "Mensaje", JOptionPane.OK_OPTION);
             listarParqueaderos();
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (CedulaNoValidaException | CampusInactivoException | CampusNoExistenteException | UsuarioInactivoException | NumeroParqueaderosNoDisponiblesException | CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioYaAgregadoException | UsuarioNoExistenteException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
@@ -1120,6 +1134,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             editarUsuarioGUI.cargarDatos(cedula);
             editarUsuarioGUI.habilitarCampos();
             editarUsuarioGUI.setVisible(true);
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (IllegalArgumentException | UsuarioNoExistenteException | CedulaNoValidaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
@@ -1161,6 +1177,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
             usuarioGUI.cargarDatos(cedula);
             usuarioGUI.setLocationRelativeTo(this);
             usuarioGUI.setVisible(true);
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (UsuarioNoExistenteException | CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch(Exception ex){
@@ -1170,7 +1188,10 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_VerBtnActionPerformed
 
     private void TipoUsuarioCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioCBActionPerformed
-        listarUsuarios();
+        try {
+            listarUsuarios();
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+        }
     }//GEN-LAST:event_TipoUsuarioCBActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -1183,6 +1204,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
         // TODO add your handling code here:
       
+        
         String fileName = "data";
          
       //Use the makeZip method to create a Zip archive.
@@ -1193,7 +1215,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
             }
             //Simply print out any errors we encounter.
-            catch (Exception e) {
+            catch (Exception  e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", JOptionPane.OK_OPTION);
             }
         }else{

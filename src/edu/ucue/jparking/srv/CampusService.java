@@ -6,6 +6,7 @@
 package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.dao.CampusDAO;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -13,6 +14,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
+import java.io.IOException;
 import java.util.Set;
 
 
@@ -45,7 +47,8 @@ public class CampusService {
    
     public void delCampus(String nombreCampus)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
-            UsuarioNoExistenteException, UsuarioNoAgregadoException
+            UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException,
+            ClassNotFoundException, ObjectSizeException
     {
         if(nombreCampus==null || nombreCampus.trim().length()==0)
             throw new IllegalArgumentException("El nombre del campus no puede estar vacio");

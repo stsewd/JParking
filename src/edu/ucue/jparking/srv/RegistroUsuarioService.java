@@ -7,6 +7,7 @@ package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.dao.RegistrosDAO;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.RegistrosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoModificacion;
@@ -15,6 +16,8 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import edu.ucue.jparking.srv.objetos.registros.RegistroUsuario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -27,7 +30,7 @@ public class RegistroUsuarioService {
     RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
     public void addRegistroUsuario(String cedula) 
-            throws UsuarioNoExistenteException, CedulaNoValidaException{
+            throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         validaciones.validarCedula(cedula);
         Persona persona = UsuariosDAO.getInstance().getUsuario(cedula);
         Registro registro = new RegistroUsuario(persona, TipoModificacion.CREACION);

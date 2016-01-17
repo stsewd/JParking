@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -37,6 +38,7 @@ import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
@@ -145,7 +147,7 @@ public class Test {
     };
     
     
-    public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException{
+    public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         UsuarioService us = new UsuarioService();
         /*
         us.add("0706455136", "Santos", "Gallegos", "Calle", "1234567890", "ESTUDIANTE");
@@ -174,7 +176,7 @@ public class Test {
             ps.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
     
-    public static void cargarPorteros() throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException {
+    public static void cargarPorteros() throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException, IOException, ClassNotFoundException, ObjectSizeException {
         PorterosService ps = new PorterosService();
         for(int i = 0; i<porteros.length; i++)
             ps.addPortero(campus[(int)(Math.random()*100 % campus.length)][0], porteros[i][0], porteros[i][2], porteros[i][1], "Direccion A", "0123456789");
@@ -190,7 +192,7 @@ public class Test {
             throws CedulaNoValidaException, CodigoNoValidoException,
             ParqueaderoNoExistenteException, UsuarioNoExistenteException,
             ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException,
-            UsuarioInactivoException, CampusNoExistenteException
+            UsuarioInactivoException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException
     {
         
         ParqueaderoService ps = new ParqueaderoService();

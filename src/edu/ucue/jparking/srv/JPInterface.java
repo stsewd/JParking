@@ -8,6 +8,7 @@ package edu.ucue.jparking.srv;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -103,7 +104,8 @@ public interface JPInterface {
      */
     public void delCampus(String nombre)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
-            UsuarioNoExistenteException, UsuarioNoAgregadoException;
+            UsuarioNoExistenteException, UsuarioNoAgregadoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     /**
      * retorna todo los campus
      * @return 
@@ -123,7 +125,8 @@ public interface JPInterface {
     public OrdenPago getOrdenPago(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException,
             ContratoNoEstablecidoException, FueraDelDiaDePagoException,
-            UsuarioNoRegistradoEnUnParqueaderoException;
+            UsuarioNoRegistradoEnUnParqueaderoException,IOException, 
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * permite el pago de una orden de pago por medio de la cedula
@@ -139,7 +142,8 @@ public interface JPInterface {
             throws CedulaNoValidaException,
             UsuarioNoExistenteException, PagoYaRealizadoException,
             ContratoNoEstablecidoException, FueraDelDiaDePagoException,
-            UsuarioNoRegistradoEnUnParqueaderoException;
+            UsuarioNoRegistradoEnUnParqueaderoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
     /**
      * crea un parqueadero
@@ -170,7 +174,8 @@ public interface JPInterface {
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
             CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException,
-            UsuarioNoAgregadoException, CampusInactivoException;
+            UsuarioNoAgregadoException, CampusInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
     /**
      * estrae un parqueadero por el nombre delUsuario campus y su identificador
@@ -307,7 +312,8 @@ public interface JPInterface {
             CodigoNoValidoException, ParqueaderoNoExistenteException,
             UsuarioYaAgregadoException, UsuarioNoExistenteException,
             ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException,
-            UsuarioInactivoException, CampusNoExistenteException, CampusInactivoException;
+            UsuarioInactivoException, CampusNoExistenteException, CampusInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * elimina a un usuario de un parqueadero
@@ -328,7 +334,8 @@ public interface JPInterface {
             throws CedulaNoValidaException, CodigoNoValidoException, 
             ParqueaderoNoExistenteException, UsuarioNoExistenteException, 
             UsuarioNoAgregadoException, CampusNoExistenteException, 
-            CampusInactivoException, ParquaderoInactivoException;
+            CampusInactivoException, ParquaderoInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     
     /**
@@ -388,7 +395,8 @@ public interface JPInterface {
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
             throws CedulaNoValidaException, CampusNoExistenteException, 
             PorteroYaExistenteException, TelefonoNoValidoException,
-            PersonaYaRegistradaComoUsuarioException;
+            PersonaYaRegistradaComoUsuarioException, IOException, 
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * modifica un portero 
@@ -568,7 +576,7 @@ public interface JPInterface {
     public void addUsuario(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) 
             throws UsuarioYaExistenteException, CedulaNoValidaException,
             TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException,
-            UsuarioNoExistenteException;
+            UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * elminina a un usuario por el numero de cedula
@@ -580,7 +588,8 @@ public interface JPInterface {
      */
     public void delUsuario(String cedula) 
             throws UsuarioNoExistenteException, CedulaNoValidaException, 
-            IllegalArgumentException, CampusNoExistenteException;
+            IllegalArgumentException, CampusNoExistenteException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * modifica el usuario
@@ -594,7 +603,7 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException 
      */
     public void modUsuario(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
-            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException;
+            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
 
     /**
@@ -604,20 +613,20 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException
      * @throws CedulaNoValidaException 
      */
-    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException;
+    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
     /**
      * extrae todos los usuarios
      * @return 
      */
-    public Set<Usuario> getUsuarios();
+    public Set<Usuario> getUsuarios() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
     /**
      * extarae por el tipo de usuario
      * @param tipoUsuario
      * @return 
      */
-    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario);
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * extrae todos los parqueadero de un usuario
@@ -627,7 +636,8 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException 
      */
     public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
-            throws CedulaNoValidaException, UsuarioNoExistenteException;
+            throws CedulaNoValidaException, UsuarioNoExistenteException
+            ,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * verifica y autentica a un usuario
@@ -649,7 +659,7 @@ public interface JPInterface {
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
             AccesoNoAutorizadoException, CampusNoExistenteException,
             PagoNoCanceladoException, PorteroInactivoException,
-            UsuarioInactivoException;
+            UsuarioInactivoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * Impresion de la orden de pago
@@ -670,7 +680,7 @@ public interface JPInterface {
             DocumentException, FileNotFoundException, 
             UsuarioNoExistenteException, CedulaNoValidaException,
             ContratoNoEstablecidoException, FueraDelDiaDePagoException, 
-            BadElementException, IOException;
+            BadElementException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * Retorna una orden de pago específica,

@@ -6,6 +6,7 @@ package edu.ucue.jparking.srv;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -98,7 +99,9 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void delCampus(String nombre) throws CampusNoExistenteException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException {
+    public void delCampus(String nombre) throws CampusNoExistenteException, ParqueaderoNoExistenteException,
+            UsuarioNoExistenteException, UsuarioNoAgregadoException , IOException, 
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         campusService.delCampus(nombre);
     }
 
@@ -111,7 +114,8 @@ public class JP implements JPInterface {
     public OrdenPago getOrdenPago(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException,
             ContratoNoEstablecidoException, FueraDelDiaDePagoException,
-            UsuarioNoRegistradoEnUnParqueaderoException
+            UsuarioNoRegistradoEnUnParqueaderoException, IOException, 
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException
     {
         return ordenPagoService.getOrdenPago(cedula);
     }
@@ -120,7 +124,8 @@ public class JP implements JPInterface {
     public void pagarOrdenPago(String cedula)
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             PagoYaRealizadoException, ContratoNoEstablecidoException,
-            FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException
+            FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
     {
         ordenPagoService.pagarOrdenPago(cedula);
     }
@@ -134,7 +139,8 @@ public class JP implements JPInterface {
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
             CodigoNoValidoException, UsuarioNoExistenteException, UsuarioNoAgregadoException,
-            UsuarioNoAgregadoException, CampusInactivoException
+            UsuarioNoAgregadoException, CampusInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
     {
         parqueaderoService.delParqueadero(nombreCampus, idParqueadero);
     }
@@ -180,12 +186,20 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addUsuario(String nombreCampus, String idParqueadero, String cedula) throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException, CampusInactivoException {
+    public void addUsuario(String nombreCampus, String idParqueadero, String cedula) 
+            throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException,
+            UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, 
+            NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException, 
+            CampusInactivoException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         parqueaderoService.addUsuario(nombreCampus, idParqueadero, cedula);
     }
 
     @Override
-    public void delUsuario(String nombreCampus, String idParqueadero, String cedula) throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, UsuarioNoAgregadoException, CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException {
+    public void delUsuario(String nombreCampus, String idParqueadero, String cedula) 
+            throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException,
+            UsuarioNoExistenteException, UsuarioNoAgregadoException, CampusNoExistenteException, 
+            CampusInactivoException, ParquaderoInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         parqueaderoService.delUsuario(nombreCampus, idParqueadero, cedula);
     }
 
@@ -205,7 +219,10 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException {
+    public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
+            throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, 
+            TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         porterosService.addPortero(nombreCampus, cedula, nombre, apellido, direccion, telefono);
     }
 
@@ -290,47 +307,58 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException {
+    public void addUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException,
+            PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
     }
 
     @Override
-    public void delUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException, CampusNoExistenteException {
+    public void delUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, 
+            IllegalArgumentException, CampusNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         usuarioService.del(cedula);
     }
 
     @Override
-    public void modUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException {
+    public void modUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
-    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException {
+    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         return usuarioService.get(cedula);
     }
 
     @Override
-    public Set<Usuario> getUsuarios() {
+    public Set<Usuario> getUsuarios() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         return usuarioService.getLista();
     }
 
     @Override
-    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) {
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         return usuarioService.getLista(tipoUsuario);
     }
 
     @Override
-    public Set<Parqueadero> getParqueaderosUsuario(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException {
+    public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         return usuarioService.getParqueaderosUsuario(cedula);
     }
 
     @Override
-    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException {
+    public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
+            throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException,
+            ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException,
+            PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException 
+    , IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         usuarioService.autenticarUsuario(nombreCampus, idPuerta, cedula);
     }
 
     @Override
-    public File exportarOrdenPago(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException, DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException {
+    public File exportarOrdenPago(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException,
+            DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException,
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, 
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         return impresionOrdenPagosrv.impresion(cedula);
     }
 

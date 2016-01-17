@@ -13,6 +13,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException;
@@ -68,7 +69,7 @@ public class ExportOrdenPagoService {
             DocumentException, FileNotFoundException, 
             UsuarioNoExistenteException, CedulaNoValidaException,
             ContratoNoEstablecidoException, FueraDelDiaDePagoException, 
-            BadElementException, IOException{
+            BadElementException, IOException, ClassNotFoundException, ObjectSizeException{
         
         Document document = new Document();
         String directorioStr = "";
@@ -102,7 +103,7 @@ public class ExportOrdenPagoService {
             throws DocumentException, UsuarioNoExistenteException, 
             CedulaNoValidaException, ContratoNoEstablecidoException,
             FueraDelDiaDePagoException, BadElementException, IOException, 
-            UsuarioNoRegistradoEnUnParqueaderoException {
+            UsuarioNoRegistradoEnUnParqueaderoException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
     
         document.addTitle("Orden de pago del Parqueadero");
         Paragraph preface = new Paragraph();

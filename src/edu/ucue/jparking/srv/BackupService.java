@@ -32,10 +32,10 @@ public static void makeZip(String fileName)
       String fecha2=df.format(fecha.getTime());
       
       File file = new File(fileName);
-      
+      System.out.println("se cre el");
       zos = new ZipOutputStream(new FileOutputStream("backup\\"+ file + fecha2+" .zip"));
         recurseFiles(file);
-      
+      System.out.println("no crea el nombre");
         // Hemos terminado de agregar entradas al archivo zip ,
         // por lo que cerrar el flujo de salida Zip.
         zos.close();

@@ -12,6 +12,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
@@ -26,6 +27,8 @@ import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Portero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -33,14 +36,13 @@ import java.util.Set;
  * @author Franklin Lara
  */
 public class UsuarioService {
-    UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
     Validaciones validaciones = new Validaciones();
     private static final RegistroService registroService = new RegistroService();
     
     public void add(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) 
             throws UsuarioYaExistenteException, CedulaNoValidaException,
             TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException,
-            UsuarioNoExistenteException{
+            UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.add(cedula, nombre, apellido, direccion, telefono);
@@ -60,7 +62,8 @@ public class UsuarioService {
     
     public void del(String cedula) 
             throws UsuarioNoExistenteException, CedulaNoValidaException, 
-            IllegalArgumentException, CampusNoExistenteException{
+            IllegalArgumentException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         if(cedula == null || cedula.trim().length() == 0)
             throw new IllegalArgumentException("El argumendo cedula no puede ser vacio.");
         validaciones.validarCedula(cedula);
@@ -73,17 +76,18 @@ public class UsuarioService {
     }
     
     public void mod(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado)
-            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException {
+            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         validaciones.validarCedula(cedula);
         validaciones.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
         
-        
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         usuariosDAO.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
         //Registro
         registroService.add(get(cedula).getRegistro(TipoModificacion.MODIFICACION));
     }
     
-    public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException{
+    public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         Usuario u = usuariosDAO.getUsuario(cedula); 
         if (u == null)        
@@ -91,16 +95,17 @@ public class UsuarioService {
         return u;
     }
        
-    public Set<Usuario> getLista(){
+    public Set<Usuario> getLista() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         return UsuariosDAO.getInstance().getUsuarios();
     }
     
-    public Set<Usuario> getLista(TipoUsuario tipoUsuario){
+    public Set<Usuario> getLista(TipoUsuario tipoUsuario) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
     public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
-            throws CedulaNoValidaException, UsuarioNoExistenteException{
+            throws CedulaNoValidaException, UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         return usuariosDAO.getParqueaderos(cedula);
     }
@@ -108,7 +113,7 @@ public class UsuarioService {
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
             CodigoNoValidoException, ParqueaderoNoExistenteException, 
-            AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException 
+            AccesoNoAutorizadoException, CampusNoExistenteException, PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException 
     {
         validaciones.validarCedula(cedula);
         if(nombreCampus == null || nombreCampus.trim().length() == 0)

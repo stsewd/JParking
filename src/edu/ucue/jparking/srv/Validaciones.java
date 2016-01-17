@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
@@ -23,6 +24,8 @@ import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 
 /**
@@ -75,7 +78,7 @@ public class Validaciones {
             throw new PuertaInactivaException(idPuerta);
     }
 
-    public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException{
+    public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         UsuarioService service = new UsuarioService();
         Usuario usuario = service.get(cedula);
         if(usuario==null)
@@ -94,7 +97,7 @@ public class Validaciones {
             throw new  CampusInactivoException(idCampus);
     }
 
-    public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException{
+    public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         UsuarioService usuarioService = new UsuarioService();
 
         return usuarioService.getParqueaderosUsuario(cedula).size() > 0;

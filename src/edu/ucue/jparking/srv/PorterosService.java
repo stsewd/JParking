@@ -6,6 +6,7 @@
 package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.dao.PorterosDAO;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
@@ -16,6 +17,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -31,7 +33,7 @@ public class PorterosService {
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
             throws CedulaNoValidaException, CampusNoExistenteException, 
             PorteroYaExistenteException, TelefonoNoValidoException,
-            PersonaYaRegistradaComoUsuarioException
+            PersonaYaRegistradaComoUsuarioException, IOException, ClassNotFoundException, ObjectSizeException
     {
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);

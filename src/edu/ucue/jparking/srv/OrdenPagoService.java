@@ -7,6 +7,7 @@ package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.dao.OrdenesPagoDAO;
 import edu.ucue.jparking.dao.UsuariosDAO;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.OrdenesPagoDAOInterface;
@@ -22,6 +23,8 @@ import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -37,14 +40,14 @@ public class OrdenPagoService {
      * 
      */
     OrdenesPagoDAOInterface ordenesPagoDAO = OrdenesPagoDAO.getInstance();
-    UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
+    
     Calendar fechaActual= Calendar.getInstance();
     Validaciones validaciones = new Validaciones();
 
     
     
-    public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException{
-
+    public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         OrdenPago ordenPago = usuariosDAO.getUsuario(cedula).generarOrdenPago();
         //Registro
@@ -56,8 +59,9 @@ public class OrdenPagoService {
     public void pagarOrdenPago(String cedula)
             throws CedulaNoValidaException, UsuarioNoExistenteException,
             PagoYaRealizadoException, ContratoNoEstablecidoException,
-            FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException
+            FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
     {
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         Usuario u = usuariosDAO.getUsuario(cedula);
         addOrdenPago(cedula, u.getValorParqueadero());
@@ -66,8 +70,9 @@ public class OrdenPagoService {
         registroService.add(usuariosDAO.getUsuario(cedula).getRegistro(TipoTramite.COBRO));
     }
     
-    public void addOrdenPago(String cedula, Double costo) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException{
+    public void addOrdenPago(String cedula, Double costo) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         validaciones.validarCedula(cedula);
+        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         if(costo==null | costo<0)
             throw new IllegalArgumentException("No puede tener un costo menos a 0");
         OrdenPago op = usuariosDAO.getUsuario(cedula).generarOrdenPago();

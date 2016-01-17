@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
@@ -17,7 +18,11 @@ import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -238,7 +243,9 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
             getPadre().listarUsuarios();
         } catch (CedulaNoValidaException | CampusNoExistenteException | IllegalArgumentException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | UsuarioNoAgregadoException | CampusInactivoException | ParquaderoInactivoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }catch(Exception ex){
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
+        } catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         } 
         
@@ -255,11 +262,16 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
             getPadre().listarParqueaderos();
         } catch (CampusNoExistenteException ex) {
         }
-        getPadre().listarUsuarios();
+        try {
+            getPadre().listarUsuarios();
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+        }
         
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
-    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException{
+    public void CargarDatos(String campus, String idParqueadero) 
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException,
+            CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException{
         Parqueadero parqueadero =  jp.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);

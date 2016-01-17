@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import com.itextpdf.text.DocumentException;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
@@ -24,6 +25,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -304,17 +307,15 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             jp.pagarOrdenPago(CedulaTF.getText());
             JOptionPane.showMessageDialog(rootPane, "Pago realizado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
             this.setVisible(false);
-        } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException ex) {
+        } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | PagoYaRealizadoException | ContratoNoEstablecidoException | FueraDelDiaDePagoException | UsuarioNoRegistradoEnUnParqueaderoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch(HeadlessException ex){
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
+        }catch(HeadlessException ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
-        } catch (ContratoNoEstablecidoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (FueraDelDiaDePagoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (UsuarioNoRegistradoEnUnParqueaderoException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        }
+        } catch (IOException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
+        } 
     }//GEN-LAST:event_PagarBtnActionPerformed
 
     private void CedulaTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaTFKeyPressed
@@ -324,7 +325,9 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
                 cargarDatos(CedulaTF.getText());
             } catch (IllegalArgumentException | CedulaNoValidaException | UsuarioNoExistenteException | ContratoNoEstablecidoException | FueraDelDiaDePagoException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }  catch(UsuarioNoRegistradoEnUnParqueaderoException ex){
+            } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
+            } catch(IOException| UsuarioNoRegistradoEnUnParqueaderoException ex){
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Mensaje", JOptionPane.OK_OPTION);
             }
         }
@@ -350,6 +353,8 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }catch (UsuarioNoRegistradoEnUnParqueaderoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         }finally{}
        
         
@@ -423,7 +428,7 @@ public class OrdenPagoGUI extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException {
+    public void cargarDatos(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         OrdenPago  ordenPago = jp.getOrdenPago(cedula);
         Usuario u = jp.getUsuario(cedula);
         
