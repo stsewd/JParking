@@ -6,10 +6,20 @@
 package edu.ucue.jparking.dao;
 
 import edu.ucue.jparking.dao.interfaces.ClaveDAOInterface;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.KeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -36,47 +46,50 @@ public class ClaveDAO implements ClaveDAOInterface{
         return instancia;
     }
 
-    @Override
-    public boolean validarClave(String usuario, String clave) {
-        
-        HashMap tabla;
-        SecretKey key;
-        
-        try {
-            FileInputStream flujoentrada = new FileInputStream("data/usuarios_.dat");
-            ObjectInputStream objetoentrada = new ObjectInputStream(flujoentrada);
-            
-            FileInputStream flujoentradaClave = new FileInputStream("data/clave.dat");
-            ObjectInputStream  objetoentradaClave = new ObjectInputStream(flujoentradaClave);
-            
-            tabla = (HashMap)objetoentrada.readObject();
-            key = (SecretKey)objetoentradaClave.readObject();
-            
-            DesEncrypter encrypter = new DesEncrypter(key);
-            String encriptado = encrypter.encrypt(clave);
-            
-            Iterator it = tabla.entrySet().iterator();
-            while(it.hasNext()){
-                Map.Entry e = (Map.Entry)it.next();
-                if(usuario.equals(e.getKey()) && encriptado.equals(e.getValue())){
-                    return true;
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println("No se encontró el archivo.");
-        } catch (IOException ex) {
-            System.out.println("Hubo un error al leer el archivo.");
-        } catch (ClassNotFoundException ex) {
-            System.out.println("No se encontró la clase buscada.");
-        } catch (IllegalBlockSizeException ex) {
-            System.out.println("Error con la clave.");
-        }
-        
-        return false;
+    public void saveClave(String fileName,String clave) throws IOException{
+        ObjectOutputStream flujoSalida = new ObjectOutputStream(new FileOutputStream(fileName));
+        flujoSalida.writeObject(clave);
+        flujoSalida.close();
     }
-
     
-    
-    
+    public String recuperarClave(String fileName) throws IOException, ClassNotFoundException{
+        ObjectInputStream flujoEntrada = new ObjectInputStream(new FileInputStream(fileName));
+        String clave = (String) flujoEntrada.readObject();
+        flujoEntrada.close();
+        return clave;
+    }
+           
+    public PublicKey loadPublicKey(String fileName) throws Exception {
+      FileInputStream fis = new FileInputStream(fileName);
+      int numBtyes = fis.available();
+      byte[] bytes = new byte[numBtyes];
+      fis.read(bytes);
+      fis.close();
+ 
+      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+      KeySpec keySpec = new X509EncodedKeySpec(bytes);
+      PublicKey keyFromBytes = keyFactory.generatePublic(keySpec);
+      return keyFromBytes;
+   }
+ 
+    public PrivateKey loadPrivateKey(String fileName) throws Exception {
+      FileInputStream fis = new FileInputStream(fileName);
+      int numBtyes = fis.available();
+      byte[] bytes = new byte[numBtyes];
+      fis.read(bytes);
+      fis.close();
+ 
+      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+      KeySpec keySpec = new PKCS8EncodedKeySpec(bytes);
+      PrivateKey keyFromBytes = keyFactory.generatePrivate(keySpec);
+      return keyFromBytes;
+   }
+ 
+    public  void saveKey(Key key, String fileName) throws Exception {
+      byte[] publicKeyBytes = key.getEncoded();
+      FileOutputStream fos = new FileOutputStream(fileName);
+      fos.write(publicKeyBytes);
+      fos.close();
+   }
     
 }

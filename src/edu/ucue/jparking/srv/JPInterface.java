@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
@@ -58,6 +59,7 @@ import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -741,6 +743,26 @@ public interface JPInterface {
      */
     public void generarZip(String fileName) throws IOException, FileNotFoundException;
     
+    /**
+     * genera las dos claves
+     * @throws NoSuchAlgorithmException
+     * @throws Exception 
+     */
+    public void GenerarClaves() throws NoSuchAlgorithmException, Exception;
     
+    /**
+     * cifra la clave ecojida por el usuario
+     * @param clave
+     * @throws Exception 
+     */
+    public void cifrar(String clave) throws Exception;
     
+    /**
+     * valida el login del usuario
+     * @param usuario
+     * @param clave
+     * @return
+     * @throws Exception 
+     */
+    public boolean validarClave(String usuario,String clave) throws Exception, ClaveNoValidaException;
 }
