@@ -33,7 +33,7 @@ import javax.crypto.Cipher;
  *
  * @author Franklin
  */
-public class ClaveService {
+class ClaveService {
     
     ClaveDAOInterface oInterface = ClaveDAO.getInstancia();
     private static Cipher rsa;

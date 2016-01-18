@@ -33,7 +33,7 @@ import java.util.Calendar;
  *
  * @author Franklin Lara
  */
-public class ExportOrdenPagoService {
+class ExportOrdenPagoService {
     
     
     private static Font catFont = new Font(Font.FontFamily.HELVETICA, 14,

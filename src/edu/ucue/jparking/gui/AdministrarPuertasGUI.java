@@ -9,7 +9,6 @@ import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.Validaciones;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;

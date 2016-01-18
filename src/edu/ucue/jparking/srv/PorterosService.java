@@ -24,7 +24,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class PorterosService {
+class PorterosService {
     Validaciones validar = new Validaciones();
     PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
     RegistroService registroService = new RegistroService();

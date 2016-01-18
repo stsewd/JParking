@@ -23,7 +23,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class EmpleadoService {
+class EmpleadoService {
     Validaciones validar = new Validaciones();
     /**
      * 

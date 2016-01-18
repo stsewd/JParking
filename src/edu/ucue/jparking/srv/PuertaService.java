@@ -20,7 +20,7 @@ import java.util.Set;
  *
  * @author Franklin
  */
-public class PuertaService {
+class PuertaService {
     PuertasDAOInterface puertasDAO = PuertasDAO.getInstance();
     Validaciones validaciones = new Validaciones();
     CampusService campusService = new CampusService();

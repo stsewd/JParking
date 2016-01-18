@@ -19,11 +19,8 @@ import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
-import edu.ucue.jparking.srv.CampusService;
-import edu.ucue.jparking.srv.ParqueaderoService;
-import edu.ucue.jparking.srv.PorterosService;
-import edu.ucue.jparking.srv.PuertaService;
-import edu.ucue.jparking.srv.UsuarioService;
+import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.Utilidades;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
@@ -47,6 +44,7 @@ import java.io.ObjectOutputStream;
  * @author Franklin Lara
  */
 public class Test {
+    public static JPInterface jp = JP.getInstance();
     
     //Usuarios
     private static final String[][] usuarios = {
@@ -147,33 +145,28 @@ public class Test {
     
     
     public static void cargarUsuarios() throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
-        UsuarioService us = new UsuarioService();
         for(int i = 0; i< usuarios.length; i++)
-            us.add(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
+            jp.addUsuario(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
     }
     
     public static void cargarCampus() throws CampusExistenteExeption{
-        CampusService cs = new CampusService();
         for(int i = 0; i<campus.length; i++)
-            cs.addCampus(campus[i][0], campus[i][1]);
+            jp.addCampus(campus[i][0], campus[i][1]);
     }
     
     public static void cargarParqueaderos(int numParqueaderos) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException{
-        ParqueaderoService ps = new ParqueaderoService();
         for(int i = 0; i < numParqueaderos; i++)
-            ps.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
+            jp.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
     
     public static void cargarPorteros() throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException, IOException, ClassNotFoundException, ObjectSizeException {
-        PorterosService ps = new PorterosService();
         for(int i = 0; i<porteros.length; i++)
-            ps.addPortero(campus[(int)(Math.random()*100 % campus.length)][0], porteros[i][0], porteros[i][2], porteros[i][1], "Direccion A", "0123456789");
+            jp.addPortero(campus[(int)(Math.random()*100 % campus.length)][0], porteros[i][0], porteros[i][2], porteros[i][1], "Direccion A", "0123456789");
     }
     
     public static void cargarPuertas(int numPuertas) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException {
-        PuertaService ps = new PuertaService();
         for(int i = 0; i < numPuertas; i++)
-            ps.addpuerta("Ubicacion B", "A" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
+            jp.addpuerta("Ubicacion B", "A" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
     
     public static void cargarUsuariosParqueaderos()
@@ -183,13 +176,12 @@ public class Test {
             UsuarioInactivoException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException
     {
         
-        ParqueaderoService ps = new ParqueaderoService();
         for(int i = 0; i < usuarios.length; i++){
             String nombreCampus = campus[(int)(Math.random()*100 % campus.length)][0];
-            Parqueadero[] parqueaderos = ps.getParqueaderos(nombreCampus).toArray(new Parqueadero[0]);
+            Parqueadero[] parqueaderos = jp.getParqueaderos(nombreCampus).toArray(new Parqueadero[0]);
             for(int j = 0; j < (int) (Math.random()*100 % 3 + 1); j++){
                 try{
-                    ps.addUsuario(nombreCampus, parqueaderos[(int)(Math.random()*100 % parqueaderos.length)].getId(), usuarios[i][0]);
+                    jp.addUsuario(nombreCampus, parqueaderos[(int)(Math.random()*100 % parqueaderos.length)].getId(), usuarios[i][0]);
                 }catch(UsuarioYaAgregadoException | CampusInactivoException ex) {
                 }
             }
@@ -202,16 +194,15 @@ public class Test {
             ParquaderoInactivoException, PuertaYaExistenteException,
             PuertaInactivaException, CampusInactivoException 
     {
-        ParqueaderoService ps = new ParqueaderoService();
         
         for(int i = 0; i < campus.length; i++){
-            Parqueadero[] parqueaderos = ps.getParqueaderos(campus[i][0]).toArray(new Parqueadero[0]);
+            Parqueadero[] parqueaderos = jp.getParqueaderos(campus[i][0]).toArray(new Parqueadero[0]);
             for(int j = 0; j < parqueaderos.length; j++){
-                Puerta[] puertas = new PuertaService().getPuertas(campus[i][0]).toArray(new Puerta[0]);
+                Puerta[] puertas = jp.getPuertas(campus[i][0]).toArray(new Puerta[0]);
                 for(int k = 0; k < (int) (Math.random()*100 % 3 + 1); k++){
                     try{
-                        ps.addPuertaEntrada(campus[i][0], parqueaderos[j].getId(), puertas[(int) (Math.random()*100 % puertas.length)].getId());
-                        ps.addPuertaSalida(campus[i][0], parqueaderos[j].getId(), puertas[(int) (Math.random()*100 % puertas.length)].getId());
+                        jp.addPuertaEntrada(campus[i][0], parqueaderos[j].getId(), puertas[(int) (Math.random()*100 % puertas.length)].getId());
+                        jp.addPuertaSalida(campus[i][0], parqueaderos[j].getId(), puertas[(int) (Math.random()*100 % puertas.length)].getId());
                     }catch (PuertaYaAgregadaException ex){
                     }
                         

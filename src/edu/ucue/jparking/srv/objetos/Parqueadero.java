@@ -3,7 +3,6 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
-import edu.ucue.jparking.srv.Utilidades;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
