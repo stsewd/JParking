@@ -194,14 +194,19 @@ public class LoginGUI extends javax.swing.JFrame {
     private void inicia(){
         PrincipalGUI pgui = new PrincipalGUI();
         //Inicio de tests
-        /*
         try {
             Test.cargarUsuarios();
             pgui.listarUsuarios();
         }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException | PersonaYaRegistradoComoPorteroException | UsuarioNoExistenteException ex) {
             System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ObjectSizeException ex) {
+            System.out.println(ex.getMessage());
         }
-        */
+        
         try {
             Test.cargarCampus();
             pgui.cargarCampusCB();

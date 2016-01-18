@@ -192,7 +192,7 @@ public class BPTreeMap<K, V> implements Serializable {
      * @throws java.io.IOException 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
-     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws edu.ucue.bptree.ObjectSizeException 
      */
     public void remove(K key) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         tree.del(key);
