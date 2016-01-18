@@ -741,7 +741,7 @@ public interface JPInterface {
      * @throws IOException
      * @throws FileNotFoundException 
      */
-    public void generarZip(String fileName) throws IOException, FileNotFoundException;
+    public void makeZip(String fileName) throws IOException, FileNotFoundException;
     
     /**
      * genera las dos claves

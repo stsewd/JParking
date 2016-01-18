@@ -397,8 +397,8 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void generarZip(String fileName) throws IOException, FileNotFoundException {
-        backupService.generarZip(fileName);
+    public void makeZip(String fileName) throws IOException, FileNotFoundException {
+        backupService.makeZip(fileName);
     }
 
     @Override
