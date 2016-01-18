@@ -5,6 +5,9 @@
  */
 package edu.ucue.jparking.srv;
 import java.io.*;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,7 +17,7 @@ import java.util.zip.*;
  *
  * @author Franklin
  */
-class BackupService {
+public class BackupService {
     
     
 
@@ -24,22 +27,24 @@ public void generarZip(String fileName) throws IOException, FileNotFoundExceptio
     makeZip(fileName);
 }
 
-public void makeZip(String fileName)  throws IOException, FileNotFoundException
-{
-      Calendar fecha = Calendar.getInstance();
-      DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-      String fecha2 = (String) df.format(fecha.getTime());
-      File file = new File(fileName);
-      zos = new ZipOutputStream(new FileOutputStream( file + ".zip"));
-      System.out.println("asd");
+    public void makeZip(String fileName)
+        throws IOException, FileNotFoundException
+    {
+        Calendar fecha = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String fecha2 = (String) df.format(fecha.getTime());
+        File file = new File(fileName);
+        zos = new ZipOutputStream(new FileOutputStream( file + ".zip"));
         recurseFiles(file);
         // Hemos terminado de agregar entradas al archivo zip ,
         // por lo que cerrar el flujo de salida Zip.
         zos.close();
-        File f = new File(file+".zip");
-        File file2 = new File("backup\\"+file + fecha2 +".zip");
-        f.renameTo(file2);
+
+        File archivo = new File(file + ".zip");
+        File nuevoArchivo = new File("backup/" + file + fecha2 +".zip");
+        Files.move(archivo.toPath(), nuevoArchivo.toPath(), StandardCopyOption.REPLACE_EXISTING);
    }
+
    /*
     * Recursivamente por un directorio y sus subdirectorios para buscar
     * Los archivos para agregar a la postal . Si el archivo actual está examinando

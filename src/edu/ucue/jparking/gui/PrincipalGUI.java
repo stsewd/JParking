@@ -32,12 +32,9 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.datatransfer.*;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
