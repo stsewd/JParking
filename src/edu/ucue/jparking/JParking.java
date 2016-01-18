@@ -142,7 +142,6 @@ public class JParking {
                     Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
         }
         
         LoginGUI loginGUI = new LoginGUI();

@@ -8,30 +8,16 @@ package edu.ucue.jparking.srv;
 import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.dao.ClaveDAO;
 import edu.ucue.jparking.dao.interfaces.ClaveDAOInterface;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.security.Key;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.KeySpec;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
-import java.util.Arrays;
- 
 import javax.crypto.Cipher;
 
 /**
  *
- * @author Franklin
+ * @author Franklin Lara
  */
 class ClaveService {
     
@@ -47,10 +33,10 @@ class ClaveService {
       PrivateKey privateKey = keyPair.getPrivate();
       
       // Se guarda en fichero la clave publica
-      oInterface.saveKey(publicKey, "data\\publickey.dat");
+      oInterface.saveKey(publicKey, "data/publickey.dat");
  
       // se guarda en el fichero la clave privada
-      oInterface.saveKey(privateKey, "data\\privatekey.dat");
+      oInterface.saveKey(privateKey, "data/privatekey.dat");
       
     }
     
@@ -67,7 +53,7 @@ class ClaveService {
       
       
       //cargar la calve publica
-      privateKey = oInterface.loadPrivateKey("data\\privatekey.dat");
+      privateKey = oInterface.loadPrivateKey("data/privatekey.dat");
       
       // Se encripta
       rsa.init(Cipher.ENCRYPT_MODE, privateKey);
@@ -76,7 +62,7 @@ class ClaveService {
       for (byte b : encriptado) {
          pass=pass.concat(Integer.toHexString(0xFF & b));
       }
-      oInterface.saveClave("data\\password.dat",pass);
+      oInterface.saveClave("data/password.dat",pass);
         
       //flujoSalida.writeChars(encriptado.toString());
       //flujoSalida.close();
@@ -91,9 +77,9 @@ class ClaveService {
       PrivateKey privateKey = keyPair.getPrivate();
       
       //se salva la clave privada
-      privateKey = oInterface.loadPrivateKey("data\\privatekey.dat");
+      privateKey = oInterface.loadPrivateKey("data/privatekey.dat");
       //se salva la clave del administrador
-      String recuperada = oInterface.recuperarClave("data\\password.dat");
+      String recuperada = oInterface.recuperarClave("data/password.dat");
       //proceso de validacion de la clave
       
       // Se encripta
