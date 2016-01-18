@@ -13,6 +13,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
+import edu.ucue.jparking.srv.BackupService;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
@@ -1203,24 +1204,30 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
         // TODO add your handling code here:
-      
-        
-        String fileName = "data";
+        BackupService backupService = new BackupService();
+        int ax = JOptionPane.showConfirmDialog(null, "Desea hacer un respaldo de su informacion?", "Alerta!", JOptionPane.YES_NO_OPTION);
+        if(ax == JOptionPane.YES_OPTION){
+              String fileName = "data";
          
-      //Use the makeZip method to create a Zip archive.
-        File file = new File(fileName);
-        if(file.exists()){
-            try {
-            jp.generarZip(fileName);
-            JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
-            }
-            //Simply print out any errors we encounter.
-            catch (Exception  e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Ud no tiene la carpeta de datos", "Mensaje", JOptionPane.OK_OPTION);
+            //Use the makeZip se utilia para crear un archivo de tipo .zip.
+            File file = new File(fileName);
+            if(file.exists()){
+              try {
+                backupService.makeZip(fileName);
+                JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
+              }
+              //Simply print out any errors we encounter.
+              catch (Exception  e) {
+                JOptionPane.showMessageDialog(rootPane,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);
+              }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Ud no tiene la carpeta de datos", "Mensaje", JOptionPane.OK_OPTION);
+          }
         }
+        //else if(ax == JOptionPane.NO_OPTION)
+          //  this.setVisible(false);
+        
+        
     }//GEN-LAST:event_CopiaSeguridadItemActionPerformed
 
     /**

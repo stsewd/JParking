@@ -24,29 +24,28 @@ public void generarZip(String fileName) throws IOException, FileNotFoundExceptio
     makeZip(fileName);
 }
 
-public static void makeZip(String fileName)
-    throws IOException, FileNotFoundException
+public void makeZip(String fileName)  throws IOException, FileNotFoundException
 {
-      Calendar fecha = null;
+      Calendar fecha = Calendar.getInstance();
       DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-      String fecha2=df.format(fecha.getTime());
-      
+      String fecha2 = (String) df.format(fecha.getTime());
       File file = new File(fileName);
-      System.out.println("se cre el");
-      zos = new ZipOutputStream(new FileOutputStream("backup\\"+ file + fecha2+" .zip"));
+      zos = new ZipOutputStream(new FileOutputStream( file + ".zip"));
+      System.out.println("asd");
         recurseFiles(file);
-      System.out.println("no crea el nombre");
         // Hemos terminado de agregar entradas al archivo zip ,
         // por lo que cerrar el flujo de salida Zip.
         zos.close();
+        File f = new File(file+".zip");
+        File file2 = new File("backup\\"+file + fecha2 +".zip");
+        f.renameTo(file2);
    }
    /*
     * Recursivamente por un directorio y sus subdirectorios para buscar
     * Los archivos para agregar a la postal . Si el archivo actual está examinando
     * No es un directorio , el método añade al archivo Zip.
     */
-   private static void recurseFiles(File file)
-      throws IOException, FileNotFoundException
+   private static void recurseFiles(File file) throws IOException, FileNotFoundException
    {
     if (file.isDirectory()) {
          // Crear una matriz con todos los archivos y subdirectorios
