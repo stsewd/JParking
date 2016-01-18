@@ -6,6 +6,7 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.Test;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
@@ -17,6 +18,8 @@ import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
+import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
+import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
@@ -25,7 +28,10 @@ import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +40,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends javax.swing.JFrame {
 
+    JP jp = JP.getInstance();
     /**
      * Creates new form LoginGUI
      */
@@ -68,7 +75,6 @@ public class LoginGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de Sesión");
         setIconImage((new javax.swing.ImageIcon(getClass().getResource("/edu/ucue/jparking/img/transport122.png"))).getImage());
-        setMaximumSize(new java.awt.Dimension(378, 206));
         setMinimumSize(new java.awt.Dimension(378, 206));
         setResizable(false);
 
@@ -95,7 +101,14 @@ public class LoginGUI extends javax.swing.JFrame {
             }
         });
 
-        UsuarioTF.setText("Admin");
+        UsuarioTF.setEditable(false);
+        UsuarioTF.setText("Administrador");
+
+        ContraseTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraseTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,10 +218,9 @@ public class LoginGUI extends javax.swing.JFrame {
         
         try {
             Test.cargarPorteros();
-        }catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
+        }catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException | PersonaYaRegistradaComoUsuarioException ex) {
             System.out.println(ex.getMessage());
-        }catch (PersonaYaRegistradaComoUsuarioException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
         
         try {
@@ -235,26 +247,26 @@ public class LoginGUI extends javax.swing.JFrame {
         pgui.setVisible(true);
     }
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed
-        // Inicio de sesion sin password
-        inicia();
-        this.setVisible(false);
-        return;
-        //Fin inicio de sesion sin password
-        /*
-        char[] password = ContraseTF.getPassword();
-        if(UsuarioTF.getText().equals("Admin")){
-            
-            if(esCorrecta(password)){
-                inicia();
-                this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Contraseña no valida", "Error", JOptionPane.OK_OPTION);
-            }
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Usuario no valido", "Error", JOptionPane.OK_OPTION);
+        // Inicio de sesion 
+        char[] pass = ContraseTF.getPassword();
+        String password = new String(pass);
+        try {
+            jp.validarClave(UsuarioTF.getText(), password);
+            inicia();
+            this.setVisible(false);
+            return;
+        }catch(ClaveNoValidaException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            ContraseTF.setText("");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Algo inesperado sucedio.", "Error", JOptionPane.OK_OPTION);
+            ContraseTF.setText("");
         }
-        */
     }//GEN-LAST:event_IniciarBtnActionPerformed
+
+    private void ContraseTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContraseTFActionPerformed
 
     /**
      * @param args the command line arguments

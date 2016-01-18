@@ -55,6 +55,7 @@ package edu.ucue.jparking;
 
 import javax.swing.UIManager;
 import edu.ucue.jparking.gui.LoginGUI;
+import edu.ucue.jparking.srv.JP;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -73,6 +74,7 @@ import javax.crypto.SecretKey;
  */
 public class JParking {
 
+    static JP jp = JP.getInstance();
     /**
      * @param args the command line arguments
      */
@@ -120,10 +122,17 @@ public class JParking {
                 salidaObjetosUsuarios = new ObjectOutputStream(new FileOutputStream(new File(direc,"usuarios_.dat")));
                 salidaObjetostClave  = new ObjectOutputStream(new FileOutputStream(new File(direc,"celebrum.dat")));
                 //guardar clave encriptada
+                //genera el par de claves
+                jp.GenerarClaves();
+                //guarda la clave por defecto
+                jp.cifrar("admin");
+                
             
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
+                Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
                 Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {

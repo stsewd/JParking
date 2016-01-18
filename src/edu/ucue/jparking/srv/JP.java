@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv;
 
+import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
@@ -56,6 +57,7 @@ import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -75,6 +77,8 @@ public class JP implements JPInterface {
     private static PuertaService puertaService = new PuertaService();
     private static RegistroService registroService = new RegistroService();
     private static BackupService backupService = new BackupService();
+    private static ClaveService claveService = new ClaveService();
+    
     private JP(){}
     
     public static JP getInstance(){
@@ -395,5 +399,20 @@ public class JP implements JPInterface {
     @Override
     public void generarZip(String fileName) throws IOException, FileNotFoundException {
         backupService.generarZip(fileName);
+    }
+
+    @Override
+    public void GenerarClaves() throws NoSuchAlgorithmException, Exception {
+        claveService.GenerarClaves();
+    }
+
+    @Override
+    public void cifrar(String clave) throws Exception {
+        claveService.cifrar(clave);
+    }
+
+    @Override
+    public boolean validarClave(String usuario, String clave) throws Exception, ClaveNoValidaException {
+       return claveService.validarClave(usuario, clave);
     }
 }
