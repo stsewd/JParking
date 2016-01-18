@@ -23,6 +23,7 @@ public abstract class Usuario extends Persona {
 
     private Calendar fechaContrato;
     private Set<Parqueadero> parqueaderos;
+    private boolean in;
     
     /**
      * 
@@ -121,4 +122,18 @@ public abstract class Usuario extends Persona {
     }
     
     public abstract double getValorParqueadero();
+
+    /**
+     * @return the in
+     */
+    public boolean isIn() {
+        return in;
+    }
+
+    /**
+     * @param in the in to set
+     */
+    public void setIn(boolean in) {
+        this.in = in;
+    }
 }

@@ -23,7 +23,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class EstudianteService {
+class EstudianteService {
     Validaciones validar = new Validaciones();
     RegistroService registroService = new RegistroService();
     /**

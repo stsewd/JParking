@@ -25,7 +25,7 @@ import java.util.Set;
  *
  * @author lara
  */
-public class RegistroUsuarioService {
+class RegistroUsuarioService {
 
     RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
     Validaciones validaciones = new Validaciones();

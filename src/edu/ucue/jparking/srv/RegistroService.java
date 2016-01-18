@@ -26,7 +26,7 @@ import java.util.Set;
  *
  * @author lara
  */
-public class RegistroService {
+class RegistroService {
     
     private static final RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
     

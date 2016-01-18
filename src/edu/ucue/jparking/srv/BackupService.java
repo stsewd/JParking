@@ -14,7 +14,7 @@ import java.util.zip.*;
  *
  * @author Franklin
  */
-public class BackupService {
+class BackupService {
     
     
 

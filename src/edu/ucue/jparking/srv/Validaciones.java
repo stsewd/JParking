@@ -32,7 +32,7 @@ import java.util.Calendar;
  *
  * @author Franklin Lara
  */
-public class Validaciones {
+class Validaciones {
     public static void validarFecha(Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, 
             FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {

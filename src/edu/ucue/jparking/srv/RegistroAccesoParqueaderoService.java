@@ -25,7 +25,7 @@ import java.util.Set;
  *
  * @author lara
  */
-public class RegistroAccesoParqueaderoService {
+class RegistroAccesoParqueaderoService {
     /**
      * 
      * @param cedula

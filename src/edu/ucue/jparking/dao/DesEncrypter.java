@@ -17,7 +17,7 @@ public class DesEncrypter {
     Cipher ecipher;
     Cipher dcipher;
 
-    DesEncrypter(SecretKey key) {
+    public DesEncrypter(SecretKey key) {
         try {
             ecipher = Cipher.getInstance("DES");
             dcipher = Cipher.getInstance("DES");

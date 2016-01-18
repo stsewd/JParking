@@ -46,7 +46,7 @@ public class ClaveDAO implements ClaveDAOInterface{
         return instancia;
     }
 
-    public void saveClave(String fileName,String clave) throws IOException{
+    public void saveClave(String fileName, String clave) throws IOException{
         ObjectOutputStream flujoSalida = new ObjectOutputStream(new FileOutputStream(fileName));
         flujoSalida.writeObject(clave);
         flujoSalida.close();

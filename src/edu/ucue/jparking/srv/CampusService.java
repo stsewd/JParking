@@ -22,7 +22,7 @@ import java.util.Set;
  * 
  * @author Franklin
  */
-public class CampusService {
+class CampusService {
     Validaciones validar = new Validaciones();
     CampusDAOInterface campusDAO = CampusDAO.getInstancia();
     

@@ -25,7 +25,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class RegistroPagosService {
+class RegistroPagosService {
     /**
      * 
      * @param cedula

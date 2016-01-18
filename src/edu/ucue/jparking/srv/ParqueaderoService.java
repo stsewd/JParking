@@ -41,7 +41,7 @@ import java.util.Set;
  *
  * @author lara
  */
-public class ParqueaderoService {
+class ParqueaderoService {
     /**
      * 
      */

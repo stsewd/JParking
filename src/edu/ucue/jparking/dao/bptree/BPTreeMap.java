@@ -108,7 +108,7 @@ public class BPTreeMap<K, V> implements Serializable {
             obj = serialize(value);
             
             if(obj.length > OBJ_SIZE)
-                throw new ObjectSizeException();
+                throw new ObjectSizeException(PATH);
             
             pos = ram.length();
             ram.seek(pos);
@@ -278,7 +278,7 @@ public class BPTreeMap<K, V> implements Serializable {
             obj = serialize(newValue);
             
             if(obj.length > OBJ_SIZE)
-                throw new ObjectSizeException();
+                throw new ObjectSizeException(PATH);
             
             pos = getPos(key);
             ram.seek(pos);

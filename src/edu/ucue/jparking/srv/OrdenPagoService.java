@@ -32,7 +32,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class OrdenPagoService {
+class OrdenPagoService {
     
     private final static RegistroService registroService = new RegistroService();
     

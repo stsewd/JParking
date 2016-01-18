@@ -35,7 +35,7 @@ import java.util.Set;
  *
  * @author Franklin Lara
  */
-public class UsuarioService {
+class UsuarioService {
     Validaciones validaciones = new Validaciones();
     private static final RegistroService registroService = new RegistroService();
     
