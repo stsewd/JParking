@@ -5,7 +5,6 @@
  */
 package edu.ucue.jparking.srv;
 import java.io.*;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
@@ -15,17 +14,15 @@ import java.util.zip.*;
 
 /**
  *
- * @author Franklin
+ * @author Franklin Lara
  */
 public class BackupService {
     
-    
+    private static ZipOutputStream zos;
 
-private static ZipOutputStream zos;
-
-public void generarZip(String fileName) throws IOException, FileNotFoundException{
-    makeZip(fileName);
-}
+    public void generarZip(String fileName) throws IOException, FileNotFoundException{
+        makeZip(fileName);
+    }
 
     public void makeZip(String fileName)
         throws IOException, FileNotFoundException
@@ -50,42 +47,40 @@ public void generarZip(String fileName) throws IOException, FileNotFoundExceptio
     * Los archivos para agregar a la postal . Si el archivo actual está examinando
     * No es un directorio , el método añade al archivo Zip.
     */
-   private static void recurseFiles(File file) throws IOException, FileNotFoundException
+   private static void recurseFiles(File file)
+           throws IOException, FileNotFoundException
    {
-    if (file.isDirectory()) {
-         // Crear una matriz con todos los archivos y subdirectorios
-        // del directorio actual .
-        String[] fileNames = file.list();
-         if (fileNames != null) {
-            // Recursiva agregar cada entrada de la matriz para asegurarse de que lleguemos
-           // subdirectorios , así como archivos normales en el directorio.
-            for (int i=0; i<fileNames.length; i++){
-                recurseFiles(new File(file, fileNames[i]));
+        if (file.isDirectory()) {
+            // Crear una matriz con todos los archivos y subdirectorios
+            // del directorio actual .
+            String[] fileNames = file.list();
+            if (fileNames != null) {
+               // Recursiva agregar cada entrada de la matriz para asegurarse de que lleguemos
+               // subdirectorios , así como archivos normales en el directorio.
+               for (int i=0; i<fileNames.length; i++)
+                   recurseFiles(new File(file, fileNames[i]));
             }
-         }
-    }
-      
-    // De lo contrario , un archivo para agregarlo como una entrada en el archivo Zip ..     
-    else {
-        byte[] buf = new byte[1024];
-        int len;
-         // Crear una nueva entrada de postal con el nombre del archivo.        
-        ZipEntry zipEntry = new ZipEntry(file.toString());
-         // Crear un flujo de entrada tamponada fuera del archivo
-         // que estamos tratando de agregar en el archivo Zip.
-        
-        FileInputStream fin = new FileInputStream(file);
-         BufferedInputStream in = new BufferedInputStream(fin);
-         zos.putNextEntry(zipEntry);
-        // Lee bytes del archivo y escribir en el archivo Zip.      
-        while ((len = in.read(buf)) >= 0) {
+        }else { // De lo contrario , un archivo para agregarlo como una entrada en el archivo Zip
+            byte[] buf = new byte[1024];
+            int len;
+            // Crear una nueva entrada de postal con el nombre del archivo.        
+            ZipEntry zipEntry = new ZipEntry(file.toString());
+            // Crear un flujo de entrada tamponada fuera del archivo
+            // que estamos tratando de agregar en el archivo Zip.
+
+            FileInputStream fin = new FileInputStream(file);
+            BufferedInputStream in = new BufferedInputStream(fin);
+            zos.putNextEntry(zipEntry);
+            
+            // Lee bytes del archivo y escribir en el archivo Zip.      
+            while ((len = in.read(buf)) >= 0) {
                 zos.write(buf, 0, len);
-             }
-             //Close la entrada del stream.        
-             in.close();
-             //Cerrar esta entrada en la ZIP stream.        
+            }
+            //Close la entrada del stream.        
+            in.close();
+            //Cerrar esta entrada en la ZIP stream.        
             zos.closeEntry();
-      }
+        }
    }
 }
 
