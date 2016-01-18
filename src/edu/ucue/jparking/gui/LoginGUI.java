@@ -236,10 +236,11 @@ public class LoginGUI extends javax.swing.JFrame {
         try {
             Test.cargarUsuariosParqueaderos();
             pgui.listarParqueaderos();
-        } catch (CedulaNoValidaException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | ParquaderoInactivoException | NumeroParqueaderosNoDisponiblesException | UsuarioInactivoException | CampusNoExistenteException ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
         */
+        
         try {
             Test.cargarPuertasParqueaderos();
         } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {

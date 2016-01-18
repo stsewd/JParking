@@ -32,14 +32,14 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     // private static Map<String, Usuario> usuarios; //Mapa<Cedula, Usuario>>
     private static BPTreeMap<String, Usuario> usuarios;
     private static final String dataPath = "data/usuarios.dat";
-    private static final String treePath = "data/usuariosTree.dat";
-    private static final int objSize = 9999; // 673-4 usuario sin parqueaderos.
+    private static final String indiceCedulaPath = "data/usuarios_cedula_index.dat";
+    private static final int objSize = 9999; // 674 usuario sin parqueaderos.
     
     private static UsuariosDAO instance;
 
     private UsuariosDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         // usuarios = new TreeMap<>();
-        usuarios = BPTreeMap.getTree(3, new ComparatorString(), dataPath, treePath, objSize);
+        usuarios = BPTreeMap.getTree(3, new ComparatorString(), dataPath, indiceCedulaPath, objSize);
     }
     
     public static UsuariosDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
