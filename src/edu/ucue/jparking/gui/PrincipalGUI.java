@@ -13,7 +13,6 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
-import edu.ucue.jparking.srv.BackupService;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
@@ -1204,7 +1203,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
         // TODO add your handling code here:
-        BackupService backupService = new BackupService();
+        
         int ax = JOptionPane.showConfirmDialog(null, "Desea hacer un respaldo de su informacion?", "Alerta!", JOptionPane.YES_NO_OPTION);
         if(ax == JOptionPane.YES_OPTION){
               String fileName = "data";
@@ -1213,7 +1212,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             File file = new File(fileName);
             if(file.exists()){
               try {
-                backupService.makeZip(fileName);
+                jp.makeZip(fileName);
                 JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
               }
               //Simply print out any errors we encounter.
