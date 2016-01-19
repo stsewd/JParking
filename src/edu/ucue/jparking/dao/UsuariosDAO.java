@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.bptree.ApellidoNombreGenerator;
 import edu.ucue.jparking.dao.bptree.BPTreeMap;
 import edu.ucue.jparking.dao.bptree.ComparatorString;
 import edu.ucue.jparking.dao.bptree.ObjectSizeException;
@@ -19,6 +20,7 @@ import edu.ucue.jparking.srv.objetos.Usuario;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -33,6 +35,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     private static BPTreeMap<String, Usuario> usuarios;
     private static final String dataPath = "data/usuarios.dat";
     private static final String indiceCedulaPath = "data/usuarios_cedula_index.dat";
+    private static final String indiceApellidoPath = "data/usuarios_apellido_nombre_index.dat";
     private static final int objSize = 9999; // 674 usuario sin parqueaderos.
     
     private static UsuariosDAO instance;
@@ -40,6 +43,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     private UsuariosDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         // usuarios = new TreeMap<>();
         usuarios = BPTreeMap.getTree(3, new ComparatorString(), dataPath, indiceCedulaPath, objSize);
+        usuarios.addSecIndex(indiceApellidoPath, new ApellidoNombreGenerator());
     }
     
     public static UsuariosDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
@@ -109,12 +113,12 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         
     @Override
     public Set<Usuario> getUsuarios() throws IOException, FileNotFoundException, ClassNotFoundException{
-        return new TreeSet<>(usuarios.values());
+        return new LinkedHashSet<>(usuarios.valuesOf(0));
     }
 
     @Override
     public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, FileNotFoundException, ClassNotFoundException {
-        Set<Usuario> usuarios = new TreeSet<>();
+        Set<Usuario> usuarios = new LinkedHashSet<>();
         
         for(Usuario u : getUsuarios()){
             if(u.getTipoUsuario() == tipoUsuario)

@@ -349,12 +349,12 @@ public class JP implements JPInterface {
 
     @Override
     public Set<Usuario> getUsuarios() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
-        return usuarioService.getLista();
+        return usuarioService.getUsuarios();
     }
 
     @Override
     public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
-        return usuarioService.getLista(tipoUsuario);
+        return usuarioService.getUsuarios(tipoUsuario);
     }
 
     @Override

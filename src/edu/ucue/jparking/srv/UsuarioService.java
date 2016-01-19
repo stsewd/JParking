@@ -99,11 +99,11 @@ class UsuarioService {
         return u;
     }
        
-    public Set<Usuario> getLista() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+    public Set<Usuario> getUsuarios() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         return UsuariosDAO.getInstance().getUsuarios();
     }
     
-    public Set<Usuario> getLista(TipoUsuario tipoUsuario) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         return UsuariosDAO.getInstance().getUsuarios(tipoUsuario);
     }
     
@@ -184,10 +184,6 @@ class UsuarioService {
             usuariosDAO.setIn(cedula, true);
             registroService.add(u.getRegistro(TipoAcceso.ENTRADA));
         }
-        
-        /*************************************
-         * Implementar luego si entra o sale
-         *************************************/
     }
   
 }
