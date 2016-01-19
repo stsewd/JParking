@@ -91,8 +91,8 @@ public class JParking {
         }
         File direc =  new  File("data"); 
         File backup = new File("backup");
-        String path = "data\\usuarios_.dat"; // ALMACENAR USUARIO Y CONTRASEÑA EN UN MISMO ARCHIVO!.
-        String path1 = "data\\clave.dat";
+        String path = "data/usuarios_.dat"; // ALMACENAR USUARIO Y CONTRASEÑA EN UN MISMO ARCHIVO!.
+        String path1 = "data/clave.dat";
         File archivoUsuario = new File(path);
         File archivoClave = new File(path1);
         if(archivoUsuario.isDirectory() && archivoClave.isDirectory()){
