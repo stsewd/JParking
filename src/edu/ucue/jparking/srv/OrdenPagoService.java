@@ -66,6 +66,9 @@ class OrdenPagoService {
         Usuario u = usuariosDAO.getUsuario(cedula);
         addOrdenPago(cedula, u.getValorParqueadero());
         u.cancelarPago();
+        // Actualizar
+        usuariosDAO.update(cedula, u);
+        
         //Registro
         registroService.add(usuariosDAO.getUsuario(cedula).getRegistro(TipoTramite.COBRO));
     }

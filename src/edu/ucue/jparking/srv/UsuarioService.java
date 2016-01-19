@@ -38,11 +38,17 @@ import java.util.Set;
 class UsuarioService {
     Validaciones validaciones = new Validaciones();
     private static final RegistroService registroService = new RegistroService();
+    private final UsuariosDAOInterface usuariosDAO;
+
+    UsuarioService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        this.usuariosDAO = UsuariosDAO.getInstance();
+    }
     
     public void add(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) 
             throws UsuarioYaExistenteException, CedulaNoValidaException,
             TelefonoNoValidoException, PersonaYaRegistradoComoPorteroException,
-            UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+            UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         if(tipoUsuario.equalsIgnoreCase("ESTUDIANTE")){
             EstudianteService estudianteService = new EstudianteService();
             estudianteService.add(cedula, nombre, apellido, direccion, telefono);
@@ -62,8 +68,8 @@ class UsuarioService {
     
     public void del(String cedula) 
             throws UsuarioNoExistenteException, CedulaNoValidaException, 
-            IllegalArgumentException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
-        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
+            IllegalArgumentException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         if(cedula == null || cedula.trim().length() == 0)
             throw new IllegalArgumentException("El argumendo cedula no puede ser vacio.");
         validaciones.validarCedula(cedula);
@@ -80,14 +86,12 @@ class UsuarioService {
         validaciones.validarCedula(cedula);
         validaciones.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
         
-        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         usuariosDAO.modUsuario(cedula, nombre, apellido, direccion, telefono, estado);
         //Registro
         registroService.add(get(cedula).getRegistro(TipoModificacion.MODIFICACION));
     }
     
     public Usuario get(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
-        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         Usuario u = usuariosDAO.getUsuario(cedula); 
         if (u == null)        
@@ -105,7 +109,6 @@ class UsuarioService {
     
     public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
-        UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         return usuariosDAO.getParqueaderos(cedula);
     }
@@ -144,25 +147,26 @@ class UsuarioService {
             if(p.getCampus().getNombre().compareToIgnoreCase(nombreCampus) != 0)
                 continue;
             
-            for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){
-                if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
-                    encontrado = true;
-                    break;
+            if(!u.isIn()){
+                for(Puerta pu : parqueaderoService.getPuertasEntrada(nombreCampus, p.getId())){
+                    if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
+                        encontrado = true;
+                        break;
+                    }
                 }
-            }
-            
-            if(encontrado)
-                break;
-            
-            for(Puerta pu : parqueaderoService.getPuertasSalida(nombreCampus, p.getId())){
-                if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
-                    encontrado = true;
+                if(encontrado)
                     break;
+            }else{
+                for(Puerta pu : parqueaderoService.getPuertasSalida(nombreCampus, p.getId())){
+                    if(idPuerta.compareToIgnoreCase(pu.getId()) == 0){
+                        encontrado = true;
+                        break;
+                    }
                 }
-            }
             
-            if(encontrado)
-                break;
+                if(encontrado)
+                    break;
+            }
         }
         
         if(!encontrado)
@@ -171,8 +175,15 @@ class UsuarioService {
             throw new UsuarioInactivoException();
         if(u.estaDebiendo() || u.getFechaContrato() == null)
             throw new PagoNoCanceladoException(cedula);
+        
         //Registro
-        registroService.add(u.getRegistro(TipoAcceso.ACCESO));
+        if(u.isIn()){
+            usuariosDAO.setIn(cedula, false);
+            registroService.add(u.getRegistro(TipoAcceso.SALIDA));
+        }else {
+            usuariosDAO.setIn(cedula, true);
+            registroService.add(u.getRegistro(TipoAcceso.ENTRADA));
+        }
         
         /*************************************
          * Implementar luego si entra o sale

@@ -68,22 +68,36 @@ import java.util.Set;
 public class JP implements JPInterface {
     private static JP instance;
     
-    private static CampusService campusService = new CampusService();
-    private static UsuarioService usuarioService = new UsuarioService();
-    private static ExportOrdenPagoService impresionOrdenPagosrv = new ExportOrdenPagoService();
-    private static OrdenPagoService ordenPagoService = new OrdenPagoService();
-    private static ParqueaderoService parqueaderoService = new ParqueaderoService();
-    private static PorterosService porterosService = new PorterosService();
-    private static PuertaService puertaService = new PuertaService();
-    private static RegistroService registroService = new RegistroService();
-    private static BackupService backupService = new BackupService();
-    private static ClaveService claveService = new ClaveService();
+    private static CampusService campusService ;
+    private static UsuarioService usuarioService;
+    private static ExportOrdenPagoService impresionOrdenPagosrv;
+    private static OrdenPagoService ordenPagoService;
+    private static ParqueaderoService parqueaderoService;
+    private static PorterosService porterosService;
+    private static PuertaService puertaService;
+    private static RegistroService registroService;
+    private static BackupService backupService;
+    private static ClaveService claveService;
     
-    private JP(){}
+    private JP() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        campusService = new CampusService();
+        usuarioService = new UsuarioService();
+        impresionOrdenPagosrv = new ExportOrdenPagoService();
+        ordenPagoService = new OrdenPagoService();
+        parqueaderoService = new ParqueaderoService();
+        porterosService = new PorterosService();
+        puertaService = new PuertaService();
+        registroService = new RegistroService();
+        backupService = new BackupService();
+        claveService = new ClaveService();
+    }
     
     public static JP getInstance(){
-        if(instance == null)
-            instance = new JP();
+        if(instance == null){
+            try{
+                instance = new JP();
+            }catch (Exception ex){}
+        }
         return instance;
     }
 

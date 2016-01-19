@@ -57,15 +57,12 @@ import javax.swing.UIManager;
 import edu.ucue.jparking.gui.LoginGUI;
 import edu.ucue.jparking.srv.JP;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.crypto.SecretKey;
 
 /**
  *
@@ -146,64 +143,5 @@ public class JParking {
         
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setVisible(true);
-        
-        
-        /*PrincipalGUI pgui = new PrincipalGUI();
-        /*
-        //Inicio de tests
-        try {
-            Test.cargarUsuarios();
-            pgui.listarUsuarios();
-        }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException ex) {
-            System.out.println(ex.getMessage());
-        }catch (PersonaYaRegistradoComoPorteroException ex) {
-            System.out.println(ex.getMessage());
-        } catch (UsuarioNoExistenteException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            Test.cargarCampus();
-            pgui.cargarCampusCB();
-        }catch (CampusExistenteExeption ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            Test.cargarParqueaderos(35);
-            pgui.listarParqueaderos();
-        }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            Test.cargarPorteros();
-        }catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException ex) {
-            System.out.println(ex.getMessage());
-        }catch (PersonaYaRegistradaComoUsuarioException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            Test.cargarPuertas(35);
-        }catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            Test.cargarUsuariosParqueaderos();
-            pgui.listarParqueaderos();
-        } catch (CedulaNoValidaException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | ParquaderoInactivoException | NumeroParqueaderosNoDisponiblesException | UsuarioInactivoException | CampusNoExistenteException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            Test.cargarPuertasParqueaderos();
-        } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
-            System.out.println(ex.getMessage());
-        }
-        //Fin de tests
-        /*
-        pgui.setVisible(true);*/
     }
 }

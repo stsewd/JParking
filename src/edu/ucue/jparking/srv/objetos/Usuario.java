@@ -3,6 +3,7 @@
  */
 package edu.ucue.jparking.srv.objetos;
 
+import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException;
 import edu.ucue.jparking.srv.enums.TipoTramite;
 import edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException;

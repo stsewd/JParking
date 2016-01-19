@@ -15,11 +15,12 @@ import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Set;
 
 /**
  *
- * @author ESTUDIANTE
+ * @author Franklin Lara
  */
 public interface UsuariosDAOInterface {
     /**
@@ -129,7 +130,7 @@ public interface UsuariosDAOInterface {
         FileNotFoundException, ClassNotFoundException, ObjectSizeException;
 
     /**
-     * 
+     * Elimina un parqueadero de la lista de parqueaderos del usuario.
      * @param cedula
      * @param nombreCampus
      * @param idParqueadero
@@ -144,4 +145,33 @@ public interface UsuariosDAOInterface {
             throws UsuarioNoExistenteException, CampusNoExistenteException, IOException,
             FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
+    /**
+     * Establece una nueva fecha de contrato del usuario.
+     * @param cedula
+     * @param calendar
+     * @throws UsuarioNoExistenteException
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws ObjectSizeException 
+     */
+    public void setFechaContrato(String cedula, Calendar calendar)
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException;
+    
+    /**
+     * Establece si un usuario está dentro o fuera de un parqueadero.
+     * @param cedula
+     * @param in
+     * @throws UsuarioNoExistenteException
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws ObjectSizeException 
+     */
+    public void setIn(String cedula, boolean in)
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
+    
+    public void update(String cedula, Usuario usuario)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
 }

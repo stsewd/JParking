@@ -123,7 +123,11 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         return usuarios;
     }
     
-    public void setFechaContrato(String cedula, Calendar calendar) throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+    @Override
+    public void setFechaContrato(String cedula, Calendar calendar)
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         if(usuarios.get(cedula) == null)
             throw new UsuarioNoExistenteException(cedula);
         Usuario usuario = usuarios.get(cedula);
@@ -159,4 +163,20 @@ public class UsuariosDAO implements UsuariosDAOInterface {
         usuarios.update(cedula, u);
     }
     
+    @Override
+    public void setIn(String cedula, boolean in)
+            throws UsuarioNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Usuario u = getUsuario(cedula);
+        u.setIn(in);
+        
+        usuarios.update(cedula, u);
+    }
+    
+    @Override
+    public void update(String cedula, Usuario usuario)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        usuarios.update(cedula, usuario);
+    }
 }
