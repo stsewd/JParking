@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
@@ -25,6 +27,8 @@ import java.util.Iterator;
 import java.util.Map;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+//import sun.rmi.server.MarshalInputStream;
 
 /**
  *
@@ -46,50 +50,35 @@ public class ClaveDAO implements ClaveDAOInterface{
         return instancia;
     }
 
-    public void saveClave(String fileName, String clave) throws IOException{
-        ObjectOutputStream flujoSalida = new ObjectOutputStream(new FileOutputStream(fileName));
-        flujoSalida.writeObject(clave);
-        flujoSalida.close();
+    @Override
+    public void saveClave(String fileName, SecretKeySpec clave) throws IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(fileName)));
+        oos.writeObject(clave);
+        oos.close();
+        
     }
     
-    public String recuperarClave(String fileName) throws IOException, ClassNotFoundException{
-        ObjectInputStream flujoEntrada = new ObjectInputStream(new FileInputStream(fileName));
-        String clave = (String) flujoEntrada.readObject();
-        flujoEntrada.close();
+    @Override
+    public SecretKeySpec recuperarClave(String fileName) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(fileName)));
+        SecretKeySpec clave = (SecretKeySpec) ois.readObject();
         return clave;
     }
            
-    public PublicKey loadPublicKey(String fileName) throws Exception {
-      FileInputStream fis = new FileInputStream(fileName);
-      int numBtyes = fis.available();
-      byte[] bytes = new byte[numBtyes];
-      fis.read(bytes);
-      fis.close();
  
-      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-      KeySpec keySpec = new X509EncodedKeySpec(bytes);
-      PublicKey keyFromBytes = keyFactory.generatePublic(keySpec);
-      return keyFromBytes;
-   }
- 
-    public PrivateKey loadPrivateKey(String fileName) throws Exception {
-      FileInputStream fis = new FileInputStream(fileName);
-      int numBtyes = fis.available();
-      byte[] bytes = new byte[numBtyes];
-      fis.read(bytes);
-      fis.close();
- 
-      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-      KeySpec keySpec = new PKCS8EncodedKeySpec(bytes);
-      PrivateKey keyFromBytes = keyFactory.generatePrivate(keySpec);
-      return keyFromBytes;
-   }
- 
-    public  void saveKey(Key key, String fileName) throws Exception {
-      byte[] publicKeyBytes = key.getEncoded();
-      FileOutputStream fos = new FileOutputStream(fileName);
-      fos.write(publicKeyBytes);
-      fos.close();
-   }
+    @Override
+    public void guardarContrasenia(String fileName,byte[] clave) throws FileNotFoundException, IOException{
+        FileOutputStream fos = new FileOutputStream(new File(fileName));
+        fos.write(clave, 0, 16);
+        fos.close();
+    }
+    
+    @Override
+    public byte[] recuperarContrasenia(String filename) throws IOException{
+        File file = new File(filename);
+        byte[] clave = Files.readAllBytes(file.toPath());
+        return clave;
+    }
+    
     
 }

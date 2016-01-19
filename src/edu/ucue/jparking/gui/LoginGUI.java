@@ -29,9 +29,14 @@ import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 
 /**
@@ -261,6 +266,9 @@ public class LoginGUI extends javax.swing.JFrame {
             this.setVisible(false);
             return;
         }catch(ClaveNoValidaException ex){
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            ContraseTF.setText("");
+        }catch(NoSuchAlgorithmException| NoSuchPaddingException| IOException| ClassNotFoundException| InvalidKeyException| IllegalBlockSizeException| BadPaddingException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             ContraseTF.setText("");
         } catch (Exception ex) {
