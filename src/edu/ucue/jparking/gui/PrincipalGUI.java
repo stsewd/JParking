@@ -34,6 +34,10 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -714,6 +718,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jMenu2.add(CopiaSeguridadItem);
 
         jMenuItem3.setText("Restaurar copia de seguridad");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -1225,6 +1234,43 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_CopiaSeguridadItemActionPerformed
+
+    private FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.ZIP", "zip");
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(filtro);
+        int opcion = fileChooser.showOpenDialog(this);
+        if(opcion==JFileChooser.APPROVE_OPTION){
+            File archivoSeleccionado = fileChooser.getSelectedFile();
+            String url = archivoSeleccionado.getAbsolutePath();
+            String nombreArchivo = archivoSeleccionado.getName();
+            System.out.println(nombreArchivo.substring(0, 12));
+            if(!nombreArchivo.substring(0, 12).equals("dataJparking")){
+                JOptionPane.showMessageDialog(fileChooser, "El archivo que escogio no corresponde \n"
+                        + "a un backup de datos del programa", url, WIDTH);
+            
+            }else{
+            int ax = JOptionPane.showConfirmDialog(fileChooser,"Esta seguro que desea remplazar los datos.", "Alerta", JOptionPane.OK_CANCEL_OPTION);
+            if(ax==JOptionPane.OK_OPTION){
+                
+                File filenew = new File(url);
+		// El Directorio de destino tras la extracción de la
+		String dir = "/home/lara/Escritorio/JParking/";
+                try {
+                    jp.unZipFiles(filenew, dir);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(fileChooser, "Ha existido un error mientras se descomprime", "Error", JOptionPane.OK_OPTION);
+                }
+            }else if ( ax == JOptionPane.CANCEL_OPTION){
+                
+            }
+            }
+        }else if (opcion==JFileChooser.CANCEL_OPTION){
+            this.setVisible(false);
+        }
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

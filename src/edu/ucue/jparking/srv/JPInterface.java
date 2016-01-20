@@ -769,4 +769,12 @@ public interface JPInterface {
      * @throws Exception 
      */
     public boolean validarClave(String usuario,String clave) throws ClaveNoValidaException, NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
+
+    /**
+     * descomprime los archivos
+     * @param zipfile
+     * @param descDir
+     * @throws IOException 
+     */
+    public void unZipFiles(File zipfile, String descDir) throws IOException;
 }

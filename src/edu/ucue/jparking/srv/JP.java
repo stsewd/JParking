@@ -434,5 +434,10 @@ public class JP implements JPInterface {
         return claveService.validarClave(usuario, clave);
     }
 
+    @Override
+    public void unZipFiles(File zipfile, String descDir) throws IOException {
+        backupService.unZipFiles(zipfile, descDir);
+    }
+
     
 }

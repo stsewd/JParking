@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Enumeration;
 import java.util.zip.*;
 
 /**
@@ -38,7 +39,7 @@ public class BackupService {
         zos.close();
 
         File archivo = new File(file + ".zip");
-        File nuevoArchivo = new File("backup/" + file + fecha2 +".zip");
+        File nuevoArchivo = new File("backup/" + file+"Jparking" + fecha2 +".zip");
         Files.move(archivo.toPath(), nuevoArchivo.toPath(), StandardCopyOption.REPLACE_EXISTING);
    }
 
@@ -82,5 +83,43 @@ public class BackupService {
             zos.closeEntry();
         }
    }
+   
+   public void unZipFiles(File zipfile, String descDir) throws IOException {
+		File file = new File(descDir);
+                if(file.isDirectory())
+                    System.out.println("es directorio");
+		if (!file.exists()) {
+			try {
+				file.mkdirs();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+			ZipFile zf = new ZipFile(zipfile);
+			for (Enumeration entries = zf.entries(); entries.hasMoreElements();) {
+				ZipEntry entry = (ZipEntry) entries.nextElement();
+				String zipEntryName = entry.getName();
+				InputStream in = zf.getInputStream(entry);
+                                System.out.println(descDir + zipEntryName);
+                                System.out.println("in");
+				OutputStream out = new FileOutputStream(descDir + zipEntryName);
+				System.out.println("Out");
+                                byte[] buf1 = new byte[1024];
+				int len;
+				while ((len = in.read(buf1)) > 0) {
+					out.write(buf1, 0, len);
+				}
+				in.close();
+				out.close();
+				System.out.println("Descompresión completa.");
+			}
+
+			zf.close();
+                        
+                
+		
+	}
+
 }
 
