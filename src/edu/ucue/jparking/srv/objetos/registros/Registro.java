@@ -8,13 +8,14 @@ package edu.ucue.jparking.srv.objetos.registros;
 import edu.ucue.jparking.srv.objetos.Persona;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author Santos Gallegos
  */
-public abstract class Registro {
+public abstract class Registro implements Serializable {
     
     private final TipoRegistro tipoRegistro;
     private final Calendar fecha;
