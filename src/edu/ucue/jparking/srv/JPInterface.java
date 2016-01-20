@@ -59,9 +59,13 @@ import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Set;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  *
@@ -744,18 +748,18 @@ public interface JPInterface {
     public void makeZip(String fileName) throws IOException, FileNotFoundException;
     
     /**
-     * genera las dos claves
+     * genera la clave para el algoritmos de AES
      * @throws NoSuchAlgorithmException
      * @throws Exception 
      */
-    public void GenerarClaves() throws NoSuchAlgorithmException, Exception;
+    public void GenerarClave() throws NoSuchAlgorithmException, Exception;
     
     /**
      * cifra la clave ecojida por el usuario
      * @param clave
      * @throws Exception 
      */
-    public void cifrar(String clave) throws Exception;
+    public void cifrar(String clave) throws NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException ;
     
     /**
      * valida el login del usuario
@@ -764,5 +768,5 @@ public interface JPInterface {
      * @return
      * @throws Exception 
      */
-    public boolean validarClave(String usuario,String clave) throws Exception, ClaveNoValidaException;
+    public boolean validarClave(String usuario,String clave) throws ClaveNoValidaException, NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
 }

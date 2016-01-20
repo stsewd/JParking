@@ -57,9 +57,13 @@ import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Set;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  *
@@ -416,17 +420,19 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void GenerarClaves() throws NoSuchAlgorithmException, Exception {
-        claveService.GenerarClaves();
+    public void GenerarClave() throws NoSuchAlgorithmException, Exception {
+        claveService.GenerarClave();
     }
 
     @Override
-    public void cifrar(String clave) throws Exception {
+    public void cifrar(String clave) throws NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         claveService.cifrar(clave);
     }
 
     @Override
-    public boolean validarClave(String usuario, String clave) throws Exception, ClaveNoValidaException {
-       return claveService.validarClave(usuario, clave);
+    public boolean validarClave(String usuario, String clave) throws ClaveNoValidaException, NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        return claveService.validarClave(usuario, clave);
     }
+
+    
 }

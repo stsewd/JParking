@@ -120,7 +120,7 @@ public class JParking {
                 salidaObjetostClave  = new ObjectOutputStream(new FileOutputStream(new File(direc,"celebrum.dat")));
                 //guardar clave encriptada
                 //genera el par de claves
-                jp.GenerarClaves();
+                jp.GenerarClave();
                 //guarda la clave por defecto
                 jp.cifrar("admin");
                 
