@@ -1256,11 +1256,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
                 
                 File filenew = new File(url);
 		// El Directorio de destino tras la extracción de la
-		String dir = "/home/lara/Escritorio/JParking/";
+                int lon = filenew.getAbsolutePath().length();
+		String dir = filenew.getAbsolutePath().substring(0, lon-33);
                 try {
                     jp.unZipFiles(filenew, dir);
+                    listarUsuarios();
+                    listarParqueaderos();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(fileChooser, "Ha existido un error mientras se descomprime", "Error", JOptionPane.OK_OPTION);
+                } catch (ClassNotFoundException | ObjectSizeException | CampusNoExistenteException ex) {
                 }
             }else if ( ax == JOptionPane.CANCEL_OPTION){
                 

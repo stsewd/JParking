@@ -86,8 +86,6 @@ public class BackupService {
    
    public void unZipFiles(File zipfile, String descDir) throws IOException {
 		File file = new File(descDir);
-                if(file.isDirectory())
-                    System.out.println("es directorio");
 		if (!file.exists()) {
 			try {
 				file.mkdirs();
@@ -102,9 +100,7 @@ public class BackupService {
 				String zipEntryName = entry.getName();
 				InputStream in = zf.getInputStream(entry);
                                 System.out.println(descDir + zipEntryName);
-                                System.out.println("in");
 				OutputStream out = new FileOutputStream(descDir + zipEntryName);
-				System.out.println("Out");
                                 byte[] buf1 = new byte[1024];
 				int len;
 				while ((len = in.read(buf1)) > 0) {
@@ -112,7 +108,6 @@ public class BackupService {
 				}
 				in.close();
 				out.close();
-				System.out.println("Descompresión completa.");
 			}
 
 			zf.close();
