@@ -35,7 +35,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     
     private RegistrosDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         // registros = new LinkedHashMap<>();
-        registros = BPTreeMap.getTree(3, new ComparatorInt(), dataPath, indiceNum, objSize);
+        registros = BPTreeMap.getTree(3, new ComparatorInt(), dataPath, indiceNum, objSize, 1500);
     }
 
     public static RegistrosDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {

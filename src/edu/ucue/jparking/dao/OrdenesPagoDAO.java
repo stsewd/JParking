@@ -33,7 +33,7 @@ public class OrdenesPagoDAO implements OrdenesPagoDAOInterface {
     private static OrdenesPagoDAO instance;
     private OrdenesPagoDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         // ordenesPago = new LinkedHashMap<>();
-        ordenesPago = BPTreeMap.getTree(3, new ComparatorInt(), dataPath, indiceNum, objSize);
+        ordenesPago = BPTreeMap.getTree(3, new ComparatorInt(), dataPath, indiceNum, objSize, 1500);
     }
 
     public static OrdenesPagoDAO getInstance() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
