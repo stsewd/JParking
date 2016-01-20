@@ -28,9 +28,10 @@ import java.util.Set;
  */
 class RegistroService {
     
-    private static final RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
+    private static RegistrosDAOInterface registrosDAO = null;
     
-    public void add(Registro registro){
+    public void add(Registro registro) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         registrosDAO.addRegistro(registro);
     }
     
@@ -41,7 +42,10 @@ class RegistroService {
      * @param tipoTramite
      * @throws UsuarioNoExistenteException 
      */
-    public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+    public void add(String cedula, TipoRegistro tipoRegistro, TipoTramite tipoTramite) throws UsuarioNoExistenteException, 
+            CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, 
+            ObjectSizeException,  IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         if(tipoRegistro==TipoRegistro.PERSONA){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             registroUsuarioService.addRegistroUsuario(cedula);
@@ -58,8 +62,8 @@ class RegistroService {
 
     public Set<Registro> get(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException{
-        
+            FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         Validaciones.validarFecha(fechaInicio, fechaFinal);
         
         if(tipoRegistro==TipoRegistro.PERSONA){
@@ -76,7 +80,8 @@ class RegistroService {
         }
     }
     
-    public Set<Registro> get(TipoRegistro tipoRegistro){
+    public Set<Registro> get(TipoRegistro tipoRegistro) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         if(tipoRegistro==TipoRegistro.PERSONA){
             RegistroUsuarioService registroUsuarioService = new RegistroUsuarioService();
             return registroUsuarioService.getRegistroUsuarios();
@@ -91,20 +96,23 @@ class RegistroService {
         }
     }
     
-    public Set<Registro> get(){
+    public Set<Registro> get() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         return RegistrosDAO.getInstance().getRegistros();
     }
     
     public Set<Registro>  get(Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, 
-            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{
-        
+            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException
+    , IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         Validaciones.validarFecha(fechaInicio, fechaFinal);
         
         return RegistrosDAO.getInstance().getRegistros(fechaInicio, fechaFinal);
     }
 
-    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException {
+    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        registrosDAO = RegistrosDAO.getInstance();
         int id = 0;
         try{
             id = Integer.parseInt(idRegistro);

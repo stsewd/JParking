@@ -45,13 +45,13 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     }
     
     @Override
-    public void addRegistro(Registro registro){
+    public void addRegistro(Registro registro) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         registro.setNumeroRegistro(registros.size());
         registros.put(registro.getNumeroRegistro(), registro);
     }
     
     @Override
-    public Set<Registro> getRegistros(Calendar fechaInicial, Calendar fechaFinal){
+    public Set<Registro> getRegistros(Calendar fechaInicial, Calendar fechaFinal) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         Set<Registro> registros = new LinkedHashSet();
         for(Registro r : getRegistros()){
             if(r.getFecha().before(fechaFinal) && r.getFecha().after(fechaInicial))
@@ -63,12 +63,12 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     }
     
     @Override
-    public Set<Registro> getRegistros(){
+    public Set<Registro> getRegistros() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         return new LinkedHashSet<>(registros.values());
     }
 
     @Override
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro)throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         Set<Registro> registros = new LinkedHashSet();
         for(Registro r : getRegistros()){
             if(r.getTipoRegistro() == tipoRegistro)
@@ -78,7 +78,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     }
         
     @Override
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicial, Calendar fechaFinal) {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicial, Calendar fechaFinal) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         Set<Registro> registros = new LinkedHashSet();
         for(Registro r : getRegistros(fechaInicial, fechaFinal)){
             if(r.getTipoRegistro() == tipoRegistro)
@@ -88,7 +88,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     }
 
     @Override
-    public Registro getRegistro(Integer numeroRegistro) throws RegistroNoExistenteException {
+    public Registro getRegistro(Integer numeroRegistro) throws RegistroNoExistenteException , IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         Registro registro = registros.get(numeroRegistro);
         if(registro == null)
             throw new RegistroNoExistenteException(numeroRegistro);

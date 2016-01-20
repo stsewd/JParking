@@ -17,6 +17,7 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ class PorterosService {
     }
     
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
-            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException{
+            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         porterosDAO.modPortero(cedula, nombre, apellido,direccion,telefono, estado);
@@ -54,7 +55,7 @@ class PorterosService {
     }
     
     public void delPortero(String cedula) 
-            throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException{
+            throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         validar.validarCedula(cedula);
         //Registro
         registroService.add(getPortero(cedula).getRegistro(TipoModificacion.ELIMINACION));

@@ -27,10 +27,11 @@ import java.util.Set;
  */
 class RegistroUsuarioService {
 
-    RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
+    RegistrosDAOInterface registrosDAO = null;
     Validaciones validaciones = new Validaciones();
     public void addRegistroUsuario(String cedula) 
             throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         validaciones.validarCedula(cedula);
         Persona persona = UsuariosDAO.getInstance().getUsuario(cedula);
         Registro registro = new RegistroUsuario(persona, TipoModificacion.CREACION);
@@ -42,14 +43,16 @@ class RegistroUsuarioService {
      * @param fechaFinal
      * @return 
      */
-    public Set<Registro> getRegistroUsuarios(Calendar fechaInicial,Calendar fechaFinal){
+    public Set<Registro> getRegistroUsuarios(Calendar fechaInicial,Calendar fechaFinal)  throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         return registrosDAO.getRegistros(TipoRegistro.PERSONA, fechaInicial, fechaFinal);
     }
     /**
      * 
      * @return 
      */
-    public Set<Registro> getRegistroUsuarios(){
+    public Set<Registro> getRegistroUsuarios()  throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         return registrosDAO.getRegistros(TipoRegistro.PERSONA);
     }
     

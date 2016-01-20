@@ -5,16 +5,21 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,10 +37,15 @@ public class OrdenesPagoGUI extends javax.swing.JDialog {
     public OrdenesPagoGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        OrdenesPagoGUI.this.listarOrdenesPago();
+        try {
+            OrdenesPagoGUI.this.listarOrdenesPago();
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch(Exception ex){
+        
+    }
     }
     
-    public void listarOrdenesPago(){        
+    public void listarOrdenesPago() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{        
         if(FechaCheckB.isSelected())
             return;
         
@@ -57,7 +67,7 @@ public class OrdenesPagoGUI extends javax.swing.JDialog {
     }
     
     
-    public void listarOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{        
+    public void listarOrdenesPago(Calendar fechaInicial, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{        
         
         Set<OrdenPago> ordenesPago = jp.getOrdenesPago(fechaInicial, fechaFinal);
         double total = jp.getFondos(fechaInicial, fechaFinal);
@@ -235,7 +245,12 @@ public class OrdenesPagoGUI extends javax.swing.JDialog {
         FechaFinalDate.setEnabled(estado);
         FechaInicialDate.setEnabled(estado);
         FiltrarBtn.setEnabled(estado);
-        listarOrdenesPago();
+        try {
+            listarOrdenesPago();
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch(Exception ex){
+            
+        }
     }//GEN-LAST:event_FechaCheckBActionPerformed
 
     private void CerrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBtnActionPerformed
@@ -249,6 +264,8 @@ public class OrdenesPagoGUI extends javax.swing.JDialog {
             listarOrdenesPago(FechaInicialDate.getCalendar(), FechaFinalDate.getCalendar());
         }catch(FechaInicialMayorAFechaFinalException | FechaFinalMenorAFechaInicialException | FechaInicialIgualAFechaFinalException | IllegalArgumentException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         } catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }

@@ -31,22 +31,25 @@ class RegistroAccesoParqueaderoService {
      * @param cedula
      * @throws UsuarioNoExistenteException 
      */
-    RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
+    RegistrosDAOInterface registrosDAO = null;
     Validaciones validaciones = new Validaciones();
     
     public void addAcceso(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         validaciones.validarCedula(cedula);
         Persona persona = UsuariosDAO.getInstance().getUsuario(cedula);
         Registro registro = new RegistroAccesoParqueadero(persona, TipoAcceso.ACCESO);
         registrosDAO.addRegistro(registro);
     }
     
-    public Set<Registro> getAcceso(){
+    public Set<Registro> getAcceso() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         return registrosDAO.getRegistros(TipoRegistro.ACCESO_PARQUEADERO);
     }
     
-    public Set<Registro> getAcceso(Calendar fechaInicio,Calendar fechaFinal){
+    public Set<Registro> getAcceso(Calendar fechaInicio,Calendar fechaFinal) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
         //cambiar esta parte para mes dia a;o 
+        registrosDAO = RegistrosDAO.getInstance();
         return registrosDAO.getRegistros(TipoRegistro.ACCESO_PARQUEADERO, fechaInicio, fechaFinal);
     }
 }

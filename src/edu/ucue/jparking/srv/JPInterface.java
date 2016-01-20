@@ -417,7 +417,8 @@ public interface JPInterface {
      * @throws TelefonoNoValidoException 
      */
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
-            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException;
+            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * elimina un portero
@@ -427,7 +428,8 @@ public interface JPInterface {
      * @throws CampusNoExistenteException 
      */
     public void delPortero(String cedula) 
-            throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException;
+            throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * extrae un portero
@@ -530,19 +532,19 @@ public interface JPInterface {
      */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException;
+            FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     /**
      * extrea los registro de un tipo
      * @param tipoRegistro
      * @return 
      */
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro);
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * extrae todos los registros
      * @return 
      */
-    public Set<Registro> getRegistros();
+    public Set<Registro> getRegistros() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * extrae los registro por fecha
@@ -555,7 +557,8 @@ public interface JPInterface {
      */
     public Set<Registro>  getRegistros(Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, 
-            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException;
+            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * extrae un registro por su id
@@ -563,7 +566,7 @@ public interface JPInterface {
      * @return
      * @throws RegistroNoExistenteException 
      */
-    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException;
+    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * crea un nuevo usuario
@@ -696,14 +699,14 @@ public interface JPInterface {
      * @throws OrdenPagoNoExistenteException 
      */
     public OrdenPago getOrdenPago(int numeroOrdenPago)
-            throws OrdenPagoNoExistenteException;
+            throws OrdenPagoNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * Retorna todas las ordenes de pago almacenadas en el 
      * sistema.
      * @return 
      */
-    public Set<OrdenPago> getOrdenesPago();
+    public Set<OrdenPago> getOrdenesPago() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * Retorna todas las ordenes de pago generadas entre
@@ -717,13 +720,13 @@ public interface JPInterface {
      */
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException;
+            FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene el valor del dinero recaudado entre todos los fondos.
      * @return 
      */
-    public double getFondos();
+    public double getFondos() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene el valor del dinero recaudado entre fechaInicial
@@ -737,7 +740,7 @@ public interface JPInterface {
      */
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException;
+            FechaInicialIgualAFechaFinalException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * genera el archivo .Zip

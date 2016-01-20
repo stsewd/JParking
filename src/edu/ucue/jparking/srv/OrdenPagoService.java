@@ -39,7 +39,7 @@ class OrdenPagoService {
     /**
      * 
      */
-    OrdenesPagoDAOInterface ordenesPagoDAO = OrdenesPagoDAO.getInstance();
+    OrdenesPagoDAOInterface ordenesPagoDAO = null;
     
     Calendar fechaActual= Calendar.getInstance();
     Validaciones validaciones = new Validaciones();
@@ -47,6 +47,7 @@ class OrdenPagoService {
     
     
     public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         validaciones.validarCedula(cedula);
         OrdenPago ordenPago = usuariosDAO.getUsuario(cedula).generarOrdenPago();
@@ -74,6 +75,7 @@ class OrdenPagoService {
     }
     
     public void addOrdenPago(String cedula, Double costo) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         validaciones.validarCedula(cedula);
         UsuariosDAOInterface usuariosDAO = UsuariosDAO.getInstance();
         if(costo==null | costo<0)
@@ -82,32 +84,39 @@ class OrdenPagoService {
         ordenesPagoDAO.addOrdenPago(op);
     }
     
-    public OrdenPago getOrdenPago(int numOrden) throws OrdenPagoNoExistenteException{
+    public OrdenPago getOrdenPago(int numOrden) throws OrdenPagoNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         if(numOrden < 0)
             throw new IllegalArgumentException("El numero de orden no puede ser nulo");
         return ordenesPagoDAO.getOrdenPago(numOrden);
     }
     
-    public Set<OrdenPago> getOrdenPago(){
+    public Set<OrdenPago> getOrdenPago() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         return ordenesPagoDAO.getOrdenesPago();
     }
     
     public Set<OrdenPago> getOrdenPago(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, 
-            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException
+            FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException,
+             IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         Validaciones.validarFecha(fechaInicial, fechaFinal);
         return ordenesPagoDAO.getOrdenesPago(fechaInicial, fechaFinal);
     }
     
-    public double getFondos(){
+    public double getFondos() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         return ordenesPagoDAO.getFondos();
     }
     
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException
+            FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        ordenesPagoDAO = OrdenesPagoDAO.getInstance();
         Validaciones.validarFecha(fechaInicial, fechaFinal);
         return ordenesPagoDAO.getFondos(fechaInicial, fechaFinal);
     }

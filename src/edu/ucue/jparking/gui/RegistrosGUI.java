@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.RegistroNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
@@ -13,10 +14,14 @@ import edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException;
 import edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,10 +39,15 @@ public class RegistrosGUI extends javax.swing.JDialog {
     public RegistrosGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        listarRegistros();
+        try {
+            listarRegistros();
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        } catch(Exception ex){
+            
+        }
     }
     
-    public void listarRegistros(){        
+    public void listarRegistros() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{        
         
         String tipoRegistro = (String) TipoRegistroCB.getSelectedItem();
         Set<Registro> registros = null;
@@ -73,7 +83,7 @@ public class RegistrosGUI extends javax.swing.JDialog {
     }
     
     
-    public void listarRegistros(Calendar fechaInicial, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException{        
+    public void listarRegistros(Calendar fechaInicial, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{        
         
         String tipoRegistro = (String) TipoRegistroCB.getSelectedItem();
         Set<Registro> registros = null;
@@ -292,8 +302,13 @@ public class RegistrosGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_CerrarBtnActionPerformed
 
     private void TipoRegistroCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoRegistroCBActionPerformed
-        // TODO addRegistro your handling code here:
-        listarRegistros();
+        try {
+            // TODO addRegistro your handling code here:
+            listarRegistros();
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch(Exception ex){
+            
+        }
     }//GEN-LAST:event_TipoRegistroCBActionPerformed
 
     private void FiltrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarBtnActionPerformed

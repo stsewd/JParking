@@ -32,12 +32,13 @@ class RegistroPagosService {
      * @param tipoTramite
      * @throws UsuarioNoExistenteException 
      */
-    RegistrosDAOInterface registrosDAO = RegistrosDAO.getInstance();
+    RegistrosDAOInterface registrosDAO = null;
     Validaciones validaciones = new Validaciones();
     
     
     public void add(String cedula,TipoTramite tipoTramite)
             throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         validaciones.validarCedula(cedula);
         Usuario persona = UsuariosDAO.getInstance().getUsuario(cedula);
         RegistroPagos registro =new RegistroPagos(persona, tipoTramite);
@@ -45,11 +46,13 @@ class RegistroPagosService {
         
     }
     
-    public Set<Registro> getRegistro(Calendar fechaInicial, Calendar fechaFinal){
+    public Set<Registro> getRegistro(Calendar fechaInicial, Calendar fechaFinal) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         return registrosDAO.getRegistros(TipoRegistro.PAGOS, fechaInicial, fechaFinal);
     }
 
-    public Set<Registro> getRegistro(){
+    public Set<Registro> getRegistro() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registrosDAO = RegistrosDAO.getInstance();
         return registrosDAO.getRegistros(TipoRegistro.PAGOS);
     }
     

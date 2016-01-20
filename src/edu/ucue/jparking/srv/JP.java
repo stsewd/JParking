@@ -249,12 +249,14 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException {
+    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
-    public void delPortero(String cedula) throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException {
+    public void delPortero(String cedula) throws  CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException ,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         porterosService.delPortero(cedula);
     }
 
@@ -304,27 +306,27 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return registroService.get(tipoRegistro, fechaInicio, fechaFinal);
     }
 
     @Override
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         return registroService.get(tipoRegistro);
     }
 
     @Override
-    public Set<Registro> getRegistros() {
+    public Set<Registro> getRegistros() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         return registroService.get();
     }
 
     @Override
-    public Set<Registro> getRegistros(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+    public Set<Registro> getRegistros(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return registroService.get(fechaInicio, fechaFinal);
     }
 
     @Override
-    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException {
+    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         return registroService.getRegistro(idRegistro);
     }
 
@@ -385,30 +387,30 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public OrdenPago getOrdenPago(int numeroOrdenPago) throws OrdenPagoNoExistenteException {
+    public OrdenPago getOrdenPago(int numeroOrdenPago) throws OrdenPagoNoExistenteException ,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
         return ordenPagoService.getOrdenPago(numeroOrdenPago);
     }
 
     @Override
-    public Set<OrdenPago> getOrdenesPago() {
+    public Set<OrdenPago> getOrdenesPago() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         return ordenPagoService.getOrdenPago();
     }
 
     @Override
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
-            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+            throws FechaInicialMayorAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException,FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
         return ordenPagoService.getOrdenPago(fechaInicial, fechaFinal);
     }
 
     @Override
-    public double getFondos() {
+    public double getFondos() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
         return ordenPagoService.getFondos();
     }
 
     @Override
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException
+            FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
     {
         
         return ordenPagoService.getFondos(fechaInicial, fechaFinal);
