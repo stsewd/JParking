@@ -116,7 +116,6 @@ public class BPTreeMap<K, V> implements Serializable {
      * @param value 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
-     * @throws edu.ucue.bptree.ObjectSizeException 
      */
     public void put(K key, V value) throws FileNotFoundException, IOException, ClassNotFoundException, ObjectSizeException {
         RandomAccessFile ram = null;

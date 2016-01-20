@@ -34,16 +34,16 @@ import java.util.Set;
  */
 class OrdenPagoService {
     
-    private final static RegistroService registroService = new RegistroService();
+    private static RegistroService registroService;
     
-    /**
-     * 
-     */
     OrdenesPagoDAOInterface ordenesPagoDAO = null;
     
     Calendar fechaActual= Calendar.getInstance();
     Validaciones validaciones = new Validaciones();
 
+    public OrdenPagoService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        registroService = new RegistroService();
+    }
     
     
     public OrdenPago getOrdenPago(String cedula) throws CedulaNoValidaException, UsuarioNoExistenteException, ContratoNoEstablecidoException, FueraDelDiaDePagoException, UsuarioNoRegistradoEnUnParqueaderoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{

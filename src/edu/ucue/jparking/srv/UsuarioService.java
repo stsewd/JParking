@@ -37,11 +37,12 @@ import java.util.Set;
  */
 class UsuarioService {
     Validaciones validaciones = new Validaciones();
-    private static final RegistroService registroService = new RegistroService();
+    private static RegistroService registroService;
     private final UsuariosDAOInterface usuariosDAO;
 
     UsuarioService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         this.usuariosDAO = UsuariosDAO.getInstance();
+        registroService = new RegistroService();
     }
     
     public void add(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) 

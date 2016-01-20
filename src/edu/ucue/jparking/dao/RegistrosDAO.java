@@ -33,7 +33,7 @@ public class RegistrosDAO implements RegistrosDAOInterface {
     private static final String indiceNum = "data/registros_num_index.dat";
     private static final int objSize = 9999;
     
-    private RegistrosDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+    private RegistrosDAO() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         // registros = new LinkedHashMap<>();
         registros = BPTreeMap.getTree(3, new ComparatorInt(), dataPath, indiceNum, objSize);
     }

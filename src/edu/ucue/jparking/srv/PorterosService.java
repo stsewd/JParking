@@ -28,8 +28,12 @@ import java.util.Set;
 class PorterosService {
     Validaciones validar = new Validaciones();
     PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
-    RegistroService registroService = new RegistroService();
+    RegistroService registroService;
     CampusService campusService = new CampusService();
+
+    public PorterosService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        registroService = new RegistroService();
+    }
 
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
             throws CedulaNoValidaException, CampusNoExistenteException, 

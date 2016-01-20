@@ -28,10 +28,13 @@ import java.util.Set;
  */
 class RegistroService {
     
-    private static RegistrosDAOInterface registrosDAO = null;
+    private static RegistrosDAOInterface registrosDAO;
+
+    public RegistroService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        registrosDAO = RegistrosDAO.getInstance();
+    }
     
     public void add(Registro registro) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
-        registrosDAO = RegistrosDAO.getInstance();
         registrosDAO.addRegistro(registro);
     }
     

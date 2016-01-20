@@ -25,7 +25,12 @@ import java.util.Set;
  */
 class EstudianteService {
     Validaciones validar = new Validaciones();
-    RegistroService registroService = new RegistroService();
+    RegistroService registroService;
+
+    public EstudianteService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        registroService = new RegistroService();
+    }
+    
     /**
      * 
      * @param cedula
