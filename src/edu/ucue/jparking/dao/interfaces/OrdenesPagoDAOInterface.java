@@ -5,7 +5,10 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -18,8 +21,13 @@ public interface OrdenesPagoDAOInterface {
     /**
      * Agrega una orden de pago al sistema
      * @param ordenPago 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
-    public void addOrdenPago(OrdenPago ordenPago);
+    public void addOrdenPago(OrdenPago ordenPago)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Retorna una orden de pago específica, dado
@@ -27,15 +35,21 @@ public interface OrdenesPagoDAOInterface {
      * @param numeroOrdenPago
      * @return 
      * @throws edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
     public OrdenPago getOrdenPago(int numeroOrdenPago)
-            throws OrdenPagoNoExistenteException;
+            throws OrdenPagoNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Retorna todas las órdenes de pago registradas.
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public Set<OrdenPago> getOrdenesPago();
+    public Set<OrdenPago> getOrdenesPago()
+            throws IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Retorna todas las ordenes de pago generadas entre
@@ -43,14 +57,21 @@ public interface OrdenesPagoDAOInterface {
      * @param fechaInicial
      * @param fechaFinal
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal);
+    public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
+            throws IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Obtiene el valor del dinero recaudado entre todos los fondos.
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public double getFondos();
+    public double getFondos() throws IOException, FileNotFoundException, ClassNotFoundException;
     
     /**
      * Obtiene el valor del dinero recaudado entre fechaInicial
@@ -58,6 +79,10 @@ public interface OrdenesPagoDAOInterface {
      * @param fechaInicial
      * @param fechaFinal
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public double getFondos(Calendar fechaInicial, Calendar fechaFinal);
+    public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
+            throws IOException, FileNotFoundException, ClassNotFoundException;
 }
