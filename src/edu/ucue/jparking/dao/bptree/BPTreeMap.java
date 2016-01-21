@@ -1,3 +1,8 @@
+/**
+ * Capa que permite trabajar con un archivo de valores
+ * e indices (primario y secundarios), implementando
+ * un árbol B+.
+ */
 package edu.ucue.jparking.dao.bptree;
 
 import java.io.ByteArrayInputStream;
@@ -23,7 +28,6 @@ public class BPTreeMap<K, V> implements Serializable {
     private final int OBJ_SIZE; // Tamaño max reservado para cada objeto.
     private final int EXTRA_BYTES = 4; // Bytes extras que contienen el tamaño del objeto.
     private final int KEYS_NUMBER;
-    private static final int NODE_SIZE = 1500; // Tamaño predefinido para cada nodo.
     private BPTree<K> tree; // Árbol B+, tabla de índices.
     
     private List<BPTree> secTreeIndex; // Lista de árboles que contienen indices secundarios.
@@ -61,12 +65,16 @@ public class BPTreeMap<K, V> implements Serializable {
         return new BPTreeMap(keysNumber, comparator, dataPath, treePath, objSize, nodeSize);
     }
     
-    /*
-    necesito:
-    - Generador de indices
-    - ruta del nuevo arbol de indices
-    - Almacenar en memoria arbol creado a partir de ruta y generador.
-    */
+    /**
+     * Agrega un indice secundario por el cual ordenar.
+     * Nota* Se crea un nuevo archivo de índices.
+     * @param treePath
+     * @param indexGenerator
+     * @param nodeSize
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ObjectSizeException 
+     */
     public void addSecIndex(String treePath, IndexGenerator indexGenerator, int nodeSize)
             throws IOException, FileNotFoundException, ObjectSizeException
     {
@@ -299,7 +307,7 @@ public class BPTreeMap<K, V> implements Serializable {
         RandomAccessFile raf = null;
         byte[] obj;
         byte[] rest;
-        long pos = 0;
+        long pos;
         V oldObj = getObject(tree.search(key));
         
         try {
@@ -319,7 +327,8 @@ public class BPTreeMap<K, V> implements Serializable {
             rest = new byte[OBJ_SIZE - obj.length + EXTRA_BYTES];
             raf.write(rest);
             
-            // Eliminar clave secundaria y volver a añadirla con nuevo valor.
+            // Eliminar clave secundaria y volver a añadirla con nuevo valor
+            // en caso que se haya modificado valor de clave secundaria.
             for(int i = 0; i < secTreeIndex.size(); i++){
                 IndexGenerator ig = indexGenerators.get(i);
                 secTreeIndex.get(i).del(ig.getKey(oldObj));
