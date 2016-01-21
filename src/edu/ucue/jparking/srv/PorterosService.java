@@ -69,16 +69,24 @@ class PorterosService {
         porterosDAO.delPortero(cedula);
     }
     
-    public Portero getPortero(String cedula) throws CedulaNoValidaException{
+    public Portero getPortero(String cedula)
+            throws CedulaNoValidaException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         validar.validarCedula(cedula);
         return porterosDAO.getPortero(cedula);
     }
     
-    public Set<Portero> getPorteros(){
+    public Set<Portero> getPorteros()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         return porterosDAO.getPorteros();
     }
     
-    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException{
+    public Set<Portero> getPorteros(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         return porterosDAO.getPorteros(nombreCampus);
     }
 }

@@ -6,6 +6,7 @@
 package edu.ucue.jparking.srv;
 
 import edu.ucue.jparking.dao.PuertasDAO;
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
@@ -14,6 +15,8 @@ import edu.ucue.jparking.dao.interfaces.PuertasDAOInterface;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -26,7 +29,8 @@ class PuertaService {
     CampusService campusService;
     
     public void addpuerta(String ubicacion, String id, String idCampus)
-            throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException
+            throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         validaciones.ValidarPuerta(ubicacion, id, idCampus);
         validaciones.validarCodigo(id);
@@ -38,7 +42,8 @@ class PuertaService {
     
     public void delpuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
-            CampusNoExistenteException, ParqueaderoNoExistenteException
+            CampusNoExistenteException, ParqueaderoNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         validaciones.validarCodigo(id);
         puertasDAO.delPuerta(nombreCampus, id);
@@ -46,7 +51,8 @@ class PuertaService {
     
     public Puerta getPuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
-            CampusNoExistenteException
+            CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
     {
         validaciones.validarCodigo(id);
         if(puertasDAO.getPuerta(nombreCampus, id) == null)
@@ -55,19 +61,26 @@ class PuertaService {
     }
     
     public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo)
-            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException{
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         validaciones.ValidarPuerta(ubicacion, id, nombreCampus);
         validaciones.validarCodigo(id);
         puertasDAO.modPuerta(nombreCampus, id, ubicacion, activo);
     }
     
-    public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException{
+    public Set<Puerta> getPuertas(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         if(nombreCampus == null || nombreCampus.trim().length() == 0)
             throw new IllegalArgumentException("El argumento campus no puede ser nulo.");
         return puertasDAO.getPuertas(nombreCampus);
     }
     
-    public Set<Puerta> getPuertas(){
+    public Set<Puerta> getPuertas()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         return puertasDAO.getPuertas();
     }
 }

@@ -41,11 +41,11 @@ class Validaciones {
         if(fechaFinal == null)
             throw new IllegalArgumentException("Fecha final no valida.");
         
-        //Si estás leyendo esto, pasar dos fechas iguales
-        //esta dando problemas...
-        //bueno, te toca implementar un método que compare
-        //mes/dia/año porque el equals y == no sirven :)
-        //
+        // Si estás leyendo esto, pasar dos fechas iguales
+        // esta dando problemas...
+        // bueno, te toca implementar un método que compare
+        // mes/dia/año porque el equals y == no sirven :)
+        
         if(fechaFinal == fechaInicio)
             throw new FechaInicialIgualAFechaFinalException(fechaInicio);
         
@@ -58,7 +58,9 @@ class Validaciones {
 
     public void ComprobarParqueadero(String nombreCampus, String idParqueadero) 
             throws ParqueaderoNoExistenteException, CodigoNoValidoException, 
-            ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException{
+            ParquaderoInactivoException, CampusNoExistenteException, CampusInactivoException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero==null)
@@ -67,7 +69,12 @@ class Validaciones {
             throw new ParquaderoInactivoException(parqueadero.getUbicacion());
     }
 
-    public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException, ParquaderoInactivoException{
+    public void ComprobarPuerta(String nombreCampus, String idParqueadero, String idPuerta)
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException, PuertaNoExistenteException,
+            CampusNoExistenteException, PuertaInactivaException, CampusInactivoException,
+            ParquaderoInactivoException, IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException
+    {
         PuertaService service = new PuertaService();
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
@@ -78,7 +85,10 @@ class Validaciones {
             throw new PuertaInactivaException(idPuerta);
     }
 
-    public void ComprobarUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public void ComprobarUsuario(String cedula)
+            throws UsuarioNoExistenteException, CedulaNoValidaException, UsuarioInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         UsuarioService service = new UsuarioService();
         Usuario usuario = service.get(cedula);
         if(usuario==null)
@@ -88,7 +98,9 @@ class Validaciones {
     }
 
     public void ComprobarCampus(String idCampus) 
-            throws CampusNoExistenteException, CampusInactivoException{
+            throws CampusNoExistenteException, CampusInactivoException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         CampusService campusService = new CampusService();
         Campus campus = campusService.getCampus(idCampus);
         if(campus==null)
@@ -97,7 +109,11 @@ class Validaciones {
             throw new  CampusInactivoException(idCampus);
     }
 
-    public boolean ComprobarUsuarioAsignadoParqueadero(String cedula) throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public boolean ComprobarUsuarioAsignadoParqueadero(String cedula)
+            throws CampusNoExistenteException, CodigoNoValidoException, ParqueaderoNoExistenteException,
+            UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException,
+            FileNotFoundException, ObjectSizeException
+    {
         UsuarioService usuarioService = new UsuarioService();
 
         return usuarioService.getParqueaderosUsuario(cedula).size() > 0;
@@ -106,8 +122,7 @@ class Validaciones {
     public boolean validarCedula(String cedula) throws CedulaNoValidaException {
         boolean cedulaCorrecta = false;
         try {
-            if (cedula.length() == 10)
-            {
+            if (cedula.length() == 10){
                 int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
                 if (tercerDigito < 6) {
                     // Coeficientes de validación cédula
@@ -137,7 +152,6 @@ class Validaciones {
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
         } catch (Exception err) {
-            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
             cedulaCorrecta = false;
         }
         if (!cedulaCorrecta) {
