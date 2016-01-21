@@ -121,9 +121,11 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void delCampus(String nombre) throws CampusNoExistenteException, ParqueaderoNoExistenteException,
+    public void delCampus(String nombre)
+            throws CampusNoExistenteException, ParqueaderoNoExistenteException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException , IOException, 
-            ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         campusService.delCampus(nombre);
     }
 
@@ -153,7 +155,10 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException {
+    public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus)
+            throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException,
+            CampusInactivoException
+    {
         parqueaderoService.addParqueadero(ubicacion, numeroLugares, id, nombreCampus);
     }
 
@@ -168,7 +173,9 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Parqueadero getParqueadero(String nombreCampus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException {
+    public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException
+    {
         return parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
     }
 
@@ -183,27 +190,45 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares, boolean estado) throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException, NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException {
+    public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares, boolean estado)
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException,
+            NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException 
+    {
         parqueaderoService.modParqueadero(nombreCampus, idParqueadero, ubicacion, numLugares, estado);
     }
 
     @Override
-    public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException {
+    public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) 
+            throws ParqueaderoNoExistenteException, PuertaNoExistenteException,
+            PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException,
+            PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException,
+            CampusInactivoException
+    {
         parqueaderoService.addPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
-    public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException, PuertaInactivaException, CampusInactivoException {
+    public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
+            throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException,
+            CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException,
+            PuertaInactivaException, CampusInactivoException 
+    {
         parqueaderoService.addPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
-    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException {
+    public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
+            throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException,
+            CampusNoExistenteException, PuertaNoAgregadaException
+    {
         parqueaderoService.delPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
 
     @Override
-    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta) throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException {
+    public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
+            throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException,
+            CampusNoExistenteException, PuertaNoAgregadaException 
+    {
         parqueaderoService.delPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
 
@@ -212,7 +237,8 @@ public class JP implements JPInterface {
             throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException,
             UsuarioYaAgregadoException, UsuarioNoExistenteException, ParquaderoInactivoException, 
             NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException, CampusNoExistenteException, 
-            CampusInactivoException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+            CampusInactivoException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         parqueaderoService.addUsuario(nombreCampus, idParqueadero, cedula);
     }
 
@@ -220,23 +246,31 @@ public class JP implements JPInterface {
     public void delUsuario(String nombreCampus, String idParqueadero, String cedula) 
             throws CedulaNoValidaException, CodigoNoValidoException, ParqueaderoNoExistenteException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException, CampusNoExistenteException, 
-            CampusInactivoException, ParquaderoInactivoException,
-            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+            CampusInactivoException, ParquaderoInactivoException, IOException, ClassNotFoundException,
+            FileNotFoundException, ObjectSizeException
+    {
         parqueaderoService.delUsuario(nombreCampus, idParqueadero, cedula);
     }
 
     @Override
-    public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException {
+    public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero)
+            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException
+    {
         return parqueaderoService.getPuertasEntrada(nombreCampus, idParqueadero);
     }
 
     @Override
-    public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException {
+    public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
+            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException
+    {
         return parqueaderoService.getPuertasSalida(nombreCampus, idParqueadero);
     }
 
     @Override
-    public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero) throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException {
+    public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero)
+            throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException,
+            CampusNoExistenteException
+    {
         return parqueaderoService.getUsuarios(nombreCampus, idParqueadero);
     }
 
@@ -244,19 +278,24 @@ public class JP implements JPInterface {
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
             throws CedulaNoValidaException, CampusNoExistenteException, PorteroYaExistenteException, 
             TelefonoNoValidoException, PersonaYaRegistradaComoUsuarioException,
-            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         porterosService.addPortero(nombreCampus, cedula, nombre, apellido, direccion, telefono);
     }
 
     @Override
-    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
-            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado)
+            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
-    public void delPortero(String cedula) throws  CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException ,
-            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public void delPortero(String cedula)
+            throws  CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         porterosService.delPortero(cedula);
     }
 
@@ -276,22 +315,31 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addpuerta(String ubicacion, String id, String idCampus) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException {
+    public void addpuerta(String ubicacion, String id, String idCampus)
+            throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException
+    {
         puertaService.addpuerta(ubicacion, id, idCampus);
     }
 
     @Override
-    public void delpuerta(String nombreCampus, String id) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, ParqueaderoNoExistenteException {
+    public void delpuerta(String nombreCampus, String id)
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException,
+            ParqueaderoNoExistenteException 
+    {
         puertaService.delpuerta(nombreCampus, id);
     }
 
     @Override
-    public Puerta getPuerta(String nombreCampus, String id) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException {
+    public Puerta getPuerta(String nombreCampus, String id)
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException
+    {
         return puertaService.getPuerta(nombreCampus, id);
     }
 
     @Override
-    public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo) throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException {
+    public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo)
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException
+    {
         puertaService.modPuerta(nombreCampus, id, ubicacion, activo);
     }
 
@@ -306,66 +354,98 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         return registroService.get(tipoRegistro, fechaInicio, fechaFinal);
     }
 
     @Override
-    public Set<Registro> getRegistros(TipoRegistro tipoRegistro) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public Set<Registro> getRegistros(TipoRegistro tipoRegistro)
+            throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return registroService.get(tipoRegistro);
     }
 
     @Override
-    public Set<Registro> getRegistros() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public Set<Registro> getRegistros()
+            throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return registroService.get();
     }
 
     @Override
-    public Set<Registro> getRegistros(Calendar fechaInicio, Calendar fechaFinal) throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+    public Set<Registro> getRegistros(Calendar fechaInicio, Calendar fechaFinal)
+            throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException 
+    {
         return registroService.get(fechaInicio, fechaFinal);
     }
 
     @Override
-    public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public Registro getRegistro(String idRegistro)
+            throws RegistroNoExistenteException,IOException, ClassNotFoundException,
+            FileNotFoundException, ObjectSizeException
+    {
         return registroService.getRegistro(idRegistro);
     }
 
     @Override
-    public void addUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario) throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException,
-            PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public void addUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, String tipoUsuario)
+            throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException,
+            PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException,
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         usuarioService.add(cedula, nombre, apellido, direccion, telefono, tipoUsuario);
     }
 
     @Override
-    public void delUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, 
-            IllegalArgumentException, CampusNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public void delUsuario(String cedula)
+            throws UsuarioNoExistenteException, CedulaNoValidaException, IllegalArgumentException,
+            CampusNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException,
+            ObjectSizeException
+    {
         usuarioService.del(cedula);
     }
 
     @Override
     public void modUsuario(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado) 
-            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+            throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         usuarioService.mod(cedula, nombre, apellido, direccion, telefono, estado);
     }
 
     @Override
-    public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public Usuario getUsuario(String cedula)
+            throws UsuarioNoExistenteException, CedulaNoValidaException, IOException,
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException 
+    {
         return usuarioService.get(cedula);
     }
 
     @Override
-    public Set<Usuario> getUsuarios() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public Set<Usuario> getUsuarios()
+            throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return usuarioService.getUsuarios();
     }
 
     @Override
-    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario)
+            throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return usuarioService.getUsuarios(tipoUsuario);
     }
 
     @Override
     public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
-            throws CedulaNoValidaException, UsuarioNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+            throws CedulaNoValidaException, UsuarioNoExistenteException, IOException,
+            ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return usuarioService.getParqueaderosUsuario(cedula);
     }
 
@@ -373,44 +453,59 @@ public class JP implements JPInterface {
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, CodigoNoValidoException,
             ParqueaderoNoExistenteException, AccesoNoAutorizadoException, CampusNoExistenteException,
-            PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException 
-    , IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+            PagoNoCanceladoException, PorteroInactivoException, UsuarioInactivoException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         usuarioService.autenticarUsuario(nombreCampus, idPuerta, cedula);
     }
 
     @Override
-    public File exportarOrdenPago(String cedula) throws UsuarioNoRegistradoEnUnParqueaderoException,
-            DocumentException, FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException,
-            ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException, IOException, 
-            ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public File exportarOrdenPago(String cedula)
+            throws UsuarioNoRegistradoEnUnParqueaderoException, DocumentException,
+            FileNotFoundException, UsuarioNoExistenteException, CedulaNoValidaException,
+            ContratoNoEstablecidoException, FueraDelDiaDePagoException, BadElementException,
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return impresionOrdenPagosrv.impresion(cedula);
     }
 
     @Override
-    public OrdenPago getOrdenPago(int numeroOrdenPago) throws OrdenPagoNoExistenteException ,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException{
+    public OrdenPago getOrdenPago(int numeroOrdenPago) 
+            throws OrdenPagoNoExistenteException ,IOException, ClassNotFoundException,
+            FileNotFoundException, ObjectSizeException
+    {
         return ordenPagoService.getOrdenPago(numeroOrdenPago);
     }
 
     @Override
-    public Set<OrdenPago> getOrdenesPago() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public Set<OrdenPago> getOrdenesPago()
+            throws IOException, ClassNotFoundException, FileNotFoundException,
+            ObjectSizeException
+    {
         return ordenPagoService.getOrdenPago();
     }
 
     @Override
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
-            throws FechaInicialMayorAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException,FechaFinalMenorAFechaInicialException, FechaInicialIgualAFechaFinalException {
+            throws FechaInicialMayorAFechaFinalException, IOException, ClassNotFoundException,
+            FileNotFoundException, ObjectSizeException,FechaFinalMenorAFechaInicialException,
+            FechaInicialIgualAFechaFinalException
+    {
         return ordenPagoService.getOrdenPago(fechaInicial, fechaFinal);
     }
 
     @Override
-    public double getFondos() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException {
+    public double getFondos()
+            throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+    {
         return ordenPagoService.getFondos();
     }
 
     @Override
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
-            FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+            FechaInicialIgualAFechaFinalException, IOException, ClassNotFoundException,
+            FileNotFoundException, ObjectSizeException
     {
         
         return ordenPagoService.getFondos(fechaInicial, fechaFinal);
@@ -427,12 +522,20 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void cifrar(String clave) throws NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public void cifrar(String clave)
+            throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
+            ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException
+    {
         claveService.cifrar(clave);
     }
 
     @Override
-    public boolean validarClave(String usuario, String clave) throws ClaveNoValidaException, NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public boolean validarClave(String usuario, String clave)
+            throws ClaveNoValidaException, NoSuchAlgorithmException, NoSuchPaddingException,
+            IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException
+    {
         return claveService.validarClave(usuario, clave);
     }
 
@@ -440,6 +543,5 @@ public class JP implements JPInterface {
     public void unZipFiles(File zipfile, String descDir) throws IOException {
         backupService.unZipFiles(zipfile, descDir);
     }
-
     
 }

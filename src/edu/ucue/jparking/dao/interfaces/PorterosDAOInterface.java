@@ -10,6 +10,7 @@ import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.*;
 import edu.ucue.jparking.srv.objetos.Portero;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 
@@ -40,9 +41,13 @@ public interface PorterosDAOInterface {
      * @param cedula
      * @throws PorteroNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delPortero(String cedula)
-            throws PorteroNoExistenteException, CampusNoExistenteException;
+            throws PorteroNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Modifica el nombre, apellido y estado del portero
@@ -54,23 +59,37 @@ public interface PorterosDAOInterface {
      * @param telefono
      * @param activo
      * @throws PorteroNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws PorteroNoExistenteException;
+            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene un portero dado su cedula
      * Si el portero no existe retorna null.
      * @param cedula
      * @return
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException
      */
-    public Portero getPortero(String cedula);
+    public Portero getPortero(String cedula)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene todos los porteros de todos los campus
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
-    public Set<Portero> getPorteros();
+    public Set<Portero> getPorteros()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * Obtiene todos los porteros de un campus
@@ -78,7 +97,13 @@ public interface PorterosDAOInterface {
      * @param nombreCampus
      * @return 
      * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Portero> getPorteros(String nombreCampus)
-            throws CampusNoExistenteException;
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException;
+    
 }

@@ -42,7 +42,8 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public void addParqueadero(String nombreCampus, Parqueadero parqueadero)
-            throws ParqueaderoYaExistenteException, CampusNoExistenteException
+            throws ParqueaderoYaExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         if(getParqueadero(nombreCampus, parqueadero.getId()) != null)
             throw new ParqueaderoYaExistenteException(parqueadero.getId());
@@ -71,7 +72,10 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public Parqueadero getParqueadero(String nombreCampus, String idParqueadero) throws CampusNoExistenteException {
+    public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
         if(campus == null)
             throw new CampusNoExistenteException(nombreCampus);
@@ -79,7 +83,10 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public Set<Parqueadero> getParqueaderos() {
+    public Set<Parqueadero> getParqueaderos()
+            throws IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException
+    {
         Set<Parqueadero> parqueaderos = new TreeSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             parqueaderos.addAll(c.getParqueaderos());
@@ -88,13 +95,17 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     }
 
     @Override
-    public Set<Parqueadero> getParqueaderos(String nombreCampus) throws CampusNoExistenteException {
+    public Set<Parqueadero> getParqueaderos(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getParqueaderos());
     }
 
     @Override
     public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares,boolean estado)
-            throws ParqueaderoNoExistenteException, CampusNoExistenteException
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
     {
         
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
@@ -108,7 +119,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     @Override
     public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CampusNoExistenteException,
-            PuertaYaAgregadaException
+            PuertaYaAgregadaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
@@ -125,7 +136,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     @Override
     public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CampusNoExistenteException,
-            PuertaYaAgregadaException
+            PuertaYaAgregadaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
@@ -142,7 +153,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     @Override
     public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
-            CampusNoExistenteException, PuertaNoAgregadaException {
+            CampusNoExistenteException, PuertaNoAgregadaException, IOException, 
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
@@ -156,7 +169,7 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     @Override
     public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CampusNoExistenteException,
-            PuertaNoAgregadaException
+            PuertaNoAgregadaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
@@ -207,7 +220,8 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero)
-            throws ParqueaderoNoExistenteException, CampusNoExistenteException
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
@@ -217,7 +231,8 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
-            throws ParqueaderoNoExistenteException, CampusNoExistenteException
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
@@ -228,7 +243,9 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
 
     @Override
     public Set<Usuario> getUsuarios(String nombreCampus, String idParqueadero)
-            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException
+            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException,
+            CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
     {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)

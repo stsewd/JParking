@@ -12,6 +12,7 @@ import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.srv.objetos.Campus;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 
@@ -27,9 +28,14 @@ public interface CampusDAOInterface {
      * campus ya exista.
      * @param campus Campus a agregar
      * @throws CampusExistenteExeption 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
-    public abstract void addCampus(Campus campus)
-            throws CampusExistenteExeption;
+    public void addCampus(Campus campus)
+            throws CampusExistenteExeption, IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException;
     
     /**
      * Elimina un campus dado su nombre, si no existe
@@ -43,7 +49,7 @@ public interface CampusDAOInterface {
      * @throws java.lang.ClassNotFoundException 
      * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
-    public abstract void delCampus(String nombre)
+    public void delCampus(String nombre)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException,
             ClassNotFoundException, ObjectSizeException;
@@ -54,9 +60,13 @@ public interface CampusDAOInterface {
      * @param nombre Nombre del campus a obtener
      * @return Campus buscado
      * @throws CampusNoExistenteException
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
      */
-    public abstract Campus getCampus(String nombre)
-            throws CampusNoExistenteException;
+    public Campus getCampus(String nombre)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException;
     
     /**
      * Modifica la ubicacion del campus
@@ -65,13 +75,22 @@ public interface CampusDAOInterface {
      * @param nombre Nombre del campus a modificar.
      * @param ubicacion Campo a modificar.
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public abstract void modCampus(String nombre, String ubicacion,boolean estado) 
-            throws CampusNoExistenteException;
+    public void modCampus(String nombre, String ubicacion, boolean estado)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException;
     
     /**
      * Retorna uns set con todos los campus registrados
      * @return
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
      */
-    public abstract Set<Campus> getCampus();
+    public Set<Campus> getCampus()
+            throws IOException, FileNotFoundException, ClassNotFoundException;
+    
 }

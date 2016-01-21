@@ -3,6 +3,8 @@
  */
 package edu.ucue.jparking.dao;
 
+import edu.ucue.jparking.dao.bptree.BPTreeMap;
+import edu.ucue.jparking.dao.bptree.ComparatorString;
 import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
@@ -28,13 +30,21 @@ public class CampusDAO implements CampusDAOInterface {
     private static CampusDAO instancia;
     
     // Mapa <Nombre de campus, campus>
-    private static Map<String, Campus> mapCampus;
+    // private static Map<String, Campus> mapCampus;
+    private static BPTreeMap<String, Campus> mapCampus;
+    private static final String dataPath = "data/campus.dat";
+    private static final String indiceNombreCampusPath = "data/campus_nombre_index.dat";
+    private static final int objSize = 9999;
     
-    private CampusDAO() {
-        mapCampus = new TreeMap<>();
+    private CampusDAO()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        mapCampus = BPTreeMap.getTree(3, new ComparatorString(), dataPath, indiceNombreCampusPath, objSize, 2500);
     }
 
-    public static CampusDAO getInstancia() {
+    public static CampusDAO getInstancia()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         if (instancia == null) {
             instancia = new CampusDAO();
         }
@@ -42,7 +52,10 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public void addCampus(Campus campus) throws CampusExistenteExeption {
+    public void addCampus(Campus campus)
+            throws CampusExistenteExeption, IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException
+    {
         if (mapCampus.get(campus.getNombre()) != null) {
             throw new CampusExistenteExeption(campus.getNombre());
         }
@@ -75,7 +88,10 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public Campus getCampus(String nombre) throws CampusNoExistenteException {
+    public Campus getCampus(String nombre)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException
+    {
         if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
         }
@@ -83,7 +99,10 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public void modCampus(String nombre, String ubicacion,boolean estado) throws CampusNoExistenteException {
+    public void modCampus(String nombre, String ubicacion, boolean estado)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException
+    {
         if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
         }
@@ -93,7 +112,9 @@ public class CampusDAO implements CampusDAOInterface {
     }
 
     @Override
-    public Set<Campus> getCampus() {
+    public Set<Campus> getCampus()
+            throws IOException, FileNotFoundException, ClassNotFoundException
+    {
         return new TreeSet<>(mapCampus.values());
     }
 }

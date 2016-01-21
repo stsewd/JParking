@@ -50,7 +50,9 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public void delPortero(String cedula)
-            throws PorteroNoExistenteException, CampusNoExistenteException {
+            throws PorteroNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         
         Portero portero = getPortero(cedula);
         if(portero == null)
@@ -59,7 +61,9 @@ public class PorterosDAO implements PorterosDAOInterface {
     }
 
     @Override
-    public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo) throws PorteroNoExistenteException {
+    public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
+            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
@@ -71,7 +75,9 @@ public class PorterosDAO implements PorterosDAOInterface {
     }
 
     @Override
-    public Portero getPortero(String cedula){
+    public Portero getPortero(String cedula)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         Portero portero;
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             portero = c.getPortero(cedula);
@@ -82,7 +88,9 @@ public class PorterosDAO implements PorterosDAOInterface {
     }
 
     @Override
-    public Set<Portero> getPorteros() {
+    public Set<Portero> getPorteros()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
         Set<Portero> porteros = new TreeSet<>(); 
         for(Campus c : CampusDAO.getInstancia().getCampus())
             porteros.addAll(c.getPorteros());
@@ -90,7 +98,10 @@ public class PorterosDAO implements PorterosDAOInterface {
     }
 
     @Override
-    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
+    public Set<Portero> getPorteros(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
         return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros());
     }
 }
