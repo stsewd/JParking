@@ -29,7 +29,9 @@ class ClaveService {
     
     ClaveDAOInterface clavaDAO = ClaveDAO.getInstancia();
     
-    public void GenerarClave() throws NoSuchAlgorithmException, Exception{
+    public void GenerarClave()
+            throws NoSuchAlgorithmException, IOException
+    {
       // Generamos una clave de 128 bits adecuada para AES
       KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
       keyGenerator.init(128);
@@ -66,7 +68,7 @@ class ClaveService {
     public boolean validarClave(String usuario, String clave)
             throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
             ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
-            BadPaddingException, ClaveNoValidaException, Exception 
+            BadPaddingException, ClaveNoValidaException 
     {
         String keyPath = "data/celebrum.dat";
         File file = new File(keyPath);

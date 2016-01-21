@@ -83,7 +83,10 @@ public class JP implements JPInterface {
     private static BackupService backupService;
     private static ClaveService claveService;
     
-    private JP() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+    private JP() 
+            throws IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException
+    {
         campusService = new CampusService();
         usuarioService = new UsuarioService();
         impresionOrdenPagosrv = new ExportOrdenPagoService();
@@ -106,17 +109,17 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void addCampus(String nombre, String direccion) throws CampusExistenteExeption {
+    public void addCampus(String nombre, String direccion) throws CampusExistenteExeption, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         campusService.addCampus(nombre, direccion);
     }
 
     @Override
-    public Campus getCampus(String nombre) throws CampusNoExistenteException {
+    public Campus getCampus(String nombre) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException {
         return campusService.getCampus(nombre);
     }
 
     @Override
-    public void modCampus(String nombre, String direccion, boolean estado) throws CampusNoExistenteException {
+    public void modCampus(String nombre, String direccion, boolean estado) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException {
         campusService.modCampus(nombre, direccion, estado);
     }
 
@@ -130,7 +133,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Set<Campus> getCampus() {
+    public Set<Campus> getCampus() throws IOException, FileNotFoundException, ClassNotFoundException {
         return campusService.getCampus();
     }
 
@@ -157,7 +160,7 @@ public class JP implements JPInterface {
     @Override
     public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus)
             throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException,
-            CampusInactivoException
+            CampusInactivoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         parqueaderoService.addParqueadero(ubicacion, numeroLugares, id, nombreCampus);
     }
@@ -174,25 +177,25 @@ public class JP implements JPInterface {
 
     @Override
     public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
-            throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException
+            throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         return parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
     }
 
     @Override
-    public Set<Parqueadero> getParqueaderos() throws CampusNoExistenteException {
+    public Set<Parqueadero> getParqueaderos() throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return parqueaderoService.getParqueaderos();
     }
 
     @Override
-    public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException {
+    public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return parqueaderoService.getParqueaderos(idCampus);
     }
 
     @Override
     public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares, boolean estado)
             throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException,
-            NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException 
+            NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException 
     {
         parqueaderoService.modParqueadero(nombreCampus, idParqueadero, ubicacion, numLugares, estado);
     }
@@ -202,7 +205,7 @@ public class JP implements JPInterface {
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException,
             PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException,
             PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException,
-            CampusInactivoException
+            CampusInactivoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         parqueaderoService.addPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
@@ -211,7 +214,7 @@ public class JP implements JPInterface {
     public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException,
             CodigoNoValidoException, ParquaderoInactivoException, CampusNoExistenteException,
-            PuertaInactivaException, CampusInactivoException 
+            PuertaInactivaException, CampusInactivoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException 
     {
         parqueaderoService.addPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
@@ -219,7 +222,7 @@ public class JP implements JPInterface {
     @Override
     public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException,
-            CampusNoExistenteException, PuertaNoAgregadaException
+            CampusNoExistenteException, PuertaNoAgregadaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         parqueaderoService.delPuertaEntrada(nombreCampus, idParqueadero, idPuerta);
     }
@@ -227,7 +230,7 @@ public class JP implements JPInterface {
     @Override
     public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException, CodigoNoValidoException,
-            CampusNoExistenteException, PuertaNoAgregadaException 
+            CampusNoExistenteException, PuertaNoAgregadaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException 
     {
         parqueaderoService.delPuertaSalida(nombreCampus, idParqueadero, idPuerta);
     }
@@ -254,14 +257,14 @@ public class JP implements JPInterface {
 
     @Override
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero)
-            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException
+            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         return parqueaderoService.getPuertasEntrada(nombreCampus, idParqueadero);
     }
 
     @Override
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
-            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException
+            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         return parqueaderoService.getPuertasSalida(nombreCampus, idParqueadero);
     }
@@ -269,7 +272,7 @@ public class JP implements JPInterface {
     @Override
     public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero)
             throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException,
-            CampusNoExistenteException
+            CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         return parqueaderoService.getUsuarios(nombreCampus, idParqueadero);
     }
@@ -300,23 +303,23 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public Portero getPortero(String cedula) throws CedulaNoValidaException {
+    public Portero getPortero(String cedula) throws CedulaNoValidaException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return porterosService.getPortero(cedula);
     }
 
     @Override
-    public Set<Portero> getPorteros() {
+    public Set<Portero> getPorteros() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return porterosService.getPorteros();
     }
 
     @Override
-    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException {
+    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return porterosService.getPorteros(nombreCampus);
     }
 
     @Override
     public void addpuerta(String ubicacion, String id, String idCampus)
-            throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException
+            throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         puertaService.addpuerta(ubicacion, id, idCampus);
     }
@@ -324,32 +327,32 @@ public class JP implements JPInterface {
     @Override
     public void delpuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException,
-            ParqueaderoNoExistenteException 
+            ParqueaderoNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException 
     {
         puertaService.delpuerta(nombreCampus, id);
     }
 
     @Override
     public Puerta getPuerta(String nombreCampus, String id)
-            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         return puertaService.getPuerta(nombreCampus, id);
     }
 
     @Override
     public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo)
-            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         puertaService.modPuerta(nombreCampus, id, ubicacion, activo);
     }
 
     @Override
-    public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException {
+    public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return puertaService.getPuertas(nombreCampus);
     }
 
     @Override
-    public Set<Puerta> getPuertas() {
+    public Set<Puerta> getPuertas() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         return puertaService.getPuertas();
     }
 

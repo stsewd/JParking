@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
@@ -14,6 +15,7 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -238,7 +240,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarCampusCB(){
+    private void cargarCampusCB() throws IOException, ClassNotFoundException, ObjectSizeException{
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         for(Campus c : jp.getCampus()){
@@ -246,7 +248,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         }
     }
     
-    public void listarPorteros() throws CampusNoExistenteException{
+    public void listarPorteros() throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
         
         String nombreCampus = (String) CampusCB.getSelectedItem();
         if(nombreCampus == null || nombreCampus.trim().length() == 0)

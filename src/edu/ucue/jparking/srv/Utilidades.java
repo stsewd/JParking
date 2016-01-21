@@ -9,6 +9,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 /**
  *
@@ -17,8 +22,11 @@ import java.io.ObjectOutputStream;
 public class Utilidades {
     private static ClaveService claveService = new ClaveService();
     
-    public static void iniciarDefaultDirectorios() throws IOException, Exception{
-        
+    public static void iniciarDefaultDirectorios()
+            throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
+            ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException
+    {
         // Crear direcotorios si no existen
         File direc =  new  File("data"); 
         File backup = new File("backup");

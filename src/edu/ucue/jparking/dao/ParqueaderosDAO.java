@@ -55,15 +55,13 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException, IOException,
             FileNotFoundException, ClassNotFoundException, ObjectSizeException
-    
     {
         if(getParqueadero(nombreCampus, idParqueadero) == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        
-        /***************************************************************
+        /*
          * Eliminar dependencias
          * Eliminar parqueadero de todos los usuarios de este parqueadero.
-         ****************************************************************/
+         */
         for(Usuario usuario : getUsuarios(nombreCampus, idParqueadero)){
             ParqueaderosDAO.getInstance().delUsuario(nombreCampus, idParqueadero, usuario.getCedula());
         }

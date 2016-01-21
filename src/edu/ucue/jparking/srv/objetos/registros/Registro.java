@@ -91,7 +91,6 @@ public abstract class Registro implements Serializable {
         return activoPersona;
     }   
     
-    
     /**
      * 
      * @return 

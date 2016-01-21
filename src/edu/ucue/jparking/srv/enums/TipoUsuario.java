@@ -7,7 +7,7 @@ package edu.ucue.jparking.srv.enums;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public enum TipoUsuario {
     PORTERO,

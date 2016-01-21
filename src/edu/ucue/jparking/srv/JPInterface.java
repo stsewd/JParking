@@ -80,7 +80,8 @@ public interface JPInterface {
      * @throws CampusExistenteExeption 
      */
     public void addCampus(String nombre, String direccion)
-            throws CampusExistenteExeption;
+            throws CampusExistenteExeption, IOException, ClassNotFoundException,
+            ObjectSizeException;
     /**
      * recupera un capus por el nombre
      * @param nombre
@@ -88,7 +89,7 @@ public interface JPInterface {
      * @throws CampusNoExistenteException 
      */
     public Campus getCampus(String nombre) 
-            throws CampusNoExistenteException;
+            throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * modifica un campus
@@ -98,7 +99,7 @@ public interface JPInterface {
      * @throws CampusNoExistenteException 
      */
     public void modCampus(String nombre,String direccion,boolean estado) 
-            throws CampusNoExistenteException;
+            throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * elemina un campus por su nombre
@@ -116,7 +117,7 @@ public interface JPInterface {
      * retorna todo los campus
      * @return 
      */
-    public Set<Campus> getCampus();
+    public Set<Campus> getCampus() throws IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * saca una orden de pago por el numero de cedula
@@ -164,7 +165,7 @@ public interface JPInterface {
      */
     public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus)
             throws ParqueaderoYaExistenteException, CampusNoExistenteException,
-            CodigoNoValidoException, CampusInactivoException;
+            CodigoNoValidoException, CampusInactivoException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * borra un parqueadero por el nombre delUsuario campus y el identificador delUsuario parqueadero 
@@ -194,14 +195,14 @@ public interface JPInterface {
      */
     public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CodigoNoValidoException,
-            CampusNoExistenteException;
+            CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * extrae todos los parqueaderos
      * @return
      * @throws CampusNoExistenteException 
      */
-    public Set<Parqueadero> getParqueaderos() throws CampusNoExistenteException;
+    public Set<Parqueadero> getParqueaderos() throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * extrae todos los parqueaderos de un campus
@@ -209,7 +210,7 @@ public interface JPInterface {
      * @return
      * @throws CampusNoExistenteException 
      */
-    public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException;
+    public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * modifica los datos de un parqueadero
@@ -226,7 +227,7 @@ public interface JPInterface {
      */
     public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares,boolean estado) 
             throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException, 
-            NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException;
+            NumeroLugaresDeParqueoInsuficientesException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * agrega un puerta de entrada a un parqueadero
@@ -247,7 +248,7 @@ public interface JPInterface {
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException,
             PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException,
             PuertaYaExistenteException, CampusNoExistenteException, PuertaInactivaException,
-            CampusInactivoException;
+            CampusInactivoException, IOException, ClassNotFoundException, ObjectSizeException;
     /**
      * agrega un puerta de salida a un parqueadero
      * @param nombreCampus
@@ -265,7 +266,7 @@ public interface JPInterface {
     public void addPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException, 
             PuertaYaAgregadaException, CodigoNoValidoException, ParquaderoInactivoException,
-            CampusNoExistenteException, PuertaInactivaException, CampusInactivoException;
+            CampusNoExistenteException, PuertaInactivaException, CampusInactivoException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * elimina una puerta de entrada
@@ -280,7 +281,7 @@ public interface JPInterface {
      */
     public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
-            CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException;
+            CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException, IOException, ClassNotFoundException, ObjectSizeException;
 
     /**
      * elimina una puerta de salida
@@ -295,7 +296,7 @@ public interface JPInterface {
      */
     public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
-            CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException; 
+            CodigoNoValidoException, CampusNoExistenteException, PuertaNoAgregadaException, IOException, ClassNotFoundException, ObjectSizeException; 
     
     /**
      * agrega a un usuario en un parqueadero
@@ -354,8 +355,7 @@ public interface JPInterface {
      * @throws CampusNoExistenteException 
      */
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero) 
-            
-            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException;
+            throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * extrae todas las puertas de salida de un parqueadero
@@ -368,7 +368,7 @@ public interface JPInterface {
      */
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
             throws CodigoNoValidoException,
-            ParqueaderoNoExistenteException, CampusNoExistenteException; 
+            ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException; 
     
     /**
      * saca todo los usuarios de un parqueadero
@@ -382,7 +382,7 @@ public interface JPInterface {
      */
     public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero) 
             throws CodigoNoValidoException, ParqueaderoNoExistenteException, 
-            UsuarioNoExistenteException, CampusNoExistenteException;
+            UsuarioNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * crea un portero
@@ -437,14 +437,13 @@ public interface JPInterface {
      * @return
      * @throws CedulaNoValidaException 
      */
-    public Portero getPortero(String cedula) throws CedulaNoValidaException;
-    
+    public Portero getPortero(String cedula) throws CedulaNoValidaException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * estrae todos los porteros
      * @return 
      */
-    public Set<Portero> getPorteros();
+    public Set<Portero> getPorteros() throws IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * extrae los portero de un campus
@@ -452,7 +451,7 @@ public interface JPInterface {
      * @return
      * @throws CampusNoExistenteException 
      */
-    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException;
+    public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * crea una puerta
@@ -465,7 +464,7 @@ public interface JPInterface {
      */
     public void addpuerta(String ubicacion, String id, String idCampus)
             throws CodigoNoValidoException, PuertaYaExistenteException, 
-            CampusNoExistenteException;
+            CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * elimina una puerta
@@ -478,7 +477,7 @@ public interface JPInterface {
      */
     public void delpuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
-            CampusNoExistenteException, ParqueaderoNoExistenteException;
+            CampusNoExistenteException, ParqueaderoNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * extrae una puerta
@@ -491,7 +490,7 @@ public interface JPInterface {
      */
     public Puerta getPuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
-            CampusNoExistenteException;
+            CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * modifica una puerta
@@ -504,7 +503,7 @@ public interface JPInterface {
      * @throws CampusNoExistenteException 
      */
     public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo)
-            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException;
+            throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * extrae las puertas de un campus
@@ -512,13 +511,13 @@ public interface JPInterface {
      * @return
      * @throws CampusNoExistenteException 
      */
-    public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException;
+    public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * extrae todas las puertas
      * @return 
      */
-    public Set<Puerta> getPuertas();
+    public Set<Puerta> getPuertas() throws IOException, ClassNotFoundException, ObjectSizeException;
           
     /**
      * Saca un registro especifico

@@ -34,7 +34,7 @@ public class CampusDAO implements CampusDAOInterface {
     private static BPTreeMap<String, Campus> mapCampus;
     private static final String dataPath = "data/campus.dat";
     private static final String indiceNombreCampusPath = "data/campus_nombre_index.dat";
-    private static final int objSize = 9999;
+    private static final int objSize = 9999; // Aumentar tamaño luego.
     
     private CampusDAO()
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
@@ -74,12 +74,10 @@ public class CampusDAO implements CampusDAOInterface {
             throw new CampusNoExistenteException(nombreCampus);
         }
         
-        /*************************
+        /*
          * Eliminar depencias:
-         * 
-         * Parqueaderos del campus a eliminar donde esta registrado un usuario.*
-         * 
-        ***************************/
+         * Parqueaderos del campus a eliminar donde esta registrado un usuario.
+         */
         for(Parqueadero p : ParqueaderosDAO.getInstance().getParqueaderos(nombreCampus)){
             ParqueaderosDAO.getInstance().delParqueadero(nombreCampus, p.getId());
         }

@@ -148,12 +148,12 @@ public class Test {
             jp.addUsuario(usuarios[i][0], usuarios[i][2], usuarios[i][1], "Direccion z", "1234567890", tipoUsuario[(int) ((Math.random()*100)%3)].toString());
     }
     
-    public static void cargarCampus() throws CampusExistenteExeption{
+    public static void cargarCampus() throws CampusExistenteExeption, IOException, ClassNotFoundException, ObjectSizeException{
         for(int i = 0; i<campus.length; i++)
             jp.addCampus(campus[i][0], campus[i][1]);
     }
     
-    public static void cargarParqueaderos(int numParqueaderos) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException{
+    public static void cargarParqueaderos(int numParqueaderos) throws ParqueaderoYaExistenteException, CampusNoExistenteException, CodigoNoValidoException, CampusInactivoException, IOException, ClassNotFoundException, ObjectSizeException{
         for(int i = 0; i < numParqueaderos; i++)
             jp.addParqueadero("Ubicacion z", (int) (Math.random()*10 % 15 + 10), "P" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
@@ -163,7 +163,7 @@ public class Test {
             jp.addPortero(campus[(int)(Math.random()*100 % campus.length)][0], porteros[i][0], porteros[i][2], porteros[i][1], "Direccion A", "0123456789");
     }
     
-    public static void cargarPuertas(int numPuertas) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException {
+    public static void cargarPuertas(int numPuertas) throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException {
         for(int i = 0; i < numPuertas; i++)
             jp.addpuerta("Ubicacion B", "A" + String.format("%02d", i), campus[(int)(Math.random()*100 % campus.length)][0]);
     }
@@ -191,7 +191,7 @@ public class Test {
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
             PuertaNoExistenteException, CodigoNoValidoException,
             ParquaderoInactivoException, PuertaYaExistenteException,
-            PuertaInactivaException, CampusInactivoException 
+            PuertaInactivaException, CampusInactivoException, IOException, ClassNotFoundException, ObjectSizeException 
     {
         
         for(int i = 0; i < campus.length; i++){
