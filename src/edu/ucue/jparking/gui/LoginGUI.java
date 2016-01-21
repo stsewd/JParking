@@ -23,17 +23,12 @@ import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import edu.ucue.jparking.srv.excepciones.NumeroParqueaderosNoDisponiblesException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
-import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -178,25 +173,8 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_CancelarBtnActionPerformed
-
-    private static boolean esCorrecta(char[] p) {
-        boolean esPass = true;
-        //Nuestra contraseña de prueba "usuario"
-        char[] pass = { '1' };
-        //Comprobamos que la longitud sea igual
-        if (p.length != pass.length) {
-            esPass = false;
-        } else {
-            //Usamos un comparador para verificar carácter por carácter.
-            esPass = Arrays.equals(p, pass);
-        }
-        //Limpiamos los datos del array. 
-        //Requerimiento de seguridad.
-        Arrays.fill(pass,'0');
-        return esPass;
-    }
-    
-    private void inicia(){
+  
+    private void iniciar(){
         PrincipalGUI pgui = new PrincipalGUI();
         //Inicio de tests
         try {
@@ -252,7 +230,7 @@ public class LoginGUI extends javax.swing.JFrame {
         } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
             System.out.println(ex.getMessage());
         }
-        //Fin de tests
+        // Fin de tests
         pgui.setVisible(true);
     }
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed
@@ -261,7 +239,7 @@ public class LoginGUI extends javax.swing.JFrame {
         String password = new String(pass);
         try {
             jp.validarClave(UsuarioTF.getText(), password);
-            inicia();
+            iniciar();
             this.setVisible(false);
             return;
         }catch(ClaveNoValidaException ex){
