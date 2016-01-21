@@ -19,6 +19,8 @@ public abstract class Persona implements Comparable<Persona>, Serializable {
     
     protected final TipoUsuario tipoUsuario;
     
+    // ABC -> segundo primero, medio medio, primero ultimo. Quién es?
+    
     private final String cedula;
     private String nombres;
     private String apellidos;
