@@ -1208,23 +1208,21 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
-        // TODO add your handling code here:
         
         int ax = JOptionPane.showConfirmDialog(null, "Desea hacer un respaldo de su informacion?", "Alerta!", JOptionPane.YES_NO_OPTION);
         if(ax == JOptionPane.YES_OPTION){
-              String fileName = "data";
+            String fileName = "data";
          
             //Use the makeZip se utilia para crear un archivo de tipo .zip.
             File file = new File(fileName);
             if(file.exists()){
-              try {
-                jp.makeZip(fileName);
-                JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
-              }
-              //Simply print out any errors we encounter.
-              catch (Exception  e) {
-                JOptionPane.showMessageDialog(rootPane,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);
-              }
+                try {
+                    jp.makeZip(fileName);
+                    JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
+                }
+                catch (Exception  e) {
+                    JOptionPane.showMessageDialog(rootPane,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);
+                }
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Ud no tiene la carpeta de datos", "Mensaje", JOptionPane.OK_OPTION);
           }

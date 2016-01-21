@@ -30,7 +30,7 @@ public class BackupService {
     {
         Calendar fecha = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        String fecha2 = (String) df.format(fecha.getTime());
+        String fechaString = (String) df.format(fecha.getTime());
         File file = new File(fileName);
         zos = new ZipOutputStream(new FileOutputStream( file + ".zip"));
         recurseFiles(file);
@@ -39,7 +39,7 @@ public class BackupService {
         zos.close();
 
         File archivo = new File(file + ".zip");
-        File nuevoArchivo = new File("backup/" + file+"Jparking" + fecha2 +".zip");
+        File nuevoArchivo = new File("backup/" + file+"Jparking" + fechaString +".zip");
         Files.move(archivo.toPath(), nuevoArchivo.toPath(), StandardCopyOption.REPLACE_EXISTING);
    }
 
@@ -56,10 +56,10 @@ public class BackupService {
             // del directorio actual .
             String[] fileNames = file.list();
             if (fileNames != null) {
-               // Recursiva agregar cada entrada de la matriz para asegurarse de que lleguemos
-               // subdirectorios , así como archivos normales en el directorio.
-               for (int i=0; i<fileNames.length; i++)
-                   recurseFiles(new File(file, fileNames[i]));
+                // Recursiva agregar cada entrada de la matriz para asegurarse de que lleguemos
+                // subdirectorios , así como archivos normales en el directorio.
+                for (int i=0; i<fileNames.length; i++)
+                    recurseFiles(new File(file, fileNames[i]));
             }
         }else { // De lo contrario , un archivo para agregarlo como una entrada en el archivo Zip
             byte[] buf = new byte[1024];
@@ -74,9 +74,9 @@ public class BackupService {
             zos.putNextEntry(zipEntry);
             
             // Lee bytes del archivo y escribir en el archivo Zip.      
-            while ((len = in.read(buf)) >= 0) {
+            while ((len = in.read(buf)) >= 0)
                 zos.write(buf, 0, len);
-            }
+            
             //Close la entrada del stream.        
             in.close();
             //Cerrar esta entrada en la ZIP stream.        
@@ -85,36 +85,31 @@ public class BackupService {
    }
    
    public void unZipFiles(File zipfile, String descDir) throws IOException {
-		File file = new File(descDir);
-		if (!file.exists()) {
-			try {
-				file.mkdirs();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-			ZipFile zf = new ZipFile(zipfile);
-			for (Enumeration entries = zf.entries(); entries.hasMoreElements();) {
-				ZipEntry entry = (ZipEntry) entries.nextElement();
-				String zipEntryName = entry.getName();
-				InputStream in = zf.getInputStream(entry);
-                                System.out.println(descDir + zipEntryName);
-				OutputStream out = new FileOutputStream(descDir + zipEntryName);
-                                byte[] buf1 = new byte[1024];
-				int len;
-				while ((len = in.read(buf1)) > 0) {
-					out.write(buf1, 0, len);
-				}
-				in.close();
-				out.close();
-			}
-
-			zf.close();
-                        
-                
-		
-	}
+        File file = new File(descDir);
+        if (!file.exists())
+            file.mkdirs();
+        
+        ZipFile zf = null;
+        try{
+            zf = new ZipFile(zipfile);
+            for (Enumeration entries = zf.entries(); entries.hasMoreElements();) {
+                ZipEntry entry = (ZipEntry) entries.nextElement();
+                String zipEntryName = entry.getName();
+                InputStream in = zf.getInputStream(entry);
+                System.out.println(descDir + zipEntryName);
+                OutputStream out = new FileOutputStream(descDir + zipEntryName);
+                byte[] buf1 = new byte[1024];
+                int len;
+                while ((len = in.read(buf1)) > 0) {
+                    out.write(buf1, 0, len);
+                }
+                in.close();
+                out.close();
+            }
+        } finally {
+            zf.close();
+        }
+    }
 
 }
 

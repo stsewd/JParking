@@ -67,7 +67,6 @@ public class RecuperarDataGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
-        // TODO add your handling code here:
         JFileChooser seleccionadoArchivo = (JFileChooser) evt.getSource();
         String pressBoton = evt.getActionCommand();
         if(pressBoton.equals(JFileChooser.APPROVE_SELECTION)){
