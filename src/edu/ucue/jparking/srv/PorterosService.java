@@ -29,10 +29,11 @@ class PorterosService {
     Validaciones validar = new Validaciones();
     PorterosDAOInterface porterosDAO = PorterosDAO.getInstance();
     RegistroService registroService;
-    CampusService campusService = new CampusService();
+    CampusService campusService;
 
     public PorterosService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         registroService = new RegistroService();
+        campusService  = new CampusService();
     }
 
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 

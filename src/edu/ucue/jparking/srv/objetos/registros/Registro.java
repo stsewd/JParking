@@ -28,6 +28,16 @@ public abstract class Registro implements Serializable {
     private final String direccionPersona;
     private final String telefonoPersona;
     private final boolean activoPersona;
+    /*
+    Contando
+    registros
+    innecesariamente,
+    Sentado
+    teniendo
+    inifinidad en la
+    nada.
+    Alguien piensa en ti.
+    */
 
     public Registro(Persona persona, TipoRegistro tipoRegistro) {
         this.fecha = Calendar.getInstance();
