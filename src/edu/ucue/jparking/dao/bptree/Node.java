@@ -18,7 +18,7 @@ public final class Node<K> implements Serializable {
     
     private int nodeSize; // Tamaño actual del nodo
     private Long parent; // Posicion dentro del archivo donde esta el padre
-    private Long next; 
+    private Long next;
     private Long prev;
     
     private Long pos; // Posicion del nodo dentro del archivo.

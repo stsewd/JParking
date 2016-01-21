@@ -70,8 +70,6 @@ import java.util.logging.Logger;
  * @author Franklin Lara
  */
 public class JParking {
-
-    static JP jp = JP.getInstance();
     /**
      * @param args the command line arguments
      */
@@ -87,57 +85,6 @@ public class JParking {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             } catch (Exception ex) {
                 //Carga interfaz por defecto de java swing
-            }
-        }
-        File direc =  new  File("data"); 
-        File backup = new File("backup");
-        String path = "data/usuarios_.dat"; // ALMACENAR USUARIO Y CONTRASEÑA EN UN MISMO ARCHIVO!.
-        String path1 = "data/clave.dat";
-        File archivoUsuario = new File(path);
-        File archivoClave = new File(path1);
-        if(archivoUsuario.isDirectory() && archivoClave.isDirectory()){
-            if(!(archivoUsuario.isFile() && archivoClave.isFile())){
-                try {
-                    ObjectOutputStream EntradaObjeto = new ObjectOutputStream(new FileOutputStream(direc));
-                    String clave = "administrador";
-                    //celebrum = clave;
-                    EntradaObjeto.writeObject(clave);
-                    
-                    //escritura de clave encriptada en caso de no existir el archivo creado
-                } catch (IOException ex) {
-                    System.out.println("Error a abrir el archivo");
-                }
-            }
-                
-            
-        }else{
-            ObjectOutputStream salidaObjetosUsuarios = null;
-            ObjectOutputStream salidaObjetostClave = null;
-            try {
-                direc.mkdirs();
-                backup.mkdirs();
-                salidaObjetosUsuarios = new ObjectOutputStream(new FileOutputStream(new File(direc,"usuarios_.dat")));
-                salidaObjetostClave  = new ObjectOutputStream(new FileOutputStream(new File(direc,"celebrum.dat")));
-                //guardar clave encriptada
-                //genera el par de claves
-                jp.GenerarClave();
-                //guarda la clave por defecto
-                jp.cifrar("admin");
-                
-            
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    salidaObjetosUsuarios.close();
-                    salidaObjetostClave.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(JParking.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }
         

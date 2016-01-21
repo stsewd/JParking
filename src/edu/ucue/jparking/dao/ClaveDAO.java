@@ -30,10 +30,8 @@ public class ClaveDAO implements ClaveDAOInterface{
     }
     
     public static ClaveDAO getInstancia(){
-    
-        if (instancia==null){
+        if (instancia==null)
             instancia = new ClaveDAO();
-        }
         return instancia;
     }
 
@@ -42,7 +40,6 @@ public class ClaveDAO implements ClaveDAOInterface{
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(fileName)));
         oos.writeObject(clave);
         oos.close();
-        
     }
     
     @Override
@@ -54,7 +51,7 @@ public class ClaveDAO implements ClaveDAOInterface{
            
  
     @Override
-    public void guardarContrasenia(String fileName,byte[] clave) throws FileNotFoundException, IOException{
+    public void guardarContrasenia(String fileName, byte[] clave) throws FileNotFoundException, IOException{
         FileOutputStream fos = new FileOutputStream(new File(fileName));
         fos.write(clave, 0, 16);
         fos.close();
@@ -66,6 +63,4 @@ public class ClaveDAO implements ClaveDAOInterface{
         byte[] clave = Files.readAllBytes(file.toPath());
         return clave;
     }
-    
-    
 }

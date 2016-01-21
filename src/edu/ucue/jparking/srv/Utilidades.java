@@ -5,20 +5,35 @@
  */
 package edu.ucue.jparking.srv;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 /**
  *
  * @author Santos Gallegos
  */
 public class Utilidades {
+    private static ClaveService claveService = new ClaveService();
     
-    public static String fill(int num){
-        return fill(num, " ");
-    }
-    
-    public static String fill(int num, String fill){
-        String s = "";
-        for(int i = 0; i < num; i++)
-            s += fill;
-        return s;
+    public static void iniciarDefaultDirectorios() throws IOException, Exception{
+        
+        // Crear direcotorios si no existen
+        File direc =  new  File("data"); 
+        File backup = new File("backup");
+        direc.mkdirs();
+        backup.mkdirs();
+        
+        ObjectOutputStream salidaObjetostClave = null;
+        try {
+            salidaObjetostClave  = new ObjectOutputStream(new FileOutputStream(new File(direc,"celebrum.dat")));
+            //guardar clave encriptada
+            claveService.GenerarClave();
+            //guarda la clave por defecto
+            claveService.cifrar("admin");
+        } finally {
+                salidaObjetostClave.close();
+        }
     }
 }

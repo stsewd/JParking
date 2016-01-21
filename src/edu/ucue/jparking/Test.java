@@ -21,7 +21,6 @@ import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.JP;
 import edu.ucue.jparking.srv.JPInterface;
-import edu.ucue.jparking.srv.Utilidades;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
 import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
@@ -136,11 +135,11 @@ public class Test {
     
     //Campus
     private static final String[][] campus = {
-        {"Paraiso" + Utilidades.fill(30 - "Paraiso".length()), "Direccion y"},
-        {"Central" + Utilidades.fill(30 - "Central".length()), "Direccion y"},
-        {"Balzay" + Utilidades.fill(30 - "Balzay".length()), "Direccion y"},
-        {"Centro Historico" + Utilidades.fill(30 - "Centro Historico".length()), "Direccion y"},
-        {"Yanuncay" + Utilidades.fill(30 - "Yanuncay".length()), "Direccion y"},
+        {"Paraiso", "Direccion y"},
+        {"Central", "Direccion y"},
+        {"Balzay", "Direccion y"},
+        {"Centro Historico", "Direccion y"},
+        {"Yanuncay", "Direccion y"},
     };
     
     

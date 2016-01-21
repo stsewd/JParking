@@ -253,7 +253,6 @@ public class LoginGUI extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
         //Fin de tests
-        /**/
         pgui.setVisible(true);
     }
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed

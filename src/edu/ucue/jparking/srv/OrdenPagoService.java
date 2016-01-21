@@ -9,7 +9,7 @@ import edu.ucue.jparking.dao.OrdenesPagoDAO;
 import edu.ucue.jparking.dao.UsuariosDAO;
 import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.OrdenesPagoDAOInterface;
 import edu.ucue.jparking.dao.interfaces.UsuariosDAOInterface;
 import edu.ucue.jparking.srv.enums.TipoTramite;

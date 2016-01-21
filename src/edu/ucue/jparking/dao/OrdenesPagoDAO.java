@@ -8,7 +8,7 @@ package edu.ucue.jparking.dao;
 import edu.ucue.jparking.dao.bptree.BPTreeMap;
 import edu.ucue.jparking.dao.bptree.ComparatorInt;
 import edu.ucue.jparking.dao.bptree.ObjectSizeException;
-import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.dao.interfaces.OrdenesPagoDAOInterface;
 import edu.ucue.jparking.srv.objetos.OrdenPago;
 import java.io.FileNotFoundException;

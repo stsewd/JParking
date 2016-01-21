@@ -27,7 +27,7 @@ import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
-import edu.ucue.jparking.dao.interfaces.OrdenPagoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.OrdenPagoNoExistenteException;
 import edu.ucue.jparking.srv.enums.TipoRegistro;
 import edu.ucue.jparking.srv.enums.TipoUsuario;
 import edu.ucue.jparking.srv.excepciones.AccesoNoAutorizadoException;
