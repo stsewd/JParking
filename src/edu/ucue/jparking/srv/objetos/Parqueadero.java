@@ -23,13 +23,13 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
     private String ubicacion;
     private int numeroLugares;
     
-    private Campus campus;
+    private String nombreCampus;
 
     public Parqueadero(String ubicacion, int numeroLugares, String id, Campus nombreCampus) {
         this.ubicacion = ubicacion;
         this.numeroLugares = numeroLugares;
         this.id = id;
-        this.campus = nombreCampus;
+        this.nombreCampus = nombreCampus.getNombre();
         this.puertasEntrada = new HashMap<>();
         this.puertasSalida = new HashMap<>();
         this.usuarios = new HashMap<>();
@@ -136,10 +136,10 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
     }
 
     /**
-     * @return the campus
+     * @return the nombreCampus
      */
-    public Campus getCampus() {
-        return campus;
+    public String getCampus() {
+        return nombreCampus;
     }
 
     /**

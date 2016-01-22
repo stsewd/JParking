@@ -211,6 +211,39 @@ public class Test {
         }
     }
     
+    public static void loadAllTest()
+            throws UsuarioYaExistenteException, CedulaNoValidaException, TelefonoNoValidoException,
+            PersonaYaRegistradoComoPorteroException, UsuarioNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException,
+            CampusExistenteExeption, ParqueaderoYaExistenteException, CampusNoExistenteException,
+            CodigoNoValidoException, CampusInactivoException, PorteroYaExistenteException,
+            PersonaYaRegistradaComoUsuarioException, PuertaYaExistenteException,
+            ParqueaderoNoExistenteException, ParquaderoInactivoException,
+            NumeroParqueaderosNoDisponiblesException, UsuarioInactivoException,
+            PuertaNoExistenteException, PuertaInactivaException
+    {
+        //Inicio de tests
+            Test.cargarUsuarios();
+            // pgui.listarUsuarios();
+        
+            Test.cargarCampus();
+            // pgui.cargarCampusCB();
+            
+            Test.cargarParqueaderos(35);
+            // pgui.listarParqueaderos();
+
+        
+            Test.cargarPorteros();
+        
+            Test.cargarPuertas(35);
+        
+            Test.cargarUsuariosParqueaderos();
+            // pgui.listarParqueaderos();
+                
+            Test.cargarPuertasParqueaderos();
+        
+    }
+    
     public static byte[] serialize(Object obj) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream os = new ObjectOutputStream(out);

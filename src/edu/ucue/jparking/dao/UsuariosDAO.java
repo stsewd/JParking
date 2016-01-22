@@ -36,7 +36,7 @@ public class UsuariosDAO implements UsuariosDAOInterface {
     private static final String dataPath = "data/usuarios.dat";
     private static final String indiceCedulaPath = "data/usuarios_cedula_index.dat";
     private static final String indiceApellidoPath = "data/usuarios_apellido_nombre_index.dat";
-    private static final int objSize = 9999; // 674 usuario sin parqueaderos.
+    private static final int objSize = 99999; // 674 usuario sin parqueaderos.
     
     private static UsuariosDAO instance;
 

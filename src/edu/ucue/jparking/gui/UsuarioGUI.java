@@ -304,7 +304,7 @@ public class UsuarioGUI extends javax.swing.JDialog {
         activoCheckB.setSelected(u.isActivo());
         String parqueaderosList = "";
         for(Parqueadero p :  jp.getParqueaderosUsuario(cedula)){
-            parqueaderosList += "Campus: " + p.getCampus().getNombre() + "\n" +
+            parqueaderosList += "Campus: " + p.getCampus() + "\n" +
                     "Parqueadero: (" + p.getId() + ") " + p.getUbicacion() + "\n\n";
         }
         ParqueaderosTA.setText(parqueaderosList);

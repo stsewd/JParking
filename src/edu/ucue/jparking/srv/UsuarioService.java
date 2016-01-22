@@ -145,7 +145,7 @@ class UsuarioService {
         boolean encontrado = false;
         
         for(Parqueadero p : getParqueaderosUsuario(cedula)){
-            if(p.getCampus().getNombre().compareToIgnoreCase(nombreCampus) != 0)
+            if(p.getCampus().compareToIgnoreCase(nombreCampus) != 0)
                 continue;
             
             if(!u.isIn()){

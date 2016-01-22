@@ -332,7 +332,7 @@ public class BPTreeMap<K, V> implements Serializable {
             for(int i = 0; i < secTreeIndex.size(); i++){
                 IndexGenerator ig = indexGenerators.get(i);
                 secTreeIndex.get(i).del(ig.getKey(oldObj));
-                secTreeIndex.get(i).add(ig.getKey(obj), pos);
+                secTreeIndex.get(i).add(ig.getKey(newValue), pos);
             }
         } finally {
             raf.close();

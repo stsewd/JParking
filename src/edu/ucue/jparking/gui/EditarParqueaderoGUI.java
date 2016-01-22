@@ -330,7 +330,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
         
         CodigoTF.setText(parqueaderoId);
         UbicacionTF.setText(parqueadero.getUbicacion());
-        CampusTF.setText(parqueadero.getCampus().getNombre());
+        CampusTF.setText(parqueadero.getCampus());
         NumeroLugaresTF.setText(Integer.toString(parqueadero.getNumeroLugares()));
         EstadoCK.setSelected(parqueadero.isActivo());
         habilitarCampos();
