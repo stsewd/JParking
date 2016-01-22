@@ -74,14 +74,16 @@ public interface CampusDAOInterface {
      * no existe.
      * @param nombre Nombre del campus a modificar.
      * @param ubicacion Campo a modificar.
+     * @param estado
      * @throws CampusNoExistenteException 
      * @throws java.io.IOException 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void modCampus(String nombre, String ubicacion, boolean estado)
             throws CampusNoExistenteException, IOException, FileNotFoundException,
-            ClassNotFoundException;
+            ClassNotFoundException, ObjectSizeException;
     
     /**
      * Retorna uns set con todos los campus registrados
@@ -92,5 +94,9 @@ public interface CampusDAOInterface {
      */
     public Set<Campus> getCampus()
             throws IOException, FileNotFoundException, ClassNotFoundException;
+    
+    public void update(String nomrbreCampus, Campus campus)
+            throws IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException;
     
 }

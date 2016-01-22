@@ -182,11 +182,10 @@ public class CampusDAO implements CampusDAOInterface {
             throws CampusNoExistenteException, IOException, FileNotFoundException,
             ClassNotFoundException, ParqueaderoYaExistenteException, ObjectSizeException
     {
-        if(getParqueadero(nombreCampus, parqueadero.getId()) != null)
-            throw new ParqueaderoYaExistenteException(parqueadero.getId());
         Campus campus = getCampus(nombreCampus);
+        if(campus.getParqueadero(parqueadero.getId()) != null)
+            throw new ParqueaderoYaExistenteException(parqueadero.getId());
         campus.addParqueadero(parqueadero.getId(), parqueadero);
-        
         update(nombreCampus, campus);
     }
     
@@ -195,18 +194,20 @@ public class CampusDAO implements CampusDAOInterface {
             ClassNotFoundException, ParqueaderoNoExistenteException, ObjectSizeException,
             UsuarioNoExistenteException, UsuarioNoAgregadoException
     {
-        if(getParqueadero(nombreCampus, idParqueadero) == null)
+        Campus campus = getCampus(nombreCampus);
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
+        if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         /*
          *  Eliminar dependencias
          * Eliminar parqueadero de todos los usuarios de este parqueadero.
          */
-        for(Usuario usuario : getUsuariosParqueadero(nombreCampus, idParqueadero))
-            delUsuarioParqueadero(nombreCampus, idParqueadero, usuario.getCedula());
+        for(Usuario usuario : parqueadero.getUsuarios()){
+            parqueadero.delUsuario(usuario.getCedula());
+            UsuariosDAO.getInstance().delParqueadero(usuario.getCedula(), nombreCampus, idParqueadero);
+        }
         
-        Campus campus = getCampus(nombreCampus);
         campus.delParqueadero(idParqueadero);
-        
         update(nombreCampus, campus);
     }
     
@@ -230,14 +231,15 @@ public class CampusDAO implements CampusDAOInterface {
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
             IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
-        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        Campus campus = getCampus(nombreCampus);
+        
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         parqueadero.setUbicacion(ubicacion);
         parqueadero.setNumeroLugares(numLugares);
         parqueadero.setActivo(estado);
         
-        Campus campus = getCampus(nombreCampus);
         update(nombreCampus, campus);
     }
 
@@ -245,48 +247,54 @@ public class CampusDAO implements CampusDAOInterface {
             throws PuertaYaAgregadaException, PuertaNoExistenteException, CampusNoExistenteException,
             IOException, FileNotFoundException, ClassNotFoundException, ParqueaderoNoExistenteException, ObjectSizeException
     {
-        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        Campus campus = getCampus(nombreCampus);
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        Puerta puerta = getPuerta(nombreCampus, idPuerta);
+        Puerta puerta = campus.getPuerta(idPuerta);
         if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
         if(parqueadero.getPuertaEntrada(idPuerta) != null)
             throw new PuertaYaAgregadaException(idPuerta);
         parqueadero.addPuertaEntrada(idPuerta, puerta);
         
-        Campus campus = getCampus(nombreCampus);
         update(nombreCampus, campus);
     }
     
     public void addPuertaSalidaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
             throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException,
-            ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException
+            ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException, ObjectSizeException
     {
-        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        Campus campus = getCampus(nombreCampus);
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        Puerta puerta = getPuerta(nombreCampus, idPuerta);
+        Puerta puerta = campus.getPuerta(idPuerta);
         if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
         if(parqueadero.getPuertaSalida(idPuerta) != null)
             throw new PuertaYaAgregadaException(idPuerta);
         parqueadero.addPuertaSalida(idPuerta, puerta);
+        
+        update(nombreCampus, campus);
     }
     
     public void delPuertaEntradaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
             throws CampusNoExistenteException, IOException, FileNotFoundException,
             ClassNotFoundException, ParqueaderoNoExistenteException, PuertaNoExistenteException,
-            PuertaNoAgregadaException
+            PuertaNoAgregadaException, ObjectSizeException
     {
-        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        Campus campus = getCampus(nombreCampus);
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        if(getPuerta(nombreCampus, idPuerta) == null)
+        if(campus.getPuerta(idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
         if(parqueadero.getPuertaEntrada(idPuerta) == null)
             throw new PuertaNoAgregadaException(idPuerta);
         parqueadero.delPuertaEntrada(idPuerta);
+        
+        update(nombreCampus, campus);
     }
     
     public void delPuertaSalidaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
@@ -294,10 +302,11 @@ public class CampusDAO implements CampusDAOInterface {
             FileNotFoundException, ClassNotFoundException, PuertaNoExistenteException,
             PuertaNoAgregadaException
     {
-        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        Campus campus = getCampus(nombreCampus);
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        if(getPuerta(nombreCampus, idPuerta) == null)
+        if(campus.getPuerta(idPuerta) == null)
             throw new PuertaNoExistenteException(idPuerta);
         if(parqueadero.getPuertaSalida(idPuerta) == null)
             throw new PuertaNoAgregadaException(idPuerta);

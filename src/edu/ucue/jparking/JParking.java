@@ -55,14 +55,6 @@ package edu.ucue.jparking;
 
 import javax.swing.UIManager;
 import edu.ucue.jparking.gui.LoginGUI;
-import edu.ucue.jparking.srv.JP;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
