@@ -91,6 +91,9 @@ class ClaveService {
             ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
             BadPaddingException, ClaveNoValidaException
     {
+        if(nuevaClave == null || nuevaClave.trim().length() == 0)
+            throw new IllegalArgumentException("La contraseña no puede estar vacia.");
+        
         validarClave(usuario, claveActual);
         
         GenerarClave();

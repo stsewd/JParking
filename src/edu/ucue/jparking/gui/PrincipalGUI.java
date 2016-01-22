@@ -34,8 +34,6 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -228,8 +226,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
         ListarRegistrosMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         CopiaSeguridadItem = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        restaurarBackUpItem = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        cambiarClaveItem = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
         AcercaDeMenuItem = new javax.swing.JMenuItem();
 
@@ -735,16 +734,22 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jMenu2.add(CopiaSeguridadItem);
 
-        jMenuItem3.setText("Restaurar copia de seguridad");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        restaurarBackUpItem.setText("Restaurar copia de seguridad");
+        restaurarBackUpItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                restaurarBackUpItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(restaurarBackUpItem);
+        jMenu2.add(jSeparator10);
 
-        jMenuItem2.setText("Cambiar contraseña");
-        jMenu2.add(jMenuItem2);
+        cambiarClaveItem.setText("Cambiar contraseña");
+        cambiarClaveItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarClaveItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cambiarClaveItem);
 
         jMenuBar1.add(jMenu2);
 
@@ -1269,7 +1274,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CopiaSeguridadItemActionPerformed
 
     private FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.ZIP", "zip");
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void restaurarBackUpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurarBackUpItemActionPerformed
         
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filtro);
@@ -1281,7 +1286,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             System.out.println(nombreArchivo.substring(0, 12));
             if(!nombreArchivo.substring(0, 12).equals("dataJparking")){
                 JOptionPane.showMessageDialog(fileChooser, "El archivo que escogio no corresponde \n"
-                        + "a un backup de datos del programa", url, WIDTH);
+                        + "a un backup de datos del programa", url, JOptionPane.OK_OPTION);
             
             }else{
             int ax = JOptionPane.showConfirmDialog(fileChooser,"Esta seguro que desea remplazar los datos.", "Alerta", JOptionPane.OK_CANCEL_OPTION);
@@ -1307,7 +1312,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
             this.setVisible(false);
         }
         
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_restaurarBackUpItemActionPerformed
+
+    private void cambiarClaveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveItemActionPerformed
+        CambiarClaveGUI cambiarClaveGUI = new CambiarClaveGUI(this, true);
+        cambiarClaveGUI.setVisible(true);
+    }//GEN-LAST:event_cambiarClaveItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1386,19 +1396,19 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JButton UsuariosParqBtn;
     private javax.swing.JMenuItem UsuariosParqueaderoItem;
     private javax.swing.JButton VerBtn;
+    private javax.swing.JMenuItem cambiarClaveItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -1412,5 +1422,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JMenuItem restaurarBackUpItem;
     // End of variables declaration//GEN-END:variables
 }
