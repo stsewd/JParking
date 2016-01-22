@@ -9,10 +9,24 @@ import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.dao.ClaveDAO;
 import edu.ucue.jparking.dao.interfaces.ClaveDAOInterface;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.security.InvalidKeyException;
 import java.security.Key;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.KeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -27,7 +41,8 @@ import javax.crypto.spec.SecretKeySpec;
  */
 class ClaveService {
     
-    ClaveDAOInterface clavaDAO = ClaveDAO.getInstancia();
+    ClaveDAOInterface claveDAO = ClaveDAO.getInstancia();
+    
     
     public void GenerarClave()
             throws NoSuchAlgorithmException, IOException
@@ -42,28 +57,90 @@ class ClaveService {
       key = new SecretKeySpec("una clave de 16 bytes".getBytes(),  0, 16, "AES");
 
       //guarda en un archivo .dat
-      clavaDAO.saveClave("data/celebrum.dat", (SecretKeySpec) key);
+      claveDAO.saveClave("data/celebrum.dat", (SecretKeySpec) key);
       // Texto a encriptar
     }
     
+    public void generarClavesRSA(Path path) throws Exception  {
+        // Generar el par de claves
+      KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+      KeyPair keyPair = keyPairGenerator.generateKeyPair();
+      PublicKey publicKey = keyPair.getPublic();
+      PrivateKey privateKey = keyPair.getPrivate();
+      // Se salva y recupera de fichero la clave publica
+      claveDAO.saveKey(publicKey, "data/clavePublica.dat");
+      //escribe los objetos
+      ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("data/clave.dat")));
+      
+        Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        rsa.init(Cipher.ENCRYPT_MODE, privateKey );
+        byte[] encriptado = rsa.doFinal("admin".getBytes());
+        
+        byte[] publicKeyBytes = publicKey.getEncoded();
+        os.writeObject(encriptado);
+        os.writeObject(publicKeyBytes);
+        os.close();
+        
+        claveDAO.guardarContrasenia("data/passwordRSA.dat", encriptado);
+      
+    // Se salva de fichero la clave privada
+      claveDAO.saveKey(privateKey, "data/clavePrivada.dat");
+      File file = new File("data/clave.dat");
+      Files.move(file.toPath(), path, StandardCopyOption.REPLACE_EXISTING);
+    }
+    
+    
+    public boolean validarClaveRSA(String archivoUsuario) throws NoSuchAlgorithmException, Exception{
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+        PublicKey publicKey = keyPair.getPublic();
+        
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(archivoUsuario)));
+        byte[] recuperada =(byte[]) ois.readObject();
+        
+        int numBytes = ois.available();
+        byte[] bytes = new byte[numBytes];
+        ois.read(bytes);
+        ois.close();
+
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        KeySpec keySpec = new X509EncodedKeySpec(bytes);
+        PublicKey keyFromBytes = keyFactory.generatePublic(keySpec);
+        
+        //recupero la clave publica de un archivo de texto
+        publicKey = keyFromBytes;
+        
+        
+        //recupero lo cifrado por la clave privada para 
+        //decifrarlo por la clave publica
+        //byte[] recuperada = claveDAO.recuperarContrasenia(claveFile);
+        
+        Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        rsa.init(Cipher.DECRYPT_MODE, publicKey);
+        byte[] decifrado = rsa.doFinal(recuperada);
+        String clave = new String(decifrado);
+        
+        if(clave.equals("admin"))
+            return true;
+        
+        return false;
+    }
     public void cifrar(String clave)
             throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
             ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
             BadPaddingException
     {
         Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        SecretKeySpec key = clavaDAO.recuperarClave("data/celebrum.dat");
+        SecretKeySpec key = claveDAO.recuperarClave("data/celebrum.dat");
 
         // Se inicializa para encriptacion y se encripta el texto,
         // que debemos pasar como bytes.
 
         aes.init(Cipher.ENCRYPT_MODE, key);
         byte[] encriptado = aes.doFinal(clave.getBytes());
-        clavaDAO.guardarContrasenia("data/password.dat", encriptado);
+        claveDAO.guardarContrasenia("data/password.dat", encriptado);
     }
         
-      //flujoSalida.writeChars(encriptado.toString());
-      //flujoSalida.close();
     
     public boolean validarClave(String usuario, String clave)
             throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
@@ -77,10 +154,10 @@ class ClaveService {
             Utilidades.iniciarDefaultDirectorios();
         
         Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        SecretKeySpec key = clavaDAO.recuperarClave(keyPath);
+        SecretKeySpec key = claveDAO.recuperarClave(keyPath);
         aes.init(Cipher.ENCRYPT_MODE, key);
         byte[] encriptado = aes.doFinal(clave.getBytes());
-        byte[] recuperada = clavaDAO.recuperarContrasenia("data/password.dat");
+        byte[] recuperada = claveDAO.recuperarContrasenia("data/password.dat");
         if(!Arrays.equals(encriptado, recuperada) || !usuario.equals("Administrador"))
             throw new ClaveNoValidaException();
         return true;

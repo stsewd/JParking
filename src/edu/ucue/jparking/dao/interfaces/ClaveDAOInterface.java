@@ -52,6 +52,28 @@ public interface ClaveDAOInterface {
      * @throws IOException 
      */
     public byte[] recuperarContrasenia(String filename) throws IOException;
+    
+    /**
+     * guarda la clave publica de RSA
+     * @param fileName
+     * @return
+     * @throws Exception 
+     */
+    public PublicKey loadPublicKey(String fileName) throws Exception;
 
-
+    /**
+     * recupera la clave privada
+     * @param fileName
+     * @return
+     * @throws Exception 
+     */
+    public PrivateKey loadPrivateKey(String fileName) throws Exception;
+    
+    /**
+     * guarda la clave de los backup  RSA 
+     * @param key
+     * @param fileName
+     * @throws Exception 
+     */
+    public void saveKey(Key key, String fileName) throws Exception;
 }

@@ -34,6 +34,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -1249,6 +1251,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
         
+        FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.DAT", "dat");
         int ax = JOptionPane.showConfirmDialog(null, "Desea hacer un respaldo de su informacion?", "Alerta!", JOptionPane.YES_NO_OPTION);
         if(ax == JOptionPane.YES_OPTION){
             String fileName = "data";
@@ -1258,6 +1261,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
             if(file.exists()){
                 try {
                     jp.makeZip(fileName);
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setFileFilter(filtroB);
+                    int opcion = fileChooser.showSaveDialog(this);
+                    if(opcion == JFileChooser.APPROVE_OPTION){
+                        File directorio = fileChooser.getSelectedFile();
+                        String destino = directorio.getAbsolutePath();
+                        jp.generarClavesRSA(directorio.toPath());
+                    }
                     JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
                 }
                 catch (Exception  e) {
@@ -1275,7 +1286,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.ZIP", "zip");
     private void restaurarBackUpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurarBackUpItemActionPerformed
-        
+        FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.DAT", "dat");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filtro);
         int opcion = fileChooser.showOpenDialog(this);
@@ -1289,6 +1300,18 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         + "a un backup de datos del programa", url, JOptionPane.OK_OPTION);
             
             }else{
+            fileChooser.setFileFilter(filtroB);
+            int opcion2 = fileChooser.showOpenDialog(this);
+            if(opcion2 == JFileChooser.APPROVE_OPTION){
+                File archivoClaveSelecionado = fileChooser.getSelectedFile();
+                String urlClave = archivoClaveSelecionado.getAbsolutePath();
+                try {
+                    if(jp.validarClaveRSA(urlClave)==false)
+                        JOptionPane.showMessageDialog(fileChooser, "El archivo de la clave no es el correcto.");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(fileChooser, "El archivo de la clave no es el correcto.");
+                }
+            }
             int ax = JOptionPane.showConfirmDialog(fileChooser,"Esta seguro que desea remplazar los datos.", "Alerta", JOptionPane.OK_CANCEL_OPTION);
             if(ax==JOptionPane.OK_OPTION){
                 

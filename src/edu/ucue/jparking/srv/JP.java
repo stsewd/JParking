@@ -7,6 +7,7 @@ import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.parser.Path;
 import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
@@ -549,5 +550,15 @@ public class JP implements JPInterface {
             BadPaddingException, ClaveNoValidaException
     {
         claveService.cambiarClave(usuario, claveActual, nuevaClave);
+    }
+
+    @Override
+    public void generarClavesRSA(java.nio.file.Path path) throws Exception {
+        claveService.generarClavesRSA(path);
+    }
+
+    @Override
+    public boolean validarClaveRSA(String archivoUsuario) throws NoSuchAlgorithmException, Exception {
+        return claveService.validarClaveRSA(archivoUsuario);
     }
 }
