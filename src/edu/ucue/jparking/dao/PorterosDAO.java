@@ -37,7 +37,10 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public void addPortero(String nombreCampus, Portero portero)
-            throws CampusNoExistenteException, PorteroYaExistenteException,PersonaYaRegistradaComoUsuarioException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+            throws CampusNoExistenteException, PorteroYaExistenteException,PersonaYaRegistradaComoUsuarioException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        CampusDAO.getInstancia().addPortero(nombreCampus, portero);
+        /*
         if(getPortero(portero.getCedula()) != null)
             throw new PorteroYaExistenteException(portero.getCedula());
         try{
@@ -46,6 +49,7 @@ public class PorterosDAO implements PorterosDAOInterface {
         }catch (UsuarioNoExistenteException ex){
             CampusDAO.getInstancia().getCampus(nombreCampus).addPortero(portero.getCedula(), portero);
         }
+        */
     }
 
     @Override
@@ -53,17 +57,21 @@ public class PorterosDAO implements PorterosDAOInterface {
             throws PorteroNoExistenteException, CampusNoExistenteException, IOException,
             FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
-        
+        CampusDAO.getInstancia().delPortero(cedula);
+        /*
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
         portero.getCampus().delPortero(cedula);
+        */
     }
 
     @Override
     public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
             throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        CampusDAO.getInstancia().modPortero(cedula, nombres, apellidos, direccion, telefono, activo);
+        /*
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
@@ -72,12 +80,15 @@ public class PorterosDAO implements PorterosDAOInterface {
         portero.setNombres(nombres);
         portero.setDireccion(direccion);
         portero.setTelefono(telefono);
+        */
     }
 
     @Override
     public Portero getPortero(String cedula)
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        return CampusDAO.getInstancia().getPortero(cedula);
+        /*
         Portero portero;
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             portero = c.getPortero(cedula);
@@ -85,16 +96,20 @@ public class PorterosDAO implements PorterosDAOInterface {
                 return portero;
         }
         return null;
+        */
     }
 
     @Override
     public Set<Portero> getPorteros()
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+       return CampusDAO.getInstancia().getPorteros();
+        /*
         Set<Portero> porteros = new TreeSet<>(); 
         for(Campus c : CampusDAO.getInstancia().getCampus())
             porteros.addAll(c.getPorteros());
         return porteros;
+        */
     }
 
     @Override
@@ -102,6 +117,9 @@ public class PorterosDAO implements PorterosDAOInterface {
             throws CampusNoExistenteException, IOException, FileNotFoundException,
             ClassNotFoundException, ObjectSizeException
     {
+        return CampusDAO.getInstancia().getPorteros(nombreCampus);
+        /*
         return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPorteros());
+        */
     }
 }
