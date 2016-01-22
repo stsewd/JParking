@@ -42,10 +42,13 @@ public class PuertasDAO implements PuertasDAOInterface {
             throws PuertaYaExistenteException, CampusNoExistenteException, IOException,
             FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        CampusDAO.getInstancia().addPuerta(nombreCampus, puerta);
+        /*
         Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
         if(campus.getPuerta(puerta.getId()) != null)
             throw new PuertaYaExistenteException(puerta.getId());
         campus.addPuerta(puerta.getId(), puerta);
+        */
     }
 
     @Override
@@ -54,13 +57,11 @@ public class PuertasDAO implements PuertasDAOInterface {
             ParqueaderoNoExistenteException, IOException, FileNotFoundException,
             ClassNotFoundException, ObjectSizeException
     {
+        CampusDAO.getInstancia().delPuerta(nombreCampus, idPuerta);
+        /*
         Puerta puerta = getPuerta(nombreCampus, idPuerta);
         if(puerta == null)
             throw new PuertaNoExistenteException(idPuerta);
-        /*******************************
-         * Eliminar dependencias
-         * Eliminar puertas de entrada/salida de todos los parqueaderos del campus
-        ***********************************/
         for(Parqueadero p : ParqueaderosDAO.getInstance().getParqueaderos(nombreCampus)){
             try{
                 ParqueaderosDAO.getInstance().delPuertaEntrada(nombreCampus, p.getId(), idPuerta);
@@ -72,17 +73,21 @@ public class PuertasDAO implements PuertasDAOInterface {
         }
         
         puerta.getCampus().delPuerta(idPuerta);
+        */
     }
 
     @Override
     public Set<Puerta> getPuertas()
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        return CampusDAO.getInstancia().getPuertas();
+        /*
         Set<Puerta> puertas = new TreeSet<>();
         for(Campus c : CampusDAO.getInstancia().getCampus()){
             puertas.addAll(c.getPuertas());
         }
         return puertas;
+        */
     }
 
     @Override
@@ -90,7 +95,10 @@ public class PuertasDAO implements PuertasDAOInterface {
             throws CampusNoExistenteException, IOException, FileNotFoundException,
             ClassNotFoundException, ObjectSizeException
     {
+        return CampusDAO.getInstancia().getPuertas(nombreCampus);
+        /*
         return new TreeSet<>(CampusDAO.getInstancia().getCampus(nombreCampus).getPuertas());
+        */
     }
 
     @Override
@@ -98,11 +106,14 @@ public class PuertasDAO implements PuertasDAOInterface {
             throws PuertaNoExistenteException, CampusNoExistenteException, IOException,
             FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
+        CampusDAO.getInstancia().modPuerta(nombreCampus, id, ubicacion, activa);
+        /*
         Puerta puerta = getPuerta(nombreCampus, id);
         if(puerta == null)
             throw new PuertaNoExistenteException(id);
         puerta.setUbicacion(ubicacion);
         puerta.setActiva(activa);
+        */
     }
 
     @Override
@@ -110,8 +121,11 @@ public class PuertasDAO implements PuertasDAOInterface {
             throws CampusNoExistenteException, IOException, FileNotFoundException,
             ClassNotFoundException, ObjectSizeException
     {
+        return CampusDAO.getInstancia().getPuerta(nombreCampus, id);
+        /*
         Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
         Puerta puerta = campus.getPuerta(id);
         return puerta;
+        */
     }
 }
