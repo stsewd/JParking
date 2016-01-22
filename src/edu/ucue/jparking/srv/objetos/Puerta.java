@@ -15,12 +15,12 @@ public class Puerta implements Comparable<Puerta>, Serializable {
     private String ubicacion;
     private boolean activa;
     
-    private Campus campus;
+    private String nombreCampus;
     
 
     public Puerta(String ubicacion, String id, Campus campus) {
         this.ubicacion = ubicacion;
-        this.campus = campus;
+        this.nombreCampus = campus.getNombre();
         this.activa = true;
         this.id = id;
     }
@@ -49,17 +49,17 @@ public class Puerta implements Comparable<Puerta>, Serializable {
     }
 
     /**
-     * @return the campus
+     * @return the nombreCampus
      */
-    public Campus getCampus() {
-        return campus;
+    public String getCampus() {
+        return nombreCampus;
     }
 
     /**
-     * @param campus the campus to set
+     * @param campus the nombreCampus to set
      */
     public void setCampus(Campus campus) {
-        this.campus = campus;
+        this.nombreCampus = campus.getNombre();
     }
 
     @Override

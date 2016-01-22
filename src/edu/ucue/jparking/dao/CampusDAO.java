@@ -47,7 +47,7 @@ public class CampusDAO implements CampusDAOInterface {
     private static BPTreeMap<String, Campus> mapCampus;
     private static final String dataPath = "data/campus.dat";
     private static final String indiceNombreCampusPath = "data/campus_nombre_index.dat";
-    private static final int objSize = 9999; // Aumentar tamaño luego.
+    private static final int objSize = 9999999;
     
     private CampusDAO()
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
@@ -448,6 +448,7 @@ public class CampusDAO implements CampusDAOInterface {
             throw new PersonaYaRegistradaComoUsuarioException(portero.getCedula());
         }catch (UsuarioNoExistenteException ex){
             campus.addPortero(portero.getCedula(), portero);
+            update(nombreCampus, campus);
         }
     }
 
@@ -458,19 +459,19 @@ public class CampusDAO implements CampusDAOInterface {
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
-        Campus campus = portero.getCampus();
+        Campus campus = getCampus(portero.getCampus());
         campus.delPortero(cedula);
         
         update(campus.getNombre(), campus);
     }
 
     public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException, CampusNoExistenteException
     {
         Portero portero = getPortero(cedula);
         if(portero == null)
             throw new PorteroNoExistenteException(cedula);
-        Campus campus = portero.getCampus();
+        Campus campus = getCampus(portero.getCampus());
         portero.setActivo(activo);
         portero.setApellidos(apellidos);
         portero.setNombres(nombres);

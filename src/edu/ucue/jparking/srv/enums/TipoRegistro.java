@@ -5,11 +5,13 @@
  */
 package edu.ucue.jparking.srv.enums;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Santos Gallegos
  */
-public enum TipoRegistro {
+public enum TipoRegistro implements Serializable {
     ACCESO_PARQUEADERO,
     PERSONA,
     PAGOS;

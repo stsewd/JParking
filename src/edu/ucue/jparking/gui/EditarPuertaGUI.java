@@ -196,7 +196,7 @@ public class EditarPuertaGUI extends javax.swing.JDialog {
         CodigoTF.setText(codigo);
         UbicacionTF.setText(puerta.getUbicacion());
         EstadoCK.setSelected(puerta.estaActiva());
-        CampusTF.setText(puerta.getCampus().getNombre());
+        CampusTF.setText(puerta.getCampus());
         
     }
     private void CodigoTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CodigoTFKeyPressed

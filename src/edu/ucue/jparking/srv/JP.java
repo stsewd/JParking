@@ -289,7 +289,7 @@ public class JP implements JPInterface {
     @Override
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono, boolean estado)
             throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
-            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException, CampusNoExistenteException
     {
         porterosService.modPortero(cedula, nombre, apellido, direccion, telefono, estado);
     }

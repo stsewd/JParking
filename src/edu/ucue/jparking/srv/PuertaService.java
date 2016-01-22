@@ -27,6 +27,10 @@ class PuertaService {
     PuertasDAOInterface puertasDAO = PuertasDAO.getInstance();
     Validaciones validaciones = new Validaciones();
     CampusService campusService;
+
+    public PuertaService() throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
+        campusService = new CampusService();
+    }
     
     public void addpuerta(String ubicacion, String id, String idCampus)
             throws CodigoNoValidoException, PuertaYaExistenteException, CampusNoExistenteException,

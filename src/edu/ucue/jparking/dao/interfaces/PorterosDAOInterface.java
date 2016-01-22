@@ -63,9 +63,11 @@ public interface PorterosDAOInterface {
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
      * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
     public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException;
+            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException,
+            CampusNoExistenteException;
     
     /**
      * Obtiene un portero dado su cedula
