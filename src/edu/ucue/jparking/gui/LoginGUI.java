@@ -158,14 +158,17 @@ public class LoginGUI extends javax.swing.JFrame {
   
     private void iniciar(){
         PrincipalGUI pgui = new PrincipalGUI();
-        try{
-            Test.loadAllTest();
-            pgui.listarUsuarios();
-            pgui.cargarCampusCB();
-            pgui.listarParqueaderos();
-            pgui.listarParqueaderos();
-        } catch (Exception ex){
-            System.out.println(ex);
+        boolean cargarTest = false;
+        if(cargarTest){
+            try{
+                Test.loadAllTest();
+                pgui.listarUsuarios();
+                pgui.cargarCampusCB();
+                pgui.listarParqueaderos();
+                pgui.listarParqueaderos();
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
         }
         pgui.setVisible(true);
     }
