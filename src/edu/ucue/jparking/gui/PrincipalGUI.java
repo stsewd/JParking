@@ -66,20 +66,37 @@ public class PrincipalGUI extends javax.swing.JFrame {
             //Listar usuarios en tabla
             listarUsuarios();
         } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         //Cargar campus en combobox
-        cargarCampusCB();
+        try{
+            cargarCampusCB();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ObjectSizeException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
+        
         try {
             listarParqueaderos();
         } catch (CampusNoExistenteException | IllegalArgumentException  ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ObjectSizeException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
         
         //Centrar ventana
         setLocationRelativeTo(null);
     }
     
-    public void cargarCampusCB(){
+    public void cargarCampusCB() throws IOException, ClassNotFoundException, ObjectSizeException{
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         for(Campus c : jp.getCampus()){
@@ -120,7 +137,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             model.addRow(new Object[]{n++, u.getCedula(), u.getApellidos()+ " " + u.getNombres()});
     }
     
-    public void listarParqueaderos() throws CampusNoExistenteException{
+    public void listarParqueaderos() throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
         DefaultTableModel model = (DefaultTableModel) TablaParqueaderos.getModel();
@@ -212,6 +229,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         CopiaSeguridadItem = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
         AcercaDeMenuItem = new javax.swing.JMenuItem();
 
@@ -725,6 +743,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
+        jMenuItem2.setText("Cambiar contraseña");
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         AyudaMenu.setMnemonic('y');
@@ -868,6 +889,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
             listarParqueaderos();
         } catch (CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ObjectSizeException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_CampusCBActionPerformed
 
@@ -893,7 +920,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado paso.", "Mensaje", JOptionPane.OK_OPTION);
         }
         
-        cargarCampusCB();
+        try{
+            cargarCampusCB();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ObjectSizeException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_EliminarCampusMenuItemActionPerformed
 
     private void ModicarCampusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModicarCampusMenuItemActionPerformed
@@ -1357,6 +1392,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
