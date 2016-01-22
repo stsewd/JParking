@@ -19,7 +19,7 @@ import javax.crypto.NoSuchPaddingException;
  *
  * @author Santos Gallegos
  */
-public class Utilidades {
+class Utilidades {
     private static ClaveService claveService = new ClaveService();
     
     public static void iniciarDefaultDirectorios()
@@ -33,15 +33,9 @@ public class Utilidades {
         direc.mkdirs();
         backup.mkdirs();
         
-        ObjectOutputStream salidaObjetostClave = null;
-        try {
-            salidaObjetostClave  = new ObjectOutputStream(new FileOutputStream(new File(direc,"celebrum.dat")));
-            //guardar clave encriptada
-            claveService.GenerarClave();
-            //guarda la clave por defecto
-            claveService.cifrar("admin");
-        } finally {
-                salidaObjetostClave.close();
-        }
+        //guardar clave encriptada
+        claveService.GenerarClave();
+        //guarda la clave por defecto
+        claveService.cifrar("admin");
     }
 }

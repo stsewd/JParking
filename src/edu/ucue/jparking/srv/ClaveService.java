@@ -84,5 +84,17 @@ class ClaveService {
         if(!Arrays.equals(encriptado, recuperada) || !usuario.equals("Administrador"))
             throw new ClaveNoValidaException();
         return true;
-    } 
+    }
+    
+    public void cambiarClave(String usuario, String claveActual, String nuevaClave)
+            throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
+            ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException, ClaveNoValidaException
+    {
+        validarClave(usuario, claveActual);
+        
+        GenerarClave();
+        
+        cifrar(nuevaClave);
+    }
 }

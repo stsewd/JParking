@@ -750,13 +750,6 @@ public interface JPInterface {
     public void makeZip(String fileName) throws IOException, FileNotFoundException;
     
     /**
-     * genera la clave para el algoritmos de AES
-     * @throws NoSuchAlgorithmException
-     * @throws Exception 
-     */
-    public void GenerarClave() throws NoSuchAlgorithmException, Exception;
-    
-    /**
      * cifra la clave ecojida por el usuario
      * @param clave
      * @throws Exception 
@@ -779,4 +772,24 @@ public interface JPInterface {
      * @throws IOException 
      */
     public void unZipFiles(File zipfile, String descDir) throws IOException;
+    
+    /**
+     * Cambia la contraseña actual por una nueva dada por el usuario.
+     * @param usuario
+     * @param claveActual
+     * @param nuevaClave
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchPaddingException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws InvalidKeyException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     * @throws ClaveNoValidaException 
+     */
+    public void cambiarClave(String usuario, String claveActual, String nuevaClave)
+            throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
+            ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException, ClaveNoValidaException;
+    
 }

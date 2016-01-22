@@ -520,11 +520,6 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void GenerarClave() throws NoSuchAlgorithmException, Exception {
-        claveService.GenerarClave();
-    }
-
-    @Override
     public void cifrar(String clave)
             throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
             ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
@@ -545,5 +540,14 @@ public class JP implements JPInterface {
     @Override
     public void unZipFiles(File zipfile, String descDir) throws IOException {
         backupService.unZipFiles(zipfile, descDir);
+    }
+
+    @Override
+    public void cambiarClave(String usuario, String claveActual, String nuevaClave)
+            throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
+            ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException, ClaveNoValidaException
+    {
+        claveService.cambiarClave(usuario, claveActual, nuevaClave);
     }
 }

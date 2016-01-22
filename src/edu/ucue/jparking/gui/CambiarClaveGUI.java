@@ -5,12 +5,27 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.srv.JP;
+import edu.ucue.jparking.srv.JPInterface;
+import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stsewd
  */
 public class CambiarClaveGUI extends javax.swing.JDialog {
-
+    
+    JPInterface jp = JP.getInstance();
+    
     /**
      * Creates new form CambiarClaveGUI
      */
@@ -94,7 +109,7 @@ public class CambiarClaveGUI extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(claveNuevaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -112,7 +127,32 @@ public class CambiarClaveGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void cambiarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarBtnActionPerformed
-        // TODO add your handling code here:
+        char[] claveActualChar = claveActualTF.getPassword();
+        char[] claveNuevaChar = claveNuevaTF.getPassword();
+        
+        String claveActual = new String(claveActualChar);
+        String claveNueva = new String(claveNuevaChar);
+        
+        try {
+            jp.cambiarClave("Administrador", claveActual, claveNueva);
+            JOptionPane.showMessageDialog(rootPane, "Contraseña cambiada exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (NoSuchAlgorithmException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (NoSuchPaddingException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (InvalidKeyException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (IllegalBlockSizeException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (BadPaddingException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (ClaveNoValidaException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_cambiarBtnActionPerformed
 
     /**
