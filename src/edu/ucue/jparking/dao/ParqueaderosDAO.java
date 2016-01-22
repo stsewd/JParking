@@ -47,7 +47,8 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
     {
         if(getParqueadero(nombreCampus, parqueadero.getId()) != null)
             throw new ParqueaderoYaExistenteException(parqueadero.getId());
-        CampusDAO.getInstancia().getCampus(nombreCampus).addParqueadero(parqueadero.getId(), parqueadero);
+        Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
+        campus.addParqueadero(parqueadero.getId(), parqueadero);
     }
 
     @Override
@@ -63,10 +64,11 @@ public class ParqueaderosDAO implements ParqueaderosDAOInterface {
          * Eliminar parqueadero de todos los usuarios de este parqueadero.
          */
         for(Usuario usuario : getUsuarios(nombreCampus, idParqueadero)){
-            ParqueaderosDAO.getInstance().delUsuario(nombreCampus, idParqueadero, usuario.getCedula());
+            delUsuario(nombreCampus, idParqueadero, usuario.getCedula());
         }
         
-        CampusDAO.getInstancia().getCampus(nombreCampus).delParqueadero(idParqueadero);
+        Campus campus = CampusDAO.getInstancia().getCampus(nombreCampus);
+        campus.delParqueadero(idParqueadero);
     }
 
     @Override

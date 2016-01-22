@@ -9,13 +9,26 @@ import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
+import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
+import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaAgregadaException;
+import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoAgregadoException;
 import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
+import edu.ucue.jparking.dao.excepciones.UsuarioYaAgregadoException;
 import edu.ucue.jparking.dao.interfaces.CampusDAOInterface;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
+import edu.ucue.jparking.srv.objetos.Portero;
+import edu.ucue.jparking.srv.objetos.Puerta;
+import edu.ucue.jparking.srv.objetos.Usuario;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -99,7 +112,7 @@ public class CampusDAO implements CampusDAOInterface {
     @Override
     public void modCampus(String nombre, String ubicacion, boolean estado)
             throws CampusNoExistenteException, IOException, FileNotFoundException,
-            ClassNotFoundException
+            ClassNotFoundException, ObjectSizeException
     {
         if (mapCampus.get(nombre) == null) {
             throw new CampusNoExistenteException(nombre);
@@ -107,12 +120,367 @@ public class CampusDAO implements CampusDAOInterface {
         Campus cam = mapCampus.get(nombre);
         cam.setDireccion(ubicacion);
         cam.setActivo(estado);
+        
+        mapCampus.update(nombre, cam);
     }
 
     @Override
     public Set<Campus> getCampus()
             throws IOException, FileNotFoundException, ClassNotFoundException
     {
-        return new TreeSet<>(mapCampus.values());
+        return new LinkedHashSet<>(mapCampus.values());
+    }
+
+    @Override
+    public void update(String nomrbreCampus, Campus campus)
+            throws IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException
+    {
+        mapCampus.update(nomrbreCampus, campus);
+    }
+    
+    // Parqueaderos
+    
+    public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException
+    {
+        Campus campus = getCampus(nombreCampus);
+        if(campus == null)
+            throw new CampusNoExistenteException(nombreCampus);
+        return campus.getParqueadero(idParqueadero);
+    }
+    
+    public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        return new TreeSet<>(parqueadero.getUsuarios());
+    }
+    
+    public void delUsuarioParqueadero(String nombreCampus, String idParqueadero, String cedula)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException,
+            UsuarioNoExistenteException, CampusNoExistenteException, UsuarioNoAgregadoException
+    {
+        Campus campus = getCampus(nombreCampus);
+        UsuariosDAO.getInstance().getUsuario(cedula);
+        Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
+        if(parqueadero.getUsuario(cedula) == null)
+            throw new UsuarioNoAgregadoException(cedula);
+
+        parqueadero.delUsuario(cedula);
+        update(nombreCampus, campus);
+
+        // campus.addParqueadero(idParqueadero, parqueadero);
+        UsuariosDAO.getInstance().delParqueadero(cedula, nombreCampus, idParqueadero);
+    }
+    
+    public void addParqueadero(String nombreCampus, Parqueadero parqueadero)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ParqueaderoYaExistenteException, ObjectSizeException
+    {
+        if(getParqueadero(nombreCampus, parqueadero.getId()) != null)
+            throw new ParqueaderoYaExistenteException(parqueadero.getId());
+        Campus campus = getCampus(nombreCampus);
+        campus.addParqueadero(parqueadero.getId(), parqueadero);
+        
+        update(nombreCampus, campus);
+    }
+    
+    public void delParqueadero(String nombreCampus, String idParqueadero)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ParqueaderoNoExistenteException, ObjectSizeException,
+            UsuarioNoExistenteException, UsuarioNoAgregadoException
+    {
+        if(getParqueadero(nombreCampus, idParqueadero) == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        /*
+         *  Eliminar dependencias
+         * Eliminar parqueadero de todos los usuarios de este parqueadero.
+         */
+        for(Usuario usuario : getUsuariosParqueadero(nombreCampus, idParqueadero))
+            delUsuarioParqueadero(nombreCampus, idParqueadero, usuario.getCedula());
+        
+        Campus campus = getCampus(nombreCampus);
+        campus.delParqueadero(idParqueadero);
+        
+        update(nombreCampus, campus);
+    }
+    
+    public Set<Parqueadero> getParqueaderos()
+            throws IOException, FileNotFoundException, ClassNotFoundException
+    {
+        Set<Parqueadero> parqueaderos = new TreeSet<>();
+        for(Campus c : getCampus())
+            parqueaderos.addAll(c.getParqueaderos());
+        return parqueaderos;
+    }
+    
+    public Set<Parqueadero> getParqueaderos(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException
+    {
+        return new TreeSet<>(getCampus(nombreCampus).getParqueaderos());
+    }
+    
+    public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares, boolean estado)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        parqueadero.setUbicacion(ubicacion);
+        parqueadero.setNumeroLugares(numLugares);
+        parqueadero.setActivo(estado);
+        
+        Campus campus = getCampus(nombreCampus);
+        update(nombreCampus, campus);
+    }
+
+    public void addPuertaEntradaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
+            throws PuertaYaAgregadaException, PuertaNoExistenteException, CampusNoExistenteException,
+            IOException, FileNotFoundException, ClassNotFoundException, ParqueaderoNoExistenteException, ObjectSizeException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        Puerta puerta = getPuerta(nombreCampus, idPuerta);
+        if(puerta == null)
+            throw new PuertaNoExistenteException(idPuerta);
+        if(parqueadero.getPuertaEntrada(idPuerta) != null)
+            throw new PuertaYaAgregadaException(idPuerta);
+        parqueadero.addPuertaEntrada(idPuerta, puerta);
+        
+        Campus campus = getCampus(nombreCampus);
+        update(nombreCampus, campus);
+    }
+    
+    public void addPuertaSalidaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
+            throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException,
+            ParqueaderoNoExistenteException, PuertaNoExistenteException, PuertaYaAgregadaException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        Puerta puerta = getPuerta(nombreCampus, idPuerta);
+        if(puerta == null)
+            throw new PuertaNoExistenteException(idPuerta);
+        if(parqueadero.getPuertaSalida(idPuerta) != null)
+            throw new PuertaYaAgregadaException(idPuerta);
+        parqueadero.addPuertaSalida(idPuerta, puerta);
+    }
+    
+    public void delPuertaEntradaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ParqueaderoNoExistenteException, PuertaNoExistenteException,
+            PuertaNoAgregadaException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        if(getPuerta(nombreCampus, idPuerta) == null)
+            throw new PuertaNoExistenteException(idPuerta);
+        if(parqueadero.getPuertaEntrada(idPuerta) == null)
+            throw new PuertaNoAgregadaException(idPuerta);
+        parqueadero.delPuertaEntrada(idPuerta);
+    }
+    
+    public void delPuertaSalidaParqueadero(String nombreCampus, String idParqueadero, String idPuerta)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, PuertaNoExistenteException,
+            PuertaNoAgregadaException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        if(getPuerta(nombreCampus, idPuerta) == null)
+            throw new PuertaNoExistenteException(idPuerta);
+        if(parqueadero.getPuertaSalida(idPuerta) == null)
+            throw new PuertaNoAgregadaException(idPuerta);
+        parqueadero.delPuertaSalida(idPuerta);
+    }
+    
+    public void addUsuarioParqueadero(String nombreCampus, String idParqueadero, String cedula)
+            throws ParqueaderoNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException,
+            UsuarioNoExistenteException, UsuarioYaAgregadoException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        
+        Usuario usuario = UsuariosDAO.getInstance().getUsuario(cedula);
+        
+        if(parqueadero.getUsuario(cedula) != null)
+            throw new UsuarioYaAgregadoException(cedula);
+        
+        parqueadero.addUsuario(cedula, usuario);
+        UsuariosDAO.getInstance().addPaqueadero(cedula, nombreCampus, idParqueadero);
+    }
+    
+    public Set<Puerta> getPuertasEntradaParqueadero(String nombreCampus, String idParqueadero)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ParqueaderoNoExistenteException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        return new TreeSet<>(parqueadero.getPuertasEntrada());
+    }
+
+    public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ParqueaderoNoExistenteException
+    {
+        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
+        if(parqueadero == null)
+            throw new ParqueaderoNoExistenteException(idParqueadero);
+        return new TreeSet<>(parqueadero.getPuertasSalida());
+    }
+    
+
+    // Puertas
+    
+    private Puerta getPuerta(String nombreCampus, String idPuerta)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException
+    {
+        Campus campus = getCampus(nombreCampus);
+        Puerta puerta = campus.getPuerta(idPuerta);
+        return puerta;
+    }
+    
+    public Set<Puerta> getPuertas(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
+        return new TreeSet<>(getCampus(nombreCampus).getPuertas());
+    }
+
+    public Set<Puerta> getPuertas()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Set<Puerta> puertas = new TreeSet<>();
+        for(Campus c : getCampus()){
+            puertas.addAll(c.getPuertas());
+        }
+        return puertas;
+    }
+    
+    public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activa)
+            throws PuertaNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Puerta puerta = getPuerta(nombreCampus, id);
+        if(puerta == null)
+            throw new PuertaNoExistenteException(id);
+        puerta.setUbicacion(ubicacion);
+        puerta.setActiva(activa);
+    }
+    
+    public void addPuerta(String nombreCampus, Puerta puerta)
+            throws PuertaYaExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Campus campus = getCampus(nombreCampus);
+        if(campus.getPuerta(puerta.getId()) != null)
+            throw new PuertaYaExistenteException(puerta.getId());
+        campus.addPuerta(puerta.getId(), puerta);
+    }
+    
+    public void delPuerta(String nombreCampus, String idPuerta)
+            throws PuertaNoExistenteException, CampusNoExistenteException,
+            ParqueaderoNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
+        Puerta puerta = getPuerta(nombreCampus, idPuerta);
+        if(puerta == null)
+            throw new PuertaNoExistenteException(idPuerta);
+        /*******************************
+         * Eliminar dependencias
+         * Eliminar puertas de entrada/salida de todos los parqueaderos del campus
+        ***********************************/
+        for(Parqueadero p : getParqueaderos(nombreCampus)){
+            try{
+                delPuertaEntradaParqueadero(nombreCampus, p.getId(), idPuerta);
+            }catch (PuertaNoAgregadaException ex){}
+            
+            try{
+                delPuertaSalidaParqueadero(nombreCampus, p.getId(), idPuerta);
+            }catch (PuertaNoAgregadaException ex){}
+        }
+        
+        puerta.getCampus().delPuerta(idPuerta);
+    }
+    
+    // Porteros
+    public void addPortero(String nombreCampus, Portero portero)
+            throws CampusNoExistenteException, PorteroYaExistenteException, PersonaYaRegistradaComoUsuarioException,
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException 
+    {
+        if(getPortero(portero.getCedula()) != null)
+            throw new PorteroYaExistenteException(portero.getCedula());
+        try{
+            UsuariosDAO.getInstance().getUsuario(portero.getCedula());
+            throw new PersonaYaRegistradaComoUsuarioException(portero.getCedula());
+        }catch (UsuarioNoExistenteException ex){
+            getCampus(nombreCampus).addPortero(portero.getCedula(), portero);
+        }
+    }
+
+    public void delPortero(String cedula)
+            throws PorteroNoExistenteException, CampusNoExistenteException, IOException,
+            FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        
+        Portero portero = getPortero(cedula);
+        if(portero == null)
+            throw new PorteroNoExistenteException(cedula);
+        portero.getCampus().delPortero(cedula);
+    }
+
+    public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
+            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Portero portero = getPortero(cedula);
+        if(portero == null)
+            throw new PorteroNoExistenteException(cedula);
+        portero.setActivo(activo);
+        portero.setApellidos(apellidos);
+        portero.setNombres(nombres);
+        portero.setDireccion(direccion);
+        portero.setTelefono(telefono);
+    }
+
+    public Portero getPortero(String cedula)
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Portero portero;
+        for(Campus c : getCampus()){
+            portero = c.getPortero(cedula);
+            if(portero != null)
+                return portero;
+        }
+        return null;
+    }
+
+    public Set<Portero> getPorteros()
+            throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+    {
+        Set<Portero> porteros = new TreeSet<>(); 
+        for(Campus c : CampusDAO.getInstancia().getCampus())
+            porteros.addAll(c.getPorteros());
+        return porteros;
+    }
+
+    public Set<Portero> getPorteros(String nombreCampus)
+            throws CampusNoExistenteException, IOException, FileNotFoundException,
+            ClassNotFoundException, ObjectSizeException
+    {
+        return new TreeSet<>(getCampus(nombreCampus).getPorteros());
     }
 }
