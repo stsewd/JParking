@@ -6,32 +6,11 @@
 package edu.ucue.jparking.gui;
 
 import edu.ucue.jparking.Test;
-import edu.ucue.jparking.dao.bptree.ObjectSizeException;
-import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
-import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.ParqueaderoYaExistenteException;
-import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradaComoUsuarioException;
-import edu.ucue.jparking.dao.excepciones.PersonaYaRegistradoComoPorteroException;
-import edu.ucue.jparking.dao.excepciones.PorteroYaExistenteException;
-import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.PuertaYaExistenteException;
-import edu.ucue.jparking.dao.excepciones.UsuarioNoExistenteException;
-import edu.ucue.jparking.dao.excepciones.UsuarioYaExistenteException;
 import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.srv.JP;
-import edu.ucue.jparking.srv.excepciones.CampusInactivoException;
-import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
-import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
-import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
-import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
-import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -179,75 +158,18 @@ public class LoginGUI extends javax.swing.JFrame {
   
     private void iniciar(){
         PrincipalGUI pgui = new PrincipalGUI();
-        //Inicio de tests
-        try {
-            Test.cargarUsuarios();
-            pgui.listarUsuarios();
-        }catch (UsuarioYaExistenteException | CedulaNoValidaException | TelefonoNoValidoException | PersonaYaRegistradoComoPorteroException | UsuarioNoExistenteException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        } catch (ObjectSizeException ex) {
-            System.out.println(ex.getMessage());
-        } catch(Exception ex){
-            System.out.println("usuarios  ");
+        boolean cargarTest = false;
+        if(cargarTest){
+            try{
+                Test.loadAllTest();
+                pgui.listarUsuarios();
+                pgui.cargarCampusCB();
+                pgui.listarParqueaderos();
+                pgui.listarParqueaderos();
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
         }
-        
-        try {
-            Test.cargarCampus();
-            pgui.cargarCampusCB();
-        }catch (CampusExistenteExeption ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
-            System.out.println(ex.getMessage());
-        } catch(Exception cargarCampus){
-            
-        }
-        
-        try {
-            Test.cargarParqueaderos(35);
-            pgui.listarParqueaderos();
-        }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
-            System.out.println(ex.getMessage());
-        } catch ( Exception ex){
-            System.out.println("cargar y listar parqueaderos");
-        }
-        
-        try {
-            Test.cargarPorteros();
-        }catch (CedulaNoValidaException | CampusNoExistenteException | PorteroYaExistenteException | TelefonoNoValidoException | PersonaYaRegistradaComoUsuarioException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
-        }
-        
-        try {
-            Test.cargarPuertas(35);
-        }catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        /*
-        try {
-            Test.cargarUsuariosParqueaderos();
-            pgui.listarParqueaderos();
-        } catch (CedulaNoValidaException | CodigoNoValidoException | ParqueaderoNoExistenteException | UsuarioNoExistenteException | ParquaderoInactivoException | NumeroParqueaderosNoDisponiblesException | UsuarioInactivoException | CampusNoExistenteException ex) {
-            System.out.println(ex.getMessage());
-        }
-        */
-        try {
-            Test.cargarPuertasParqueaderos();
-        } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
-            System.out.println(ex.getMessage());
-        }
-        // Fin de tests
         pgui.setVisible(true);
     }
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed

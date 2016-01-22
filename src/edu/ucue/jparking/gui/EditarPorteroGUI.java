@@ -268,7 +268,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         DireccionTF2.setText(portero.getDireccion());
         TelefonoTF.setText(portero.getTelefono());
         EstadoCK.setSelected(portero.isActivo());
-        CampusTF.setText(portero.getCampus().getNombre());
+        CampusTF.setText(portero.getCampus());
     }
     
     public void CargarCampus(String campus){

@@ -68,7 +68,7 @@ public class PorterosDAO implements PorterosDAOInterface {
 
     @Override
     public void modPortero(String cedula, String nombres, String apellidos, String direccion, String telefono, boolean activo)
-            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
+            throws PorteroNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException, CampusNoExistenteException
     {
         CampusDAO.getInstancia().modPortero(cedula, nombres, apellidos, direccion, telefono, activo);
         /*

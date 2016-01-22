@@ -78,7 +78,7 @@ class Validaciones {
         PuertaService service = new PuertaService();
         ParqueaderoService parqueaderoService = new ParqueaderoService();
         Parqueadero parqueadero = parqueaderoService.getParqueadero(nombreCampus, idParqueadero);
-        Puerta puerta = service.getPuerta(parqueadero.getCampus().getNombre(), idPuerta);
+        Puerta puerta = service.getPuerta(parqueadero.getCampus(), idPuerta);
         if(puerta==null)
             throw new PuertaNoExistenteException(idPuerta);
         if(puerta.estaActiva()==false)

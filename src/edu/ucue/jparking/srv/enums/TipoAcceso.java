@@ -5,11 +5,13 @@
  */
 package edu.ucue.jparking.srv.enums;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Santos Gallegos
  */
-public enum TipoAcceso {
+public enum TipoAcceso implements Serializable {
     ENTRADA,
     SALIDA,
     ACCESO;

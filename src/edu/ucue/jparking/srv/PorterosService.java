@@ -52,7 +52,7 @@ class PorterosService {
     }
     
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
-            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+            throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException, CampusNoExistenteException{
         registroService = new RegistroService();
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);

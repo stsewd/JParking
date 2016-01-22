@@ -109,6 +109,10 @@ public interface JPInterface {
      * @throws ParqueaderoNoExistenteException
      * @throws UsuarioNoExistenteException
      * @throws UsuarioNoAgregadoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delCampus(String nombre)
             throws CampusNoExistenteException, ParqueaderoNoExistenteException,
@@ -419,7 +423,7 @@ public interface JPInterface {
      */
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
             throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
-            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
+            IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException, CampusNoExistenteException;
     
     /**
      * elimina un portero
