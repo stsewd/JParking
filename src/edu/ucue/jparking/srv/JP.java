@@ -119,7 +119,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void modCampus(String nombre, String direccion, boolean estado) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException {
+    public void modCampus(String nombre, String direccion, boolean estado) throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         campusService.modCampus(nombre, direccion, estado);
     }
 
