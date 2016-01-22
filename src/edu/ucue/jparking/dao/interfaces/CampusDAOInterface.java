@@ -95,8 +95,23 @@ public interface CampusDAOInterface {
     public Set<Campus> getCampus()
             throws IOException, FileNotFoundException, ClassNotFoundException;
     
+<<<<<<< HEAD
     public void update(String nomrbreCampus, Campus campus)
             throws IOException, FileNotFoundException, ClassNotFoundException,
             ObjectSizeException;
     
+=======
+    /**
+     * actualiza el mao de campus
+     * @param nomrbreCampus
+     * @param campus
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ClassNotFoundException
+     * @throws ObjectSizeException 
+     */
+    public void update(String nomrbreCampus, Campus campus)
+            throws IOException, FileNotFoundException, ClassNotFoundException,
+            ObjectSizeException;
+>>>>>>> origin/master
 }

@@ -26,9 +26,12 @@ import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -188,6 +191,8 @@ public class LoginGUI extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         } catch (ObjectSizeException ex) {
             System.out.println(ex.getMessage());
+        } catch(Exception ex){
+            System.out.println("usuarios  ");
         }
         
         try {
@@ -195,6 +200,10 @@ public class LoginGUI extends javax.swing.JFrame {
             pgui.cargarCampusCB();
         }catch (CampusExistenteExeption ex) {
             System.out.println(ex.getMessage());
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+            System.out.println(ex.getMessage());
+        } catch(Exception cargarCampus){
+            
         }
         
         try {
@@ -202,7 +211,11 @@ public class LoginGUI extends javax.swing.JFrame {
             pgui.listarParqueaderos();
         }catch (ParqueaderoYaExistenteException | CampusInactivoException | CampusNoExistenteException | CodigoNoValidoException ex) {
             System.out.println(ex.getMessage());
-        } 
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+            System.out.println(ex.getMessage());
+        } catch ( Exception ex){
+            System.out.println("cargar y listar parqueaderos");
+        }
         
         try {
             Test.cargarPorteros();
@@ -214,6 +227,8 @@ public class LoginGUI extends javax.swing.JFrame {
         try {
             Test.cargarPuertas(35);
         }catch (CodigoNoValidoException | PuertaYaExistenteException | CampusNoExistenteException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
             System.out.println(ex.getMessage());
         }
         
@@ -228,6 +243,8 @@ public class LoginGUI extends javax.swing.JFrame {
         try {
             Test.cargarPuertasParqueaderos();
         } catch (CampusInactivoException | CampusNoExistenteException | ParqueaderoNoExistenteException | PuertaNoExistenteException | CodigoNoValidoException | ParquaderoInactivoException | PuertaYaExistenteException | PuertaInactivaException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
             System.out.println(ex.getMessage());
         }
         // Fin de tests
@@ -248,10 +265,10 @@ public class LoginGUI extends javax.swing.JFrame {
         }catch(NoSuchAlgorithmException| NoSuchPaddingException| IOException| ClassNotFoundException| InvalidKeyException| IllegalBlockSizeException| BadPaddingException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             ContraseTF.setText("");
-        } catch (Exception ex) {
+        }/*catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado sucedio.", "Error", JOptionPane.OK_OPTION);
             ContraseTF.setText("");
-        }
+        }*/
     }//GEN-LAST:event_IniciarBtnActionPerformed
 
     private void ContraseTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseTFActionPerformed

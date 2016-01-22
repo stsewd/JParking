@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
@@ -17,6 +18,10 @@ import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.excepciones.ParquaderoInactivoException;
 import edu.ucue.jparking.srv.excepciones.PuertaInactivaException;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -157,7 +162,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarPuertasCB() throws CampusNoExistenteException {
+    private void cargarPuertasCB() throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException {
         //Cargar parqueaderos en combo box
         UbicacionCB.removeAllItems();
         idPuertaCB.removeAllItems();
@@ -176,6 +181,7 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             cargarPuertasCB();
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }
     
@@ -204,7 +210,9 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | CampusInactivoException | PuertaYaExistenteException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-            }catch(Exception ex){
+            }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
             }
         }else{
@@ -214,6 +222,8 @@ public class AgregarPuertaAccesoGUI extends javax.swing.JDialog {
                 this.setVisible(false);
             } catch (ParqueaderoNoExistenteException | CampusInactivoException | IllegalArgumentException | PuertaNoExistenteException | PuertaYaAgregadaException | CodigoNoValidoException | ParquaderoInactivoException | CampusNoExistenteException | PuertaInactivaException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+            }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
             }

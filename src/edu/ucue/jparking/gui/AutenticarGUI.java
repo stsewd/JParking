@@ -20,6 +20,10 @@ import edu.ucue.jparking.srv.excepciones.UsuarioInactivoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,7 +41,11 @@ public class AutenticarGUI extends javax.swing.JDialog {
         initComponents();
         PuertasCB.setEditable(false);
         CedulaTF.setEditable(false);
-        cargarCampusCB();
+        try {
+            cargarCampusCB();
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        } catch (IOException ex) {
+        }
         idPuertaCB.setVisible(false);
         CedulaTF.requestFocus();
         this.getRootPane().setDefaultButton(AutenticarBtn);
@@ -65,7 +73,6 @@ public class AutenticarGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Autenticar Acceso");
-        setPreferredSize(new java.awt.Dimension(300, 174));
         setResizable(false);
 
         jLabel1.setText("Campus:");
@@ -82,6 +89,12 @@ public class AutenticarGUI extends javax.swing.JDialog {
         CampusCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampusCBActionPerformed(evt);
+            }
+        });
+
+        PuertasCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PuertasCBActionPerformed(evt);
             }
         });
 
@@ -204,6 +217,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
             // TODO addRegistro your handling code here:
             cargarPuertasCB();
         } catch (IllegalArgumentException | CampusNoExistenteException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
         CedulaTF.setEditable(true);
     }//GEN-LAST:event_CampusCBItemStateChanged
@@ -214,6 +228,10 @@ public class AutenticarGUI extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_CedulaTFKeyTyped
+
+    private void PuertasCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PuertasCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PuertasCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,7 +289,7 @@ public class AutenticarGUI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 
-    public void cargarCampusCB(){
+    public void cargarCampusCB() throws IOException, ClassNotFoundException, ObjectSizeException{
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         for(Campus c : jp.getCampus()){
@@ -279,12 +297,13 @@ public class AutenticarGUI extends javax.swing.JDialog {
         }
     }
 
-    public void cargarPuertasCB() throws CampusNoExistenteException{
+    public void cargarPuertasCB() throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
         //Cargar parqueaderos en combo box
         PuertasCB.removeAllItems();
         idPuertaCB.removeAllItems();
         String campus = (String) CampusCB.getSelectedItem();
-        for(Puerta c : jp.getPuertas(campus)){
+        for (Iterator<Puerta> it = jp.getPuertas(campus).iterator(); it.hasNext();) {
+            Puerta c = it.next();
             PuertasCB.addItem("(" + c.getId() + ") " + c.getUbicacion());
             idPuertaCB.addItem(c.getId());
         }

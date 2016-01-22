@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PorteroNoExistenteException;
 import edu.ucue.jparking.srv.JP;
@@ -13,6 +14,8 @@ import edu.ucue.jparking.srv.excepciones.CedulaNoValidaException;
 import edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Portero;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -257,7 +260,7 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
         //CampusTF.setEditable(false);
     }
     
-    public void CargarDatos(String cedula) throws CedulaNoValidaException{
+    public void CargarDatos(String cedula) throws CedulaNoValidaException, IOException, ClassNotFoundException, ObjectSizeException{
         Portero portero = jp.getPortero(cedula);
         CedulaTF1.setText(cedula);
         NombresTF.setText(portero.getNombres());
@@ -309,6 +312,8 @@ public class EditarPorteroGUI extends javax.swing.JDialog {
             
         } catch (CedulaNoValidaException | PorteroNoExistenteException | IllegalArgumentException | TelefonoNoValidoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }

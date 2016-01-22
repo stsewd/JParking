@@ -224,6 +224,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         try {
             listarUsuarios();
         } catch (CodigoNoValidoException | CampusNoExistenteException |IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_AgregarBtnActionPerformed
 
@@ -252,6 +253,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         try {
             listarUsuarios();
         } catch (CodigoNoValidoException | CampusNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | UsuarioNoExistenteException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed
 
@@ -261,6 +263,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         try {
             getPadre().listarParqueaderos();
         } catch (CampusNoExistenteException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
         try {
             getPadre().listarUsuarios();
@@ -271,7 +274,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
 
     public void CargarDatos(String campus, String idParqueadero) 
             throws ParqueaderoNoExistenteException, CodigoNoValidoException,
-            CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException{
+            CampusNoExistenteException, CampusInactivoException, ParquaderoInactivoException, IOException, ClassNotFoundException, ObjectSizeException{
         Parqueadero parqueadero =  jp.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);
@@ -286,7 +289,7 @@ public class AdministrarUsuariosParqueaderoGUI extends javax.swing.JDialog {
         }
     }
     
-    private void listarUsuarios() throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException{
+    private void listarUsuarios() throws CodigoNoValidoException, ParqueaderoNoExistenteException, UsuarioNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
 
         Set<Usuario> usuarios = jp.getUsuariosParqueadero(CampusTF.getText(), idParqueaderoLbl.getText());
         
