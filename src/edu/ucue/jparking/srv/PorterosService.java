@@ -41,6 +41,7 @@ class PorterosService {
             PorteroYaExistenteException, TelefonoNoValidoException,
             PersonaYaRegistradaComoUsuarioException, IOException, ClassNotFoundException, ObjectSizeException
     {
+        registroService = new RegistroService();
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido, direccion, telefono);
         Campus campus = campusService.getCampus(nombreCampus);
@@ -52,6 +53,7 @@ class PorterosService {
     
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
             throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registroService = new RegistroService();
         validar.validarCedula(cedula);
         validar.ValidarDatos(cedula, nombre, apellido,direccion,telefono);
         porterosDAO.modPortero(cedula, nombre, apellido,direccion,telefono, estado);
@@ -61,6 +63,7 @@ class PorterosService {
     
     public void delPortero(String cedula) 
             throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException{
+        registroService = new RegistroService();
         validar.validarCedula(cedula);
         //Registro
         registroService.add(getPortero(cedula).getRegistro(TipoModificacion.ELIMINACION));

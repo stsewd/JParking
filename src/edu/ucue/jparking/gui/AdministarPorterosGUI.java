@@ -15,8 +15,11 @@ import edu.ucue.jparking.srv.objetos.Portero;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,13 +38,17 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        //carga el CampusCB
-        cargarCampusCB();
+        try {
+            //carga el CampusCB
+            cargarCampusCB();
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+        }
 
         try {
             //Lista porteros
             listarPorteros();
-        } catch (CampusNoExistenteException ex) {}       
+        } catch (CampusNoExistenteException ex) {} catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+        }       
     }
 
     /**
@@ -267,7 +274,8 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         try {
             listarPorteros();
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
-        } catch (Exception ex){
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch (Exception ex){
                        
         }
     }//GEN-LAST:event_CampusCBActionPerformed
@@ -286,7 +294,8 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         try {
             listarPorteros();
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
-        } catch (Exception ex){
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch (Exception ex){
                        
         }
     }//GEN-LAST:event_CrearPorteroBtnActionPerformed
@@ -318,6 +327,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             
         } catch (CedulaNoValidaException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó", "Mensaje", JOptionPane.OK_OPTION);
         }
@@ -325,8 +335,8 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         try {
             listarPorteros();
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_ModificarPorteroBtnActionPerformed
 
@@ -346,6 +356,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
         try {
             listarPorteros();
         } catch (CampusNoExistenteException | IllegalArgumentException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_EliminarPorterobtnActionPerformed
 
@@ -354,6 +365,7 @@ public class AdministarPorterosGUI extends javax.swing.JDialog {
             // TODO addRegistro your handling code here:
             listarPorteros();
         } catch (CampusNoExistenteException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_formFocusGained
 

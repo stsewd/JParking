@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.srv.JP;
@@ -14,6 +15,8 @@ import edu.ucue.jparking.srv.excepciones.NumeroLugaresDeParqueoInsuficientesExce
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -209,6 +212,8 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
             getPadre().listarParqueaderos();
         }catch (ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | LugaresDeParqueoOCupadosException | NumeroLugaresDeParqueoInsuficientesException | IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
@@ -317,7 +322,7 @@ public class EditarParqueaderoGUI extends javax.swing.JDialog {
 
     public void cargarDatos(String parqueaderoId, String campus)
             throws ParqueaderoNoExistenteException, CodigoNoValidoException,
-            CampusNoExistenteException 
+            CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException 
     {
         Parqueadero parqueadero = jp.getParqueadero(campus, parqueaderoId);
         if(parqueadero == null)

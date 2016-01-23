@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.ParqueaderoNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoAgregadaException;
@@ -15,7 +16,11 @@ import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Parqueadero;
 import edu.ucue.jparking.srv.objetos.Puerta;
 import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -291,7 +296,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
+    private void listarPuertasEntradas() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
        
         Set<Puerta> puertaEntrada = jp.getPuertasEntrada(CampusTF.getText(), idParqueaderolbl.getText());
         DefaultTableModel model = (DefaultTableModel) TablaPuertasEntrada.getModel();
@@ -305,7 +310,7 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
     }
     
     
-    private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException{
+    private void listarPuertasSalida() throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
         
         Set<Puerta> puertaSalida = jp.getPuertasSalida(CampusTF.getText(), idParqueaderolbl.getText());
         DefaultTableModel model = (DefaultTableModel) TablaPuertasSalida.getModel();
@@ -325,13 +330,13 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             listarPuertasEntradas();
         }catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
         
         try {
             listarPuertasSalida();
         }catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_AgregarEntradaBtnActionPerformed
 
@@ -344,17 +349,15 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException |IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch (Exception ex){
         }
         
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch (Exception ex){
         }
     }//GEN-LAST:event_AgregarSalidaBtn1ActionPerformed
 
@@ -382,6 +385,8 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Puerta Eliminada existosamente", "Mensaje", JOptionPane.OK_OPTION);
         } catch (PuertaNoExistenteException | IllegalArgumentException | ParqueaderoNoExistenteException | CodigoNoValidoException | CampusNoExistenteException | PuertaNoAgregadaException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
         }catch(HeadlessException ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         } catch (Exception ex){
@@ -391,9 +396,8 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             listarPuertasSalida();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
         } catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarSalidaBtn1ActionPerformed
 
@@ -420,13 +424,12 @@ public class AdministrarPuertaAccesoGUI extends javax.swing.JDialog {
         try {
             listarPuertasEntradas();
         } catch (CodigoNoValidoException | IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+        }catch (Exception ex){
         }
     }//GEN-LAST:event_EliminarEntradaBtnActionPerformed
 
-    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException{
+    public void CargarDatos(String campus, String idParqueadero) throws ParqueaderoNoExistenteException, CodigoNoValidoException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException{
         Parqueadero parqueadero =  jp.getParqueadero(campus, idParqueadero);
         ParqueaderoTF.setText("(" + idParqueadero + ") " + parqueadero.getUbicacion());
         CampusTF.setText(campus);

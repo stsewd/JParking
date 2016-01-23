@@ -5,6 +5,7 @@
  */
 package edu.ucue.jparking.gui;
 
+import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
 import edu.ucue.jparking.dao.excepciones.PuertaNoExistenteException;
 import edu.ucue.jparking.srv.JP;
@@ -12,7 +13,11 @@ import edu.ucue.jparking.srv.JPInterface;
 import edu.ucue.jparking.srv.excepciones.CodigoNoValidoException;
 import edu.ucue.jparking.srv.objetos.Campus;
 import edu.ucue.jparking.srv.objetos.Puerta;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,12 +34,16 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
     public AdministrarPuertasGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //cargando campus en el combo
-        cargarCampusCB();
+        try {
+            //cargando campus en el combo
+            cargarCampusCB();
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
+        }
         try {
             //cargando las puertas
             listarPuertas();
         } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
         
         //Centrar ventana
@@ -219,7 +228,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarCampusCB(){
+    private void cargarCampusCB() throws IOException, ClassNotFoundException, ObjectSizeException{
         //Cargar parqueaderos en combo box
         CampusCB.removeAllItems();
         for(Campus c : jp.getCampus()){
@@ -227,7 +236,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         }
     }
     
-    public void listarPuertas() throws CampusNoExistenteException, CodigoNoValidoException{
+    public void listarPuertas() throws CampusNoExistenteException, CodigoNoValidoException, IOException, ClassNotFoundException, ObjectSizeException{
         
 
         String nombreCampus = (String) CampusCB.getSelectedItem();
@@ -252,6 +261,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         try {
             listarPuertas();
         } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_CampusCBActionPerformed
 
@@ -271,6 +281,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         try {
             listarPuertas();
         } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_CrearPuertaBtnActionPerformed
 
@@ -294,9 +305,8 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         try {
             listarPuertas();
         } catch (CampusNoExistenteException | CodigoNoValidoException | IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+        }catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarPuertabtnActionPerformed
 
@@ -322,14 +332,16 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
             editarPuertaGUI.setVisible(true);
         } catch (CodigoNoValidoException | PuertaNoExistenteException | IllegalArgumentException | CampusNoExistenteException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
-        } catch (Exception ex){
+        } catch(ClassNotFoundException | FileNotFoundException | ObjectSizeException ex){
+            JOptionPane.showMessageDialog(rootPane, "Se produjo un error al leer o guardar en los datos.", "Mensaje", JOptionPane.OK_OPTION);
+        }catch (Exception ex){
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Error", JOptionPane.OK_OPTION);
         }
         
         try {
             listarPuertas();
-        } catch (CampusNoExistenteException ex) {
-        } catch (CodigoNoValidoException ex) {
+        } catch (CampusNoExistenteException | CodigoNoValidoException ex) {
+        } catch (IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_ModificarPuertaBtnActionPerformed
 
@@ -337,8 +349,7 @@ public class AdministrarPuertasGUI extends javax.swing.JDialog {
         try {
             // TODO addRegistro your handling code here:
             listarPuertas();
-        } catch (CampusNoExistenteException ex) {
-        } catch (CodigoNoValidoException ex) {
+        } catch (CampusNoExistenteException | CodigoNoValidoException | IOException | ClassNotFoundException | ObjectSizeException ex) {
         }
     }//GEN-LAST:event_formFocusGained
 
