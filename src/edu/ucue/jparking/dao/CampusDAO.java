@@ -47,7 +47,7 @@ public class CampusDAO implements CampusDAOInterface {
     private static BPTreeMap<String, Campus> mapCampus;
     private static final String dataPath = "data/campus.dat";
     private static final String indiceNombreCampusPath = "data/campus_nombre_index.dat";
-    private static final int objSize = 9999999;
+    private static final int objSize = 999999;
     
     private CampusDAO()
             throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
