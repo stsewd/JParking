@@ -54,7 +54,7 @@ class ClaveService {
        
       // Alternativamente, una clave que queramos que tenga al menos 16 bytes
       // y nos quedamos con los bytes 0 a 15
-      key = new SecretKeySpec("una clave de 16 bytes".getBytes(),  0, 16, "AES");
+      //key = new SecretKeySpec("una clave de 16 bytes".getBytes(),  0, 16, "AES");
 
       //guarda en un archivo .dat
       claveDAO.saveClave("data/celebrum.dat", (SecretKeySpec) key);
