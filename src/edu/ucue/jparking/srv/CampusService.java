@@ -49,7 +49,7 @@ class CampusService {
     }
     
     public void modCampus(String nombreCampus, String direccion, boolean estado)
-            throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException
+            throws CampusNoExistenteException, IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException
     {
         validar.ValidarCampus(nombreCampus, direccion);
         campusDAO.modCampus(nombreCampus, direccion, estado);
