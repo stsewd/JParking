@@ -1251,7 +1251,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
         
-        FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.DAT", "dat");
+        FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.dat", "dat");
         int ax = JOptionPane.showConfirmDialog(null, "Desea hacer un respaldo de su informacion?", "Alerta!", JOptionPane.YES_NO_OPTION);
         if(ax == JOptionPane.YES_OPTION){
             String fileName = "data";
@@ -1286,7 +1286,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
     private FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.ZIP", "zip");
     private void restaurarBackUpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurarBackUpItemActionPerformed
-        FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.DAT", "dat");
+        FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.dat", "dat");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filtro);
         int opcion = fileChooser.showOpenDialog(this);
