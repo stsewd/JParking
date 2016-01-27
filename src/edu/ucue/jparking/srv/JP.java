@@ -104,7 +104,13 @@ public class JP implements JPInterface {
         if(instance == null){
             try{
                 instance = new JP();
-            }catch (Exception ex){}
+            }catch (Exception ex){
+                try{
+                    Utilidades.iniciarDefaultDirectorios();
+                    instance = new JP();
+                }catch (Exception e){
+                }
+            }
         }
         return instance;
     }

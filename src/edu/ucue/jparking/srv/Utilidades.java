@@ -30,8 +30,10 @@ class Utilidades {
         // Crear direcotorios si no existen
         File direc =  new  File("data"); 
         File backup = new File("backup");
+        File archivos = new File("archivos");
         direc.mkdirs();
         backup.mkdirs();
+        archivos.mkdirs();
         
         //guardar clave encriptada
         claveService.GenerarClave();
