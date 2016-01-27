@@ -134,6 +134,7 @@ public class CambiarClaveGUI extends javax.swing.JDialog {
         try {
             jp.cambiarClave("Administrador", claveActual, claveNueva);
             JOptionPane.showMessageDialog(rootPane, "Contraseña cambiada exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
+            this.setVisible(false);
         } catch (NoSuchAlgorithmException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         } catch (NoSuchPaddingException ex) {

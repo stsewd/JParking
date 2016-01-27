@@ -1298,7 +1298,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
             if(!nombreArchivo.substring(0, 12).equals("dataJparking")){
                 JOptionPane.showMessageDialog(fileChooser, "El archivo que escogio no corresponde \n"
                         + "a un backup de datos del programa", url, JOptionPane.OK_OPTION);
-            
             }else{
             fileChooser.setFileFilter(filtroB);
             int opcion2 = fileChooser.showOpenDialog(this);
@@ -1332,13 +1331,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
             }
         }else if (opcion==JFileChooser.CANCEL_OPTION){
-            this.setVisible(false);
+            // this.setVisible(false);
         }
         
     }//GEN-LAST:event_restaurarBackUpItemActionPerformed
 
     private void cambiarClaveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveItemActionPerformed
         CambiarClaveGUI cambiarClaveGUI = new CambiarClaveGUI(this, true);
+        cambiarClaveGUI.setLocationRelativeTo(this);
         cambiarClaveGUI.setVisible(true);
     }//GEN-LAST:event_cambiarClaveItemActionPerformed
 

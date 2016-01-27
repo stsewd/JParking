@@ -12,7 +12,9 @@ import edu.ucue.jparking.srv.excepciones.PagoYaRealizadoException;
 import edu.ucue.jparking.srv.objetos.registros.Registro;
 import edu.ucue.jparking.srv.objetos.registros.RegistroPagos;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -22,7 +24,7 @@ import java.util.Set;
 public abstract class Usuario extends Persona {
 
     private Calendar fechaContrato;
-    private Set<Parqueadero> parqueaderos;
+    private Map<String, Parqueadero> parqueaderos;
     private boolean in;
     
     /**
@@ -37,7 +39,7 @@ public abstract class Usuario extends Persona {
     public Usuario(String cedula, String nombres, String apellidos, String direccion, String telefono, TipoUsuario tipoUsuario) {
         super(cedula, nombres, apellidos, direccion, telefono, tipoUsuario);
         this.fechaContrato = null;
-        this.parqueaderos = new HashSet<>();
+        this.parqueaderos = new HashMap<>();
     }
 
     /**
@@ -101,18 +103,18 @@ public abstract class Usuario extends Persona {
     }
     
     public void addParqueadero(Parqueadero parqueadero){
-        parqueaderos.add(parqueadero);
+        parqueaderos.put(parqueadero.getId() + parqueadero.getCampus(), parqueadero);
     }
     
     public void delParqueadero(Parqueadero parqueadero){
-        parqueaderos.remove(parqueadero);
+        parqueaderos.remove(parqueadero.getId() + parqueadero.getCampus());
     }
     
     /**
      * @return the parqueaderos
      */
     public Set<Parqueadero> getParqueaderos() {
-        return parqueaderos;
+        return new HashSet<>(parqueaderos.values());
     }
    
     public Registro getRegistro(TipoTramite tipoTramite){

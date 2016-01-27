@@ -6,7 +6,9 @@ package edu.ucue.jparking.srv.objetos;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -14,7 +16,8 @@ import java.util.Map;
  */
 public class Parqueadero implements Comparable<Parqueadero>, Serializable {
     
-    private Map<String, Usuario> usuarios; //Cedula de usuario
+    // private Map<String, Usuario> usuarios; //Cedula de usuario
+    private Set<String> usuarios; //Cedula de usuario
     private Map<String, Puerta> puertasEntrada; //Id de puerta
     private Map<String, Puerta> puertasSalida; //Id de puerta
 
@@ -23,7 +26,7 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
     private String ubicacion;
     private int numeroLugares;
     
-    private String nombreCampus;
+    private final String nombreCampus;
 
     public Parqueadero(String ubicacion, int numeroLugares, String id, Campus nombreCampus) {
         this.ubicacion = ubicacion;
@@ -32,21 +35,23 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
         this.nombreCampus = nombreCampus.getNombre();
         this.puertasEntrada = new HashMap<>();
         this.puertasSalida = new HashMap<>();
-        this.usuarios = new HashMap<>();
+        // this.usuarios = new HashMap<>();
+        this.usuarios = new HashSet<>();
         this.activo = true;
     }
     
     public void addUsuario(String cedula, Usuario usuario){
-        usuarios.put(cedula, usuario);
+        // usuarios.put(cedula, usuario);
+        usuarios.add(cedula);
     }
     
     public void delUsuario(String cedula){
         usuarios.remove(cedula);
     }
     
-    public Usuario getUsuario(String cedula){
-        return usuarios.get(cedula);
-    }
+//    public Usuario getUsuario(String cedula){
+//        return usuarios.get(cedula);
+//    }
     
     public void addPuertaEntrada(String idPuerta, Puerta puerta){
         puertasEntrada.put(idPuerta, puerta);
@@ -110,8 +115,12 @@ public class Parqueadero implements Comparable<Parqueadero>, Serializable {
     /**
      * @return the usuarios
      */
-    public Collection<Usuario> getUsuarios() {
-        return usuarios.values();
+//    public Collection<Usuario> getUsuarios() {
+//        return usuarios.values();
+//    }
+    
+    public Collection<String> getUsuariosCedula(){
+        return new HashSet(usuarios);
     }
     
     /**

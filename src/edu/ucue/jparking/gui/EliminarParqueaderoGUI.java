@@ -130,6 +130,7 @@ public class EliminarParqueaderoGUI extends javax.swing.JDialog {
         } catch (IllegalArgumentException | ParqueaderoNoExistenteException | CampusNoExistenteException | CodigoNoValidoException | UsuarioNoExistenteException | UsuarioNoAgregadoException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
         }  catch(Exception ex){
+            System.out.println(ex);
             JOptionPane.showMessageDialog(rootPane, "Algo inesperado pasó.", "Mensaje", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_EliminarBtnActionPerformed

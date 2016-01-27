@@ -28,6 +28,7 @@ import edu.ucue.jparking.srv.objetos.Puerta;
 import edu.ucue.jparking.srv.objetos.Usuario;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -154,12 +155,17 @@ public class CampusDAO implements CampusDAOInterface {
     
     public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
-            IOException, FileNotFoundException, ClassNotFoundException
+            IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException,
+            UsuarioNoExistenteException
     {
         Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
-        return new TreeSet<>(parqueadero.getUsuarios());
+        
+        Set<Usuario> usuarios = new TreeSet<>();
+        for(String cedula : parqueadero.getUsuariosCedula())
+            usuarios.add(UsuariosDAO.getInstance().getUsuario(cedula));
+        return usuarios;
     }
     
     public void delUsuarioParqueadero(String nombreCampus, String idParqueadero, String cedula)
@@ -169,7 +175,7 @@ public class CampusDAO implements CampusDAOInterface {
         Campus campus = getCampus(nombreCampus);
         UsuariosDAO.getInstance().getUsuario(cedula);
         Parqueadero parqueadero = campus.getParqueadero(idParqueadero);
-        if(parqueadero.getUsuario(cedula) == null)
+        if(!parqueadero.getUsuariosCedula().contains(cedula))
             throw new UsuarioNoAgregadoException(cedula);
 
         parqueadero.delUsuario(cedula);
@@ -200,12 +206,14 @@ public class CampusDAO implements CampusDAOInterface {
         if(parqueadero == null)
             throw new ParqueaderoNoExistenteException(idParqueadero);
         /*
-         *  Eliminar dependencias
+         * Eliminar dependencias
          * Eliminar parqueadero de todos los usuarios de este parqueadero.
-         */
-        for(Usuario usuario : parqueadero.getUsuarios()){
-            parqueadero.delUsuario(usuario.getCedula());
-            UsuariosDAO.getInstance().delParqueadero(usuario.getCedula(), nombreCampus, idParqueadero);
+         */        
+        for(String cedula : parqueadero.getUsuariosCedula()){
+            Usuario u = UsuariosDAO.getInstance().getUsuario(cedula);
+            u.delParqueadero(parqueadero);
+            UsuariosDAO.getInstance().update(cedula, u);
+            parqueadero.delUsuario(cedula);
         }
         
         campus.delParqueadero(idParqueadero);
@@ -328,7 +336,7 @@ public class CampusDAO implements CampusDAOInterface {
         
         Usuario usuario = UsuariosDAO.getInstance().getUsuario(cedula);
         
-        if(parqueadero.getUsuario(cedula) != null)
+        if(parqueadero.getUsuariosCedula().contains(cedula))
             throw new UsuarioYaAgregadoException(cedula);
         
         parqueadero.addUsuario(cedula, usuario);
