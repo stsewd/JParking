@@ -22,6 +22,8 @@ import java.util.List;
 /**
  *
  * @author Santos Gallegos
+ * @param <K> Clave
+ * @param <V> Valor
  */
 public class BPTreeMap<K, V> implements Serializable {
     private final File PATH; // Ruta donde se almacenará la tabla de valores.
@@ -125,7 +127,7 @@ public class BPTreeMap<K, V> implements Serializable {
      * @param value 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
-     * @throws edu.ucue.bptree.ObjectSizeException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void put(K key, V value) throws FileNotFoundException, IOException, ClassNotFoundException, ObjectSizeException {
         RandomAccessFile ram = null;
@@ -232,7 +234,7 @@ public class BPTreeMap<K, V> implements Serializable {
      * @throws java.io.IOException 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
-     * @throws edu.ucue.bptree.ObjectSizeException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void remove(K key) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         V obj = getObject(tree.search(key));
@@ -328,7 +330,7 @@ public class BPTreeMap<K, V> implements Serializable {
             raf.write(rest);
             
             // Eliminar clave secundaria y volver a añadirla con nuevo valor
-            // en caso que se haya modificado valor de clave secundaria.
+            // en caso que se haya modificado el valor de la clave secundaria.
             for(int i = 0; i < secTreeIndex.size(); i++){
                 IndexGenerator ig = indexGenerators.get(i);
                 secTreeIndex.get(i).del(ig.getKey(oldObj));
