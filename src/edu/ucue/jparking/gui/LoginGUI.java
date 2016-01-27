@@ -173,14 +173,13 @@ public class LoginGUI extends javax.swing.JFrame {
         pgui.setVisible(true);
     }
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed
-        // Inicio de sesion 
+        // Inicio de sesion
         char[] pass = ContraseTF.getPassword();
         String password = new String(pass);
         try {
             jp.validarClave(UsuarioTF.getText(), password);
             iniciar();
             this.setVisible(false);
-            return;
         }catch(ClaveNoValidaException ex){
             JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
             ContraseTF.setText("");
