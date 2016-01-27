@@ -158,7 +158,7 @@ public class LoginGUI extends javax.swing.JFrame {
   
     private void iniciar(){
         PrincipalGUI pgui = new PrincipalGUI();
-        boolean cargarTest = true;
+        boolean cargarTest = false;
         if(cargarTest){
             try{
                 Test.loadAllTest();
