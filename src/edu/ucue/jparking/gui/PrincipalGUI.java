@@ -1309,6 +1309,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
                         jp.unZipFiles(backupPath, clavePath);
                         JOptionPane.showMessageDialog(rootPane, "Backup recuperado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
                         listarUsuarios();
+                        cargarCampusCB();
+                        listarParqueaderos();
                         listarParqueaderos();
                     } catch(InvalidKeySpecException ex){
                         JOptionPane.showMessageDialog(rootPane,"Clave o archivo no validos.", "Error", JOptionPane.OK_OPTION);
