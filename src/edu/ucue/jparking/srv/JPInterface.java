@@ -774,9 +774,10 @@ public interface JPInterface {
      * descomprime los archivos
      * @param zipfile
      * @param descDir
+     * @param clavePath
      * @throws IOException 
      */
-    public void unZipFiles(File zipfile, String descDir) throws IOException;
+    public void unZipFiles(File zipfile, File clavePath) throws IOException, Exception;
     
     /**
      * Cambia la contraseña actual por una nueva dada por el usuario.
@@ -802,15 +803,6 @@ public interface JPInterface {
      * @param clavePublicaurl
      * @throws Exception 
      */
-    public void generarClavesRSA(Path path, String user) throws Exception;
-    
-    /**
-     * Valida clave de RSA
-     * @param publicFile
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @throws Exception 
-     */
-     public boolean validarClaveRSA(String archivoUsuario) throws NoSuchAlgorithmException, Exception;
+    public void generarClavesRSA(Path path) throws Exception;
     
 }

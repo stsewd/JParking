@@ -1266,7 +1266,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         if(ax == JOptionPane.YES_OPTION){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileFilter(filtroB);
-            fileChooser.setDialogTitle("Selccione la clave con la que desea encriptar su información.");
+            fileChooser.setDialogTitle("Seleccione la clave.");
             int opcion = fileChooser.showSaveDialog(this);
             if(opcion == JFileChooser.APPROVE_OPTION){
                 File clavePath = fileChooser.getSelectedFile();
@@ -1291,51 +1291,44 @@ public class PrincipalGUI extends javax.swing.JFrame {
         
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filtro);
+        fileChooser.setDialogTitle("Seleccione el backup.");
         int opcion = fileChooser.showOpenDialog(this);
-        if(opcion==JFileChooser.APPROVE_OPTION){
-            File archivoSeleccionado = fileChooser.getSelectedFile();
-            String url = archivoSeleccionado.getAbsolutePath();
-            String nombreArchivo = archivoSeleccionado.getName();
-            System.out.println(nombreArchivo.substring(0, 12));
-            if(!nombreArchivo.substring(0, 12).equals("dataJparking")){
-                JOptionPane.showMessageDialog(fileChooser, "El archivo que escogio no corresponde \n"
-                        + "a un backup de datos del programa", url, JOptionPane.OK_OPTION);
-            }else{
+        if(opcion == JFileChooser.APPROVE_OPTION){
+            File backupPath = fileChooser.getSelectedFile();
+            
+            fileChooser = new JFileChooser();
             fileChooser.setFileFilter(filtroB);
-            int opcion2 = fileChooser.showOpenDialog(this);
-            if(opcion2 == JFileChooser.APPROVE_OPTION){
-                File archivoClaveSelecionado = fileChooser.getSelectedFile();
-                String urlClave = archivoClaveSelecionado.getAbsolutePath();
-                try {
-                    if(jp.validarClaveRSA(urlClave)==false)
-                        JOptionPane.showMessageDialog(fileChooser, "El archivo de la clave no es el correcto.");
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(fileChooser, "El archivo de la clave no es el correcto.");
-                }
-            }
-            int ax = JOptionPane.showConfirmDialog(fileChooser,"Esta seguro que desea remplazar los datos.", "Alerta", JOptionPane.OK_CANCEL_OPTION);
-            if(ax==JOptionPane.OK_OPTION){
+            fileChooser.setDialogTitle("Seleccione la clave.");
+            opcion = fileChooser.showOpenDialog(this);
+            if(opcion == JFileChooser.APPROVE_OPTION){
+                File clavePath = fileChooser.getSelectedFile();
                 
-                File filenew = new File(url);
-		// El Directorio de destino tras la extracción de la
-                int lon = filenew.getAbsolutePath().length();
-		String dir = filenew.getAbsolutePath().substring(0, lon-33);
-                try {
-                    jp.unZipFiles(filenew, dir);
-                    listarUsuarios();
-                    listarParqueaderos();
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(fileChooser, "Ha existido un error mientras se descomprime", "Error", JOptionPane.OK_OPTION);
-                } catch (ClassNotFoundException | ObjectSizeException | CampusNoExistenteException ex) {
+                int ax = JOptionPane.showConfirmDialog(fileChooser,"Los datos actuales serán reemplazados. ¿Desea continuar?.", "Alerta", JOptionPane.OK_CANCEL_OPTION);
+                if(ax==JOptionPane.OK_OPTION){
+                    try{
+                        jp.unZipFiles(backupPath, clavePath);
+                        JOptionPane.showMessageDialog(rootPane, "Backup recuperado exitosamente.", "Mensaje", JOptionPane.OK_OPTION);
+                        listarUsuarios();
+                        listarParqueaderos();
+                    } catch(InvalidKeySpecException ex){
+                        JOptionPane.showMessageDialog(rootPane,"Clave o archivo no validos.", "Error", JOptionPane.OK_OPTION);
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(fileChooser, "No se pudo completar la restauracion.", "Error", JOptionPane.OK_OPTION);
+                    } catch (ClassNotFoundException ex) {
+                        JOptionPane.showMessageDialog(fileChooser, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+                    } catch (ObjectSizeException ex) {
+                        JOptionPane.showMessageDialog(fileChooser, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+                    } catch (CampusNoExistenteException ex) {
+                        JOptionPane.showMessageDialog(fileChooser, ex.getMessage(), "Error", JOptionPane.OK_OPTION);
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                        JOptionPane.showMessageDialog(fileChooser,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);
+                    }
                 }
-            }else if ( ax == JOptionPane.CANCEL_OPTION){
-                
+                return;
             }
-            }
-        }else if (opcion==JFileChooser.CANCEL_OPTION){
-            // this.setVisible(false);
         }
-        
+        JOptionPane.showMessageDialog(fileChooser, "No se pudo completar la restauracion.", "Error", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_restaurarBackUpItemActionPerformed
 
     private void cambiarClaveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveItemActionPerformed
@@ -1352,7 +1345,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         int opc = fileChooser.showSaveDialog(this);
         if(opc == JFileChooser.APPROVE_OPTION){
             try{
-                jp.generarClavesRSA(fileChooser.getSelectedFile().toPath(), "admin");
+                jp.generarClavesRSA(fileChooser.getSelectedFile().toPath());
                 JOptionPane.showMessageDialog(rootPane,"Claves guardadas correctamente en:\n" + fileChooser.getSelectedFile(), "Mensaje", JOptionPane.OK_OPTION);
             }catch (Exception ex) {
                 JOptionPane.showMessageDialog(rootPane,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);

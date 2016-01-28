@@ -545,8 +545,8 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void unZipFiles(File zipfile, String descDir) throws IOException {
-        backupService.unZipFiles(zipfile, descDir);
+    public void unZipFiles(File zipfile, File clavePath) throws IOException, Exception {
+        backupService.unZipFiles(zipfile, new File("data"), clavePath);
     }
 
     @Override
@@ -559,12 +559,7 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void generarClavesRSA(Path path, String user) throws Exception {
-        claveService.generarClavesRSA(path, user);
-    }
-
-    @Override
-    public boolean validarClaveRSA(String archivoUsuario) throws NoSuchAlgorithmException, Exception {
-        return claveService.validarClaveRSA(archivoUsuario);
+    public void generarClavesRSA(Path path) throws Exception {
+        claveService.generarClavesRSA(path);
     }
 }

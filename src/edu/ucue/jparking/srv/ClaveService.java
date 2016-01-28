@@ -61,7 +61,7 @@ class ClaveService {
       // Texto a encriptar
     }
     
-    public void generarClavesRSA(Path path, String user) throws Exception {
+    public void generarClavesRSA(Path path) throws Exception {
         // Generar el par de claves
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -95,34 +95,12 @@ class ClaveService {
         */
     }
     
-    public boolean validarClaveRSA(String archivoUsuario) throws NoSuchAlgorithmException, Exception{
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        KeyPair keyPair = keyPairGenerator.generateKeyPair();
-        PublicKey publicKey = keyPair.getPublic();
-        
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(archivoUsuario)));
-        byte[] recuperada =(byte[]) ois.readObject();
-        
-        int numBytes = ois.available();
-        byte[] bytes = new byte[numBytes];
-        ois.read(bytes);
-        ois.close();
-
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        KeySpec keySpec = new X509EncodedKeySpec(bytes);
-        PublicKey keyFromBytes = keyFactory.generatePublic(keySpec);
-        
-        //recupero la clave publica de un archivo de texto
-        publicKey = keyFromBytes;
-        
-        
-        //recupero lo cifrado por la clave privada para 
-        //decifrarlo por la clave publica
-        //byte[] recuperada = claveDAO.recuperarContrasenia(claveFile);
+    public boolean validarClaveRSA(File clavePath, byte[] encrypData) throws NoSuchAlgorithmException, Exception{
+        PrivateKey privateKey = claveDAO.loadPrivateKey(clavePath.toString());
         
         Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        rsa.init(Cipher.DECRYPT_MODE, publicKey);
-        byte[] decifrado = rsa.doFinal(recuperada);
+        rsa.init(Cipher.DECRYPT_MODE, privateKey);
+        byte[] decifrado = rsa.doFinal(encrypData);
         String clave = new String(decifrado);
         
         if(clave.equals("admin"))

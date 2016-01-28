@@ -8,8 +8,10 @@ import edu.ucue.jparking.dao.ClaveDAO;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +27,7 @@ import javax.crypto.CipherOutputStream;
 public class BackupService {
     
     private static ZipOutputStream zos;
+    private ClaveService claveService = new ClaveService();
 
     public void generarZip(File clavePath) throws IOException, FileNotFoundException, Exception{
         makeZip(clavePath, "data");
@@ -46,7 +49,6 @@ public class BackupService {
         zos.close();
         
         // Agregar encriptado a zip
-        
         RandomAccessFile raf = new RandomAccessFile(archivo, "rw");
         Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         rsa.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -55,25 +57,7 @@ public class BackupService {
         raf.write(encriptado);
         raf.writeInt(encriptado.length);
         raf.close();
-        
-        /*
-        // byte[] encriptado = rsa.doFinal();        
-        byte[] bufferByte = new byte[1];
-        byte[] bufferByteEncrip = new byte[1];
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ByteArrayInputStream in = new ByteArrayInputStream(bufferByte);
-        
-        raf.seek(0);
-        rafOut.seek(0);
-        while(raf.read(bufferByte) != -1){
-            // rsa.update(bufferByte, bufferByteEncrip);
-            // rafOut.write(bufferByteEncrip);
-        }
-        rafOut.write(rsa.doFinal());
-        rafOut.close();
-        raf.close();
-        */
-        
+                
         Calendar fecha = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String fechaString = (String) df.format(fecha.getTime());
@@ -123,20 +107,37 @@ public class BackupService {
         }
    }
    
-   public void unZipFiles(File zipfile, String descDir) throws IOException {
-        File file = new File(descDir);
-        if (!file.exists())
-            file.mkdirs();
-        
-        ZipFile zf = null;
-        try{
-            zf = new ZipFile(zipfile);
+   public void unZipFiles(File zipfile, File descDir, File clavePath) throws IOException, Exception {
+       File tempZip = new File(descDir, "temp.zip"); 
+       RandomAccessFile raf = null;
+       ZipFile zf = null;
+       try{
+            // Comprobar fichero
+            Files.copy(zipfile.toPath(), tempZip.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            
+            raf = new RandomAccessFile(tempZip, "rw");
+            raf.seek(raf.length() - 4);
+            int lenEncrip = raf.readInt();
+            raf.seek(raf.length() - (lenEncrip + 4));
+            byte[] encrypData = new byte[lenEncrip];
+            raf.read(encrypData);
+
+            if(!claveService.validarClaveRSA(clavePath, encrypData)){
+                throw new InvalidKeySpecException();
+            }
+            
+            raf.setLength(raf.length() - (lenEncrip + 4));
+            raf.close();
+            
+            if (!descDir.exists())
+                descDir.mkdirs();
+
+            zf = new ZipFile(tempZip);
             for (Enumeration entries = zf.entries(); entries.hasMoreElements();) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();
-                String zipEntryName = entry.getName();
+                File zipEntryName = new File(entry.getName());
                 InputStream in = zf.getInputStream(entry);
-                System.out.println(descDir + zipEntryName);
-                OutputStream out = new FileOutputStream(descDir + zipEntryName);
+                OutputStream out = new FileOutputStream(zipEntryName);
                 byte[] buf1 = new byte[1024];
                 int len;
                 while ((len = in.read(buf1)) > 0) {
@@ -145,8 +146,12 @@ public class BackupService {
                 in.close();
                 out.close();
             }
-        } finally {
-            zf.close();
+        }finally {
+           Files.delete(tempZip.toPath());
+           try{
+               zf.close();
+               raf.close();
+           }catch(Exception ex){}
         }
     }
 
