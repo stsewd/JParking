@@ -4,14 +4,19 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
+import edu.ucue.jparking.dao.ClaveDAO;
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.PublicKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.zip.*;
+import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
 
 /**
  *
@@ -21,25 +26,59 @@ public class BackupService {
     
     private static ZipOutputStream zos;
 
-    public void generarZip(String fileName) throws IOException, FileNotFoundException{
-        makeZip(fileName);
+    public void generarZip(File clavePath) throws IOException, FileNotFoundException, Exception{
+        makeZip(clavePath, "data");
     }
 
-    public void makeZip(String fileName)
-        throws IOException, FileNotFoundException
+    public void makeZip(File clavePath, String fileName)
+        throws IOException, FileNotFoundException, Exception
     {
-        Calendar fecha = Calendar.getInstance();
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        String fechaString = (String) df.format(fecha.getTime());
+        if(!clavePath.exists())
+            throw new FileNotFoundException(clavePath.toString());
+        PublicKey publicKey = ClaveDAO.getInstancia().loadPublicKey(clavePath.toString());
+        
         File file = new File(fileName);
-        zos = new ZipOutputStream(new FileOutputStream( file + ".zip"));
+        File archivo = new File(file + ".jpbackup");
+        zos = new ZipOutputStream(new FileOutputStream(archivo));
         recurseFiles(file);
         // Hemos terminado de agregar entradas al archivo zip ,
         // por lo que cerrar el flujo de salida Zip.
         zos.close();
-
-        File archivo = new File(file + ".zip");
-        File nuevoArchivo = new File("backup/" + file+"Jparking" + fechaString +".zip");
+        
+        // Agregar encriptado a zip
+        
+        RandomAccessFile raf = new RandomAccessFile(archivo, "rw");
+        Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        rsa.init(Cipher.ENCRYPT_MODE, publicKey);
+        byte[] encriptado = rsa.doFinal("admin".getBytes());
+        raf.seek(raf.length());
+        raf.write(encriptado);
+        raf.writeInt(encriptado.length);
+        raf.close();
+        
+        /*
+        // byte[] encriptado = rsa.doFinal();        
+        byte[] bufferByte = new byte[1];
+        byte[] bufferByteEncrip = new byte[1];
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ByteArrayInputStream in = new ByteArrayInputStream(bufferByte);
+        
+        raf.seek(0);
+        rafOut.seek(0);
+        while(raf.read(bufferByte) != -1){
+            // rsa.update(bufferByte, bufferByteEncrip);
+            // rafOut.write(bufferByteEncrip);
+        }
+        rafOut.write(rsa.doFinal());
+        rafOut.close();
+        raf.close();
+        */
+        
+        Calendar fecha = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String fechaString = (String) df.format(fecha.getTime());
+        File nuevoArchivo = new File("backup/" + file + "-jparking-" + fechaString + ".jpbackup");
+        
         Files.move(archivo.toPath(), nuevoArchivo.toPath(), StandardCopyOption.REPLACE_EXISTING);
    }
 

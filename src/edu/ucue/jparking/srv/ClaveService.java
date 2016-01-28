@@ -61,34 +61,39 @@ class ClaveService {
       // Texto a encriptar
     }
     
-    public void generarClavesRSA(Path path) throws Exception  {
+    public void generarClavesRSA(Path path, String user) throws Exception {
         // Generar el par de claves
-      KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-      KeyPair keyPair = keyPairGenerator.generateKeyPair();
-      PublicKey publicKey = keyPair.getPublic();
-      PrivateKey privateKey = keyPair.getPrivate();
-      // Se salva y recupera de fichero la clave publica
-      claveDAO.saveKey(publicKey, "data/clavePublica.dat");
-      //escribe los objetos
-      ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("data/clave.dat")));
-      
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+        PublicKey publicKey = keyPair.getPublic();
+        PrivateKey privateKey = keyPair.getPrivate();
+        File privatePath = new File(path.toFile(), "clavePrivadaJP.dat");
+        File publicPath = new File(path.toFile(), "clavePublicaJP.dat");
+        // Se salva y recupera de fichero la clave publica
+        claveDAO.saveKey(publicKey, publicPath.toString());
+        claveDAO.saveKey(privateKey, privatePath.toString());
+        
+        /*
+        //escribe los objetos
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("data/clave.dat"));
+
         Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        rsa.init(Cipher.ENCRYPT_MODE, privateKey );
-        byte[] encriptado = rsa.doFinal("admin".getBytes());
+        rsa.init(Cipher.ENCRYPT_MODE, privateKey);
+        byte[] encriptado = rsa.doFinal(user.getBytes());
         
         byte[] publicKeyBytes = publicKey.getEncoded();
-        os.writeObject(encriptado);
+        os.write(encriptado);
         os.writeObject(publicKeyBytes);
         os.close();
-        
+
         claveDAO.guardarContrasenia("data/passwordRSA.dat", encriptado);
-      
-    // Se salva de fichero la clave privada
-      claveDAO.saveKey(privateKey, "data/clavePrivada.dat");
-      File file = new File("data/clave.dat");
-      Files.move(file.toPath(), path, StandardCopyOption.REPLACE_EXISTING);
+
+        // Se salva de fichero la clave privada
+        claveDAO.saveKey(privateKey, "data/clavePrivada.dat");
+        File file = new File("data/clave.dat");
+        Files.move(file.toPath(), path, StandardCopyOption.REPLACE_EXISTING);
+        */
     }
-    
     
     public boolean validarClaveRSA(String archivoUsuario) throws NoSuchAlgorithmException, Exception{
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
@@ -125,6 +130,7 @@ class ClaveService {
         
         return false;
     }
+    
     public void cifrar(String clave)
             throws NoSuchAlgorithmException, NoSuchPaddingException, IOException,
             ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException,

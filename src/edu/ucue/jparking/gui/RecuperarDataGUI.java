@@ -36,13 +36,14 @@ public class RecuperarDataGUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
+        jFileChooserTest = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+        jFileChooserTest.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        jFileChooserTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFileChooser1ActionPerformed(evt);
+                jFileChooserTestActionPerformed(evt);
             }
         });
 
@@ -52,21 +53,21 @@ public class RecuperarDataGUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addComponent(jFileChooserTest, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jFileChooserTest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+    private void jFileChooserTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserTestActionPerformed
         JFileChooser seleccionadoArchivo = (JFileChooser) evt.getSource();
         String pressBoton = evt.getActionCommand();
         if(pressBoton.equals(JFileChooser.APPROVE_SELECTION)){
@@ -76,7 +77,7 @@ public class RecuperarDataGUI extends javax.swing.JDialog {
         }else if (pressBoton.equals(JFileChooser.CANCEL_OPTION)){
             this.setVisible(false);
         }
-    }//GEN-LAST:event_jFileChooser1ActionPerformed
+    }//GEN-LAST:event_jFileChooserTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +122,6 @@ public class RecuperarDataGUI extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser jFileChooserTest;
     // End of variables declaration//GEN-END:variables
 }

@@ -34,6 +34,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -229,6 +230,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         CopiaSeguridadItem = new javax.swing.JMenuItem();
         restaurarBackUpItem = new javax.swing.JMenuItem();
+        generarClavesMenuItem = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         cambiarClaveItem = new javax.swing.JMenuItem();
         AyudaMenu = new javax.swing.JMenu();
@@ -375,7 +377,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(CampusCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
@@ -533,7 +535,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(TipoUsuarioCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -743,6 +745,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         jMenu2.add(restaurarBackUpItem);
+
+        generarClavesMenuItem.setText("Generar claves");
+        generarClavesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarClavesMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(generarClavesMenuItem);
         jMenu2.add(jSeparator10);
 
         cambiarClaveItem.setText("Cambiar contraseña");
@@ -1252,41 +1262,33 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void CopiaSeguridadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopiaSeguridadItemActionPerformed
         
         FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.DAT", "dat");
-        int ax = JOptionPane.showConfirmDialog(null, "Desea hacer un respaldo de su informacion?", "Alerta!", JOptionPane.YES_NO_OPTION);
+        int ax = JOptionPane.showConfirmDialog(null, "¿Desea hacer un respaldo de su informacion?", "Alerta", JOptionPane.YES_NO_OPTION);
         if(ax == JOptionPane.YES_OPTION){
-            String fileName = "data";
-         
-            //Use the makeZip se utilia para crear un archivo de tipo .zip.
-            File file = new File(fileName);
-            if(file.exists()){
-                try {
-                    jp.makeZip(fileName);
-                    JFileChooser fileChooser = new JFileChooser();
-                    fileChooser.setFileFilter(filtroB);
-                    int opcion = fileChooser.showSaveDialog(this);
-                    if(opcion == JFileChooser.APPROVE_OPTION){
-                        File directorio = fileChooser.getSelectedFile();
-                        String destino = directorio.getAbsolutePath();
-                        jp.generarClavesRSA(directorio.toPath());
-                    }
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileFilter(filtroB);
+            fileChooser.setDialogTitle("Selccione la clave con la que desea encriptar su información.");
+            int opcion = fileChooser.showSaveDialog(this);
+            if(opcion == JFileChooser.APPROVE_OPTION){
+                File clavePath = fileChooser.getSelectedFile();
+                try{
+                    jp.makeZip(clavePath);
                     JOptionPane.showMessageDialog(rootPane, "Su backup se ha generado exitosamente", "Mensaje", JOptionPane.OK_OPTION);
-                }
-                catch (Exception  e) {
+                } catch(InvalidKeySpecException ex){
+                    JOptionPane.showMessageDialog(rootPane,"Clave seleccionada no valida.", "Error", JOptionPane.OK_OPTION);
+                }catch(Exception ex){
+                    System.out.println(ex);
                     JOptionPane.showMessageDialog(rootPane,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);
                 }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Ud no tiene la carpeta de datos", "Mensaje", JOptionPane.OK_OPTION);
-          }
+            }else {
+                JOptionPane.showMessageDialog(rootPane, "No se pudo realizar su copia de seguridad.", "Error", JOptionPane.OK_OPTION);
+            }
         }
-        //else if(ax == JOptionPane.NO_OPTION)
-          //  this.setVisible(false);
-        
-        
     }//GEN-LAST:event_CopiaSeguridadItemActionPerformed
 
-    private FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.ZIP", "zip");
     private void restaurarBackUpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurarBackUpItemActionPerformed
         FileNameExtensionFilter filtroB = new FileNameExtensionFilter("*.DAT", "dat");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.jpbackup", "jpbackup");
+        
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filtro);
         int opcion = fileChooser.showOpenDialog(this);
@@ -1341,6 +1343,22 @@ public class PrincipalGUI extends javax.swing.JFrame {
         cambiarClaveGUI.setLocationRelativeTo(this);
         cambiarClaveGUI.setVisible(true);
     }//GEN-LAST:event_cambiarClaveItemActionPerformed
+
+    private void generarClavesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarClavesMenuItemActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setDialogTitle("Seleccione donde desea guardar las claves.");
+        int opc = fileChooser.showSaveDialog(this);
+        if(opc == JFileChooser.APPROVE_OPTION){
+            try{
+                jp.generarClavesRSA(fileChooser.getSelectedFile().toPath(), "admin");
+                JOptionPane.showMessageDialog(rootPane,"Claves guardadas correctamente en:\n" + fileChooser.getSelectedFile(), "Mensaje", JOptionPane.OK_OPTION);
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane,"Algo inesperado pasó", "Error", JOptionPane.OK_OPTION);
+            }
+        }
+    }//GEN-LAST:event_generarClavesMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1420,6 +1438,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem UsuariosParqueaderoItem;
     private javax.swing.JButton VerBtn;
     private javax.swing.JMenuItem cambiarClaveItem;
+    private javax.swing.JMenuItem generarClavesMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;

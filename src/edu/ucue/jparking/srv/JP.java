@@ -7,7 +7,6 @@ import edu.ucue.jparking.srv.excepciones.ClaveNoValidaException;
 import edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.parser.Path;
 import edu.ucue.jparking.dao.bptree.ObjectSizeException;
 import edu.ucue.jparking.dao.excepciones.CampusExistenteExeption;
 import edu.ucue.jparking.dao.excepciones.CampusNoExistenteException;
@@ -58,6 +57,7 @@ import edu.ucue.jparking.srv.objetos.registros.Registro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
@@ -522,8 +522,8 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void makeZip(String fileName) throws IOException, FileNotFoundException {
-        backupService.makeZip(fileName);
+    public void makeZip(File clavePath) throws IOException, FileNotFoundException, Exception {
+        backupService.generarZip(clavePath);
     }
 
     @Override
@@ -559,8 +559,8 @@ public class JP implements JPInterface {
     }
 
     @Override
-    public void generarClavesRSA(java.nio.file.Path path) throws Exception {
-        claveService.generarClavesRSA(path);
+    public void generarClavesRSA(Path path, String user) throws Exception {
+        claveService.generarClavesRSA(path, user);
     }
 
     @Override
