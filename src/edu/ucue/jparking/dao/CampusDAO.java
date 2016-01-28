@@ -46,6 +46,7 @@ public class CampusDAO implements CampusDAOInterface {
     // Mapa <Nombre de campus, campus>
     // private static Map<String, Campus> mapCampus;
     private static BPTreeMap<String, Campus> mapCampus;
+    
     private static final String dataPath = "data/campus.dat";
     private static final String indiceNombreCampusPath = "data/campus_nombre_index.dat";
     private static final int objSize = 999999;
