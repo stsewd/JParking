@@ -1314,6 +1314,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
                     } catch(InvalidKeySpecException ex){
                         JOptionPane.showMessageDialog(rootPane,"Clave o archivo no validos.", "Error", JOptionPane.OK_OPTION);
                     } catch (IOException ex) {
+                        System.out.println(ex);
                         JOptionPane.showMessageDialog(fileChooser, "No se pudo completar la restauracion.", "Error", JOptionPane.OK_OPTION);
                     } catch (ClassNotFoundException ex) {
                         JOptionPane.showMessageDialog(fileChooser, ex.getMessage(), "Error", JOptionPane.OK_OPTION);

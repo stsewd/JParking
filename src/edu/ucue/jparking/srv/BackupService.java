@@ -147,11 +147,11 @@ public class BackupService {
                 out.close();
             }
         }finally {
-           Files.delete(tempZip.toPath());
            try{
                zf.close();
                raf.close();
            }catch(Exception ex){}
+           Files.delete(tempZip.toPath());
         }
     }
 
