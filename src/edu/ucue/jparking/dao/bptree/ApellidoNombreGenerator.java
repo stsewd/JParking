@@ -10,7 +10,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author stsewd
+ * @author Santos Gallegos
  */
 public class ApellidoNombreGenerator implements IndexGenerator<Persona, String>{
 

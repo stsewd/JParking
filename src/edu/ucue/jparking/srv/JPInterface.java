@@ -79,6 +79,9 @@ public interface JPInterface {
      * @param nombre
      * @param direccion
      * @throws CampusExistenteExeption 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void addCampus(String nombre, String direccion)
             throws CampusExistenteExeption, IOException, ClassNotFoundException,
@@ -88,6 +91,9 @@ public interface JPInterface {
      * @param nombre
      * @return
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Campus getCampus(String nombre) 
             throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
@@ -98,6 +104,9 @@ public interface JPInterface {
      * @param direccion
      * @param estado
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void modCampus(String nombre,String direccion,boolean estado) 
             throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
@@ -121,6 +130,9 @@ public interface JPInterface {
     /**
      * retorna todo los campus
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Campus> getCampus() throws IOException, ClassNotFoundException, ObjectSizeException;
     
@@ -133,6 +145,9 @@ public interface JPInterface {
      * @throws ContratoNoEstablecidoException
      * @throws FueraDelDiaDePagoException 
      * @throws edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public OrdenPago getOrdenPago(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException,
@@ -149,6 +164,10 @@ public interface JPInterface {
      * @throws edu.ucue.jparking.srv.excepciones.ContratoNoEstablecidoException 
      * @throws edu.ucue.jparking.srv.excepciones.FueraDelDiaDePagoException 
      * @throws edu.ucue.jparking.srv.excepciones.UsuarioNoRegistradoEnUnParqueaderoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void pagarOrdenPago(String cedula) 
             throws CedulaNoValidaException,
@@ -167,6 +186,9 @@ public interface JPInterface {
      * @throws CampusNoExistenteException
      * @throws CodigoNoValidoException
      * @throws CampusInactivoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void addParqueadero(String ubicacion, int numeroLugares, String id, String nombreCampus)
             throws ParqueaderoYaExistenteException, CampusNoExistenteException,
@@ -182,6 +204,10 @@ public interface JPInterface {
      * @throws UsuarioNoExistenteException
      * @throws UsuarioNoAgregadoException 
      * @throws edu.ucue.jparking.srv.excepciones.CampusInactivoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CampusNoExistenteException,
@@ -197,6 +223,9 @@ public interface JPInterface {
      * @throws ParqueaderoNoExistenteException
      * @throws CodigoNoValidoException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Parqueadero getParqueadero(String nombreCampus, String idParqueadero)
             throws ParqueaderoNoExistenteException, CodigoNoValidoException,
@@ -206,6 +235,9 @@ public interface JPInterface {
      * extrae todos los parqueaderos
      * @return
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Parqueadero> getParqueaderos() throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
@@ -214,6 +246,9 @@ public interface JPInterface {
      * @param idCampus
      * @return
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Parqueadero> getParqueaderos(String idCampus) throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
 
@@ -229,6 +264,9 @@ public interface JPInterface {
      * @throws LugaresDeParqueoOCupadosException
      * @throws NumeroLugaresDeParqueoInsuficientesException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void modParqueadero(String nombreCampus, String idParqueadero, String ubicacion, int numLugares,boolean estado) 
             throws ParqueaderoNoExistenteException, CodigoNoValidoException, LugaresDeParqueoOCupadosException, 
@@ -248,6 +286,9 @@ public interface JPInterface {
      * @throws CampusNoExistenteException
      * @throws PuertaInactivaException
      * @throws CampusInactivoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void addPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta) 
             throws ParqueaderoNoExistenteException, PuertaNoExistenteException,
@@ -283,6 +324,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws CampusNoExistenteException
      * @throws PuertaNoAgregadaException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delPuertaEntrada(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
@@ -298,6 +342,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws CampusNoExistenteException
      * @throws PuertaNoAgregadaException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delPuertaSalida(String nombreCampus, String idParqueadero, String idPuerta)
             throws PuertaNoExistenteException, ParqueaderoNoExistenteException,
@@ -318,6 +365,10 @@ public interface JPInterface {
      * @throws UsuarioInactivoException
      * @throws CampusNoExistenteException
      * @throws CampusInactivoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void addUsuario(String nombreCampus, String idParqueadero, String cedula) 
             throws CedulaNoValidaException,
@@ -340,6 +391,10 @@ public interface JPInterface {
      * @throws CampusNoExistenteException
      * @throws CampusInactivoException
      * @throws ParquaderoInactivoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delUsuario(String nombreCampus, String idParqueadero, String cedula) 
             
@@ -358,6 +413,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws ParqueaderoNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Puerta> getPuertasEntrada(String nombreCampus, String idParqueadero) 
             throws CodigoNoValidoException, ParqueaderoNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
@@ -370,6 +428,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws ParqueaderoNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Puerta> getPuertasSalida(String nombreCampus, String idParqueadero)
             throws CodigoNoValidoException,
@@ -384,6 +445,9 @@ public interface JPInterface {
      * @throws ParqueaderoNoExistenteException
      * @throws UsuarioNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Usuario> getUsuariosParqueadero(String nombreCampus, String idParqueadero) 
             throws CodigoNoValidoException, ParqueaderoNoExistenteException, 
@@ -402,6 +466,10 @@ public interface JPInterface {
      * @throws PorteroYaExistenteException
      * @throws TelefonoNoValidoException
      * @throws PersonaYaRegistradaComoUsuarioException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws java.io.FileNotFoundException 
      */
     public void addPortero(String nombreCampus, String cedula, String nombre, String apellido, String direccion, String telefono) 
             throws CedulaNoValidaException, CampusNoExistenteException, 
@@ -420,6 +488,11 @@ public interface JPInterface {
      * @throws CedulaNoValidaException
      * @throws PorteroNoExistenteException
      * @throws TelefonoNoValidoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.excepciones.CampusNoExistenteException 
      */
     public void modPortero(String cedula, String nombre, String apellido, String direccion, String telefono,boolean estado)
             throws CedulaNoValidaException, PorteroNoExistenteException, TelefonoNoValidoException,
@@ -431,6 +504,10 @@ public interface JPInterface {
      * @throws CedulaNoValidaException
      * @throws PorteroNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delPortero(String cedula) 
             throws CedulaNoValidaException, PorteroNoExistenteException, CampusNoExistenteException,
@@ -441,12 +518,18 @@ public interface JPInterface {
      * @param cedula
      * @return
      * @throws CedulaNoValidaException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Portero getPortero(String cedula) throws CedulaNoValidaException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * estrae todos los porteros
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Portero> getPorteros() throws IOException, ClassNotFoundException, ObjectSizeException;
     
@@ -455,6 +538,9 @@ public interface JPInterface {
      * @param nombreCampus
      * @return
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Portero> getPorteros(String nombreCampus) throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
@@ -466,6 +552,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws PuertaYaExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void addpuerta(String ubicacion, String id, String idCampus)
             throws CodigoNoValidoException, PuertaYaExistenteException, 
@@ -479,6 +568,9 @@ public interface JPInterface {
      * @throws PuertaNoExistenteException
      * @throws CampusNoExistenteException
      * @throws ParqueaderoNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delpuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
@@ -492,6 +584,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws PuertaNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Puerta getPuerta(String nombreCampus, String id)
             throws CodigoNoValidoException, PuertaNoExistenteException,
@@ -506,6 +601,9 @@ public interface JPInterface {
      * @throws CodigoNoValidoException
      * @throws PuertaNoExistenteException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void modPuerta(String nombreCampus, String id, String ubicacion, boolean activo)
             throws CodigoNoValidoException, PuertaNoExistenteException, CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
@@ -515,12 +613,18 @@ public interface JPInterface {
      * @param nombreCampus
      * @return
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Puerta> getPuertas(String nombreCampus) throws CampusNoExistenteException, IOException, ClassNotFoundException, ObjectSizeException;
     
     /**
      * extrae todas las puertas
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Puerta> getPuertas() throws IOException, ClassNotFoundException, ObjectSizeException;
           
@@ -533,6 +637,10 @@ public interface JPInterface {
      * @throws FechaInicialMayorAFechaFinalException
      * @throws FechaFinalMenorAFechaInicialException
      * @throws FechaInicialIgualAFechaFinalException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro, Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
@@ -541,12 +649,20 @@ public interface JPInterface {
      * extrea los registro de un tipo
      * @param tipoRegistro
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Registro> getRegistros(TipoRegistro tipoRegistro) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
     /**
      * extrae todos los registros
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Registro> getRegistros() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
@@ -558,6 +674,10 @@ public interface JPInterface {
      * @throws FechaInicialMayorAFechaFinalException
      * @throws FechaFinalMenorAFechaInicialException
      * @throws FechaInicialIgualAFechaFinalException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Registro>  getRegistros(Calendar fechaInicio, Calendar fechaFinal) 
             throws FechaInicialMayorAFechaFinalException, 
@@ -569,6 +689,10 @@ public interface JPInterface {
      * @param idRegistro
      * @return
      * @throws RegistroNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Registro getRegistro(String idRegistro) throws RegistroNoExistenteException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
@@ -585,6 +709,9 @@ public interface JPInterface {
      * @throws TelefonoNoValidoException
      * @throws PersonaYaRegistradoComoPorteroException
      * @throws UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
      */
     public void addUsuario(String cedula, String nombre, String apellido,String direccion,String telefono, String tipoUsuario) 
             throws UsuarioYaExistenteException, CedulaNoValidaException,
@@ -598,6 +725,10 @@ public interface JPInterface {
      * @throws CedulaNoValidaException
      * @throws IllegalArgumentException
      * @throws CampusNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void delUsuario(String cedula) 
             throws UsuarioNoExistenteException, CedulaNoValidaException, 
@@ -614,6 +745,10 @@ public interface JPInterface {
      * @param estado
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException 
+     * @throws edu.ucue.jparking.srv.excepciones.TelefonoNoValidoException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
      */
     public void modUsuario(String cedula, String nombre, String apellido,String direccion,String telefono,boolean estado)
             throws CedulaNoValidaException, UsuarioNoExistenteException, TelefonoNoValidoException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
@@ -625,12 +760,20 @@ public interface JPInterface {
      * @return
      * @throws UsuarioNoExistenteException
      * @throws CedulaNoValidaException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Usuario getUsuario(String cedula) throws UsuarioNoExistenteException, CedulaNoValidaException,IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
     /**
      * extrae todos los usuarios
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Usuario> getUsuarios() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
 
@@ -638,6 +781,10 @@ public interface JPInterface {
      * extarae por el tipo de usuario
      * @param tipoUsuario
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Usuario> getUsuarios(TipoUsuario tipoUsuario) throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
@@ -647,6 +794,10 @@ public interface JPInterface {
      * @return
      * @throws CedulaNoValidaException
      * @throws UsuarioNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<Parqueadero> getParqueaderosUsuario(String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException
@@ -666,6 +817,10 @@ public interface JPInterface {
      * @throws edu.ucue.jparking.srv.excepciones.PagoNoCanceladoException 
      * @throws edu.ucue.jparking.srv.excepciones.PorteroInactivoException 
      * @throws edu.ucue.jparking.srv.excepciones.UsuarioInactivoException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public void autenticarUsuario(String nombreCampus, String idPuerta, String cedula) 
             throws CedulaNoValidaException, UsuarioNoExistenteException, 
@@ -687,6 +842,8 @@ public interface JPInterface {
      * @throws FueraDelDiaDePagoException
      * @throws BadElementException
      * @throws IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public File exportarOrdenPago(String cedula) 
             throws UsuarioNoRegistradoEnUnParqueaderoException, 
@@ -701,6 +858,10 @@ public interface JPInterface {
      * @param numeroOrdenPago
      * @return 
      * @throws OrdenPagoNoExistenteException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws java.io.FileNotFoundException 
      */
     public OrdenPago getOrdenPago(int numeroOrdenPago)
             throws OrdenPagoNoExistenteException, IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
@@ -709,6 +870,10 @@ public interface JPInterface {
      * Retorna todas las ordenes de pago almacenadas en el 
      * sistema.
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<OrdenPago> getOrdenesPago() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
@@ -721,6 +886,10 @@ public interface JPInterface {
      * @throws edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException 
      * @throws edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException 
      * @throws edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public Set<OrdenPago> getOrdenesPago(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
@@ -729,6 +898,10 @@ public interface JPInterface {
     /**
      * Obtiene el valor del dinero recaudado entre todos los fondos.
      * @return 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public double getFondos() throws IOException, ClassNotFoundException, FileNotFoundException, ObjectSizeException;
     
@@ -741,6 +914,10 @@ public interface JPInterface {
      * @throws edu.ucue.jparking.srv.excepciones.FechaInicialMayorAFechaFinalException 
      * @throws edu.ucue.jparking.srv.excepciones.FechaFinalMenorAFechaInicialException 
      * @throws edu.ucue.jparking.srv.excepciones.FechaInicialIgualAFechaFinalException 
+     * @throws java.io.IOException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.io.FileNotFoundException 
+     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
      */
     public double getFondos(Calendar fechaInicial, Calendar fechaFinal)
             throws FechaInicialMayorAFechaFinalException, FechaFinalMenorAFechaInicialException,
@@ -748,7 +925,7 @@ public interface JPInterface {
     
     /**
      * genera el archivo .Zip
-     * @param fileName
+     * @param clavePath
      * @throws IOException
      * @throws FileNotFoundException 
      */
@@ -757,7 +934,13 @@ public interface JPInterface {
     /**
      * cifra la clave ecojida por el usuario
      * @param clave
-     * @throws Exception 
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws javax.crypto.NoSuchPaddingException
+     * @throws java.io.IOException
+     * @throws javax.crypto.BadPaddingException
+     * @throws java.lang.ClassNotFoundException
+     * @throws javax.crypto.IllegalBlockSizeException
+     * @throws java.security.InvalidKeyException
      */
     public void cifrar(String clave) throws NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException ;
     
@@ -766,14 +949,20 @@ public interface JPInterface {
      * @param usuario
      * @param clave
      * @return
-     * @throws Exception 
+     * @throws edu.ucue.jparking.srv.excepciones.ClaveNoValidaException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws javax.crypto.NoSuchPaddingException
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.security.InvalidKeyException
+     * @throws javax.crypto.IllegalBlockSizeException
+     * @throws javax.crypto.BadPaddingException
      */
     public boolean validarClave(String usuario,String clave) throws ClaveNoValidaException, NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
 
     /**
      * descomprime los archivos
      * @param zipfile
-     * @param descDir
      * @param clavePath
      * @throws IOException 
      */
@@ -800,7 +989,7 @@ public interface JPInterface {
     
     /**
      * genera las claves privadas y publicas para descomprimir los backup
-     * @param clavePublicaurl
+     * @param path
      * @throws Exception 
      */
     public void generarClavesRSA(Path path) throws Exception;

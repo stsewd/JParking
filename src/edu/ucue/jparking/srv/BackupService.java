@@ -4,27 +4,28 @@
  * and open the template in the editor.
  */
 package edu.ucue.jparking.srv;
+
 import edu.ucue.jparking.dao.ClaveDAO;
 import java.io.*;
-import java.nio.ByteBuffer;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.security.InvalidKeyException;
 import java.security.Key;
-import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.zip.*;
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
@@ -70,7 +71,7 @@ public class BackupService {
         aes.init(Cipher.ENCRYPT_MODE, key);
         FileInputStream is = new FileInputStream(tempZip);
         CipherOutputStream os = new CipherOutputStream(new FileOutputStream(nuevoArchivo), aes);
-        copy(is, os);
+        copiarBytes(is, os);
         os.close();
         
         // Escribir clave de aes ecriptada con rsa
@@ -87,7 +88,7 @@ public class BackupService {
         Files.delete(tempZip.toPath());
    }
     
-    private void copy(InputStream is, OutputStream os) throws IOException {
+    private void copiarBytes(InputStream is, OutputStream os) throws IOException {
         int i;
         byte[] b = new byte[1024];
         while((i = is.read(b)) != -1)
@@ -135,11 +136,14 @@ public class BackupService {
         }
    }
    
-   public void unZipFiles(File backupFile, File descDir, File clavePath) throws IOException, Exception {
+   public void unZipFiles(File backupFile, File descDir, File clavePath)
+           throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
+           IllegalBlockSizeException, BadPaddingException, Exception
+   {
        File tempFile = new File("temp.jpbackup"); 
        File tempZip = new File(descDir, "temp.zip");
-       RandomAccessFile raf = null;
-       ZipFile zf = null;
+       RandomAccessFile raf;
+       ZipFile zf;
        try{
             // Copiar fichero al espacio de trabajo
             Files.copy(backupFile.toPath(), tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -173,7 +177,7 @@ public class BackupService {
             
             CipherInputStream is = new CipherInputStream(new FileInputStream(tempFile), aes);
             FileOutputStream os = new FileOutputStream(tempZip);
-            copy(is, os);
+            copiarBytes(is, os);
             os.close();
 
             // Descomprimir archivos
@@ -191,8 +195,8 @@ public class BackupService {
                 in.close();
                 out.close();
             }
+            zf.close();
         }finally {
-           zf.close();
            Files.delete(tempFile.toPath());
            Files.delete(tempZip.toPath());
         }

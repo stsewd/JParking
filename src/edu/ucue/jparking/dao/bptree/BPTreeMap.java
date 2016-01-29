@@ -26,6 +26,7 @@ import java.util.List;
  * @param <V> Valor
  */
 public class BPTreeMap<K, V> implements Serializable {
+    
     private final File PATH; // Ruta donde se almacenará la tabla de valores.
     private final int OBJ_SIZE; // Tamaño max reservado para cada objeto.
     private final int EXTRA_BYTES = 4; // Bytes extras que contienen el tamaño del objeto.
@@ -34,7 +35,6 @@ public class BPTreeMap<K, V> implements Serializable {
     
     private List<BPTree> secTreeIndex; // Lista de árboles que contienen indices secundarios.
     private List<IndexGenerator<V, Object>> indexGenerators; // Lista de generadores de indices secundarios.
-    
     private BPTreeMap(int order, Comparator comparator, String dataPath, String treePath, int objSize, int nodeSize)
             throws IOException, FileNotFoundException, ObjectSizeException
     {
@@ -127,7 +127,7 @@ public class BPTreeMap<K, V> implements Serializable {
      * @param value 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
-     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws edu.ucue.bptree.ObjectSizeException 
      */
     public void put(K key, V value) throws FileNotFoundException, IOException, ClassNotFoundException, ObjectSizeException {
         RandomAccessFile ram = null;
@@ -234,7 +234,7 @@ public class BPTreeMap<K, V> implements Serializable {
      * @throws java.io.IOException 
      * @throws java.io.FileNotFoundException 
      * @throws java.lang.ClassNotFoundException 
-     * @throws edu.ucue.jparking.dao.bptree.ObjectSizeException 
+     * @throws edu.ucue.bptree.ObjectSizeException 
      */
     public void remove(K key) throws IOException, FileNotFoundException, ClassNotFoundException, ObjectSizeException {
         V obj = getObject(tree.search(key));

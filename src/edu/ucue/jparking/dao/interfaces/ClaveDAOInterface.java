@@ -5,7 +5,6 @@
  */
 package edu.ucue.jparking.dao.interfaces;
 
-import edu.ucue.jparking.dao.ClaveDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.Key;

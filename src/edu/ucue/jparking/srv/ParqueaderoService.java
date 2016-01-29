@@ -202,20 +202,7 @@ class ParqueaderoService {
             throw new ParqueaderoNoExistenteException(idParqueadero);
         UsuariosDAO.getInstance().setFechaContrato(cedula, fecha);
     }
-    
-    private void agregarEspacioParqueo(String nombreCampus, String idParqueadero)
-            throws ParqueaderoNoExistenteException, UsuarioNoExistenteException,
-            CodigoNoValidoException, CampusNoExistenteException, CedulaNoValidaException,
-            CampusInactivoException, ParquaderoInactivoException, IOException,
-            FileNotFoundException, ClassNotFoundException, ObjectSizeException
-    {
-        if(nombreCampus == null || nombreCampus.trim().length() == 0)
-            throw new IllegalArgumentException("El campus no puede ser nulo.");
-        Parqueadero parqueadero = getParqueadero(nombreCampus, idParqueadero);
-        if(parqueadero == null)
-            throw new ParqueaderoNoExistenteException(idParqueadero);
-    }
-    
+       
     private void eliminarEspacioParqueo(String nombreCampus, String idParqueadero, String cedula)
             throws ParqueaderoNoExistenteException, UsuarioNoExistenteException, CodigoNoValidoException,
             CampusNoExistenteException, CedulaNoValidaException, CampusInactivoException, ParquaderoInactivoException,

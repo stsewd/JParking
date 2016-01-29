@@ -16,8 +16,10 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.security.Key;
 import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -55,7 +57,6 @@ public class ClaveDAO implements ClaveDAOInterface{
         return clave;
     }
            
- 
     @Override
     public void guardarContrasenia(String fileName, byte[] clave) throws FileNotFoundException, IOException{
         FileOutputStream fos = new FileOutputStream(new File(fileName));
@@ -71,7 +72,7 @@ public class ClaveDAO implements ClaveDAOInterface{
     }
     
     @Override
-    public PublicKey loadPublicKey(String fileName) throws Exception {
+    public PublicKey loadPublicKey(String fileName) throws FileNotFoundException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
       FileInputStream fis = new FileInputStream(fileName);
       int numBtyes = fis.available();
       byte[] bytes = new byte[numBtyes];
@@ -85,7 +86,9 @@ public class ClaveDAO implements ClaveDAOInterface{
     }
 
     @Override
-    public PrivateKey loadPrivateKey(String fileName) throws Exception {
+    public PrivateKey loadPrivateKey(String fileName)
+            throws FileNotFoundException, IOException, NoSuchAlgorithmException, InvalidKeySpecException
+    {
       FileInputStream fis = new FileInputStream(fileName);
       int numBtyes = fis.available();
       byte[] bytes = new byte[numBtyes];
@@ -99,10 +102,10 @@ public class ClaveDAO implements ClaveDAOInterface{
     }
 
     @Override
-    public void saveKey(Key key, String fileName) throws Exception {
-    byte[] publicKeyBytes = key.getEncoded();
-    FileOutputStream fos = new FileOutputStream(fileName);
-    fos.write(publicKeyBytes);
-    fos.close();
+    public void saveKey(Key key, String fileName) throws FileNotFoundException, IOException {
+        byte[] publicKeyBytes = key.getEncoded();
+        FileOutputStream fos = new FileOutputStream(fileName);
+        fos.write(publicKeyBytes);
+        fos.close();
     }
 }
