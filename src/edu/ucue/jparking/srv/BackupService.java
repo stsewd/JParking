@@ -10,15 +10,22 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.zip.*;
 import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
+import javax.crypto.KeyGenerator;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -41,30 +48,51 @@ public class BackupService {
         PublicKey publicKey = ClaveDAO.getInstancia().loadPublicKey(clavePath.toString());
         
         File file = new File(fileName);
-        File archivo = new File(file + ".jpbackup");
-        zos = new ZipOutputStream(new FileOutputStream(archivo));
+        File tempZip = new File("temp.zip");
+        zos = new ZipOutputStream(new FileOutputStream(tempZip));
         recurseFiles(file);
         // Hemos terminado de agregar entradas al archivo zip ,
         // por lo que cerrar el flujo de salida Zip.
         zos.close();
         
-        // Agregar encriptado a zip
-        RandomAccessFile raf = new RandomAccessFile(archivo, "rw");
-        Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        rsa.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] encriptado = rsa.doFinal("admin".getBytes());
-        raf.seek(raf.length());
-        raf.write(encriptado);
-        raf.writeInt(encriptado.length);
-        raf.close();
-                
+        
         Calendar fecha = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String fechaString = (String) df.format(fecha.getTime());
         File nuevoArchivo = new File("backup/" + file + "-jparking-" + fechaString + ".jpbackup");
         
-        Files.move(archivo.toPath(), nuevoArchivo.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        // Encriptar backup
+        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+        keyGen.init(128);
+        Key key = keyGen.generateKey();
+        
+        Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        aes.init(Cipher.ENCRYPT_MODE, key);
+        FileInputStream is = new FileInputStream(tempZip);
+        CipherOutputStream os = new CipherOutputStream(new FileOutputStream(nuevoArchivo), aes);
+        copy(is, os);
+        os.close();
+        
+        // Escribir clave de aes ecriptada con rsa
+        RandomAccessFile raf = new RandomAccessFile(nuevoArchivo, "rw");
+        Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        rsa.init(Cipher.ENCRYPT_MODE, publicKey);
+        byte[] encriptado = rsa.doFinal(key.getEncoded());
+        raf.seek(raf.length());
+        raf.write(encriptado);
+        raf.writeInt(encriptado.length);
+        raf.close();
+        
+        // Eliminar archivo temporal
+        Files.delete(tempZip.toPath());
    }
+    
+    private void copy(InputStream is, OutputStream os) throws IOException {
+        int i;
+        byte[] b = new byte[1024];
+        while((i = is.read(b)) != -1)
+            os.write(b, 0, i);
+    }
 
    /*
     * Recursivamente por un directorio y sus subdirectorios para buscar
@@ -107,31 +135,48 @@ public class BackupService {
         }
    }
    
-   public void unZipFiles(File zipfile, File descDir, File clavePath) throws IOException, Exception {
-       File tempZip = new File(descDir, "temp.zip"); 
+   public void unZipFiles(File backupFile, File descDir, File clavePath) throws IOException, Exception {
+       File tempFile = new File("temp.jpbackup"); 
+       File tempZip = new File(descDir, "temp.zip");
        RandomAccessFile raf = null;
        ZipFile zf = null;
        try{
-            // Comprobar fichero
-            Files.copy(zipfile.toPath(), tempZip.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            // Copiar fichero al espacio de trabajo
+            Files.copy(backupFile.toPath(), tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             
-            raf = new RandomAccessFile(tempZip, "rw");
+            // Recuperar la clave aes encriptada.
+            raf = new RandomAccessFile(tempFile, "rw");
             raf.seek(raf.length() - 4);
             int lenEncrip = raf.readInt();
             raf.seek(raf.length() - (lenEncrip + 4));
-            byte[] encrypData = new byte[lenEncrip];
-            raf.read(encrypData);
-
-            if(!claveService.validarClaveRSA(clavePath, encrypData)){
-                throw new InvalidKeySpecException();
-            }
+            byte[] encrypKey = new byte[lenEncrip];
+            raf.read(encrypKey);
             
+            // Desencriptar clave aes con clave privada rsa
+            PrivateKey privateKey = ClaveDAO.getInstancia().loadPrivateKey(clavePath.toString());
+            Cipher rsa = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            rsa.init(Cipher.DECRYPT_MODE, privateKey);
+            
+            byte[] decodedKey = rsa.doFinal(encrypKey);
+            Key key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+            
+            // Eliminar clave del fichero
             raf.setLength(raf.length() - (lenEncrip + 4));
             raf.close();
             
+            // Desencriptar backup
             if (!descDir.exists())
                 descDir.mkdirs();
+            
+            Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            aes.init(Cipher.DECRYPT_MODE, key);
+            
+            CipherInputStream is = new CipherInputStream(new FileInputStream(tempFile), aes);
+            FileOutputStream os = new FileOutputStream(tempZip);
+            copy(is, os);
+            os.close();
 
+            // Descomprimir archivos
             zf = new ZipFile(tempZip);
             for (Enumeration entries = zf.entries(); entries.hasMoreElements();) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();
@@ -147,10 +192,8 @@ public class BackupService {
                 out.close();
             }
         }finally {
-           try{
-               zf.close();
-               raf.close();
-           }catch(Exception ex){}
+           zf.close();
+           Files.delete(tempFile.toPath());
            Files.delete(tempZip.toPath());
         }
     }
