@@ -52,6 +52,7 @@ public class CambiarClaveGUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cambiar contraseña");
+        setResizable(false);
 
         jLabel1.setText("Contraseña actual");
 

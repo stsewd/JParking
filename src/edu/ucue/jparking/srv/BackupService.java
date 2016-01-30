@@ -110,8 +110,11 @@ public class BackupService {
             if (fileNames != null) {
                 // Recursiva agregar cada entrada de la matriz para asegurarse de que lleguemos
                 // subdirectorios , así como archivos normales en el directorio.
-                for (int i=0; i<fileNames.length; i++)
+                for (int i=0; i<fileNames.length; i++){
+                    if(fileNames[i].toString().compareToIgnoreCase("password.dat") == 0 ||fileNames[i].toString().compareToIgnoreCase("celebrum.dat") == 0)
+                        continue;
                     recurseFiles(new File(file, fileNames[i]));
+                }
             }
         }else { // De lo contrario , un archivo para agregarlo como una entrada en el archivo Zip
             byte[] buf = new byte[1024];
