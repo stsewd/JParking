@@ -9,8 +9,8 @@ import edu.ucue.jparking.srv.objetos.Persona;
 import java.util.Comparator;
 
 /**
- *
- * @author Santos Gallegos
+ * 
+ * @author lara
  */
 public class ApellidoNombreGenerator implements IndexGenerator<Persona, String>{
 

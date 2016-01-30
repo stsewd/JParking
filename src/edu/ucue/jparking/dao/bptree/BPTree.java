@@ -19,6 +19,7 @@ import java.util.Objects;
 
 /**
  * Árbol B+.
+ * @author Franklin Lara
  * @author Santos Gallegos
  * @param <K> Clave
  */

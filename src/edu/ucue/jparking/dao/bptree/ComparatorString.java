@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- *
- * @author Santos Gallegos
+ * 
+ * @author lara
  */
 public class ComparatorString implements Comparator<String>, Serializable {
 
