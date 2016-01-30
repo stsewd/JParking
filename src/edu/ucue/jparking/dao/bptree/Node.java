@@ -10,7 +10,8 @@ import java.util.Comparator;
 
 /**
  *
- * @author Santos Gallegos,Franklin Lara
+ * @author Franklin Lara
+ * @author Santos Gallegos
  * @param <K> Clave
  */
 public final class Node<K> implements Serializable {

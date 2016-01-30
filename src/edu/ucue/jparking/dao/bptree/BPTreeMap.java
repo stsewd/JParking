@@ -21,7 +21,8 @@ import java.util.List;
 
 /**
  *
- * @author Santos Gallegos,Franklin Lara
+ * @author Franklin Lara
+ * @author Santos Gallegos
  * @param <K> Clave
  * @param <V> Valor
  */
