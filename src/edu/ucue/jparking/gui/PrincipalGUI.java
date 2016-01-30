@@ -1266,7 +1266,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         if(ax == JOptionPane.YES_OPTION){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileFilter(filtroB);
-            fileChooser.setDialogTitle("Seleccione la clave.");
+            fileChooser.setDialogTitle("Seleccione la clave pública.");
             int opcion = fileChooser.showSaveDialog(this);
             if(opcion == JFileChooser.APPROVE_OPTION){
                 File clavePath = fileChooser.getSelectedFile();
@@ -1298,7 +1298,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
             
             fileChooser = new JFileChooser();
             fileChooser.setFileFilter(filtroB);
-            fileChooser.setDialogTitle("Seleccione la clave.");
+            fileChooser.setDialogTitle("Seleccione la clave privada.");
             opcion = fileChooser.showOpenDialog(this);
             if(opcion == JFileChooser.APPROVE_OPTION){
                 File clavePath = fileChooser.getSelectedFile();

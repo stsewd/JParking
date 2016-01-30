@@ -158,7 +158,7 @@ public class LoginGUI extends javax.swing.JFrame {
   
     private void iniciar(){
         PrincipalGUI pgui = new PrincipalGUI();
-        boolean cargarTest = true;
+        boolean cargarTest = false;
         if(cargarTest){
             try{
                 Test.loadAllTest();
@@ -172,6 +172,7 @@ public class LoginGUI extends javax.swing.JFrame {
         }
         pgui.setVisible(true);
     }
+    
     private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed
         // Inicio de sesion
         char[] pass = ContraseTF.getPassword();

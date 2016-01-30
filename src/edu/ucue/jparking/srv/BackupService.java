@@ -111,7 +111,7 @@ public class BackupService {
                 // Recursiva agregar cada entrada de la matriz para asegurarse de que lleguemos
                 // subdirectorios , así como archivos normales en el directorio.
                 for (int i=0; i<fileNames.length; i++){
-                    if(fileNames[i].toString().compareToIgnoreCase("password.dat") == 0 ||fileNames[i].toString().compareToIgnoreCase("celebrum.dat") == 0)
+                    if(fileNames[i].compareToIgnoreCase("password.dat") == 0 ||fileNames[i].compareToIgnoreCase("celebrum.dat") == 0)
                         continue;
                     recurseFiles(new File(file, fileNames[i]));
                 }
